@@ -42,7 +42,7 @@ So we've found a generalisation of the dot product and matrix multiplication tha
 
 Note that in the definition of matrix multiplication, we combine the tensor product and reduction into a single operation, which saves some effort, but it also disguises something: it appears we never have to choose which indices to eliminate in the contraction. Matrix multiplication has a built-in decision to eliminate two specific indices.
 
-This comes from the fact that the matrix indices are classified as either rows (superscript) or columns (subscript), and one matrix is on the left and the other on the right. So multiplying two square matrices $\bold{A}$ and $\bold{B}$, to obtain $\bold{C}$ we use the same index for the subscript on the left and the superscript on the right:
+This comes from the fact that the matrix indices are classified as either rows (superscript) or columns (subscript), and one matrix is on the left and the other on the right. So multiplying two square matrices $\boldsymbol{A}$ and $\boldsymbol{B}$, to obtain $\boldsymbol{C}$ we use the same index for the subscript on the left and the superscript on the right:
 
 $$C^i_j = A^i_nB^n_j$$
 

@@ -14,12 +14,12 @@ Einstein's notation always makes it unambigious what operations we are performin
 
 $$C^i_j = A^iB_{j}$$
 
-This literally just tells us how to compute the element $(i, j)$ of $\bold{C}$, by multiplying the $i$-th element of $\bold{A}$ and the $j$-th element of $\bold{B}$.
+This literally just tells us how to compute the element $(i, j)$ of $\boldsymbol{C}$, by multiplying the $i$-th element of $\boldsymbol{A}$ and the $j$-th element of $\boldsymbol{B}$.
 
 If there is at least one repeated element, we're doing contraction, i.e. summation:
 
 $$E^i = C^i_jD^j$$
 
-This is telling us how to compute the $i$-th element of $\bold{E}$, by summing over $j$ the element $(i, j)$ of $\bold{C}$ multiplied by the $j$-th element of $\bold{D}$.
+This is telling us how to compute the $i$-th element of $\boldsymbol{E}$, by summing over $j$ the element $(i, j)$ of $\boldsymbol{C}$ multiplied by the $j$-th element of $\boldsymbol{D}$.
 
 So there's never any ambiguity, but also it's not necessary to say whether you're doing the tensor product or contraction.

@@ -1,14 +1,14 @@
 # Metric tensor
 
-To define the distance between two points in space, we can think of a vector reaching from one point to the other. So we just want to compute the length of that delta-vector, $\bold{D}$ from its coordinates.
+To define the distance between two points in space, we can think of a vector reaching from one point to the other. So we just want to compute the length of that delta-vector, $\boldsymbol{D}$ from its coordinates.
 
 In Euclidean space with an orthonormal basis, we use Pythagoras's theorem, which just means that we take the dot product of the vector with itself to get the squared length.
 
-But the dot product is a contraction of rank-2 tensor resulting from the tensor product of the vector with itself. If we don't do the contraction, we get the square matrix $\bold{S}$:
+But the dot product is a contraction of rank-2 tensor resulting from the tensor product of the vector with itself. If we don't do the contraction, we get the square matrix $\boldsymbol{S}$:
 
 $$S_{ij} = D_iD_j$$
 
-The diagonal of $\bold{S}$ is just the squares of the coordinates, the ingredients needed for Pythagoras. The other elements are all possible combinations of the coordinates. We can use a matrix $g_{ij}$ to pick out the ingredients we want to include in our sum:
+The diagonal of $\boldsymbol{S}$ is just the squares of the coordinates, the ingredients needed for Pythagoras. The other elements are all possible combinations of the coordinates. We can use a matrix $g_{ij}$ to pick out the ingredients we want to include in our sum:
 
 $$s = g_{ij}S^{ij}$$
 
