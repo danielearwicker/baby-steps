@@ -213,23 +213,31 @@ In our everyday experience, $v$ is practically zero, as we're expressing it as a
 
 But again, this is a frame-dependent quantity, because a particle only has a defined velocity relative to some chosen inertial frame.
 
-If we combine the components of the momentum 3-vector with the energy scalar (the total energy $m\gamma$ discussed above), we get a 4-vector called the 4-momentum.
+If we combine the components of the momentum 3-vector with the energy scalar (the total energy $m\gamma$ discussed above), we get a 4-vector called the 4-momentum. As always in the Minkowski metric, the magnitudes of these objects are related by:
+
+$$m^2 = E^2 - |\vec{p}|^2$$
+
+So the 4-momentum has magnitude $m$, the energy is "temporal" and the 3-momentum is "spatial". Enjoy the symmetry with:
+
+$$s^2 = t^2 - d^2$$
 
 It's interesting that the momentum provides the three spatial components, while energy provides the remaining temporal component (and indeed this is the case: momentum conservation is due to translational symmetry in space, and energy conservation is due to translational symmetry in time.)
 
 As we know that momentum and energy are separately conserved from the viewpoint of any inertial observer, we therefore know that the combined 4-momentum must also be conserved.
 
-The four coordinates are resolved relative to a coordinate system. We had to choose an orientation for the three axes that make up our spatial basis, which is a slice of spacetime. One way to visualise it is to discard one of the space dimensions, so that space is a planar slice through in a 3D spacetime. A given inertial observer regards their slice through spacetime as containing all the events happening "now", making it a "slice of simultaneity".
+The four coordinates are resolved relative to a coordinate system. We had to choose an orientation for the three axes that make up our spatial basis, which is a slice of spacetime. One way to visualise it is to discard one of the space dimensions, so that space is a planar slice through in a 3D spacetime. A given inertial observer regards their spatial slice through spacetime as containing all the events happening "now", making it a "slice of simultaneity".
 
-Each inertial observer will use different coordinates for the 4-momentum, not just because they have a free choice of spatial basis, but also because they each have a worldline through spacetime that is in a different direction. Each observer regards their own worldline as orthogonal to their slice of simultaneity.
+Each inertial observer will use different coordinates for the 4-momentum, not just because they have a free choice of spatial basis, but also because they each have an event path through spacetime that is momentarily in a specific direction. Each observer, assuming themselves to be at rest (at least instantaneously), regards their own event path as aligned with the time axis, and orthogonal to their slice of simultaneity.
 
-But despite the coordinates of the 4-momentum being different, they describe the same vector in spacetime. That is, two observers stating the 4-momentum of the same particle will use different coordinates for it. But these coordinates are related via the Lorentz transformation, which is a [matrix operator](./vectors-operators.md).
+But despite the coordinates of the 4-momentum being different, they describe the same vector in spacetime. That is, two observers stating the 4-momentum of the same particle will use different coordinates for the same 4-momentum. The vector itself can now at last be said to be conserved even under a change of coordinate systems. Everyone agrees on what the 4-momentum is geometrically, so we no longer have to qualify the law of conservation of momentum with caveats about a single frame of reference.
 
-If we divide all the components of the 4-momentum by the particle's intrinsic mass, we obtain the 4-velocity:
+If we scale the 4-momentum by $1/m$ (that is, in some coordinate system, if we divide all the components of the 4-momentum by the particle's intrinsic mass), we obtain the 4-velocity:
 
 $$\vec{u} = \frac{\vec{p}}{m}$$
 
-Note that this is not meaningful for a massless particle such as a photon, which is why momentum is more fundamental than velocity, as it momentum can be discussed for all particles regardless of whether they have mass.
+The magnitude of this vector is always $c$ (or $1$ in our simplified units), because the 4-momentum's magnitude is always $mc$ (or $m$). In other words, the only information really carried by the 4-velocity is a direction. We're only modelling a _direction_ in spacetime and can ignore the magnitude as not physically significant.
+
+This division by $m$ is not meaningful for a massless particle such as a photon, which is why momentum is more fundamental than velocity, as momentum can be discussed for all particles regardless of whether they have mass. Yet it's interesting that a photon's 4-vector nevertheless has magnitude $c$ (or $1$), just as if it had a very small mass $m$ that we could divide by.
 
 The relationship between the components of the 4-velocity $\vec{u}$ and familiar concepts is not as straightforward as for the 4-momentum. The spatial slice of $\vec{u}$ points in the direction of motion (of course), as does the ordinary velocity $\vec{v}$. But their magnitudes, $u$ and $v$, are different:
 

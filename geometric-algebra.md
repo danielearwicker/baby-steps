@@ -13,7 +13,7 @@ $$
 \vec{v}
 $$
 
-The first is the familiar [dot product](vectors-dot-product.md) that produces a scalar. The second is the _external product_ and its result is something called a _bivector_. The question naturally arises, how can we sum a scalar and an exotic new object? But we can brush over this question much as we do with complex numbers, in which we sum a real and imaginary component but never reduce them into a single magnitude. The components are like oil and water; there is no way to write a complex number except as involving two independent magnitudes.
+The first is the familiar [dot product](vectors-dot-product.md) that produces a scalar. The second is the _external product_ and its result is something called a _bivector_. The question naturally arises, how can we sum a scalar and an exotic new object? But we can brush over this question much as we do with complex numbers, in which we sum a real and imaginary component without requiring them to reduce to a single term.
 
 Geometrically a vector is defined by three things:
 

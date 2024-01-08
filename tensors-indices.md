@@ -6,7 +6,9 @@ This is not a meaningful rule with higher rank tensors.
 
 In fact the true rule is that a contravariant index is superscript while a covariant index is subscript. And then the convention with matrices is that rows are covariant and columns are contravariant. This matches up with our convention of writing ordinary vectors (contravariant) as columns and covectors (covariant) as rows.
 
-Therefore we can quite happily produce a [tensor product](./tensors-product.md) mess such as:
+A matrix can be thought of as a stack of row vectors. Each row defines a function for extracting a coordinate from a column vector, relative to a basis vector.
+
+We can quite happily produce a [tensor product](./tensors-product.md) mess such as:
 
 $$C^{ip}_{jkq} = A^{i}_{jk}B^{p}_{q}$$
 

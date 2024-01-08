@@ -51,3 +51,5 @@ $$\vec{p}^\intercal\mathbf{A}\vec{q}$$
 Indeed, the above requirements on an inner product effectively mean that any inner product must be expressible in this form.
 
 In the standard dot product, we are only interested in the diagonal combinations, $p_i q_j$ where $i=j$, but this is equivalent to saying that $\mathbf{A}$ is the identity matrix or the [kroneker delta](./kronecker-delta.md).
+
+This idea is generalised further when considering [complex vector spaces](./vectors-complex.md).
