@@ -88,12 +88,7 @@ We can take the partial differential of the above w.r.t $t$ or $x$, and the way 
 
 Doing $t$ first:
 
-$$
-\frac{\partial \Psi}{\partial t}
-=
--\frac{iE}{\hbar}
-\exp \left[ {\frac{i(px - Et)}{\hbar}} \right]
-$$
+$$ \frac{\partial \Psi}{\partial t} = -\frac{iE}{\hbar} \exp \left[ {\frac{i(px - Et)}{\hbar}} \right] $$
 
 The constant factor is copied outside the exponential, which otherwise remains the same. So in fact:
 
