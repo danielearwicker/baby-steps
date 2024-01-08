@@ -129,17 +129,11 @@ We've now coupled them, making them no longer independent. But we've also added 
 
 Returning to the classical relationship between momentum, energy and mass, we can use it to rewrite our expression for $p^2 \Psi$, substituting into the R.H.S. to easily obtain:
 
-$$
-- \hbar^2 \frac{\partial^2 \Psi}{\partial x^2}
-= 2mE\Psi
-$$
+$$ - \hbar^2 \frac{\partial^2 \Psi}{\partial x^2} = 2mE\Psi $$
 
 And as we also have an expression for $E\Psi$, let's isolate that:
 
-$$
-E\Psi =
-- \frac{\hbar^2}{2m} \frac{\partial^2 \Psi}{\partial x^2}
-$$
+$$ E\Psi = - \frac{\hbar^2}{2m} \frac{\partial^2 \Psi}{\partial x^2} $$
 
 and insert our $E\Psi$ expression:
 
