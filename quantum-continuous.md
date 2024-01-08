@@ -92,33 +92,19 @@ $$ \frac{\partial \Psi}{\partial t} = -\frac{iE}{\hbar} \exp \left[ {\frac{i(px 
 
 The constant factor is copied outside the exponential, which otherwise remains the same. So in fact:
 
-$$
-\frac{\partial \Psi}{\partial t}
-=
--\frac{iE}{\hbar}
-\Psi
-$$
+$$ \frac{\partial \Psi}{\partial t} = -\frac{iE}{\hbar} \Psi $$
 
 And (remembering that dividing by $-i$ is the same as multiplying by $i$):
 
-$$
-i\hbar \frac{\partial \Psi}{\partial t}
-= E \Psi
-$$
+$$ i\hbar \frac{\partial \Psi}{\partial t} = E \Psi $$
 
 The exact same procedure with $x$ yields:
 
-$$
-- i\hbar \frac{\partial \Psi}{\partial x}
-= p \Psi
-$$
+$$ - i\hbar \frac{\partial \Psi}{\partial x} = p \Psi $$
 
 But we can also take the second derivative and get:
 
-$$
-- \hbar^2 \frac{\partial^2 \Psi}{\partial x^2}
-= p^2 \Psi
-$$
+$$ - \hbar^2 \frac{\partial^2 \Psi}{\partial x^2} = p^2 \Psi $$
 
 Returning to our physical interpretation, a free particle has energy that is purely kinetic, related to its momentum by:
 
