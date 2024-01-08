@@ -23,7 +23,7 @@ $$
 
 is _proportional_ to the probability of finding the electron in $A$.
 
-Recall that the product of a complex number and its own complex conjugate is a real number, and here we are doing $\Psi(x)^*\Psi(x)$, using the single complex value at position $x$, so the result will be real. But the complex conjugate is not a general purpose magic way to get a real number from a product of any two complex numbers; $\Psi(x_1)^*\Psi(x_2)$ need not be real.
+Recall that the product of a complex number and its own complex conjugate is a real number, and here we are doing $\Psi(x)^* \Psi(x)$, using the single complex value at position $x$, so the result will be real. But the complex conjugate is not a general purpose magic way to get a real number from a product of any two complex numbers; $\Psi(x_1)^* \Psi(x_2)$ need not be real.
 
 If we compute the same integral $\beta$ for some larger surrounding region $B$, we can compute the conditional probability:
 
