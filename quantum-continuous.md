@@ -18,7 +18,7 @@ $$
 \alpha =
 \int_{x_1}^{x_2}
 \Psi^*\Psi
-\,dx
+dx
 $$
 
 is _proportional_ to the probability of finding the electron in $A$.
@@ -39,7 +39,7 @@ $$
 \alpha =
 \int_{-\infty}^{+\infty}
 \Psi^*\Psi
-\,dx
+dx
 $$
 
 We can then include a factor of $1/\sqrt{\alpha}$ within $\Psi$ to "normalise" it, such that integrating the normalised $\Psi^*\Psi$ over some region will directly give us the absolute (unconditional) probability of finding the electron in that region.
@@ -137,11 +137,7 @@ $$ E\Psi = - \frac{\hbar^2}{2m} \frac{\partial^2 \Psi}{\partial x^2} $$
 
 and insert our $E\Psi$ expression:
 
-$$
-i\hbar \frac{\partial \Psi}{\partial t}
-=
-- \frac{\hbar^2}{2m} \frac{\partial^2 \Psi}{\partial x^2}
-$$
+$$ i\hbar \frac{\partial \Psi}{\partial t} = - \frac{\hbar^2}{2m} \frac{\partial^2 \Psi}{\partial x^2} $$
 
 So, recalling that $\Psi$ is an abbreviation for $\Psi(x, t)$, a complex valued function of space and time, now we have a differential equation that relates only these things:
 
@@ -159,27 +155,17 @@ Schroedinger himself seems to have mostly taken a guess and found that the resul
 
 The full classical account of the energy of a particle is:
 
-$$
-E = \frac{p^2}{2m} + V
-$$
+$$ E = \frac{p^2}{2m} + V $$
 
 where the [potential](./potential.md) is a function $V(x)$. Realistically it will also be a function of $t$, but later we're going to pretend it isn't.
 
 Some authors note that by multiplying the above throughout by $\Psi$:
 
-$$
-E\Psi = \frac{p^2{\Psi}}{2m} + V{\Psi}
-$$
+$$ E\Psi = \frac{p^2{\Psi}}{2m} + V{\Psi} $$
 
 we obtain some scaffolding into which we can plug in our expressions for $E \Psi$ and $p^2 \Psi$:
 
-$$
-i\hbar \frac{\partial \Psi}{\partial t}
-=
-- \frac{\hbar^2}{2m} \frac{\partial^2 \Psi}{\partial x^2}
-+ V{\Psi}
-\tag{2}
-$$
+$$ i\hbar \frac{\partial \Psi}{\partial t} = - \frac{\hbar^2}{2m} \frac{\partial^2 \Psi}{\partial x^2} + V{\Psi} \tag{2} $$
 
 And this is the same as the free particle equation with the added $V\Psi$ term, and is the complete Schroedinger equation which governs the time evolution of $\Psi$.
 
@@ -195,11 +181,7 @@ And if we multiple $\Psi$ by some constant (possibly complex) factor, the result
 
 We can say little here about wave functions unless they can be normalised, i.e. wave functions that tend to zero at infinity. Assuming this is the case, if we integrate the PDF over all of space:
 
-$$
-\int_{-\infty}^{+\infty}
-\Psi^*\Psi
-\,dx
-$$
+$$ \int\_{-\infty}^{+\infty} \Psi^\*\Psi dx $$
 
 we expect the result to be constant (if normalised, it should always remain 1 as time passes), i.e.
 
@@ -207,7 +189,7 @@ $$
 \frac{d}{d t}
 \int_{-\infty}^{+\infty}
 \Psi^*\Psi
-\,dx
+dx
 = 0
 $$
 
@@ -217,14 +199,14 @@ $$
 \int_{-\infty}^{+\infty}
 \frac{\partial}{\partial t}
 \Psi^*\Psi
-\,dx
+dx
 = 0
 $$
 
 Focusing on the inside of the integral, by the product rule:
 
 $$
-\frac{\partial}{\partial t} \, \Psi^*\Psi
+\frac{\partial}{\partial t}  \Psi^*\Psi
 =
 \frac{\partial \Psi^*}{\partial t} \Psi
 +
@@ -252,7 +234,7 @@ $$
 Plugging those into our expression:
 
 $$
-\frac{\partial}{\partial t} \, \Psi^*\Psi
+\frac{\partial}{\partial t}  \Psi^*\Psi
 =
 \left[
 - \frac{i \hbar}{2m} \frac{\partial^2 \Psi^*}{\partial x^2}
@@ -269,7 +251,7 @@ $$
 Multiplying out:
 
 $$
-\frac{\partial}{\partial t} \, \Psi^*\Psi
+\frac{\partial}{\partial t}  \Psi^*\Psi
 =
 - \frac{i \hbar}{2m} \frac{\partial^2 \Psi^*}{\partial x^2}
 \Psi
@@ -283,7 +265,7 @@ $$
 The second and fourth terms cancel each other:
 
 $$
-\frac{\partial}{\partial t} \, \Psi^*\Psi
+\frac{\partial}{\partial t}  \Psi^*\Psi
 =
 - \frac{i \hbar}{2m} \frac{\partial^2 \Psi^*}{\partial x^2}
 \Psi
@@ -295,7 +277,7 @@ $$
 Also there's a common factor we can pull out:
 
 $$
-\frac{\partial}{\partial t} \, \Psi^*\Psi
+\frac{\partial}{\partial t}  \Psi^*\Psi
 =
 \frac{i \hbar}{2m}
 \left[
@@ -321,7 +303,7 @@ Now the fundamental theorem of calculus is that integration is the inverse of di
 To make this explicit:
 
 $$
-\frac{\partial}{\partial t} \, \Psi^*\Psi
+\frac{\partial}{\partial t}  \Psi^*\Psi
 =
 \frac{i \hbar}{2m} \
 \left[
@@ -340,7 +322,7 @@ $$
 \frac{d}{d t}
 \int_{-\infty}^{+\infty}
 \Psi^*\Psi
-\,dx
+dx
 =
 \frac{i \hbar}{2m}
 \left[
@@ -358,7 +340,7 @@ $$
 \frac{d}{d t}
 \int_{-\infty}^{+\infty}
 \Psi^*\Psi
-\,dx
+dx
 = 0
 $$
 
@@ -373,8 +355,8 @@ Supposing the wave function is more concentrated in some region, it makes sense 
 $$
 \langle x \rangle =
 \int_{-\infty}^{+\infty}
-x \, \rho(x)
-\,dx
+x  \rho(x)
+dx
 $$
 
 Substituting our definition of $\rho$ from $(1)$:
@@ -382,8 +364,8 @@ Substituting our definition of $\rho$ from $(1)$:
 $$
 \langle x \rangle =
 \int_{-\infty}^{+\infty}
-x \, \Psi^*\Psi
-\,dx
+x  \Psi^*\Psi
+dx
 $$
 
 remembering always that $\Psi$ is short for $\Psi(x, t)$, so $\langle x \rangle$ is also a function of $t$, and so this gives us a way of thinking about motion: the way the expectation value of the position changes with time.
@@ -392,8 +374,8 @@ $$
 \frac{d}{dt} \langle x \rangle =
 \frac{d}{dt}
 \int_{-\infty}^{+\infty}
-x \, \Psi^*\Psi
-\,dx
+x  \Psi^*\Psi
+dx
 $$
 
 We can rearrange $(5)$ to move the derivative inside the integral, giving:
@@ -402,8 +384,8 @@ $$
 \frac{d}{dt} \langle x \rangle =
 \int_{-\infty}^{+\infty}
 x \frac{\partial}{\partial t}
-\, \Psi^*\Psi
-\,dx
+ \Psi^*\Psi
+dx
 $$
 
 Like before, it's the $t$-derivative of something that depends on $x$, inside the integral over $x$ we clarify that it is the partial derivative, and therefore $x$ is a constant for that derivative.
@@ -420,7 +402,7 @@ x
 \frac{\partial \Psi}{\partial x}\Psi^*
 - \frac{\partial \Psi^*}{\partial x}\Psi
 \right)
-\,dx
+dx
 $$
 
 This isn't as simple as before where we cancelled out the integration and the differentiation, because of the pesky $x$. But the good news is this is the easiest ever opportunity for integration by parts. Recall:
@@ -527,7 +509,7 @@ $$
 \Psi^*
 \hat{O}
 \Psi
-\,dx
+dx
 $$
 
 Because $\Psi$ is a function of $x$ and $t$, by integrating over all $x$ we get a function of time, telling us the expectation value of whatever observable the operator represents.
@@ -542,13 +524,13 @@ $$
 \Psi^*
 \hat{x}
 \Psi
-\,dx
+dx
 =
 \int_{-\infty}^{+\infty}
 \Psi^*
 x
 \Psi
-\,dx
+dx
 $$
 
 The momentum operator $\hat{p}$ is $-ih\frac{\partial}{\partial x}$:
@@ -559,13 +541,13 @@ $$
 \Psi^*
 \hat{p}
 \Psi
-\,dx
+dx
 =
 \int_{-\infty}^{+\infty}
 \Psi^*
 (-ih\frac{\partial}{\partial x})
 \Psi
-\,dx
+dx
 $$
 
 In fact all other observable quantities are represented by operators that can be defined in terms of $\hat{x}$ and $\hat{p}$.
@@ -760,7 +742,7 @@ $$
 \langle \alpha | \beta \rangle
 =
 \int
-\alpha^* \beta \,dx
+\alpha^* \beta dx
 $$
 
 If we knew a particle's exact location, $\alpha$, our wave function of space $\psi(x)$ would have a single spike where $x = \alpha$ and be zero everywhere else. Alternatively if knew its exact momentum (and $p=h/\lambda$) our wave function would be a wave with a single wavelength. So we're dealing with [Fourier transforms](./fourier-transform.md). At these extremes of certainty/uncertainty, one domain has a simple wave of infinite extent, and the other domain has a spike representing that wave. It works either way round.
