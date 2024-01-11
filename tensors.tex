@@ -1,4 +1,4 @@
-\chapter{Tensors}
+\chapter{Tensors} \label{ch:tensors}
 
 \section{Einstein Notation}
 
@@ -74,7 +74,11 @@ To obtain the dot product, we throw away everything but the main diagonal of tha
 
 $$A \cdot B = \sum_i\sum_j{A_iB^j\delta_{ij}}$$
 
-But equally, thanks to Einstein notation, we can think of this as using a single index variable:
+Or we can realise that we only need one variable, "contracting" $i$ and $j$ into just $i$ alone:
+
+$$A \cdot B = \sum_i{A_iB^i}$$
+
+And as this fits the pattern of Einstein notation, we can just write:
 
 $$A \cdot B = A_iB^i$$
 
@@ -187,4 +191,4 @@ So $g_{ij}$ is an example of a tensor being used as a function, specifically a s
 
 In Euclidean space, $g_{ij}$ is simply the Kroneker delta, so that only the diagonal elements are included in the sum. In curved space it has other values.
 
-Note that there is much redundancy in such a matrix because $D_1D_2$ is the same as $D_2D_1$. For example, in a 4-dimensional space there are 16 matrix elements but only 10 are needed (the 4 of the diagonal and 6 from either side of the diagonal).
+Note that there is much redundancy in such a matrix because $D_1D_2$ is the same as $D_2D_1$. For example, in a 4-dimensional space there are 16 matrix elements but only 10 are needed (the 4 of the diagonal and 6 from either side of the diagonal). But sometimes we might be dealing with matrix elements that are not commutative under multiplication, in which case every element of the metric might make a different contribution.

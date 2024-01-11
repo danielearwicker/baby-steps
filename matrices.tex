@@ -1,16 +1,60 @@
-\chapter{Matrices}
+\chapter{Summation, Indices and Matrices}
+
+\section{Indices}
+
+An index (plural: indices) is a subscript (and in some contexts a superscript) that stands for an integer.
+
+$$x_n$$
+
+This tells us that $x$ is not just one value, but several. The $n$ can be assumed to take a small range of values such as $1, 2, 3$, the exact size of this range depending on the situation. Instead of labelling spatial coordinate $x, y, z$, we can call them $x_1, x_2, x_3$ and avoid the need to repeat ourselves by just giving the rule for the behaviour of $x_n$, which is then unambiguously the same for all three dimensions of space.
+
+Often we want to add the values:
+
+$$x_1 + x_2 + x_3 + \dots + x_n$$
+
+The shorthand for this is to use the $\Sigma$ symbol:
+
+$$\sum_n{x_n} = x_1 + x_2 + x_3 + \dots + x_n$$
+
+Later this will become so commonplace that we'll adopt an even shorter shorthand.
+
+\section{Vectors and Matrices}
+
+Thinking initially of vectors as mere collections of numbers (a viewpoint which we will rethink in Chapter \ref{ch:vectors}), indices give us a way to talk about them. $x_n$ could represent a single row or column of $n$ numbers.
+
+Likewise we can use two indices to label the numbers in a grid or matrix (plural: matrices). Given:
+
+$$
+M = \begin{bmatrix}
+5 & 2 & 7 \\
+0 & 1 & 0 \\
+4 & 6 & 8
+\end{bmatrix}
+$$
+
+We can refer to the elements of $M$ as $M_{ij}$, with $i$ giving the row and $j$ the column. So:
+
+$$M_{32} = 6$$
+
+This unfortunately looks a lot like the number $32$. When it's clear we aren't talking about raising numbers to powers, we use a combination of subscript and superscript indices, with superscripts meaning rows and subscripts meaning columns:
+
+$$M^3_2 = 6$$
 
 \section{Matrix multiplication}
 
-The right side matrix is pushed up (out of the way) to make room for the output matrix, the shape of which is given by projecting the rows of the left matrix to the right, and the columns of the right (upper) matrix down. Where these projections intersect we place the output matrix cells. Then we pair of the columns of the left and the rows of the right to create the terms that are added to fill each output cell.
-
-Therefore the entire operation involves three nested loops. The outer two loops allow us to visit each output cell. The innermost loop pairs up left columns and right rows. So if we're multiplying $A$ and $B$ to get $C$:
+If we're multiplying $A$ and $B$ to get $C$:
 
 $$C = AB$$
 
-In summation notation, with (to begin with) superscripts meaning rows and subscripts meaning columns, we can define the cell at row $i$ and column $j$ of $C$ as follows:
+in summation notation we can define the cell at row $i$ and column $j$ of $C$ as follows:
 
-$$C^i_j = \sum_n{A^i_nB^n_j}$$
+$$C^i_j = \sum_n{A^i_kB^k_j}$$
+
+Supposing these are square $3 \times 3$ matrices, so all the $i$, $j$ and $k$ can take the values $1, 2, 3$. Writing out the summation for all values of $n$:
+
+$$C^i_j = A^i_1B^1_j + A^i_2B^2_j + A^i_3B^3_j $$
+
+This turns out to be merely one combination of some more basic operations we'll return to in Chapter \ref{ch:tensors}.
 
 \section{Kronecker Delta}
 
@@ -33,3 +77,4 @@ $$
 0 &\text{if } i \neq j,   \\
 1 &\text{if } i=j.   \end{cases}
 $$
+

@@ -1,6 +1,6 @@
 \chapter{Linearity}
 
-Given a function $\mathbf{f}(x) \colon x \to y$, and some constant $c$, we can ask if it matters whether we multiply the input $x$ by $c$ and then apply the function to the result, or we apply the function to $x$ and multiply the result by $c$. That is, does this equation hold?
+Given a function $\mathbf{f}(x)$ and some constant $c$, we can ask if it matters whether we multiply the input $x$ by $c$ and then apply the function to the result, or we apply the function to $x$ and multiply the result by $c$. That is, does this equation hold?
 
 $$\mathbf{f}(cx) = c\mathbf{f}(x)$$
 
@@ -67,11 +67,13 @@ Either way, we end up with $\cos - \sin$. This is true whatever functions we're 
 
 The same goes for scaling, because when you amplify a function, you amplify the slope of the function.
 
-> Of course, by scaling a function we mean multiplying it by a \textit{constant}; if we multiplied $f(x)$ by another function $g(x)$, the gradient curve could end up with a wildly different shape. If we differentiate $f(x)$ and then multiply it by $g(x)$, we've skipped the differentiation of $g$.
+\begin{quote}
+    Of course, by scaling a function we mean multiplying it by a \textit{constant}; if we multiplied $f(x)$ by another function $g(x)$, the gradient curve could end up with a wildly different shape. If we differentiate $f(x)$ and then multiply it by $g(x)$, we've skipped the differentiation of $g$.    
+\end{quote}
 
 So, the "differentiation operator" meets the requirements of linearity, so differentiation is linear (and intuitively as integration is the inverse operation of differentiation, it too must be linear).
 
-Another example is the Fourier transform, $\mathcal{F}$. If you add two waves and take the Fourier transform of the combined wave, you get the same frequency distribution as if you took the Fourier transform of each wave separately and then added the two frequency distributions:
+Another example is the Fourier transform, $\mathcal{F}$ (see chapter \ref{ch:fourier}). If you add two waves and take the Fourier transform of the combined wave, you get the same frequency distribution as if you took the Fourier transform of each wave separately and then added the two frequency distributions:
 
 $$\mathcal{F} (\mathbf{g} + \mathbf{h}) = \mathcal{F} (\mathbf{g}) + \mathcal{F} (\mathbf{h})$$
 

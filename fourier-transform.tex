@@ -1,4 +1,4 @@
-\chapter{Fourier Transform}
+\chapter{Fourier Transform} \label{ch:fourier}
 
 Given a real-valued function $f(x)$, and supposing it is periodic, e.g. it describes the sound of a bell ringing, you might ask what frequencies appear in the sound. In fact your ear-brain system is an adaptation for answering that very question, and if you listen carefully you can often discern several different notes within the sound of a bell.
 
@@ -28,10 +28,10 @@ But if the oscillations do coincide, then there will be a bias; each time the os
 
 So we can define a complex-valued function of frequency:
 
-$$
-\hat{f}(\nu) = \int_{-\infty}^{\infty} f(x)e^{-i2\pi\nu x} dx
-\label{1}
-$$
+\begin{equation}
+    \hat{f}(\nu) = \int_{-\infty}^{\infty} f(x)e^{-i2\pi\nu x} dx
+    \label{eq:fourier}
+\end{equation}
 
 and this will be about zero for frequencies that don't appear in the function, and non-zero for frequencies that do appear. These values are \textit{complex} amplitudes; they tell us how loud the signal is at that frequency, but also their phase tells us how the signal is offset at that frequency.
 
@@ -43,7 +43,7 @@ We can do the opposite transformation:
 
 $$
 f(x) = \int_{-\infty}^{\infty} \hat{f}(\nu)e^{i2\pi\nu x} dv
-\label{2}
+\label{eq:invfourier}
 $$
 
 Shorthand:
@@ -54,7 +54,7 @@ This pretty much literally says that you can make any function by adding togethe
 
 By the way, note how when we do the integral over $\hat{f}$ in the inverse transform, we include negative values. What on earth is a negative frequency?! It's not that weird, really. It just makes the complex factor rotate the other way. This underscores the fact that the minus sign is just a convention. The integrals cover both "directions".
 
-There's a special relationship between the positive and negative sides of the frequency spectrum. According to $(1)$, if you want the amplitude for frequency $-\nu$, it must be:
+There's a special relationship between the positive and negative sides of the frequency spectrum. According to equation \ref{eq:fourier}, if you want the amplitude for frequency $-\nu$, it must be:
 
 $$
 \hat{f}(-v) = \int f(x)e^{i2\pi\nu x} dx
@@ -69,7 +69,7 @@ $$
 
 Therefore having done the hard word of computing one side, it is very easy to get the other side - it contains no different information.
 
-Also, note that as we're integrating over all $x$ from $-\infty$ to $\infty$, we can negate $x$ through the integral without changing the result. So this produces the exact same frequency amplitudes as $(1)$:
+Also, note that as we're integrating over all $x$ from $-\infty$ to $\infty$, we can negate $x$ through the integral without changing the result. So this produces the exact same frequency amplitudes as equation \ref{eq:fourier}:
 
 $$\hat{f}(v) = \int f(-x)e^{i2\pi\nu x} dx$$
 
@@ -85,7 +85,7 @@ If we mirror the frequency:
 
 $$\hat{f}(-v) = \int f(x)e^{-i2\pi\nu x} dx$$
 
-But we've arrived back at $(1)$, meaning it must be perfectly symmetrical around $\nu = 0$ when applied to an even function. This means it must also be real at all frequencies - how else could all this be true?
+But we've arrived back at equation \ref{eq:fourier}, meaning it must be perfectly symmetrical around $\nu = 0$ when applied to an even function. This means it must also be real at all frequencies - how else could all this be true?
 
 $$
 \hat{f}(-v) = \hat{f}(v) = \left[ \hat{f}(v) \right]^*
