@@ -2,7 +2,7 @@ Starting with the familiar Euclidean metric:
 
 $$r^2 = x^2 + y^2$$
 
-We want to express this in terms of $x$ and $y$ in "first order" (that is, not squared). We can square-root both sides:
+We want to express this in terms of $x$ and $y$ in ``first order'' (that is, not squared). We can square-root both sides:
 
 $$r = \sqrt{x^2 + y^2}$$
 
@@ -31,8 +31,10 @@ Note that we've been careful not to assume $A$ and $B$ are commutative, as they 
 
 And indeed, from the above we can see some obvious constraints on them by pairing up the terms with the LHS:
 
--   $AA$ and $BB$ must both be $1$.
--   $AB$ and $BA$ must either both be zero, or have equal magnitude and opposite sign (anti-commutative).
+\begin{itemize}
+    \item $AA$ and $BB$ must both be $1$.
+    \item $AB$ and $BA$ must either both be zero, or have equal magnitude and opposite sign (anti-commutative).
+\end{itemize}
 
 The second one is worth emphasising: we cannot assume that AB and BA are both zero just because they don't appear in the LHS, only that they sum to zero. It's possible but not necessary for them each to be zero.
 
@@ -56,9 +58,7 @@ We can also meet these requirements with matrices:
 
 $$A = \begin{bmatrix}1 & 0 \\ 0 & -1\end{bmatrix}$$
 
-$$
-B = \begin{bmatrix}0 & 1 \\ 1 & 0\end{bmatrix}
-$$
+$$B = \begin{bmatrix}0 & 1 \\ 1 & 0\end{bmatrix}$$
 
 So that:
 
@@ -88,30 +88,27 @@ This defines the interval $s$ as the time measured by a clock travelling inertia
 
 $$s = At + Bx$$
 
-and doing the same business of squaring both sides and substituting the definition on the LHS:
+and doing the same business of squaring both sides and substituting the definition on the left:
 
 $$t^2 - x^2 = (At + Bx)^2$$
 
 And multiplying out:
 
-$$
-t^2 - x^2
-= AAt^2 + ABtx + BAtx + BBx^2
-$$
+$$t^2 - x^2 = AAt^2 + ABtx + BAtx + BBx^2$$
 
 So this time we require that:
 
--   as before, $AA$ must be $1$.
--   but now, $BB$ must $-1$.
--   as before, $AB$ and $BA$ must either both be zero, or have equal magnitude and opposite sign (anti-commutative).
+\begin{itemize}
+    \item as before, $AA$ must be $1$.
+    \item but now, $BB$ must $-1$.
+    \item as before, $AB$ and $BA$ must either both be zero, or have equal magnitude and opposite sign (anti-commutative).
+\end{itemize}
 
 It's like we need to be able to "program" the system in a general way to be able to produce the right behaviour. Using matrices gives us ample flexibility:
 
 $$A = \begin{bmatrix}-1 & 0 \\ 0 & 1\end{bmatrix}$$
 
-$$
-B = \begin{bmatrix}0 & -1 \\ 1 & 0\end{bmatrix}
-$$
+$$B = \begin{bmatrix}0 & -1 \\ 1 & 0\end{bmatrix}$$
 
 So that:
 

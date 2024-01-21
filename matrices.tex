@@ -4,9 +4,11 @@
 
 An index (plural: indices) is a subscript (and in some contexts a superscript) that stands for an integer.
 
-$$x_n$$
+$$a_n$$
 
-This tells us that $x$ is not just one value, but several. The $n$ can be assumed to take a small range of values such as $1, 2, 3$, the exact size of this range depending on the situation. Instead of labelling spatial coordinate $x, y, z$, we can call them $x_1, x_2, x_3$ and avoid the need to repeat ourselves by just giving the rule for the behaviour of $x_n$, which is then unambiguously the same for all three dimensions of space.
+This tells us that $a$ is not just one value, but several. The $n$ can be assumed to take a small range of values such as $1, 2, 3$, the exact size of this range depending on the situation. (In physics if we have a function of integers it's usually written as a set with an index like this, with $f(x)$ reserved for functions of continuous values.)
+
+Instead of labelling spatial coordinates $x, y, z$, we can call them $x_1, x_2, x_3$ and avoid the need to repeat ourselves by just giving the rule for the behaviour of $x_n$, which is then unambiguously the same for all three dimensions of space.
 
 Often we want to add the values:
 
@@ -48,15 +50,15 @@ $$C = AB$$
 
 in summation notation we can define the cell at row $i$ and column $j$ of $C$ as follows:
 
-$$C^i_j = \sum_n{A^i_kB^k_j}$$
+$$C^i_j = \sum_k{A^i_kB^k_j}$$
 
-Supposing these are square $3 \times 3$ matrices, so all the $i$, $j$ and $k$ can take the values $1, 2, 3$. Writing out the summation for all values of $n$:
+Supposing these are square $3 \times 3$ matrices, so all the $i$, $j$ and $k$ can take the values $1, 2, 3$. Writing out the summation for all values of $k$:
 
 $$C^i_j = A^i_1B^1_j + A^i_2B^2_j + A^i_3B^3_j $$
 
 This turns out to be merely one combination of some more basic operations we'll return to in Chapter \ref{ch:tensors}.
 
-\section{Kronecker Delta}
+\section{Kronecker Delta} \label{def:kronecker}
 
 This is a compact way of referring to the identity matrix in summations. The diagonal elements are 1, all others are zero, which is awkward to represent in a stretchy way:
 

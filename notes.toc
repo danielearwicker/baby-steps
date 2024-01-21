@@ -12,7 +12,7 @@
 \contentsline {subsection}{\numberline {3.2.3}The Field}{10}{}%
 \contentsline {subsection}{\numberline {3.2.4}Examples of Vector Spaces}{10}{}%
 \contentsline {section}{\numberline {3.3}Dot Product}{11}{}%
-\contentsline {subsection}{\numberline {3.3.1}Finding coordinates}{11}{}%
+\contentsline {subsection}{\numberline {3.3.1}Finding coordinates}{12}{}%
 \contentsline {subsection}{\numberline {3.3.2}Dot Product is Homogeneous}{12}{}%
 \contentsline {subsection}{\numberline {3.3.3}Dot Product is Distributive}{13}{}%
 \contentsline {subsection}{\numberline {3.3.4}Do not interchange scalar and dot product}{13}{}%
@@ -22,36 +22,47 @@
 \contentsline {subsection}{\numberline {3.5.2}Dot product under change of basis}{16}{}%
 \contentsline {section}{\numberline {3.6}Covectors}{16}{}%
 \contentsline {section}{\numberline {3.7}Operators}{17}{}%
-\contentsline {section}{\numberline {3.8}Inner Product}{20}{}%
-\contentsline {section}{\numberline {3.9}Complex vector spaces}{21}{}%
-\contentsline {chapter}{\numberline {4}Tensors}{24}{}%
-\contentsline {section}{\numberline {4.1}Einstein Notation}{24}{}%
-\contentsline {section}{\numberline {4.2}Tensor Product}{25}{}%
-\contentsline {section}{\numberline {4.3}Superscript and Subscript Indices}{26}{}%
-\contentsline {section}{\numberline {4.4}Tensor Contraction}{26}{}%
-\contentsline {section}{\numberline {4.5}Tensors as geometric objects}{29}{}%
-\contentsline {section}{\numberline {4.6}Tensors as functions}{29}{}%
-\contentsline {section}{\numberline {4.7}Metric tensor}{30}{}%
-\contentsline {chapter}{\numberline {5}Geometric Algebra}{32}{}%
-\contentsline {chapter}{\numberline {6}Potential}{40}{}%
-\contentsline {chapter}{\numberline {7}Expectation Value}{42}{}%
-\contentsline {chapter}{\numberline {8}Fourier Transform}{44}{}%
-\contentsline {chapter}{\numberline {9}Quantum Mechanics}{48}{}%
-\contentsline {section}{\numberline {9.1}The Wave Function}{48}{}%
-\contentsline {section}{\numberline {9.2}Schrödinger Equation}{50}{}%
-\contentsline {section}{\numberline {9.3}Time Evolution}{54}{}%
-\contentsline {section}{\numberline {9.4}Motion}{56}{}%
-\contentsline {section}{\numberline {9.5}Time Independent Potentials}{58}{}%
-\contentsline {section}{\numberline {9.6}Wave Functions as Vectors}{61}{}%
-\contentsline {section}{\numberline {9.7}Scattering States}{61}{}%
-\contentsline {section}{\numberline {9.8}Bound States}{62}{}%
-\contentsline {section}{\numberline {9.9}Vectors in Abstract}{62}{}%
-\contentsline {chapter}{\numberline {10}Relativity}{64}{}%
-\contentsline {section}{\numberline {10.1}Clock Arrays, Spacetime Grids}{64}{}%
-\contentsline {section}{\numberline {10.2}Curved paths}{65}{}%
-\contentsline {section}{\numberline {10.3}Spacetime Metric}{67}{}%
-\contentsline {section}{\numberline {10.4}Interval Related To Proper time}{68}{}%
-\contentsline {section}{\numberline {10.5}Lorentz Factor}{68}{}%
-\contentsline {section}{\numberline {10.6}Lorentz Transformations}{70}{}%
-\contentsline {section}{\numberline {10.7}Energy and Momentum}{70}{}%
-\contentsline {chapter}{\numberline {A}Greek Alphabet}{78}{}%
+\contentsline {section}{\numberline {3.8}Eigenvectors and Eigenvalues}{18}{}%
+\contentsline {section}{\numberline {3.9}Symmetric Matrices}{21}{}%
+\contentsline {section}{\numberline {3.10}Effect of Change of Basis on Operator}{21}{}%
+\contentsline {section}{\numberline {3.11}Inner Product}{22}{}%
+\contentsline {section}{\numberline {3.12}Complex vector spaces}{23}{}%
+\contentsline {chapter}{\numberline {4}Tensors}{26}{}%
+\contentsline {section}{\numberline {4.1}Einstein Notation}{26}{}%
+\contentsline {section}{\numberline {4.2}Tensor Product}{27}{}%
+\contentsline {section}{\numberline {4.3}Superscript and Subscript Indices}{28}{}%
+\contentsline {section}{\numberline {4.4}Tensor Contraction}{28}{}%
+\contentsline {section}{\numberline {4.5}Tensors as geometric objects}{31}{}%
+\contentsline {section}{\numberline {4.6}Tensors as functions}{31}{}%
+\contentsline {section}{\numberline {4.7}Metric tensor}{32}{}%
+\contentsline {chapter}{\numberline {5}Geometric Algebra}{34}{}%
+\contentsline {chapter}{\numberline {6}Potential}{42}{}%
+\contentsline {chapter}{\numberline {7}Expectation Value}{44}{}%
+\contentsline {chapter}{\numberline {8}Fourier Transform}{46}{}%
+\contentsline {section}{\numberline {8.1}Negative Frequencies}{48}{}%
+\contentsline {section}{\numberline {8.2}Spikes}{49}{}%
+\contentsline {chapter}{\numberline {9}Quantum Mechanics}{51}{}%
+\contentsline {section}{\numberline {9.1}State Vectors and Dirac Notation}{51}{}%
+\contentsline {section}{\numberline {9.2}Hilbert Spaces}{52}{}%
+\contentsline {section}{\numberline {9.3}Physical Interpretation}{52}{}%
+\contentsline {section}{\numberline {9.4}Switching Basis}{53}{}%
+\contentsline {section}{\numberline {9.5}The Wave Function}{55}{}%
+\contentsline {section}{\numberline {9.6}Schrödinger Equation}{57}{}%
+\contentsline {section}{\numberline {9.7}Time Evolution}{61}{}%
+\contentsline {section}{\numberline {9.8}Motion}{63}{}%
+\contentsline {section}{\numberline {9.9}Operators}{65}{}%
+\contentsline {section}{\numberline {9.10}Time Independent Potentials}{65}{}%
+\contentsline {section}{\numberline {9.11}Wave Functions as Vectors}{68}{}%
+\contentsline {subsection}{\numberline {9.11.1}Scattering States}{69}{}%
+\contentsline {subsection}{\numberline {9.11.2}Bound States}{69}{}%
+\contentsline {section}{\numberline {9.12}Fourier Transforms}{70}{}%
+\contentsline {section}{\numberline {9.13}Spin}{70}{}%
+\contentsline {chapter}{\numberline {10}Relativity}{71}{}%
+\contentsline {section}{\numberline {10.1}Clock Arrays, Spacetime Grids}{71}{}%
+\contentsline {section}{\numberline {10.2}Curved paths}{72}{}%
+\contentsline {section}{\numberline {10.3}Spacetime Metric}{74}{}%
+\contentsline {section}{\numberline {10.4}Interval Related To Proper time}{75}{}%
+\contentsline {section}{\numberline {10.5}Lorentz Factor}{75}{}%
+\contentsline {section}{\numberline {10.6}Lorentz Transformations}{77}{}%
+\contentsline {section}{\numberline {10.7}Energy and Momentum}{77}{}%
+\contentsline {chapter}{\numberline {A}Greek Alphabet}{85}{}%

@@ -1,6 +1,4 @@
-\chapter {Vectors} \label{ch:vectors}
-
-\section{Vectors as geometric objects}
+\chapter{Vectors}\label{ch:vectors}
 
 When visualising vectors as arrows, always think of them as being rooted in one spot.
 
@@ -9,6 +7,8 @@ When in physics we speak of a "vector field", that is, a vector at each point in
 This is obvious (and less confusing) in the case of a scalar field, such as temperature. At two different locations in a room, the temperature may be the same. It's a numerical value that varies from place to place, and the same number may appear in two places.
 
 But exactly the same is true for a vector field. If the wind is some particular speed and direction at two different places on the map, we say the vectors are equal: they are the \textit{same vector}. It is irrelevant that they are associated with different locations in physical space. In vector space, there is one vector with that direction and length.
+
+\section{Vectors as geometric objects}\label{sec:vectors-geometric}
 
 What is a two dimensional vector? A common starting point is to say it's two numbers, and we very often casually refer to a column like this as a vector:
 
@@ -58,7 +58,7 @@ The realisation of this relativistic nature of vectors can produce confusion, ju
 
 The question remains: how do we identify a set of basis vectors? If we have an inner product then we can pick an orthonormal basis, because we can make sure each basis vector is of unit length (inner product with self is $1$) and all are mutually orthogonal (inner product is $0$).
 
-\section{Vector Spaces}
+\section{Vector Spaces}\label{sec:vectors-space}
 
 If vectors are not merely collections of numbers it's important to be clear what they are. A vector space is a set of objects that meet certain abstract criteria. As soon as we can identify a way of meeting all the criteria, the set of objects is a vector space and the objects are vectors.
 
@@ -259,7 +259,7 @@ $$
 
 Which is Pythagorus's theorem, agreeing with our earlier claim that the dot product of a vector with itself is the square of the magnitude.
 
-\section{Change of Basis}
+\section{Change of Basis}\label{sec:vectors-change-basis}
 
 A matrix can be used to:
 
@@ -383,21 +383,17 @@ $$\hat{O}\vec{v} = \hat{O}(x\vec{i} + y\vec{j}) = x\vec{i'} + y\vec{j'}$$
 
 A matrix can be interpreted as a way to convert coordinate vectors from one basis to another, preserving the same meaning, or as a way to produce a different vector in the same basis.
 
-Considering the latter use, i.e. linear operators that transform vectors, what effect does a change of basis have on an operator?
+Considering the latter use, i.e. linear operators that transform vectors, what effect does a change of basis have on vector coordinates?
 
-An operator that performs only scaling (e.g. $G$ and $S$) is symmetrical, treating all directions equivalently. So under a change of basis that is a pure rotation, there is no need to amend the operator's matrix representation.
+\section{Eigenvectors and Eigenvalues}\label{sec:vectors-eigen}
 
-But some operators are biased with regard to direction. To characterise the behaviour of an operator we can consider those vectors which are scaled by it without their direction being altered; that is, the effect of the operator is to multiply some inputs by a scalar (if the scalar is negative, the resulting vector is co-linear with the input vector, which we regard as not a significant change!) Such vectors are called the \textit{eigenvectors} of the operator, and the corresponding scalar values are the \textit{eigenvalues}.
+An operator that performs only scaling (e.g. $G$ and $S$) is isotropic, treating all directions equivalently.
+
+But some operators are biased with regard to direction. To characterise the behaviour of an operator we can consider those vectors which are scaled by it without their direction being altered (the scaling may be negative, leaving the vector pointing the opposite direction; as long as the resulting vector is co-linear with the input vector, that's insignificant enough.) Such vectors are called the \textit{eigenvectors} of the operator, and the corresponding scalar values are the \textit{eigenvalues}.
 
 So in the case of $S$ and $G$, all input vectors are eigenvectors: all inputs get only scaled, and always by the same eigenvalue.
 
-But a reflection is different (call it $M$ for mirror):
-
-$$M = \begin{bmatrix}1 & 0 \\ 0 & -1\end{bmatrix}$$
-
-If we take the first coordinate to be horizontal and the second vertical, this flips the input vector to point up rather than down, or vice versa. So it seems that all vectors have their direction changed and are not eigenvectors, but there are exceptions: vectors that lie on the horizontal axis and have no vertical component will be unaffected, i.e. they will be eigenvectors with eigenvalue 1. So within the space of input vectors, there is a subspace (the \textit{eigenspace}) of eigenvectors, and $M$ has an intrinsic orientation, as there is a particular line around which reflection occurs.
-
-A rotation, e.g. by a right-angle anti-clockwise:
+With vectors in the plane, when the operator is a pure rotation, e.g. by a right-angle anti-clockwise:
 
 $$R_A = \begin{bmatrix}0 & -1 \\ 1 & 0\end{bmatrix}$$
 
@@ -405,9 +401,61 @@ or clockwise:
 
 $$R_C = \begin{bmatrix}0 & 1 \\ -1 & 0\end{bmatrix}$$
 
-has no eigenvectors, as it uniformly changes the direction of every vector (note that the zero vector is not considered a candidate for an eigenvector; regardless of the operator, it goes from length zero to length zero, so an eigenvalue cannot be deduced.)
+every vector changes direction by the same angle, and that means there are no eigenvectors.
 
-If we apply $R_A$ to our basis vectors, all our non-zero vectors' coordinates will need to change (while still being the same vectors, of course.) This means, just as we had to fix our covector, we now need to come up with the matrix $M'$ that mirrors around the same line as $M$ did in the un-rotated basis. We say that $M'$ and $M$ represent the same operator in different coordinate systems.
+The zero vector is not considered a candidate for an eigenvector; regardless of the operator, it goes from length zero to length zero, so any scalar could be the eigenvalue, meaning that the eigenvalue is undefined.
+
+In three dimensions the rotation has an axis, along which all vectors are eigenvectors. Curiously, even though these vectors don't exist in the plane, we can find \textit{complex} eigenvalues for them by supposing that such eigenvectors exist, which is weird.
+
+More interestingly, there are operators for which only some vectors are eigenvectors. Consider a reflection (call it $M$ for mirror):
+
+$$M = \begin{bmatrix}1 & 0 \\ 0 & -1\end{bmatrix}$$
+
+If we take the first coordinate to be horizontal and the second vertical, this flips the input vector to point up rather than down, or vice versa. So it seems that all vectors have their direction changed and are not eigenvectors, but there exceptions: vectors that lie on the horizontal axis and have no vertical component will be unaffected, i.e. they will be eigenvectors with eigenvalue 1. Also vectors that lie on the vertical axis will have their direction changed, but to the exact opposite direction, which is the same as being scaled by -1, and so these too are eigenvectors, but with eigenvalue -1.
+
+So within the space of input vectors, there is a subspace (the \textit{eigenspace}) of eigenvectors, and $M$ has an intrinsic orientation, as there is a particular line around which reflection occurs.
+
+We can find the eigenvectors given a matrix representation $M$ of an operator acting on a vector represented by a column matrix $v$. If $v$ is an eigenvector, and $x$ is the corresponding eigenvalue, what we mean by that is:
+
+$$Mv = xv$$
+
+For the vector $v$, multiplying it by the matrix $M$ is the same as multiplying it by the ordinary number $x$. So with trivial algebra:
+
+$$Mv - xv = 0$$
+
+This is fine because $Mv$ and $xv$ are column matrices, and here $0$ is the column matrix filled with zeros.
+
+Pulling out $v$ as a factor (not quite as trivial):
+
+$$(M - xI)v = 0$$
+
+We have to leave behind the identity matrix $I$ in place of $v$ because we need the matrix equivalent of the ordinary number $x$, so we can subtract it from $M$.
+
+Having split it into two factors whose product is zero, we know that either one or both of the factors must be zero. We already realised we aren't interested in the case where $v$ is the zero vector because its eigenvalue will be undefined (it could be anything). So we refuse to accept $0$ as an eigenvector. Therefore $v$ is not the zero vector, and so the matrix $M - xI$ must be such that it is able to transform some non-zero vector $v$ into the zero vector. This means it has no inverse, as there is no way to recover the direction of the original vector if we've sent it to $0$ (the zero vector has no direction, or has all directions, so direction is a meaningless concept for it.)
+
+One way to picture the effect of a matrix is to think of it acting on a unit square (where the matrix is $2 \times 2$) and asking what the area of the resulting parallelogram will be. If it is not zero, every point in the original square has a unique point in the parallelogram and vice versa: the matrix is invertible. If the area is zero, the points of the original square have been crammed onto a line of $1$ dimension, so we have destroyed the information about where they came from in $2$ dimensions. All input vectors end up pointing in the same direction, and are only distinguished by length. No linear transform will be able to spread them back out into the correct different directions: the matrix is not invertible.
+
+The area of that parallelogram (or in higher dimensions, the volume of an n-parallelepiped) is called the determinant of the matrix, $\det M$. If it's zero, the matrix is not invertible. And therefore, if:
+
+$$\det{(M - xI)} = 0$$
+
+then we definitely have some eigenvalues. The determinant can be expanded out into a polynomial expression in $x$ (there are various methods; a popular one is to get a computer to do it) and then solved by factoring to find all the $x$ values that make one of the factors $0$. We can then plug those $x$ values back into:
+
+$$(O - xI)v = 0$$
+
+one at a time, and solve to find the corresponding $v$. Thankfully all this can be mechanised.
+
+\section{Symmetric Matrices}\label{ch:vectors-symmetric}
+
+One interesting kind of operator is any represented by a symmetric matrix in some basis, so $M^\intercal = M$, or $M_{ij} = M_{ji}$ for all combinations of $i$ and $j$. So the diagonal elements are unconstrained, but all others have to match their diagonally-opposite element.
+
+The curious thing about them is that their eigenvectors are orthogonal and completely span the vector space. That is, in an N dimensional space, they perform a scaling in all N available orthogonal directions, stretching or squishing.
+
+This means that if you find the eigenvectors of the operator, you've found an orthogonal basis. This is hugely important in Quantum Mechanics (Chapter \ref{ch:qm}), albeit with some modifications for complex numbers.
+
+\section{Effect of Change of Basis on Operator}
+
+If we apply $R_A$ to our two basis vectors, all our non-zero vectors' coordinates will need to change (while still being the same vectors, of course, just expressed in a new basis.) This means, just as we had to fix our covector, we now need to come up with the matrix $M'$ that mirrors around the same line as $M$ did in the un-rotated basis. We say that $M'$ and $M$ represent the same operator in different coordinate systems.
 
 This time it will be a three step process:
 
@@ -467,7 +515,7 @@ There are further requirements that are discarded in some contexts:
 
 $$\langle \vec{p},\vec{p}\rangle \geq 0$$
 
-For the Euclidean dot product we're squaring the coordinates $p_i$ so the result must be positive. But in Relativity we allow negative ("spacelike") intervals, which is why this requirement is not always applied.
+For the Euclidean dot product we're squaring the coordinates $p_i$ so the result must be positive. But in Relativity (Chapter \ref{ch:relativity}) we allow negative ("spacelike") intervals, which is why this requirement is not always applied.
 
 Finally, $\langle \vec{p},\vec{p}\rangle = 0$ if and only if $\vec{p}$ is the zero vector. Again this could be untrue in Relativity if the time and space contributions cancel out ("lightlike").
 
@@ -485,7 +533,7 @@ In the standard dot product, we are only interested in the diagonal combinations
 
 This idea is generalised further when considering complex vector spaces.
 
-\section{Complex vector spaces}
+\section{Complex vector spaces}\label{ch:vectors-complex}
 
 Any vector space is defined over a \textit{field}. This is unrelated to the physics meaning of "field", a value defined at each point in a space. Here a field is any set of objects with binary operators for addition, subtraction, multiplication and division that behave like those of the real numbers, so $\mathbb{R}$ is a field.
 
@@ -537,6 +585,24 @@ $$
 
 As usual if $\mathbf{M}$ is $\delta$ then this reduces to the first definition given above. It should at least be be self-adjoint or Hermitian, which is to say that:
 
-$\mathbf{M}^\dagger = \mathbf{M}$
+$$\mathbf{M}^\dagger = \mathbf{M}$$
 
-It follows that every element is the complex conjugate of its diagonally opposing element, and that therefore elements on the diagonal are real (they aren't moved by the transposition and so must equal their own complex conjugates).
+That is, every element is the complex conjugate of its diagonally opposing element, and that therefore elements on the diagonal are real (they aren't moved by the transposition and so must equal their own complex conjugates).
+
+A matrix like this is the complex equivalent of the real symmetric matrix for which we gave a definition (\ref{ch:vectors-symmetric}).
+
+Several other important facts about Hermitian operators can be derived: their eigenvalues are all real, their eigenvectors are orthogonal and span the space and so can be used to construct an orthonormal basis.
+
+Another interesting kind of operator in complex spaces is those where:
+
+$$\mathbf{U}^\dagger \mathbf{U} = I$$
+
+i.e. the identity operator. These are known as unitary operators. They have the property of preserving the inner product (which is the same property we observed before for rotations and mirrorings):
+
+$$\langle \vec{u}, \vec{v} \rangle = \langle \mathbf{U} \vec{u}, \mathbf{U} \vec{v} \rangle$$
+
+If you have a Hermitian operator expressed by the matrix $M$ you can convert it to another representation by wrapping it in a transformation $T$ and its inverse:
+
+$$M' = T M T^{-1}$$
+
+If $T$ is unitary then $M'$ will be Hermitian, recognisable by the relationship between diagonally opposite matrix elements.
