@@ -41,28 +41,32 @@
 \contentsline {chapter}{\numberline {8}Fourier Transform}{46}{}%
 \contentsline {section}{\numberline {8.1}Negative Frequencies}{48}{}%
 \contentsline {section}{\numberline {8.2}Spikes}{49}{}%
-\contentsline {chapter}{\numberline {9}Quantum Mechanics}{51}{}%
-\contentsline {section}{\numberline {9.1}State Vectors and Dirac Notation}{51}{}%
-\contentsline {section}{\numberline {9.2}Hilbert Spaces}{52}{}%
-\contentsline {section}{\numberline {9.3}Physical Interpretation}{52}{}%
-\contentsline {section}{\numberline {9.4}Switching Basis}{53}{}%
-\contentsline {section}{\numberline {9.5}The Wave Function}{55}{}%
-\contentsline {section}{\numberline {9.6}Schrödinger Equation}{57}{}%
-\contentsline {section}{\numberline {9.7}Time Evolution}{61}{}%
-\contentsline {section}{\numberline {9.8}Motion}{63}{}%
-\contentsline {section}{\numberline {9.9}Operators}{65}{}%
-\contentsline {section}{\numberline {9.10}Time Independent Potentials}{65}{}%
-\contentsline {section}{\numberline {9.11}Wave Functions as Vectors}{68}{}%
-\contentsline {subsection}{\numberline {9.11.1}Scattering States}{69}{}%
-\contentsline {subsection}{\numberline {9.11.2}Bound States}{69}{}%
-\contentsline {section}{\numberline {9.12}Fourier Transforms}{70}{}%
-\contentsline {section}{\numberline {9.13}Spin}{70}{}%
-\contentsline {chapter}{\numberline {10}Relativity}{71}{}%
-\contentsline {section}{\numberline {10.1}Clock Arrays, Spacetime Grids}{71}{}%
-\contentsline {section}{\numberline {10.2}Curved paths}{72}{}%
-\contentsline {section}{\numberline {10.3}Spacetime Metric}{74}{}%
-\contentsline {section}{\numberline {10.4}Interval Related To Proper time}{75}{}%
-\contentsline {section}{\numberline {10.5}Lorentz Factor}{75}{}%
-\contentsline {section}{\numberline {10.6}Lorentz Transformations}{77}{}%
-\contentsline {section}{\numberline {10.7}Energy and Momentum}{77}{}%
-\contentsline {chapter}{\numberline {A}Greek Alphabet}{85}{}%
+\contentsline {section}{\numberline {8.3}The Gaussian}{50}{}%
+\contentsline {chapter}{\numberline {9}Quantum Mechanics}{52}{}%
+\contentsline {section}{\numberline {9.1}State Vectors and Dirac Notation}{52}{}%
+\contentsline {section}{\numberline {9.2}Hilbert Spaces}{54}{}%
+\contentsline {section}{\numberline {9.3}Physical Interpretation}{55}{}%
+\contentsline {section}{\numberline {9.4}Switching Basis}{56}{}%
+\contentsline {section}{\numberline {9.5}Operators Representing Observables}{56}{}%
+\contentsline {section}{\numberline {9.6}The Wave Function}{58}{}%
+\contentsline {section}{\numberline {9.7}Schrödinger Equation}{60}{}%
+\contentsline {section}{\numberline {9.8}Time Evolution}{64}{}%
+\contentsline {section}{\numberline {9.9}Motion}{67}{}%
+\contentsline {section}{\numberline {9.10}Operators Again}{69}{}%
+\contentsline {section}{\numberline {9.11}Time Independent Potentials}{71}{}%
+\contentsline {section}{\numberline {9.12}Wave Functions as Vectors}{74}{}%
+\contentsline {subsection}{\numberline {9.12.1}Scattering States}{74}{}%
+\contentsline {subsection}{\numberline {9.12.2}Bound States}{75}{}%
+\contentsline {section}{\numberline {9.13}Energy Degeneracy}{75}{}%
+\contentsline {section}{\numberline {9.14}Fourier Transforms}{77}{}%
+\contentsline {section}{\numberline {9.15}Phase-space Formulation}{81}{}%
+\contentsline {section}{\numberline {9.16}Spin}{81}{}%
+\contentsline {chapter}{\numberline {10}Relativity}{82}{}%
+\contentsline {section}{\numberline {10.1}Clock Arrays, Spacetime Grids}{82}{}%
+\contentsline {section}{\numberline {10.2}Curved paths}{83}{}%
+\contentsline {section}{\numberline {10.3}Spacetime Metric}{85}{}%
+\contentsline {section}{\numberline {10.4}Interval Related To Proper time}{86}{}%
+\contentsline {section}{\numberline {10.5}Lorentz Factor}{86}{}%
+\contentsline {section}{\numberline {10.6}Lorentz Transformations}{88}{}%
+\contentsline {section}{\numberline {10.7}Energy and Momentum}{88}{}%
+\contentsline {chapter}{\numberline {A}Greek Alphabet}{96}{}%

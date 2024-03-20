@@ -1,4 +1,4 @@
-\chapter{Vectors}\label{ch:vectors}
+\chapter{Vectors} \label{ch:vectors}
 
 When visualising vectors as arrows, always think of them as being rooted in one spot.
 
@@ -16,7 +16,7 @@ $$
 \begin{bmatrix}3 \\ 2\end{bmatrix}
 $$
 
-But for the purposes of physics (classical physics at least), vectors are primarily geometric objects. They can be described with numeric coordinates, but there is no preferred coordinate basis.
+But for the purposes of physics, vectors are primarily geometric objects. They can be described with numeric coordinates, but there is no preferred coordinate basis.
 
 To understand what we are giving up, it may help to initially visualise the space of plane vectors as having some intrinsic coordinate grid built into it, so every vector in that space "knows" its own numeric coordinates, being fixed to that grid.
 
@@ -441,7 +441,7 @@ $$\det{(M - xI)} = 0$$
 
 then we definitely have some eigenvalues. The determinant can be expanded out into a polynomial expression in $x$ (there are various methods; a popular one is to get a computer to do it) and then solved by factoring to find all the $x$ values that make one of the factors $0$. We can then plug those $x$ values back into:
 
-$$(O - xI)v = 0$$
+$$(M - xI)v = 0$$
 
 one at a time, and solve to find the corresponding $v$. Thankfully all this can be mechanised.
 
@@ -451,7 +451,7 @@ One interesting kind of operator is any represented by a symmetric matrix in som
 
 The curious thing about them is that their eigenvectors are orthogonal and completely span the vector space. That is, in an N dimensional space, they perform a scaling in all N available orthogonal directions, stretching or squishing.
 
-This means that if you find the eigenvectors of the operator, you've found an orthogonal basis. This is hugely important in Quantum Mechanics (Chapter \ref{ch:qm}), albeit with some modifications for complex numbers.
+This means that if you find the eigenvectors of the operator, you've found an orthogonal basis. This is hugely important in Quantum Mechanics (§\ref{ch:qm}), albeit with some modifications for complex numbers.
 
 \section{Effect of Change of Basis on Operator}
 
@@ -515,7 +515,7 @@ There are further requirements that are discarded in some contexts:
 
 $$\langle \vec{p},\vec{p}\rangle \geq 0$$
 
-For the Euclidean dot product we're squaring the coordinates $p_i$ so the result must be positive. But in Relativity (Chapter \ref{ch:relativity}) we allow negative ("spacelike") intervals, which is why this requirement is not always applied.
+For the Euclidean dot product we're squaring the coordinates $p_i$ so the result must be positive. But in Relativity (§\ref{ch:relativity}) we allow negative ("spacelike") intervals, which is why this requirement is not always applied.
 
 Finally, $\langle \vec{p},\vec{p}\rangle = 0$ if and only if $\vec{p}$ is the zero vector. Again this could be untrue in Relativity if the time and space contributions cancel out ("lightlike").
 
@@ -589,7 +589,7 @@ $$\mathbf{M}^\dagger = \mathbf{M}$$
 
 That is, every element is the complex conjugate of its diagonally opposing element, and that therefore elements on the diagonal are real (they aren't moved by the transposition and so must equal their own complex conjugates).
 
-A matrix like this is the complex equivalent of the real symmetric matrix for which we gave a definition (\ref{ch:vectors-symmetric}).
+A matrix like this is the complex equivalent of the real symmetric matrix for which we gave a definition (§\ref{ch:vectors-symmetric}).
 
 Several other important facts about Hermitian operators can be derived: their eigenvalues are all real, their eigenvectors are orthogonal and span the space and so can be used to construct an orthonormal basis.
 

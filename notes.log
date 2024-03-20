@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.8)  21 JAN 2024 09:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.8)  20 MAR 2024 00:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -541,11 +541,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 al/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc}] (./notes.toc [1
 
 
-])
+] [2])
 \tf@toc=\write4
 \openout4 = `notes.toc'.
 
- [2]
+ [3]
 \openout2 = `linearity.aux'.
 
 
@@ -643,75 +643,87 @@ Chapter 8.
 
 
 
-] [47] [48] [49]) [50]
+] [47] [48] [49]) [50] [51]
 \openout2 = `quantum-mechanics.aux'.
 
  (./quantum-mechanics.tex
 Chapter 9.
-[51
+
+Overfull \hbox (0.13559pt too wide) in paragraph at lines 11--12
+\T1/ppl/m/n/10 cussing a finite-dimensional vec-tor space), the above is equiv-
+a-lent to conjugate-
+ []
+
+[52
 
 
 
 
-]
-Overfull \hbox (1.06503pt too wide) in paragraph at lines 28--29
+] [53]
+Overfull \hbox (1.06503pt too wide) in paragraph at lines 84--85
 []\T1/ppl/m/n/10 The lat-ter pos-si-bil-ity in-cludes in-fini-ties that are con
 -tin-u-ous (un-count-able). Such
  []
 
-[52] [53]
-Overfull \hbox (4.26567pt too wide) in paragraph at lines 79--80
-[]\T1/ppl/m/n/10 The op-er-a-tor for se-lect-ing an-other ob-serv-able is Her-m
-i-tian or self-adjoint, mean-
+[54] [55] [56]
+Overfull \hbox (2.71573pt too wide) in paragraph at lines 161--162
+[]\T1/ppl/m/n/10 solving the eigen-value equa-tion for that op-er-a-tor (that i
+s, find-ing its eigen-
  []
 
-[54]
-Overfull \hbox (7.96571pt too wide) in paragraph at lines 107--108
+[57]
+Overfull \hbox (7.96571pt too wide) in paragraph at lines 178--179
 []\T1/ppl/m/n/10 While we've dis-cussed all this in terms of more eas-ily pic-t
 ured finite-dimensional
  []
 
-[55] [56] [57]
-Overfull \hbox (1.15547pt too wide) in paragraph at lines 242--243
+[58] [59] [60] [61]
+Overfull \hbox (1.15547pt too wide) in paragraph at lines 319--320
 []\T1/ppl/m/n/10 Returning to our phys-i-cal in-ter-pre-ta-tion, a free par-ti-
 cle has en-ergy that is purely
  []
 
-[58] [59] [60] [61] [62]
-Overfull \hbox (6.6655pt too wide) in paragraph at lines 511--512
+[62] [63] [64] [65]
+Overfull \hbox (6.6655pt too wide) in paragraph at lines 588--589
 \T1/ppl/m/n/10 Given this ab-stract no-tion of an elec-tron be-ing en-tirely re
 p-re-sented by a complex-
  []
 
-[63] [64] [65] [66] [67] [68] [69]) [70]
+[66] [67] [68] [69] [70] [71] [72] [73] [74]
+Overfull \hbox (3.48605pt too wide) in paragraph at lines 1038--1039
+[]\T1/ppl/m/n/10 In some sit-u-a-tions we find that mul-ti-ple eigen-vec-tors h
+ave the same eigen-
+ []
+
+[75] [76] [77] [78] [79] [80]) [81]
 \openout2 = `relativity.aux'.
 
  (./relativity.tex
 Chapter 10.
-[71
+[82
 
 
 
 
-] [72] [73] [74] [75] [76] [77]
+] [83] [84] [85] [86] [87] [88]
 Overfull \hbox (3.92557pt too wide) in paragraph at lines 230--231
 []\T1/ppl/m/n/10 It's in-ter-est-ing that the mo-men-tum pro-vides the three sp
 a-tial com-po-nents, while
  []
 
-[78] [79]) [80]
+[89] [90]) [91]
 \openout2 = `dirac.aux'.
 
- (./dirac.tex [81
+ (./dirac.tex [92
 
 
 
-] [82] [83]) [84]
+] [93] [94]) [95]
 \openout2 = `greek.aux'.
 
  (./greek.tex
 Appendix A.
-) [85
+) [96
 
 
 
@@ -725,10 +737,10 @@ Package logreq Info: Writing requests to 'notes.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 12136 strings out of 476025
- 224470 string characters out of 5790018
- 1863388 words of memory out of 5000000
- 32359 multiletter control sequences out of 15000+600000
+ 12140 strings out of 476025
+ 224534 string characters out of 5790018
+ 1864388 words of memory out of 5000000
+ 32363 multiletter control sequences out of 15000+600000
  542653 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  70i,9n,76p,1194b,801s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -744,17 +756,18 @@ l/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/t
 exlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
 xlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texl
 ive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texliv
-e/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/tex
-live/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local
-/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/lo
-cal/texlive/2023/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/tex
-live/2023/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/20
-23/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2023/texm
-f-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on notes.pdf (88 pages, 407074 bytes).
+e/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/te
+xlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local
+/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/l
+ocal/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></us
+r/local/texlive/2023/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local
+/texlive/2023/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texliv
+e/2023/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2023/
+texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on notes.pdf (100 pages, 444766 bytes).
 PDF statistics:
- 385 PDF objects out of 1000 (max. 8388607)
- 254 compressed objects within 3 object streams
+ 428 PDF objects out of 1000 (max. 8388607)
+ 283 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
