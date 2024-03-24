@@ -132,9 +132,13 @@ Having constructed a column representation of a state vector in one basis, relat
 
 As always when using an operator to transform a vector's components we need to be clear on whether we want to get a different vector in the same basis or the same vector in a different basis. In this case, physically we're talking about the latter; a state vector represents something physically real, and we're just changing how we describe it. On the other hand, mathematically all we have is the description, and the choice of basis is not entirely arbitrary because a basis relates to an observable quantity.
 
+An operator used to switch to another basis must preserve the inner product. This means it must be a \textit{unitary} operator, $\hat{U}$, for which the Hermitian conjugate serves as the inverse:
+
+$$\hat{U} \hat{U}^\dagger = I$$
+
 \section{Operators Representing Observables} \label{sec:qm-operators1}
 
-Observables have an associated operator. Note that this is \textit{not} the same as the operator for converting a state vector to a different basis. In QM when we talk about the observable's associated operator, we are talking about something that is not directly of any use for converting between bases, though it will indicate how we could perform such an operation.
+Observables have an associated operator. Note that this is \textit{not} the same as the operator for converting a state vector to a different basis. In QM when we talk about the observable's associated operator, we are talking about something that is not directly of any use for converting between bases (it is not unitary, for one thing), though it will indicate how we could perform such an operation.
 
 An observable operator can be applied to a state vector as a kind of test, but it is much more powerful when we picture it applying to every possible state vector (that is, all unit vectors in the space) to find out how it affects them.
 
@@ -740,7 +744,7 @@ $$
 
 \section{Operators Again} \label{sec:qm-operators2}
 
-Another way to look at what we're doing here is discovering operators. To apply an operator $\hat{O}$ and get its expectation value $\langle O \rangle$, the recipe is:
+Another way to describe what we're doing here is rediscovering operators. To apply an operator $\hat{O}$ and get its expectation value $\langle O \rangle$, the recipe is:
 
 $$
 \langle O \rangle =
@@ -751,13 +755,13 @@ $$
 \,dx
 $$
 
-How does this relate to our previous discussion about observable operators (§\ref{sec:qm-operators1})? We said that the operator for an observable has orthogonal eigenvectors, with eigenvalues that are the value that will be measured. Our wave function at an instant in time $\psi(x)$ is a vector. To get a coordinate from that vector, we evaluate the function for some position $x$, and so the vector has a coordinate for every point in space. Therefore it is a vector expressed in the "position basis".
+How does this relate to our previous discussion about observable operators (§\ref{sec:qm-operators1})? We said that the operator for an observable is Hermitian, so it has orthogonal eigenvectors, and if the state vector is equal to an eigenvector then the observable, when measured, will be certain to equal the eigenvalue of that eigenvector. Our wave function at an instant in time $\psi(x)$ is a vector. To get a coordinate from that vector, we evaluate the function for some position $x$, and so the vector has a "coordinate" for every point in space. Therefore it is a vector expressed in the "position basis".
 
 If the particle is very precisely localised, the function's value (the coordinates) will be zero everywhere except at that precise location. At the theoretical extreme, it will zero everywhere except at an infinitesimal single position (§\ref{sec:fourier-spike}). That is, it will be a basis vector in the position basis.
 
 An observable operator has to scale its eigenvectors by the value that would be measured for a state equal to that eigenvector. That is exactly what happens if we multiply $\psi(x)$ by $x$: if it is a pure spike (a complex value of modulus $1$) at some position $x_1$, and zero everywhere else, the spike (and thus the whole vector) will be scaled by the value $x_1$. Whereas if it isn't a pure spike (not a position eigenvector), each non-zero value will be multiplied by a different value (its own position value), which will distort the shape of the function (or equivalently, change the "direction" of the vector).
 
-We also mentioned in passing that if we apply an observable's operator to a specific state vector, we get an adjusted vector, and if we take the inner product between the original state vector and the adjusted vector, the resulting scalar value will be the expectation value of the observable. And that is exactly what we are doing in the above integral:
+We also mentioned in passing that if we apply an observable's operator to a specific state vector, we get an adjusted vector, and if we take the inner product between the original state vector and the adjusted vector, the resulting scalar value will be the expectation value of the observable. So this is just another way of writing down the above integral:
 
 $$
 \langle O \rangle =
@@ -766,7 +770,7 @@ $$
 
 Because $\Psi$ is a function of $x$ and $t$, by integrating over all $x$ we get a function of time, telling us the evolving expectation value of whatever observable the operator represents. This "operator sandwich" pattern is intuitively sensible when we apply the position operator to a wave function of position, because this fits precisely with how we understand the expectation value to be computed: it is the sum of every possible value multiplied by its probability of occurring. $\hat{x}|\psi\rangle$ is just $x \psi(x)$. If we multiply that by $\psi(x)^*$ then it will be $x$ multiplied by the probability of measuring the position to be $x$; clearly then the integral over all space will be the expectation value $\langle x \rangle$.
 
-So the position operator $\hat{x}$ is just $x$ itself:
+So in the position basis, the position operator $\hat{x}$ is just $x$ itself:
 
 $$
 \langle x \rangle =
@@ -815,15 +819,13 @@ $$
 \langle \Psi| \hat{O} | \Psi \rangle
 $$
 
-That expression is a scalar value, and is the same regardless of the basis we work in. When we want to calculate it, we use the same basis throughout.
-
-On the other hand, the expectation value is a meagre summary of the rich information available in state vector, so we shall retain our obsession with finding a way to change basis.
+That expression is a scalar value, and is the same regardless of the basis we work in (if we switch basis, we must use a unitary operator so the inner product between any two vectors is unaffected by the change of basis). When we want to calculate it the value, we use the same basis throughout.
 
 \section{Time Independent Potentials}
 
-In the Schrödinger equation, if the potential $V$ is constant everywhere (and thus may as well be zero everywhere), it reduces to the free particle equation that fell out automatically from the fact that kinetic energy is tied to momentum. If you know the energy, you know the momentum and vice versa, which means that if you know the shape of a time-independent snapshot of the wave $\psi(x)$, then you know everything.
+In the Schrödinger equation, if the potential $V$ is constant everywhere (and thus may as well be zero everywhere), it reduces to the free particle equation that fell out automatically from the fact that kinetic energy is tied to momentum. A real particle wave function will be some shape that is smooth, differentiable and vanishes at infinity, but it nevertheless always be thought of as the sum of an infinite set of contributing simple corkscrew waves, which means its behaviour is entirely predictable from a time-independent snapshot of the wave $\psi(x)$.
 
-If the potential is a function it gets trickier. To understand the effect of varying $t$ and $x$ separately, we can suppose the existence of two functions $\psi(x)$ and $\phi(t)$ that when multiplied give us $\Psi(x, t)$.
+If the potential is a more interesting function it gets trickier. To understand the effect of varying $t$ and $x$ separately, we can suppose the existence of two functions $\psi(x)$ and $\phi(t)$ that when multiplied give us $\Psi(x, t)$.
 
 It is not generally true that this is possible. Even something as simple as $\Psi(x, t) = x + t$ can't separated into a product of two functions of $x$ and $t$. It's obviously true that solutions to the zero-potential Schrödinger equation can be separated, simply because we obtained it from the assumption:
 
@@ -939,6 +941,8 @@ And that factor is really just $e^{i\theta}$ with the angle being $-Et/\hbar$, s
 
 And if the modulus isn't changing, the probability density isn't changing, so the particle isn't moving. Hence solutions of this type are known as \textit{stationary states}. The expectation value of the position is fixed, and so all other observables' expectation values are also constant, including energy.
 
+\section{Bound States}
+
 When we constructed the Schrödinger equation \eqref{eqn:se} we did so by building an expression for the total energy in terms of the particle's kinetic energy and a potential:
 
 $$
@@ -955,7 +959,7 @@ $$
 E\psi
 $$
 
-So in one of these stationary states, $\psi$ substitutes for $\Psi$, but otherwise it's the same. We can extract an operator for the energy (the Hamiltonian):
+So in one of these stationary states, $\psi$ substitutes for $\Psi$, which is quite valid because the energy is constant, and so it's the same expression. We can extract an operator for the energy (the Hamiltonian):
 
 $$
 \hat{H} = 
@@ -970,26 +974,28 @@ $$
 E\psi
 $$
 
-This is an eigenvalue equation: for some solutions $\psi$, the $\bar{H}$ operator has the same effect as multiplying by a constant, the energy eigenvalue $E$ for that $\psi$. Another example that fits the vector-based framework for quantum mechanics that we began with.
+This is an eigenvalue equation: for some solutions $\psi$, the $\bar{H}$ operator has the same effect as multiplying by a constant, the energy eigenvalue $E$ for that $\psi$. It can be shown that it's a Hermitian operator, so the eigenvectors for stationary states with distinct energy eigenvalues can be used to define an orthonormal basis.
 
-All this is only true for the stationary states of separable $\Psi(x, t)$ wave functions, but we can sum an infinite set of them to get other shapes:
+Note that we're not talking about a single general operator for all situations. The definition of $V(x)$ will depend on the situation, and that will affect the solutions of the above eigenvalue equation.
+
+There are several standard potentials that can be analysed in this way. The simplest is the infinite square well, a potential that is zero in a small region of width $a$ but infinite outside that region, forcing the wave function to be zero at the boundaries of the region and causing it to have eigenfunctions that are standing waves:
 
 $$
-\Psi(x, t)
-=
-\sum_{n=1}^\infty
-c_n
-\psi_n
-e^{-iE_nt/\hbar}
+\psi_n(x) =
+\sqrt{\frac{2}{a}} sin \lparen \frac{n\pi}{a} x\rparen
 $$
 
-So for each $n$ there's a complex constant $c_n$ to go with the stationary state $\psi_n$ and an energy level $E_n$ that controls how fast the global phase shift goes round and round.
+with corresponding energy eigenvalues:
 
-Because we're adding complex values at each point in space, even though those component values each have a time-independent modulus, the sum of them does not. So this is a way to make non-stationary solutions. Wave packets that "move" can be composed by summing stationary states that do not. A particle confined inside a potential can be in a stationary state, or it can "slosh" from side to side in a complicated way due to being a linear combination of many such states.
+$$
+E_n = \frac{n^2\pi^2\hbar^2}{2ma^2}
+$$
 
-\section{Wave Functions as Vectors}
+The interesting thing about this is that the set of eigenfunctions, while infinite, is a countable infinity: there is a first state, a second state and so on. Despite this, by choosing an infinite subset of these states and summing them, we can generate any function. Strictly speaking, we can generate any periodic function that is zero at the boundaries, but the distinction between periodic and non-periodic functions is irrelevant if we have defined the value to be zero everywhere outside those boundaries.
 
-For stationary states $m$ and $n$:
+So there is no limit on what the initial state can be, but by decomposing that $t = 0$ state $\Psi(x, 0) = \psi(x)$ into a sum of these discrete waves, we know exactly how it will evolve over time. Each component eigenfunction evolves due to the "round and round" factor $e^{-iEt/\hbar}$. Because we're adding complex values at each point in space, even though those component values each have a time-independent modulus, the sum of them does not (think of a clock hand with another clock hand on the end of it, running at different rates). So this is a way to make non-stationary solutions. Wave packets that "move" can be composed by summing stationary states that do not. A particle confined inside a potential can be in a stationary state, or it can "slosh" from side to side in a complicated way due to being a linear combination of many such states. So we have an exact solution for how any initial state will evolve inside an infinite well potential.
+
+The energy eigenfunctions serve as a set of basis vectors. Why? Because the energy operator is Hermitian (the equivalent of a symmetric matrix except with complex elements) which means that among its eigenvectors, any two that corresponding to distinct eigenvalues will be orthogonal. For stationary states $m$ and $n$:
 
 $$
 \int
@@ -998,18 +1004,16 @@ $$
 
 This does not mean that $\psi_m^* \psi_n$ is zero everywhere if $m \ne n$, but it does mean that for every non-zero value pointing in some direction in the complex plane, there's another value of the same modulus pointing the opposite way, to balance it out.
 
-The above is a way of defining the inner product between two stationary states, and of showing that they are like orthogonal vectors in a complex vector space for that product.
+So each possible energy value is represented by an eigenvector. We can create a weighted sum of them to make any possible state. We can use those weightings as the components of a vector describing a state. That is, the state of the lowest energy level is a column vector of numbers where the first component is $1$ (or some complex number of modulus $1$) and all the other components are $0$.
 
-In fact we can define our vector space for QM in two ways:
+There are two complications to this story:
 
 \begin{itemize}
-  \item as an uncountable continuum of \textit{scattering states}
-  \item As a countable infinity of \textit{bound states}
+  \item In some situations we find that multiple eigenvectors have the same eigenvalue, so we cannot infer the state vector from an energy measurement, a predicament known as \textit{energy degeneracy}. We never see this for energy in one dimension of physical space, but in two or three it is unavoidable.
+  \item We can't measure the energy with absolute precision anyway. No system ever really collapses so its state vector is known to be precisely one of the eigenvectors of whatever observable is being measured. It always remains a superposition to some extent.
 \end{itemize}
 
-\subsection{Scattering States}
-
-In the uncountable case of scattering states, the vector is a function of a continuous coordinate and cannot be reduced to anything more compact than that. This happens when the potential is absent and we have a physical state that moves freely through space as a pulse waveform. The inner product is defined by an integral:
+States where the particle is trapped in a potential are known as \textit{bound states}. In the absence of a potential, particles are in \textit{scattering states}, where the possible energies are not quantised but continuous, so we have to use an integral to find the inner product:
 
 $$
 \langle \alpha | \beta \rangle
@@ -1022,37 +1026,9 @@ If we knew a particle's exact location, $\alpha$, our wave function of space $\p
 
 Thus far we've been working in "position space", using functions of $x$, but alternatively we could work in "momentum space", where the functions are $\phi(p)$. If we knew a particle's exact momentum, $\phi(p)$ would be a spike, whereas if we knew its exact position, $\phi(p)$ would be a single-component wave.
 
-Either way, the point is that the elements of our vector space are functions of a continuous variable (a real number), and the inner product has to be an integral over that continuous variable.
-
-A theoretical free particle, being a perfectly periodic wave that extends to infinity, although it is a superposition of all possible position eigenstates, is on the other hand a pure eigenstate of both momentum and energy.
-
-\subsection{Bound States}
-
-In the countable case of bound states, a potential traps a particle and the measurable energies are quantised, the energy being the eigenvalue of the energy operator applied to the stationary state eigenfunction at that energy level.
-
-The energy eigenfunctions serve as a set of basis vectors. Why? Because the energy operator is Hermitian (the equivalent of a symmetric matrix except with complex elements) which means that among its eigenvectors, any two corresponding to distinct eigenvalues will be orthogonal, and so each possible energy value is represented by an eigenvector. We can create a weighted sum of them to make any possible state. We can use those weightings as the components of a vector describing a state. That is, the state of the lowest energy level is a column vector of numbers where the first component is $1$ and all the other components are $0$.
-
-There are two complications to this story:
-
-\begin{itemize}
-  \item In some situations we find that multiple eigenvectors have the same eigenvalue, so we cannot infer the state vector from an energy measurement.
-  \item We can't measure the energy with absolute precision anyway. No system ever really collapses so its state vector is known to be precisely one of the eigenvectors of whatever observable is being measured. It always remains a superposition to some extent.
-\end{itemize}
-
-The inner product of two vectors is the sum of the products of the components of the two vectors (taking care to always complex conjugate the first one):
-
-$$
-\langle \alpha | \beta \rangle
-=
-\sum_i
-\alpha_i^* \beta_i
-$$
-
-So once we've established the basis and computed the eigenvalues, we can construct states that are combinations of the eigenvectors and figure out the probability of obtaining a given energy by summing, rather than integrating.
-
 \section{Energy Degeneracy}
 
-Given two eigenvectors of an Hermitian operator, if they have different eigenvalues then they are orthogonal (intuitively they can't be colinear because a linear operator can't apply a different scaling to vectors that are colinear). But what about the converse? If they are orthogonal do they have different eigenvalues?
+Given two eigenvectors of an Hermitian operator, if they have different eigenvalues then they are orthogonal (intuitively they can't be colinear because a linear operator can't apply a different scaling to vectors that are colinear). But what about the converse? If they are orthogonal do they necessarily have different eigenvalues?
 
 Given two eigenstates of the energy operator, $\psi_1$ and $\psi_2$, when we apply the operator it just scales them each by their own eigenvalue:
 
@@ -1075,7 +1051,7 @@ In other words, any two eigenstates with the same eigenvalue can be added to get
 
 $$\hat{E}(a\psi_1 + b\psi_2) = \hat{E}a\psi_1 + \hat{E}b\psi_2 = E_1a\psi_1 + E_2b\psi_2 = E_1(a\psi_1 + b\psi_2)$$
 
-So this is a subspace of the whole vector space, a set of eigenvectors with the same eigenvalue, known (inevitably) as an eigenspace. Any scalar multiple of an eigenvector is also an eigenvector, so the line along which an eigenvector lies is (though not often) called an eigendirection, and is the simplest eigenspace that can arise with a linear operator.
+So this is a subspace of the whole vector space, a set of eigenvectors with the same eigenvalue, known (inevitably) as an eigenspace. Any scalar multiple of an eigenvector is also an eigenvector, so the line along which an eigenvector lies is (though not often) called an eigendirection (\textit{eigenalignment} would be a better term), and is the simplest eigenspace that can arise with a linear operator.
 
 In the simple case of a symmetric matrix operating on the plane, it will pick out two orthogonal directions along which it will perform a pure scaling. It may stretch along one direction but squeeze the other. Any vectors colinear with these two directions will only be scaled, their directions unaffected, and thus are eigenvectors. All other vectors will be rotated, and so are not eigenvectors. The set of eigenvectors aligned with one of the directions will all have the same eigenvalue, and so they form an eigenspace.
 
@@ -1086,134 +1062,6 @@ But in the higher dimensional complex vector spaces of QM, some operators will h
 The operation of scaling equally in all directions is a trivial example where all vectors are eigenvectors, and all have the same eigenvalue (the scaling factor), so they are all in the same eigenspace, and we can select any N that are not colinear to use as a basis of the N-eigenspace. Suppose we're dealing with a three dimensional vector space, and we scale up by a factor of $1.5$ along the $x$ and $y$ directions, but shrink by $0.5$ along the $z$ direction. A vector aligned with either the $x$ or $y$ direction will be an eigenvector under this scaling operation, with the eigenvalue 1.5. So this is degeneracy: orthogonal eigenvectors with the same eigenvalues, sharing a planar eigenspace that is a proper subset of the whole space.
 
 So while we can say confidently that if two eigenvectors of an Hermitian operator have different eigenvalues then they are orthogonal, we cannot claim the converse: two orthogonal eigenvectors do not necessarily have different eigenvalues. In some circumstances they do, but not all. In particular, by classical intuition, the system of a weight on a string swinging back and forth has a total energy related to the weight's maximum displacement, but it can swing along any axis, so there is an infinite set of states with the same energy. So it is in QM. The inability in some situations to determine the state from the energy is known as degeneracy.
-
-\section{Fourier Transforms}
-
-A function $\psi(x)$ can be constructed by summing a collection of simple component waves, each with a different amplitude $A$ and wavelength, although we replace the latter with momentum $p$. So one component is $Ae^{ipx}$, and we can suppose the existence of a function $\phi(p)$ that tells you the amplitude $A$ for a given momentum. Then if we integrate over all momenta:
-
-$$\psi(x) = \int \phi(p)e^{ipx} dp$$
-
-This tells you the total amplitude of the wave at a given position. But it's also structurally equation \eqref{eq:invfourier}, implying that we can do the reverse:
-
-$$\phi(p) = \int \psi(x)e^{-ipx} dx$$
-
-So we can flip between "position space" and "momentum space" descriptions of the same state without loss of information. We've got two different functions that describe that state, functions of different variables, with (in general) different shapes.
-
-We've also said that in QM we apply operators to switch between vector representations of the same state, in order to get their complex components in the representation for the observable for which want a probability distribution. So how does this work with the momentum operator?
-
-Given a state described by position, $\psi(x)$, we can apply the momentum operator:
-
-$$
-\hat{p}\psi(x) = -i\hbar \frac {\partial \psi(x)}{\partial x}
-$$
-
-Suppose $\psi(x)$ is a simple wave of amplitude $A$ (the amplitude isn't yet relevant, and we have no way of normalising such a function, but it will play a role in a moment):
-
-$$
-\psi(x) = Ae^{ipx/\hbar}
-$$
-
-To differentiate an exponential we just multiply it by whatever factor is applied inside the exponential, in this case $ip/\hbar$:
-
-$$
-\frac{\partial}{\partial x} \psi(x) = \frac{ip}{\hbar}Ae^{ipx/\hbar}
-$$
-
-So applying the momentum operator in full:
-
-$$
-\hat{p}\psi(x) = -i\hbar \frac{ip}{\hbar}Ae^{ipx/\hbar}
-$$
-
-The $\hbar$s cancel, the $i$s become $1$, so we're left with:
-
-$$
-\hat{p}\psi(x) = p Ae^{ipx/\hbar} = p \psi(x)
-$$
-
-So it's an eigenvalue equation: the observable quantity $p$ is the eigenvalue of the operator $\hat{p}$, and so therefore we know that our choice of $\psi(x)$, a corkscrew wave, was an eigenstate of the momentum operator (we've just confirmed that the momentum operator does its job). But while any $\psi(x)$ might not be an eigenstate of momentum in this way, it will always be a linear combination of eigenstates of momentum. We just need a function $\phi(p)$ that gives us the amplitude (replacing $A$) contributed by every possible momentum $p$, and then we can integrate over all possible momenta to build the position wave function:
-
-$$
-\psi(x) = \int \phi(p)e^{ipx/\hbar} dp
-$$
-
-Differentiation is linear: we can perform it on each component wave and sum the results and this is equivalent to differentiating the sum of the components. So the steps we went through above can be performed with any composite wave too. However, we will not find a simple eigenvalue.
-
-To make this explicit, let's make our position wave function from just two different momentum eigenstates:
-
-$$
-\psi(x) = A_1e^{ip_1x/\hbar} + A_2e^{ip_2x/\hbar}
-$$
-
-Applying the momentum operator:
-
-$$
-\hat{p}\psi(x) = p_1A_1e^{ip_1x/\hbar} + p_2A_2e^{ip_2x/\hbar}
-$$
-
-The two terms of $\psi(x)$ have each been scaled by a different momentum value. Furthermore they have different wavelengths so will interfere messily. So evidently this is not an eigenvalue equation.
-
-But the way we've defined $\psi(x)$, we know it has a certain spectrum: two spikes, at $p_1$ and $p_2$, and nothing at any other momenta. So as a function of $p$ we would say:
-
-$$
-\phi(p) = A_1\delta(p - p_1) + A_2\delta(p - p_2)
-$$
-
-Let's compare the above discussion with regular vectors. A vector $\vec{v}$ in one basis has a set of coordinates in that basis, $v_k$. The vector can be constructed by multiplying each basis vector ${\vec{e}_k}$ by the corresponding coordinate and summing:
-
-$$
-\vec{v} = \sum_k \vec{e}_k v_k
-$$
-
-But we can transform the coordinates $v_k$ by using an operator described by a matrix $O$. The coordinates, $u_j$, still describe the same vector but in a different basis, and are given by the matrix multiplication $Ov$, which means producing the $j$th coordinate in the new basis by taking the dot product of the $j$th row of the matrix with the coordinates in the original basis, so here $j$ is the index of the coordinate we are calculating and $k$ remains the summation variable:
-
-$$
-u_j = \sum_k O_{jk} v_k
-$$
-
-In Dirac notation we can write the inner product between two vectors as $\langle a | b \rangle$. Supposing we wanted to obtain the first coordinate of our vector $\vec{v}$, we could write that as $\langle 1 | v \rangle$. The L.H.S. is not the numeric value 1; we're just using that as a label for the basis vector ${\vec{e}_1}$.
-
-If the vectors are functions of a real variable such as position, the inner product is the integral over all values of that variable. But the basis vectors are $\delta$ spikes, the integral will just pick out the value at that position, and so it's the equivalent of simply evaluating the function at that position:
-
-$$
-\langle x | \psi \rangle
-=
-\int_{-\infty}^{+\infty}
-\delta(x - y) \psi(y)
-dy
-=
-\psi(x)
-$$
-
-So we see a kind of equivalence between the following:
-
-\begin{itemize}
-  \item the index $k$ becomes the position $x$
-  \item the column vector of coordinates $v_k$ becomes the wave function $\psi(x)$
-  \item the basis vector $\vec{e}_k$ is equivalent to the $\delta$ function that gives us a spike we can position at any $x$, i.e. the position basis
-  \item the index $j$ becomes the momentum $p$
-  \item $u_j$ is the momentum function $\phi(p)$
-\end{itemize}
-
-The tricky part is relating the matrix $O$ to the position-space momentum operator $\hat{p}$.
-
-Each row of a matrix can be viewed as a row vector, applied to the input column vector with the inner product to produce one coordinate of the output vector. For continuous functions, that would mean that we need to perform an integral to obtain one output "coordinate".
-
-Using a matrix to convert to another basis means getting the coordinate for each basis vector in the new basis, which means taking inner product between the input vector and each basis vector. So each row of the matrix is just one basis vector of the new basis, but \textit{expressed in the old basis}.
-
-So to do this when converting from position basis to momentum basis, we need the set of functions that are the basis vectors of momentum \textit{expressed in the position basis}, so then for any one such basis vector we can do the inner product between it and our input vector to find the "coordinate" (complex value) for some momentum.
-
-As we've seen, the basis vector for momentum $p$ expressed in the position basis is $e^{-ipx}$, a corkscrew wave, so the required inner product is simply:
-
-$$\phi(p) = \int \psi(x)e^{-ipx} dx$$
-
-
-
-\section{Phase-space Formulation}
-
-Phase space is a conceptual space with both space and momentum dimensions. In the simplest case of motion in one spatial dimension, phase space has two dimensions, one each of space and momentum. Classically a harmonic oscillator traces out an ellipse in phase space, as it oscillates between zero displacement with maximum momentum, and then maximum displacement with zero momentum, back and forth (or in phase space, round and round). The two dimensions are not independent, because one is the derivative (or gradient) of the other.
-
-There is a rarely used phase-space formulation of QM in which we characterise a system by a real scalar function of phase space, that is, $f(x, p)$. This function of both position and momentum is an alternative way to capture all the information in a complex wave function of \textit{either} position or momentum. For a simple harmonic oscillator the form of the function is rigid and simply rotates in phase space as time passes, in a direct analogy with the classical time evolution.
 
 \section{Spin}
 
