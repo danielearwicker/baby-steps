@@ -132,7 +132,7 @@ Having constructed a column representation of a state vector in one basis, relat
 
 As always when using an operator to transform a vector's components we need to be clear on whether we want to get a different vector in the same basis or the same vector in a different basis. In this case, physically we're talking about the latter; a state vector represents something physically real, and we're just changing how we describe it. On the other hand, mathematically all we have is the description, and the choice of basis is not entirely arbitrary because a basis relates to an observable quantity.
 
-An operator used to switch to another basis must preserve the inner product. This means it must be a \textit{unitary} operator, $\hat{U}$, for which the Hermitian conjugate serves as the inverse:
+An operator used to switch to another basis must preserve the inner product (and thus the lengths of, and angles between, vectors). This means it must be a \textit{unitary} operator, $\hat{U}$, for which the Hermitian conjugate serves as the inverse:
 
 $$\hat{U} \hat{U}^\dagger = I$$
 
@@ -768,58 +768,308 @@ $$
 \langle \Psi| \hat{O} | \Psi \rangle
 $$
 
-Because $\Psi$ is a function of $x$ and $t$, by integrating over all $x$ we get a function of time, telling us the evolving expectation value of whatever observable the operator represents. This "operator sandwich" pattern is intuitively sensible when we apply the position operator to a wave function of position, because this fits precisely with how we understand the expectation value to be computed: it is the sum of every possible value multiplied by its probability of occurring. $\hat{x}|\psi\rangle$ is just $x \psi(x)$. If we multiply that by $\psi(x)^*$ then it will be $x$ multiplied by the probability of measuring the position to be $x$; clearly then the integral over all space will be the expectation value $\langle x \rangle$.
+Because $\Psi$ is a function of $x$ and $t$, by integrating over all $x$ we get a function of time, telling us the evolving expectation value of whatever observable the operator represents. To remove a little complexity we'll switch to considering an instant of time so $\psi(x)$ is all we need.
+
+This "operator sandwich" pattern is intuitively sensible when we apply the position operator to a wave function of position, because this fits precisely with how we understand the expectation value to be computed: it is the sum of every possible value multiplied by its probability of occurring. $\hat{x}|\psi\rangle$ is just $x \psi(x)$. If we multiply that by $\psi(x)^*$ then it will be $x$ multiplied by the probability of measuring the position to be $x$; clearly then the integral over all space will be the expectation value $\langle x \rangle$.
 
 So in the position basis, the position operator $\hat{x}$ is just $x$ itself:
 
 $$
 \langle x \rangle =
 \int_{-\infty}^{+\infty}
-\Psi^*
+\psi(x)^*
 \hat{x}
-\Psi
+\psi(x)
 \,dx
 =
 \int_{-\infty}^{+\infty}
-\Psi^*
+\psi(x)^*
 x
-\Psi
+\psi(x)
 \,dx
 $$
 
 The momentum operator $\hat{p}$, which we discovered above by looking for the expectation value of momentum, is $-ih\frac{\partial}{\partial x}$:
 
-$$
-\langle p \rangle =
-\int_{-\infty}^{+\infty}
-\Psi^*
-\hat{p}
-\Psi
-\,dx
-=
-\int_{-\infty}^{+\infty}
-\Psi^*
-(-ih\frac{\partial}{\partial x})
-\Psi
-\,dx
-= -ih
-\int_{-\infty}^{+\infty}
-\Psi^*
-\frac{\partial \Psi}{\partial x}
-\,dx
-$$
+\begin{equation}
+\begin{split}
+  \langle p \rangle &=
+  \int_{-\infty}^{+\infty}
+  \psi(x)^*
+  \hat{p}
+  \psi(x)
+  \,dx 
+  \\
+  &=
+  \int_{-\infty}^{+\infty}
+  \psi(x)^*
+  (-ih\frac{\partial}{\partial x})
+  \psi(x)
+  \,dx 
+  \\
+  &= -ih
+  \int_{-\infty}^{+\infty}
+  \psi(x)^*
+  \frac{\partial \psi(x)}{\partial x}
+  \,dx  
+\end{split}
+\end{equation}
 
 Compared to the position operator, it is somewhat less obvious what the momentum operator is doing to produce an expectation value for momentum. The intuitive process would be to sum (over all possible momenta) the product of each momentum and its probability of being measured. That would seem to require a wave function of momentum instead of position, and an integral over all momenta. And yet here we still have an integral over all positions, involving a wave function of position. \textit{We have not yet changed basis.}
 
-It is perhaps easier to comprehend this intuitively through the analogy with regular vectors, and by remembering that vectors are basis independent objects (§\ref{sec:vectors-geometric}). The observable operator acts on the state vector, in general changing both its length and alignment (unless the state vector happens to already be an eigenstate of the observable, in which case only the length changes). But this action would be the same regardless of the basis we are working in, and so it isn't necessary to get hung up on that point. Likewise, projecting the operated-on vector back on to the original state vector, to produce a scalar expectation value, is a geometrical, basis-independent operation. The inner product depends on the relative lengths and the angle between the two vectors. As long as when we change basis we do so in a way that preserves the inner product (that is, by a \textit{unitary} operator), then the choice of basis is physically irrelevant. 
+To represent a vector as a set of coordinate in some basis, we extract each coordinate of the vector by performing the inner product between the unit basis vector for that coordinate and the vector in question. But for these functions of real parameters like position and momentum, the definition of a vector (that is, the set of its coordinates) is given by a function of the real parameter, the values of that function being the coordinates, each coordinate labelled with the real parameter, and the inner product is an integral over all values of the real parameter.
 
-Therefore, in this recipe for the expectation value, the operator $\hat{O}$, the state vector $| \Psi \rangle$ and the adjusted vector $\hat{O} | \Psi \rangle$ should all be understood as having an independent existence from any choice of basis:
+Momentum basis vectors in the position basis are of the form:
 
 $$
-\langle \Psi| \hat{O} | \Psi \rangle
+\phi(x) = \frac{1}{\sqrt{2\pi\hbar}}e^{ipx/\hbar}
 $$
 
-That expression is a scalar value, and is the same regardless of the basis we work in (if we switch basis, we must use a unitary operator so the inner product between any two vectors is unaffected by the change of basis). When we want to calculate it the value, we use the same basis throughout.
+That is, they are a function of position (we're still in the position basis, so the "components" of the vector are labelled by positions), but there is a momentum variable $p$ in the definition. That value of $p$ determines which basis vector of momentum this $\phi(x)$ describes.
+
+The inner product of this with our state vector $\psi(x)$ (which is also expressed in the position basis) is the integral:
+
+$$
+\int_{-\infty}^{+\infty}
+\psi(x)^*
+\frac{1}{\sqrt{2\pi\hbar}}e^{ipx/\hbar}
+\,dx
+$$
+
+This yields a single complex number that is the "coordinate" associated with momentum $p$ of our state vector in the momentum basis. So the complete description of our state in the momentum basis is a function of momentum:
+
+$$
+\psi(p) = \int_{-\infty}^{+\infty}
+\psi(x)^*
+\frac{1}{\sqrt{2\pi\hbar}}e^{ipx/\hbar}
+\,dx
+$$
+
+Multiplying by a complex exponential inside an integral in this way is recognisable as the Fourier transform. But also, now we have $\psi(p)$ we can get the expectation value of momentum in exactly the same way as we did for position: by integrating (over all momenta) $\psi^* \hat{p} \psi(p)$:
+
+$$
+\langle p \rangle =
+\int_{-\infty}^{+\infty}
+\psi(p)^*
+\hat{p}
+\psi(p)
+\,dp
+$$
+
+In the momentum basis, the $\hat{p}$ operator is just multiplying by $p$ (exactly like the position operator in the position basis.)
+
+$$
+\langle p \rangle =
+\int_{-\infty}^{+\infty}
+\psi(p)^*
+p
+\psi(p)
+\,dp
+$$
+
+And $\psi(p)^*\psi(p)$ is the mod-square of the coordinate for $p$, that is, the probability that the momentum has the value $p$. 
+
+The point is if we do change basis, we are not materially changing what is calculated. It is perhaps easier to comprehend this intuitively through the analogy with regular vectors, and by remembering that vectors are basis independent objects (§\ref{sec:vectors-geometric}). The observable operator acts on the state vector, in general changing both its length and alignment (unless the state vector happens to already be an eigenstate of the observable, in which case only the length changes). But this action would be the same regardless of the basis we are working in, and so it isn't necessary to get hung up on that point. Likewise, projecting the operated-on vector back on to the original state vector, to produce a scalar expectation value, is a geometrical, basis-independent operation. The inner product depends on the relative lengths and the angle between the two vectors. As long as when we change basis we do so in a way that preserves the inner product (that is, by a \textit{unitary} operator), then the choice of basis is physically irrelevant. 
+
+Therefore, in this recipe for the expectation value, the operator $\hat{O}$, the state vector $| \psi \rangle$ and the adjusted vector $\hat{O} | \psi \rangle$ should all be understood as having an independent existence from any choice of basis:
+
+$$
+\langle \psi| \hat{O} | \psi \rangle
+$$
+
+That expression is a scalar value, and is the same regardless of the basis we work in (if we switch basis, we must use a unitary operator so the inner product between any two vectors is unaffected by the change of basis). When we want to calculate the value, we use the same basis throughout.
+
+One way to visualise this is by simplifying radically, keeping to real numbers and two-dimensional Hilbert space, which is to say, the Euclidean plane, making it possible to draw pictures. A state $|\psi\rangle$ is a vector. \textit{It is not intrinsically in any basis.} But it is certainly of unit length.
+
+\begin{figure}[h]
+  \centering
+    \begin{tikzpicture}
+      \draw (0,0) circle (1);
+      \draw[thick,->] (0,0) -- (0.383,0.924) node[anchor=south] {$|\psi\rangle$};
+    \end{tikzpicture}
+  \centering
+  \caption{Anonymous state vector} \label{fig:state-vector}
+\end{figure}
+
+Suppose the system can be found to be in one of two moods, $|a\rangle$ (affable) and $|b\rangle$ (bored). These will correspond to two orthonormal state vectors:
+
+\begin{figure}[h]
+  \centering
+    \begin{tikzpicture}
+      \draw (0,0) circle (1);
+      \draw[thick,->] (0,0) -- (0.383,0.924) node[anchor=south west] {$|\psi\rangle$};
+      \draw[dashed,->] (0,0) -- (1,0) node[anchor=west] {$|b\rangle$};
+      \draw[dashed,->] (0,0) -- (0,1) node[anchor=south] {$|a\rangle$};
+    \end{tikzpicture}
+  \centering
+  \caption{Mood basis} \label{fig:mood-basis}
+\end{figure}
+
+Naturally $\psi$ can be resolved into pair of coordinates by using the orthonormal vectors of mood as a basis. We are tempted to say that the mood is presently more closely aligned with affable rather than bored, but must always remember that the mood can only ever be measured to be exactly affable or exactly bored (upon which it will snap into alignment with $|a\rangle$ or $|b\rangle$ accordingly). It is just more likely to found affable, with probability given by the square of the coordinate given by the inner product $\langle a|\psi \rangle$.
+
+Also the system can be found to be listening to music in one of two genres, $|c\rangle$ (country) or $|d\rangle$ (disco):
+
+\begin{figure}[h]
+  \centering
+    \begin{tikzpicture}
+      \draw (0,0) circle (1);
+      \draw[thick,->] (0,0) -- (0.383,0.924) node[anchor=south] {$|\psi\rangle$};
+      \draw[dashed,->] (0,0) -- (-0.707,0.707) node[anchor=south east] {$|c\rangle$};
+      \draw[dashed,->] (0,0) -- (0.707,0.707) node[anchor=south west] {$|d\rangle$};
+    \end{tikzpicture}
+  \centering
+  \caption{Genre basis} \label{fig:genre-basis}
+\end{figure}
+
+Against this genre basis the coordinates for the same $|\psi\rangle$ are clearly going to be different from what they were in the mood basis, and our $|\psi\rangle$ is leaning more toward disco than country. If you tilt your head to the left (there is no "correct" point of view), so as to align $|c\rangle$ with the horizontal, pointing right, and $|h\rangle$ with the vertical, pointing up, then $|\psi\rangle$ will appear to be closer to horizontal than vertical.
+
+Returning to the mood observable, there is an operator $\hat{M}$ associated with that observable. We can think of the operator as acting on all possible state vectors, represented by an evenly-spaced selection of them.
+
+\begin{figure}[h]    
+  \caption{Effect of operator $\hat{M}$}
+  \begin{subfigure}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \draw (0,0) circle (1);
+        \draw[->] (0,0) -- (1.000,0.000);
+        \draw[->] (0,0) -- (0.924,0.383);
+        \draw[->] (0,0) -- (0.707,0.707);
+        \draw[->] (0,0) -- (0.383,0.924);
+        \draw[->] (0,0) -- (0.000,1.000);
+        \draw[->] (0,0) -- (-0.383,0.924);
+        \draw[->] (0,0) -- (-0.707,0.707);
+        \draw[->] (0,0) -- (-0.924,0.383);
+        \draw[->] (0,0) -- (-1.000,0.000);
+        \draw[->] (0,0) -- (-0.924,-0.383);
+        \draw[->] (0,0) -- (-0.707,-0.707);
+        \draw[->] (0,0) -- (-0.383,-0.924);
+        \draw[->] (0,0) -- (-0.000,-1.000);
+        \draw[->] (0,0) -- (0.383,-0.924);
+        \draw[->] (0,0) -- (0.707,-0.707);
+        \draw[->] (0,0) -- (0.924,-0.383);
+      \end{tikzpicture}
+  \caption{Before} \label{fig:mood-before}
+  \end{subfigure}
+  \begin{subfigure}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \draw (0,0) circle (1);
+        \draw[dotted] (0,0) ellipse (0.8 and 1.2);
+        \draw[thick,->] (0,0) -- (0.800,0.000);
+        \draw[dotted,->] (0,0) -- (0.739,0.459);
+        \draw[dotted,->] (0,0) -- (0.566,0.849);
+        \draw[dotted,->] (0,0) -- (0.306,1.109);
+        \draw[thick,->] (0,0) -- (0.000,1.200);
+        \draw[dotted,->] (0,0) -- (-0.306,1.109);
+        \draw[dotted,->] (0,0) -- (-0.566,0.849);
+        \draw[dotted,->] (0,0) -- (-0.739,0.459);
+        \draw[dotted,->] (0,0) -- (-0.800,0.000);
+        \draw[dotted,->] (0,0) -- (-0.739,-0.459);
+        \draw[dotted,->] (0,0) -- (-0.566,-0.849);
+        \draw[dotted,->] (0,0) -- (-0.306,-1.109);
+        \draw[dotted,->] (0,0) -- (-0.000,-1.200);
+        \draw[dotted,->] (0,0) -- (0.306,-1.109);
+        \draw[dotted,->] (0,0) -- (0.566,-0.849);
+        \draw[dotted,->] (0,0) -- (0.739,-0.459);
+      \end{tikzpicture}
+      \caption{After} \label{fig:mood-after}
+  \end{subfigure}
+\end{figure}
+
+After the operator has done its work, the adjusted vectors fit into an ellipse rather than a circle: they are no longer all unit vectors. There are just two directions along which the vectors preserved their alignment: these are the eigenvectors of $\hat{M}$. They are orthogonal. This is how we discovered the basis vectors $|a\rangle$ and $|b\rangle$, by finding the states $|\psi\rangle$ for which:
+
+$$
+\hat{M}|\psi\rangle = m|\psi\rangle
+$$
+
+where $m$ is just a number, i.e. the directions along which $\hat{M}$ does not change the alignment of the vector, only the length. Also the scaling factor along (say) the $|b\rangle$ direction is the numerical measurement that we interpret as the bored state.
+
+Operators associated with observables, such as $\hat{M}$, are Hermitian, which (in this real vector space with only two orthogonal directions) means they can be represented by a symmetric $2 \times 2$ matrix, and will always have the effect of stretching or squashing along two orthogonal directions, thus picking out the two basis vectors for the observable.
+
+And to be complete we should visualise the effect of the genre operator $\hat{G}$.
+
+\begin{figure}[h]    
+  \caption{Effect of operator $\hat{G}$}
+  \begin{subfigure}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \draw (0,0) circle (1);
+        \draw[->] (0,0) -- (1.000,0.000);
+        \draw[->] (0,0) -- (0.924,0.383);
+        \draw[->] (0,0) -- (0.707,0.707);
+        \draw[->] (0,0) -- (0.383,0.924);
+        \draw[->] (0,0) -- (0.000,1.000);
+        \draw[->] (0,0) -- (-0.383,0.924);
+        \draw[->] (0,0) -- (-0.707,0.707);
+        \draw[->] (0,0) -- (-0.924,0.383);
+        \draw[->] (0,0) -- (-1.000,0.000);
+        \draw[->] (0,0) -- (-0.924,-0.383);
+        \draw[->] (0,0) -- (-0.707,-0.707);
+        \draw[->] (0,0) -- (-0.383,-0.924);
+        \draw[->] (0,0) -- (-0.000,-1.000);
+        \draw[->] (0,0) -- (0.383,-0.924);
+        \draw[->] (0,0) -- (0.707,-0.707);
+        \draw[->] (0,0) -- (0.924,-0.383);
+      \end{tikzpicture}
+  \caption{Before} \label{fig:genre-before}
+  \end{subfigure}
+  \begin{subfigure}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \draw (0,0) circle (1);
+        \draw[rotate=45,dotted] (0,0) ellipse (0.8 and 1.2);
+        \draw[rotate=45,thick,->] (0,0) -- (0.800,0.000);
+        \draw[rotate=45,dotted,->] (0,0) -- (0.739,0.459);
+        \draw[rotate=45,dotted,->] (0,0) -- (0.566,0.849);
+        \draw[rotate=45,dotted,->] (0,0) -- (0.306,1.109);
+        \draw[rotate=45,thick,->] (0,0) -- (0.000,1.200);
+        \draw[rotate=45,dotted,->] (0,0) -- (-0.306,1.109);
+        \draw[rotate=45,dotted,->] (0,0) -- (-0.566,0.849);
+        \draw[rotate=45,dotted,->] (0,0) -- (-0.739,0.459);
+        \draw[rotate=45,dotted,->] (0,0) -- (-0.800,0.000);
+        \draw[rotate=45,dotted,->] (0,0) -- (-0.739,-0.459);
+        \draw[rotate=45,dotted,->] (0,0) -- (-0.566,-0.849);
+        \draw[rotate=45,dotted,->] (0,0) -- (-0.306,-1.109);
+        \draw[rotate=45,dotted,->] (0,0) -- (-0.000,-1.200);
+        \draw[rotate=45,dotted,->] (0,0) -- (0.306,-1.109);
+        \draw[rotate=45,dotted,->] (0,0) -- (0.566,-0.849);
+        \draw[rotate=45,dotted,->] (0,0) -- (0.739,-0.459);
+      \end{tikzpicture}
+      \caption{After} \label{fig:genre-after}
+  \end{subfigure}
+\end{figure}
+
+It's another Hermitian operator, so it has again picked out two orthogonal directions along which it only applies a scaling.
+
+There is no "true" basis against which a state vector is actually supposed to be measured. Basis vectors are just states that have a particular significance for certain operators.
+
+\begin{figure}[h]
+  \centering
+    \begin{tikzpicture}
+      \draw (0,0) circle (1);
+      \draw[thick,->] (0,0) -- (0.383,0.924);
+      \node at (0.500,1.190) {$|\psi\rangle$};
+      \draw[dashed,->] (0,0) -- (1,0) node[anchor=west] {$|b\rangle$};
+      \draw[dashed,->] (0,0) -- (0,1) node[anchor=south] {$|a\rangle$};
+      \draw[dashed,->] (0,0) -- (-0.707,0.707) node[anchor=south east] {$|c\rangle$};
+      \draw[dashed,->] (0,0) -- (0.707,0.707) node[anchor=south west] {$|d\rangle$};
+    \end{tikzpicture}
+  \centering
+  \caption{No special basis} \label{fig:state-no-special-basis}
+\end{figure}
+
+The state could be aligned with $|a\rangle$, so the genre would be uncertain, and then it could become aligned with $|c\rangle$ and then the mood would be uncertain.
+
+To relate all this back to more realistic QM scenarios:
+
+\begin{itemize}
+  \item instead of restricting to real scalars, we allow complex scalars,
+  \item as well as just two orthogonal directions in state space, we allow infinitely many, even a continuum (as with position and momentum),
+  \item we use the Hermitian inner product, taking the complex conjugate on the left, which means that the inner product of a vector with itself will always be real and positive, but the inner product between two different vectors may any complex number,
+  \item operators cannot generally be represented by matrices due to the continuous nature of some state spaces, but where they can, the matrix is Hermitian or self-adjoint, meaning that it is equal to its own conjugate transpose, which is the complex equivalent of a symmetric matrix,
+  \item orthogonal eigenvectors of a Hermitian operator may in some cases have the same eigenvalue, and thus represent states that cannot be distinguished between by means of a measurement of the observable (picture our circle of state vectors growing or shrinking uniformly in all directions and thus remaining a circle, instead of being distorted into an ellipse),
+  \item to get a probability from a complex coordinate, we take the modulus squared, to ensure it's a real number.
+\end{itemize}
 
 \section{Time Independent Potentials}
 
@@ -840,7 +1090,7 @@ $$
 \exp \left[ {\frac{-iEt}{\hbar}} \right]
 $$
 
-But when a potential is included it transpires that we can only use separation of variables if the potential is only a function of $x$, not $t$. But we can still discover some useful things.
+But when a potential is included, and it is some complex function of $x$ and $t$, that is no longer necessarily possible. But we can still discover some useful things by assuming the potential does not depend on $t$, and that is an acceptable approximation. So the whole time-dependent wave function is a product of two parts:
 
 $$\Psi(x, t) = \psi(x) \phi(t)$$
 
@@ -890,7 +1140,7 @@ i\hbar
 + V(x)
 $$
 
-The LHS only depends on $t$, the RHS only depends on $x$. This means if we hold $x$ constant, and therefore the RHS constant, this equation still holds even if we vary $t$! And of course vice versa. Which means both sides are equal to the same constant, which we will call $E$ for a good reason (spoilers!)
+The LHS only depends on $t$, the RHS only depends on $x$ (this wouldn't have worked without the simplifying assumption that $V$ is independent of $t$). This means if we hold $x$ constant, and therefore the RHS constant, this equation still holds even if we vary $t$! And of course vice versa. Which means both sides are equal to the same constant, which we will call $E$ for a good reason (spoilers!)
 
 Equating the LHS with $E$:
 
@@ -940,6 +1190,8 @@ Whatever the solution to $\psi$, the complex value of every point in space is on
 And that factor is really just $e^{i\theta}$ with the angle being $-Et/\hbar$, so we know the modulus of the value isn't changing; it's just going "round and round" clockwise in the complex plane.
 
 And if the modulus isn't changing, the probability density isn't changing, so the particle isn't moving. Hence solutions of this type are known as \textit{stationary states}. The expectation value of the position is fixed, and so all other observables' expectation values are also constant, including energy.
+
+The shape of a stationary state, as defined by the $x$-dependent factor, is a fixed structure which never deforms, but just tumbles over and over as time passes, like it's rotating on a spit, although the rate of rotation has $\hbar$ on the bottom of the fraction, which is about $10^-34$, so it's rotating extremely quickly.
 
 \section{Bound States}
 
@@ -991,11 +1243,13 @@ $$
 E_n = \frac{n^2\pi^2\hbar^2}{2ma^2}
 $$
 
-The interesting thing about this is that the set of eigenfunctions, while infinite, is a countable infinity: there is a first state, a second state and so on. Despite this, by choosing an infinite subset of these states and summing them, we can generate any function. Strictly speaking, we can generate any periodic function that is zero at the boundaries, but the distinction between periodic and non-periodic functions is irrelevant if we have defined the value to be zero everywhere outside those boundaries.
+The interesting thing about this is that the set of eigenfunctions, while infinite, is a countable infinity: there is a first state, a second state and so on. Despite this, by choosing an infinite subset of these states and summing them, we can generate any function. Strictly speaking, we can generate any periodic function that is zero at the boundaries, but the distinction between periodic and non-periodic functions is irrelevant if we have defined the value to be zero everywhere outside those boundaries; the shape of one cycle of a periodic function can be anything we like.
 
-So there is no limit on what the initial state can be, but by decomposing that $t = 0$ state $\Psi(x, 0) = \psi(x)$ into a sum of these discrete waves, we know exactly how it will evolve over time. Each component eigenfunction evolves due to the "round and round" factor $e^{-iEt/\hbar}$. Because we're adding complex values at each point in space, even though those component values each have a time-independent modulus, the sum of them does not (think of a clock hand with another clock hand on the end of it, running at different rates). So this is a way to make non-stationary solutions. Wave packets that "move" can be composed by summing stationary states that do not. A particle confined inside a potential can be in a stationary state, or it can "slosh" from side to side in a complicated way due to being a linear combination of many such states. So we have an exact solution for how any initial state will evolve inside an infinite well potential.
+So there is no limit on what the initial state can be, but by decomposing that $t = 0$ state $\Psi(x, 0) = \psi(x)$ into a sum of these discrete waves, we know exactly how it will evolve over time. Each component eigenfunction evolves due to the "round and round" factor $e^{-iEt/\hbar}$. Because we're adding complex values at each point in space, even though those component values each have a time-independent modulus, the sum of them does not (think of a clock hand with another clock hand on the end of it, running at different rates). So this is a way to make non-stationary solutions. Wave packets that "move" can be composed by summing stationary states that do not. A particle confined inside a potential can be in a stationary state, or it can "slosh" from side to side in a complicated way due to being a linear combination of many such states.
 
-The energy eigenfunctions serve as a set of basis vectors. Why? Because the energy operator is Hermitian (the equivalent of a symmetric matrix except with complex elements) which means that among its eigenvectors, any two that corresponding to distinct eigenvalues will be orthogonal. For stationary states $m$ and $n$:
+So we have an exact solution for how any initial state will evolve inside an infinite well potential, assuming the total energy is constant. The energy, by definition, is the quantity that is preserved as time passes, and that's why energy eigenfunctions are of primary importance in analysing the time evolution of a system. To get an exact expression for the wave function as a function of time, we resolve it into a sum of energy eigenfunctions, each of which has its time evolution entirely determined by the factor $e^{-iEt/\hbar}$.
+
+The energy eigenfunctions serve as a set of basis vectors. Why? Because the energy operator is Hermitian, so among its eigenvectors, any two that corresponding to distinct eigenvalues will be orthogonal. For stationary states $m$ and $n$:
 
 $$
 \int
@@ -1009,7 +1263,7 @@ So each possible energy value is represented by an eigenvector. We can create a 
 There are two complications to this story:
 
 \begin{itemize}
-  \item In some situations we find that multiple eigenvectors have the same eigenvalue, so we cannot infer the state vector from an energy measurement, a predicament known as \textit{energy degeneracy}. We never see this for energy in one dimension of physical space, but in two or three it is unavoidable.
+  \item In some situations we find that multiple eigenvectors have the same eigenvalue, so we cannot infer the state vector from an energy measurement, a predicament known as \textit{energy degeneracy}. We never see this for energy in one dimension of physical space, but in two or three it is unavoidable. Motion back and forth along the x-axis is physically different from such motion along the y-axis, but may be so similar as to require the same energy.
   \item We can't measure the energy with absolute precision anyway. No system ever really collapses so its state vector is known to be precisely one of the eigenvectors of whatever observable is being measured. It always remains a superposition to some extent.
 \end{itemize}
 

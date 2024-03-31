@@ -13,63 +13,63 @@
 \contentsline {section}{\numberline {3.6}Pythagoras in the Circle}{13}{}%
 \contentsline {chapter}{\numberline {4}Vectors}{14}{}%
 \contentsline {section}{\numberline {4.1}Vectors as geometric objects}{14}{}%
-\contentsline {section}{\numberline {4.2}Vector Spaces}{16}{}%
-\contentsline {subsection}{\numberline {4.2.1}They can be added}{16}{}%
-\contentsline {subsection}{\numberline {4.2.2}They can be scaled}{17}{}%
-\contentsline {subsection}{\numberline {4.2.3}The Field}{17}{}%
-\contentsline {subsection}{\numberline {4.2.4}Examples of Vector Spaces}{17}{}%
-\contentsline {section}{\numberline {4.3}Dot Product}{18}{}%
-\contentsline {subsection}{\numberline {4.3.1}Finding coordinates}{19}{}%
-\contentsline {subsection}{\numberline {4.3.2}Dot Product is Homogeneous}{19}{}%
-\contentsline {subsection}{\numberline {4.3.3}Dot Product is Distributive}{20}{}%
-\contentsline {subsection}{\numberline {4.3.4}Do not interchange scalar and dot product}{20}{}%
-\contentsline {section}{\numberline {4.4}Using coordinates}{20}{}%
-\contentsline {section}{\numberline {4.5}Change of Basis}{21}{}%
-\contentsline {subsection}{\numberline {4.5.1}Effect of change of basis on vectors}{22}{}%
-\contentsline {subsection}{\numberline {4.5.2}Dot product under change of basis}{23}{}%
-\contentsline {section}{\numberline {4.6}Covectors}{23}{}%
-\contentsline {section}{\numberline {4.7}Operators}{24}{}%
-\contentsline {section}{\numberline {4.8}Eigenvectors and Eigenvalues}{25}{}%
-\contentsline {section}{\numberline {4.9}Symmetric Matrices}{28}{}%
-\contentsline {section}{\numberline {4.10}Effect of Change of Basis on Operator}{28}{}%
-\contentsline {section}{\numberline {4.11}Inner Product}{29}{}%
-\contentsline {section}{\numberline {4.12}Complex vector spaces}{30}{}%
-\contentsline {chapter}{\numberline {5}Tensors}{33}{}%
-\contentsline {section}{\numberline {5.1}Einstein Notation}{33}{}%
-\contentsline {section}{\numberline {5.2}Tensor Product}{34}{}%
-\contentsline {section}{\numberline {5.3}Superscript and Subscript Indices}{35}{}%
-\contentsline {section}{\numberline {5.4}Tensor Contraction}{35}{}%
-\contentsline {section}{\numberline {5.5}Tensors as geometric objects}{38}{}%
-\contentsline {section}{\numberline {5.6}Tensors as functions}{38}{}%
-\contentsline {section}{\numberline {5.7}Metric tensor}{39}{}%
-\contentsline {chapter}{\numberline {6}Geometric Algebra}{41}{}%
-\contentsline {chapter}{\numberline {7}Potential}{49}{}%
-\contentsline {chapter}{\numberline {8}Expectation Value}{51}{}%
-\contentsline {chapter}{\numberline {9}Fourier Transform}{53}{}%
-\contentsline {section}{\numberline {9.1}Negative Frequencies}{55}{}%
-\contentsline {section}{\numberline {9.2}Spikes}{56}{}%
-\contentsline {section}{\numberline {9.3}The Gaussian}{57}{}%
-\contentsline {chapter}{\numberline {10}Quantum Mechanics}{59}{}%
-\contentsline {section}{\numberline {10.1}State Vectors and Dirac Notation}{59}{}%
-\contentsline {section}{\numberline {10.2}Hilbert Spaces}{61}{}%
-\contentsline {section}{\numberline {10.3}Physical Interpretation}{62}{}%
-\contentsline {section}{\numberline {10.4}Switching Basis}{63}{}%
-\contentsline {section}{\numberline {10.5}Operators Representing Observables}{64}{}%
-\contentsline {section}{\numberline {10.6}The Wave Function}{66}{}%
-\contentsline {section}{\numberline {10.7}Schrödinger Equation}{67}{}%
-\contentsline {section}{\numberline {10.8}Time Evolution}{72}{}%
-\contentsline {section}{\numberline {10.9}Motion}{74}{}%
-\contentsline {section}{\numberline {10.10}Operators Again}{76}{}%
-\contentsline {section}{\numberline {10.11}Time Independent Potentials}{78}{}%
-\contentsline {section}{\numberline {10.12}Bound States}{80}{}%
-\contentsline {section}{\numberline {10.13}Energy Degeneracy}{82}{}%
-\contentsline {section}{\numberline {10.14}Spin}{84}{}%
-\contentsline {chapter}{\numberline {11}Relativity}{86}{}%
-\contentsline {section}{\numberline {11.1}Clock Arrays, Spacetime Grids}{86}{}%
-\contentsline {section}{\numberline {11.2}Curved paths}{87}{}%
-\contentsline {section}{\numberline {11.3}Spacetime Metric}{89}{}%
-\contentsline {section}{\numberline {11.4}Interval Related To Proper time}{90}{}%
-\contentsline {section}{\numberline {11.5}Lorentz Factor}{90}{}%
-\contentsline {section}{\numberline {11.6}Lorentz Transformations}{92}{}%
-\contentsline {section}{\numberline {11.7}Energy and Momentum}{92}{}%
-\contentsline {chapter}{\numberline {A}Greek Alphabet}{100}{}%
+\contentsline {section}{\numberline {4.2}Vector Spaces}{17}{}%
+\contentsline {subsection}{\numberline {4.2.1}They can be added}{17}{}%
+\contentsline {subsection}{\numberline {4.2.2}They can be scaled}{18}{}%
+\contentsline {subsection}{\numberline {4.2.3}The Field}{18}{}%
+\contentsline {subsection}{\numberline {4.2.4}Examples of Vector Spaces}{18}{}%
+\contentsline {section}{\numberline {4.3}Dot Product}{19}{}%
+\contentsline {subsection}{\numberline {4.3.1}Finding coordinates}{20}{}%
+\contentsline {subsection}{\numberline {4.3.2}Dot Product is Homogeneous}{20}{}%
+\contentsline {subsection}{\numberline {4.3.3}Dot Product is Distributive}{21}{}%
+\contentsline {subsection}{\numberline {4.3.4}Do not interchange scalar and dot product}{21}{}%
+\contentsline {section}{\numberline {4.4}Using coordinates}{21}{}%
+\contentsline {section}{\numberline {4.5}Change of Basis}{22}{}%
+\contentsline {subsection}{\numberline {4.5.1}Effect of change of basis on vectors}{23}{}%
+\contentsline {subsection}{\numberline {4.5.2}Dot product under change of basis}{24}{}%
+\contentsline {section}{\numberline {4.6}Covectors}{24}{}%
+\contentsline {section}{\numberline {4.7}Operators}{25}{}%
+\contentsline {section}{\numberline {4.8}Eigenvectors and Eigenvalues}{26}{}%
+\contentsline {section}{\numberline {4.9}Symmetric Matrices}{29}{}%
+\contentsline {section}{\numberline {4.10}Effect of Change of Basis on Operator}{29}{}%
+\contentsline {section}{\numberline {4.11}Inner Product}{30}{}%
+\contentsline {section}{\numberline {4.12}Complex vector spaces}{31}{}%
+\contentsline {chapter}{\numberline {5}Tensors}{34}{}%
+\contentsline {section}{\numberline {5.1}Einstein Notation}{34}{}%
+\contentsline {section}{\numberline {5.2}Tensor Product}{35}{}%
+\contentsline {section}{\numberline {5.3}Superscript and Subscript Indices}{36}{}%
+\contentsline {section}{\numberline {5.4}Tensor Contraction}{36}{}%
+\contentsline {section}{\numberline {5.5}Tensors as geometric objects}{39}{}%
+\contentsline {section}{\numberline {5.6}Tensors as functions}{39}{}%
+\contentsline {section}{\numberline {5.7}Metric tensor}{40}{}%
+\contentsline {chapter}{\numberline {6}Geometric Algebra}{42}{}%
+\contentsline {chapter}{\numberline {7}Potential}{50}{}%
+\contentsline {chapter}{\numberline {8}Expectation Value}{52}{}%
+\contentsline {chapter}{\numberline {9}Fourier Transform}{54}{}%
+\contentsline {section}{\numberline {9.1}Negative Frequencies}{56}{}%
+\contentsline {section}{\numberline {9.2}Spikes}{57}{}%
+\contentsline {section}{\numberline {9.3}The Gaussian}{58}{}%
+\contentsline {chapter}{\numberline {10}Quantum Mechanics}{60}{}%
+\contentsline {section}{\numberline {10.1}State Vectors and Dirac Notation}{60}{}%
+\contentsline {section}{\numberline {10.2}Hilbert Spaces}{62}{}%
+\contentsline {section}{\numberline {10.3}Physical Interpretation}{63}{}%
+\contentsline {section}{\numberline {10.4}Switching Basis}{64}{}%
+\contentsline {section}{\numberline {10.5}Operators Representing Observables}{65}{}%
+\contentsline {section}{\numberline {10.6}The Wave Function}{67}{}%
+\contentsline {section}{\numberline {10.7}Schrödinger Equation}{68}{}%
+\contentsline {section}{\numberline {10.8}Time Evolution}{73}{}%
+\contentsline {section}{\numberline {10.9}Motion}{75}{}%
+\contentsline {section}{\numberline {10.10}Operators Again}{77}{}%
+\contentsline {section}{\numberline {10.11}Time Independent Potentials}{83}{}%
+\contentsline {section}{\numberline {10.12}Bound States}{85}{}%
+\contentsline {section}{\numberline {10.13}Energy Degeneracy}{88}{}%
+\contentsline {section}{\numberline {10.14}Spin}{90}{}%
+\contentsline {chapter}{\numberline {11}Relativity}{91}{}%
+\contentsline {section}{\numberline {11.1}Clock Arrays, Spacetime Grids}{91}{}%
+\contentsline {section}{\numberline {11.2}Curved paths}{92}{}%
+\contentsline {section}{\numberline {11.3}Spacetime Metric}{94}{}%
+\contentsline {section}{\numberline {11.4}Interval Related To Proper time}{95}{}%
+\contentsline {section}{\numberline {11.5}Lorentz Factor}{95}{}%
+\contentsline {section}{\numberline {11.6}Lorentz Transformations}{97}{}%
+\contentsline {section}{\numberline {11.7}Energy and Momentum}{97}{}%
+\contentsline {chapter}{\numberline {A}Greek Alphabet}{105}{}%

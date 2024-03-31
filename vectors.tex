@@ -20,9 +20,30 @@ But for the purposes of physics, vectors are primarily geometric objects. They c
 
 To understand what we are giving up, it may help to initially visualise the space of plane vectors as having some intrinsic coordinate grid built into it, so every vector in that space "knows" its own numeric coordinates, being fixed to that grid.
 
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \draw[step=1cm,gray,very thin] (0,0) grid (4,3);
+        \draw[thick,->] (0,0) -- (3,2) node[anchor=north west] {\scriptsize $\vec{v}$};
+    \end{tikzpicture}
+    \caption{A vector on a fictional grid.} \label{fig:vector-grid}
+\end{figure}
+
 But to think about vectors in an abstract way, it's best not to assume anything about their nature except that they meet the requirements of a vector space.
 
-For some unknown vector space that we assert to be two dimensional, a pair of numbers only describes a vector if we have a basis $\begin{bmatrix}\vec{e}_1 & \vec{e}_2\end{bmatrix}$ to multiply by:
+For some unknown vector space that we assert to be two dimensional, a pair of numbers only describes a vector if we have a basis $\begin{bmatrix}\vec{e}_1 & \vec{e}_2\end{bmatrix}$.
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \draw[step=1cm,gray,very thin] (0,0) grid (4,3);
+        \draw[thick,->] (0,0) -- (1,0) node[anchor=west] {\scriptsize $\vec{e_1}$};
+        \draw[thick,->] (0,0) -- (0,1) node[anchor=west] {\scriptsize $\vec{e_2}$};
+    \end{tikzpicture}
+    \caption{A basis that properly defines a grid.} \label{fig:vector-basis}
+\end{figure}
+
+Matrix multiplication (§\ref{sec:matrix-multiplication}) between a row of basis vectors and a column of scalars produces a sum of vector terms:
 
 $$
 \begin{bmatrix}\vec{e}_1 & \vec{e}_2\end{bmatrix}
@@ -34,7 +55,22 @@ A property of a vector is that you can multiply it by a scalar to get another ve
 
 $$3\vec{e}_1 + 2\vec{e}_2$$
 
-describes a new vector that we have produced by mixing together two basis vectors. Any vector in the space can be described in this way. And therefore any vector can be decomposed into coordinates, but only once you have chosen some basis vectors.
+describes a new vector that we have produced by mixing together two basis vectors. 
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \draw[step=1cm,gray,very thin] (0,0) grid (4,3);
+        \draw[thick,->] (0,0) -- (3,0);
+        \node at (1.5,-0.25) {\scriptsize $\vec{3e_1}$};
+        \draw[thick,->] (3,0) -- (3,2);
+        \node at (3.25,1) {\scriptsize $\vec{2e_2}$};
+        \draw[thick] (0,0) -- (3,2);
+    \end{tikzpicture}
+    \caption{Sum of scaled basis vectors.} \label{fig:vector-sum}
+\end{figure}
+
+Any vector in the space can be described in this way. And therefore any vector can be decomposed into coordinates, but only once you have chosen some basis vectors.
 
 It's not necessarily possible to say anything numerically about a single vector, because it can't be described numerically without introducing basis vectors to measure it against. A vector has a length and a direction, but these things can only be measured in relation to other vectors.
 
@@ -44,9 +80,12 @@ All we can say is that there is some angle between two vectors, or some ratio be
 
 It follows that we cannot meaningfully communicate our choice of basis to anyone in terms of that basis alone. The coordinates of our two chosen basis vectors, if we express them in terms of our basis itself, are always:
 
-$$e_1 = \begin{bmatrix}1 & 0\end{bmatrix}$$
-
-$$e_2 = \begin{bmatrix}0 & 1\end{bmatrix}$$
+\begin{equation}   
+    \begin{split}
+        e_1 &= \begin{bmatrix}1 & 0\end{bmatrix} \\
+        e_2 &= \begin{bmatrix}0 & 1\end{bmatrix}
+    \end{split}
+\end{equation}
 
 That is, $\vec{e}_1$ contains 1 unit of itself and nothing of $\vec{e}_2$, and the reverse situation for $\vec{e_2}$. This is like saying "it is what it is." It looks like the identity matrix (this is not a coincidence):
 
@@ -108,9 +147,11 @@ A vector space's set of scalars is known as its field. It can be any sort of obj
 
 \subsection{Examples of Vector Spaces}
 
-Any set of objects for which we can define these operations is a vector space. This means that the real numbers $\mathbb{R}$ and complex numbers $\mathbb{C}$ themselves qualify as vector spaces.
+Any set of objects for which we can define these operations is a vector space. This means that the real numbers $\mathbb{R}$ and complex numbers $\mathbb{C}$ themselves qualify as vector spaces, although with the proviso that you have to choose the field appropriately. You can't have a vector space of $\mathbb{R}$ over the field of $\mathbb{C}$, because the product of a vector from $\mathbb{R}$ and a scalar from $\mathbb{C}$ is very often going to be a member of $\mathbb{C}$ but not of $\mathbb{R}$, that is, not a vector.
 
 Ordered pairs of real numbers, $\mathbb{R}^2$, clearly also qualify, because addition can add the first and second pair members separately, scaling can scale both of the members, and then all the other requirements follow automatically.
+
+The example of $\mathbb{C}$ as a vector space is particularly interesting because it is essentially identical to $\mathbb{R}^2$. The only difference is that it defines multiplication as a closed operation over its vectors (such that the product of two vectors is a vector), which is absolutely not a general feature of vector spaces.\footnote{Although it is also defined (very differently) in $\mathbb{R}^2$ as the cross product, $\times$.}
 
 \section{Dot Product}
 
@@ -314,9 +355,9 @@ We say that vectors are \textit{contravariant} under a change of basis.
 
 The dot product depends on the lengths of two vectors and the angle between them. If the vectors are represented as coordinates in some basis, then a change of basis will change the coordinates. Will the dot product change too? It depends.
 
-If the basis vectors are only rotated or reflected, this preserves both lengths and angles, so the dot product will be unaffected.
+If the basis vectors are only rotated (all by the same angle) or reflected, this preserves both lengths and angles, so the dot product will be unaffected. Operators that preserve the dot product are known as \textit{unitary}.
 
-If the basis vectors are scaled, the lengths implied by the coords will change and so the dot product will change. To take the above example, we grow the basis vectors with $G$, having the equivalent effect on the coordinates to shrinking the input vectors with $S$ to half their original length, and so the dot product will be $\frac{1}{4}$ of its original value.
+If the basis vectors are scaled, the lengths implied by the coordinates will change and so the dot product will change. To take the above example, we grow the basis vectors with $G$, having the equivalent effect on the coordinates to shrinking the input vectors with $S$ to half their original length, and so the dot product will be $\frac{1}{4}$ of its original value.
 
 If the basis vectors are skewed, this will have the equivalent effect on the coordinates of skewing the input vectors, changing the angle between them.
 
@@ -411,7 +452,7 @@ More interestingly, there are operators for which only some vectors are eigenvec
 
 $$M = \begin{bmatrix}1 & 0 \\ 0 & -1\end{bmatrix}$$
 
-If we take the first coordinate to be horizontal and the second vertical, this flips the input vector to point up rather than down, or vice versa. So it seems that all vectors have their direction changed and are not eigenvectors, but there exceptions: vectors that lie on the horizontal axis and have no vertical component will be unaffected, i.e. they will be eigenvectors with eigenvalue 1. Also vectors that lie on the vertical axis will have their direction changed, but to the exact opposite direction, which is the same as being scaled by -1, and so these too are eigenvectors, but with eigenvalue -1.
+If we take the first coordinate to be horizontal and the second vertical, this flips the input vector to point up rather than down, or vice versa. So it seems that all vectors have their direction changed and are not eigenvectors, but there exceptions: vectors that lie on the horizontal axis and have no vertical component will be unaffected, i.e. they will be eigenvectors with eigenvalue 1. Also vectors that lie on the vertical axis will have their direction changed, but to the exact opposite direction (their alignment does not change), which is the same as being scaled by -1, and so these too are eigenvectors, but with eigenvalue -1.
 
 So within the space of input vectors, there is a subspace (the \textit{eigenspace}) of eigenvectors, and $M$ has an intrinsic orientation, as there is a particular line around which reflection occurs.
 
