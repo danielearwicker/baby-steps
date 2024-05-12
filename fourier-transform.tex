@@ -42,7 +42,7 @@ $$\hat{g} = \mathcal{F} g$$
 We can do the opposite transformation:
 
 \begin{equation}    
-f(x) = \int_{-\infty}^{\infty} \hat{f}(\nu)e^{i2\pi\nu x} dv
+f(x) = \int_{-\infty}^{\infty} \hat{f}(\nu)e^{i2\pi\nu x} d\nu
 \label{eq:invfourier}
 \end{equation}
 
@@ -69,7 +69,7 @@ $$
 \hat{f}(-\nu) = \left[ \hat{f}(\nu) \right]^*
 $$
 
-Therefore having done the hard word of computing one side, it is very easy to get the other side - it contains no different information.
+Therefore having done the hard work of computing one side, it is very easy to get the other side - it contains no different information.
 
 Also, note that as we're integrating over all $x$ from $-\infty$ to $\infty$, we can negate $x$ through the integral without changing the result. So this produces the exact same frequency amplitudes as equation \eqref{eq:fourier}:
 
@@ -116,26 +116,33 @@ If taking the complex conjugate is the same as negating, we must be talking abou
 
 \section{Spikes} \label{sec:fourier-spike}
 
-What happens if we take the Fourier transform of a pure $sin$ wave? Only a single frequency is present, so it must have the amplitude $1$ while all other frequencies are amplitude $0$. This is not a smooth curve, but rather a single spike. If we integrate it over all frequencies we get 1, contributed entirely by the spike at one place. This is known as the Dirac delta, $\delta$, and is often referred to as a function, or a "function" with scare-quotes. It has a number of strange properties if regarded as a function, so it's simpler to think of it as only ever appearing as a factor inside an integral.
+What happens if we take the Fourier transform of a pure $\sin$ wave? Only a single frequency is present. To describe this situation, the mathematical tool we need is called the Dirac delta, $\delta(x)$, and is often referred to as a function, or a "function" with scare-quotes. It has a number of strange properties if regarded as a function, so it's simpler to think of it as only ever appearing as a factor inside an integral. But in simple terms, it is zero except at $x = 0$, where it is infinite. We can use an expression like $\delta(x - \alpha)$ to move the spike from zero to the location $\alpha$ of our choice.\footnote{It's like the real number equivalent of the kronecker delta, though we write that slightly differently. You can think of the Kroneker $\delta_{nm}$ (§\ref{def:kronecker}) as conceptually similar to the Dirac $\delta(n - m)$: if $n \ne m$, the result is $0$.}
 
-We can move the spike from zero to the location of our choice, $\alpha$, with an expression like $\delta(x - \alpha)$. It's like the real number equivalent of the kronecker delta, though we write that slightly differently. You can think of the Kroneker $\delta_{nm}$ (§\ref{def:kronecker}) as meaning the same thing as Dirac $\delta(n - m)$: if $n = m$, the result is $1$, otherwise $0$.
-
-So if we have a set of complex amplitudes $A_n$ at frequencies separated by $\alpha$, we can put a spike at each:
+Why does it have to be infinite at the spike? We recover the function from its transform with the inverse transform, which is an integral:
 
 $$
-\hat{f}(\nu) =
-\sum_n A_n \delta(\nu - n\alpha)
+f(x) = \int_{-\infty}^{\infty} \hat{f}(\nu)e^{i2\pi\nu x} d\nu
 $$
 
-The result is that the spectrum $\hat{f}(\nu)$ has spikes of the required amplitude at equally spaced frequencies. So in this way, $\delta(\nu - n\alpha)$ is like a logical test for whether frequency $\nu$ matches $n\alpha$, and if so, $\nu$ has amplitude $A_n$.
-
-A strange way to think about any function is to regard it as the sum of an infinite set of spikes, one for each possible value of the function's parameter. So for a function of a real parameter, it is an uncountable, continuous set of spikes. What would be a way to describe the height of a given spike? The function itself, of course. A function $f(y)$ returns you the height of the spike for parameter $y$. We can build the function from all the spikes via an integral:
+Substituting $\delta(\nu - \alpha)$ as the transform from which we're recovering the function, i.e. a spike at $\alpha$:
 
 $$
-f(x) = \int \delta(x - y) f(y) dy
+f(x) = \int_{-\infty}^{\infty} \delta(\nu - \alpha)e^{i2\pi\nu x} d\nu
 $$
 
-To get the value of $f(x)$ for one value of $x$, we're apparently considering every possible value $f(y)$, but we discard all of them except where $y = x$, because that is the only case where the $\delta$ is $1$, so it picks out the only value we want. It's completely redundant though! We're defining the function in terms of itself. Or rather, we're defining the Dirac $\delta$; the above could only be correct if it has the particular behaviour we've described.
+Imagine the value of $\nu$ sweeping through the range of values from $-\infty$ to $+\infty$, everywhere contributing nothing except at the instant it passes through $\nu = \alpha$. That contributes $e^{i2\pi\alpha x}$. To accomplish that, the other factors must have the product $1$:
+
+$$
+\delta(\nu - \alpha) d\nu = 1
+$$
+
+and so:
+
+$$
+\delta(\nu - \alpha) = \frac{1}{d\nu}
+$$
+
+So the spike at $\alpha$ from $\delta(\nu - \alpha)$ must be infinite so as to counteract the infinitesimal smallness of $d\nu$. In other words, we have to think about any transform as an amplitude \textit{density} function.
 
 \section{The Gaussian}
 

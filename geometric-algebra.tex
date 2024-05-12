@@ -111,7 +111,7 @@ So the external parts cancel leaving:
 
 $$
 \vec{v}\vec{u} + \vec{v}\vec{u}
-= 2\vec{u} \cdot \vec{v}
+= 2 \left[ \vec{u} \cdot \vec{v} \right]
 $$
 
 $$
@@ -202,7 +202,7 @@ $$\vec{u} = \sum_i{u_i e_i}$$
 
 $$A\vec{w} = \sum_{ijk}{u_i v_j w_k e_i e_j e_k}$$
 
-This isn't a square matrix, but it is a cube-shaped object. It's a trivector, which as we will see is not a scalar but in $\mathbb{R}^3$ has only choice of "orientation" (just like a bivector in $\mathbb{R}^2$ only has one choice of plane to lie in) so the only properties that we can use to distinguish two trivectors are the magnitude and sign, so in $\mathbb{R}^3$ a trivector is a pseudoscalar.
+This isn't a square matrix, but it is a cube-shaped object. It's a trivector, which as we will see is not a scalar but in $\mathbb{R}^3$ has only one available "orientation" (just like a bivector in $\mathbb{R}^2$ only has one plane to lie in) so the only properties that we can use to distinguish two trivectors are the magnitude and sign, so in $\mathbb{R}^3$ a trivector is a pseudoscalar.
 
 As the geometric product is the sum of the dot product (which we found on the diagonal of our matrix) and the external product (which we found in all the other members), we can think of the geometric product as the sum of two matrices:
 
@@ -288,7 +288,7 @@ Also in $N$ dimensions there is a set of terms made of $N-1$ vectors, i.e. using
 
 so these together form a pseudovector.
 
-These terms that are the products of vectors are called \textit{blades}. The number of vectors that go into making blade is call the \textit{grade}. A 0-blade is a scalar, and in $N$-dimensions an $N$-grade is a pseudoscalar, whereas $(N-1)$-grade is a pseudovector.
+These terms that are the products of vectors are called \textit{blades}. The number of vectors that go into making blade is call the \textit{grade}. A 0-blade is a scalar, and in $N$-dimensions an $N$-blade is a pseudoscalar, whereas $(N-1)$-blade is a pseudovector.
 
 Even when constrained to two dimensions, with orthonormal basis $\vec{e_1}$, $\vec{e_2}$ bivectors have their uses. The bivector $\vec{e_1}\vec{e_2}$, which can be pictured as a square with a cycle of vectors $\vec{e_1}$, $\vec{e_2}$, $-\vec{e_1}$, $-\vec{e_2}$ around its edge, can be multiplied by itself via the geometric product:
 
@@ -302,7 +302,7 @@ $$
 
 So the bivector $\vec{e_1}\vec{e_2}$ gives the value $-1$ when squared, which means that in geometric algebra, we have a way of defining $i$ for any given plane: the product of two orthogonal unit vectors in that plane.
 
-As usual, it represents a $\pi/2$ or $90$-degree rotation, but with one difference due to the anticommutative nature of the geometric product: $\vec{a}i$ equals $i$ (clockwise rotated), whereas $i\vec{a}$ equals $-i$ (anti-clockwise).
+As usual, it represents a $\pi/2$ or $90$-degree rotation, but with one difference due to the anticommutative nature of the geometric product: $\vec{a}i$ rotates clockwise, whereas $i\vec{a}$ rotates anti-clockwise.
 
 As a bivector is only characterised by its magnitude (area), the plane it lies in (in this case we're only considering two dimensions so there's no freedom here), and the direction of rotation (clockwise or anti-clockwise), this latter being equivalent to a change of sign, all bivectors in the plane can be written as scalar-multiples of the unit bivector $i$. So in fact in two dimensions any multivector is the sum of a scalar and a scalar-multiple of $i$. This means that a complex number can be viewed as a multi-vector in $\mathbb{R}^2$:
 
@@ -325,3 +325,4 @@ $$\vec{u} \wedge \vec{v} = \vec{u} \otimes \vec{v} - \vec{v} \otimes \vec{u}$$
 So the matrix element at $i, j$ is given by:
 
 $$(\vec{u} \wedge \vec{v})_{ij} = u_i v_j - u_j v_i$$
+
