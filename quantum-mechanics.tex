@@ -2,7 +2,7 @@
 
 \section{State Vectors and Dirac Notation}
 
-In quantum mechanics everything knowable about the state of some system is described in a vector, known as the state vector. The vector is from a vector space defined over the field of complex numbers, so it is important to use the correct definition of the inner product (§\ref{ch:vectors-complex}) where we take the conjugate of one of the vectors, to ensure that the inner product of a vector with itself is a non-negative a real number.
+In quantum mechanics everything knowable about the state of some system is described in a vector, known as the state vector. The vector is from a vector space defined over the field of complex numbers, so it is important to use the correct definition of the inner product (§\ref{sec:vectors-complex}) where we take the conjugate of one of the vectors, to ensure that the inner product of a vector with itself is a non-negative a real number.
 
 The inner product in this context is written like this:
 
@@ -74,16 +74,17 @@ And the sum of all those resulting vectors for all $n$ will just be $|c \rangle$
 
 \section{Hilbert Spaces}
 
-The vector spaces used to represent physical states are examples of Hilbert spaces, which for our purposes means that:
+The vector spaces used to represent physical states are examples of Hilbert spaces, which is a category that includes most of the familiar examples (e.g. a simple Euclidean vector space is also a Hilbert space). A Hilbert space is an inner product space with certain requirements, but they are very loose requirements, so it also includes more exotic situations than we encounter elsewhere in physics:
 
 \begin{itemize}
-  \item they have an inner product that we can use to get a non-negative real number for the modulus of a vector: $\sqrt{\langle a|a \rangle}$, and 
-  \item they may be infinite dimensional.
+  \item scalars may be complex,
+  \item despite which, there is an inner product that we can use to get a non-negative real number for the modulus of a vector: $\sqrt{\langle a|a \rangle}$, and 
+  \item the space may be infinite dimensional.
 \end{itemize}
 
 The latter possibility includes infinities that are continuous (uncountable). Such vectors cannot be represented by a column of discrete values, not even an infinitely long column. Instead we have to specify a complex-valued function over a continuous (real) variable. Such functions can be added and scaled, as is required of a vector (§\ref{ch:linearity}) and so they qualify as elements of a vector space (§\ref{sec:vectors-space}) and we therefore have no choice but to admit that they are vectors.
 
-The real value is analogous to the integer index that labels the rows in a column vector; instead of fetching the $i$th component by its position in the column, we evaluate the function with some real value $x$.
+The real parameter of such a function is analogous to the integer index that labels the rows in a column vector; instead of fetching the $i$th component by its position in the column, we evaluate the function with some real value $x$ to get its component "at" $x$.
 
 Similarly, whereas the inner product over discrete components is:
 
