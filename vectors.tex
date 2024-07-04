@@ -164,10 +164,10 @@ Unless we say otherwise, we'll assume the field is $\mathbb{R}$.
 If we select two vectors $\vec{a}$ and $\vec{b}$ from the space, we may find that they only differ by a scalar ratio $x$:
 
 $$
-\vec{b} = x \vec{a}
+\vec{a} = x \vec{b}
 $$
 
-If there is an $x$ that can scale $\vec{a}$ into $\vec{b}$ then those two vector are \textit{colinear}\footnote{This literally means "on the same line". Note the interesting use of geometrical language, even though we're not supposed to be thinking about arrows in this abstract discussion} (we are careful not to say they point in the same direction because if $x$ is negative then they point in exactly opposite directions, but are still colinear.)
+If there is an $x$ that can scale $\vec{b}$ into $\vec{a}$ then those two vector are \textit{colinear}\footnote{This literally means "on the same line". Note the interesting use of geometrical language, even though we're not supposed to be thinking about arrows in this abstract discussion} (we are careful not to say they point in the same direction because if $x$ is negative then they point in exactly opposite directions, but are still colinear.)
 
 But if there is no such $x$ then they are not colinear. This gives them an interesting superpower:
 
@@ -175,15 +175,33 @@ $$
 \vec{r} = x \vec{a} + y \vec{b}
 $$
 
-By varying the scalar coefficients $x$ and $y$ we can construct any vector $r$ in a two-dimensional \textit{subspace} of the vector space.
+By varying the scalar coefficients $x$ and $y$ we can construct any vector $\vec{r}$ in a two-dimensional \textit{subspace} of the vector space.
 
-Then suppose we look for a third vector $z$ that is not colinear with $x$ or $y$. Now we can construct any vector in three dimensions:
+We can generalise on this idea a bit by rearranging the equation (and supposing that $x$ becomes negative). If for two vectors $\vec{a}$ and $\vec{b}$ we can find a scalar ${x}$ so that:
+
+$$ 
+\vec{a} + x \vec{b} = 0
+$$
+
+then they are colinear. Suppose the two vectors point in the same direction but $\vec{a}$ is twice the length of $\vec{b}$. Then we can set $x = -2$ and the sum will cancel out. This is only possible because they are colinear. If it's not possible, we've found a pair of \textit{linearly independent} vectors. Now we can look for a third:
+
+$$ 
+\vec{a} + x \vec{b} + y \vec{c} \ne 0
+$$
+
+Supposing we find such a vector $\vec{c}$ for which there is no scalar $y$ that satisfies the above equation, then we have found three linearly independent vectors. Or to put it another way, it is not possible to make $\vec{c}$ by any weighted sum of $\vec{a}$ and $\vec{b}$:
+
+$$
+\vec{c} \ne x \vec{a} + y \vec{b}
+$$
+
+Now we can construct any vector in three dimensions:
 
 $$
 \vec{r} = x \vec{a} + y \vec{b} + z \vec{c}
 $$
 
-Eventually we may find (assuming the space is finite dimensional) that it is not possible to find another vector that is not colinear with all of the $\vec{a}, \vec{b}, \vec{c}, ...$ we've discovered. The number of vectors in this set of mutually non-colinear vectors tells us how many dimensions the space has, and these vectors are said to \textit{span} the space.
+Eventually we may find (assuming the space is finite dimensional) that it is not possible to extend our linearly independent set $\vec{a}, \vec{b}, \vec{c}, ...$ any further. The size of this set tells us how many dimensions the space has, and these vectors are said to \textit{span} the space.
 
 The vitally important thing to realise about this is that at no point have we said that these vectors are orthogonal. We haven't even defined what that means yet. We've only defined the property of being colinear. Nevertheless we have arrived at the idea of a coordinate grid; it's just that our grid may be awkwardly slanted, made of identical parallelogram tiles rather than identical square tiles.
 
@@ -540,13 +558,13 @@ Another way to approach this is to consider the space of all possible pairs of c
 
 \section{The Inner Product}
 
-The most important use case of a specific machine of the form $V^* \otimes V^*$ is to serve the same purpose as the simple dot product, except without the requirement that the basis must be an orthonormal basis, because in our abstract vector spaces, we still haven't said what that means.
+The most important use case of a specific machine of the form $V^* \otimes V^*$ is to at last come up with a way to define orthogonality, and the length of a vector (and thus orthonormality.)
 
 Nominating one such machine for a given vector space, we can call it the \textit{inner product}, and we say that the combination of the vector space and its inner product is an \textit{inner product space}.
 
 The notation $(\vec{a},\vec{b})$ is sometimes used for the inner product, similar to but deliberately distinct from the $\langle \vec{f},\vec{a}\rangle$ notation for the action of a covector on a vector.\footnote{Sadly the meanings of these notations are sometimes switched, and they aren't the only notations used.}
 
-As we've seen, as its a two-slot machine, its coordinate representation will be a matrix. In General Relativity this matrix is usually called $g$, and its indices are $\mu$ and $\nu$, so applying it to vectors $\vec{a}$ and $\vec{b}$ will look like this:
+As we've seen, as it's a two-slot machine, its coordinate representation will be a matrix. In General Relativity this matrix is usually called $g$, and its indices are $\mu$ and $\nu$, so applying it to vectors $\vec{a}$ and $\vec{b}$ will look like this:
 
 $$
 (\vec{a},\vec{b}) = \sum_{\mu\nu} g_{\mu\nu} a^\mu b^\nu
