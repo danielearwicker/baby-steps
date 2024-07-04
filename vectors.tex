@@ -203,9 +203,9 @@ $$
 
 Eventually we may find (assuming the space is finite dimensional) that it is not possible to extend our linearly independent set $\vec{a}, \vec{b}, \vec{c}, ...$ any further. The size of this set tells us how many dimensions the space has, and these vectors are said to \textit{span} the space.
 
-The vitally important thing to realise about this is that at no point have we said that these vectors are orthogonal. We haven't even defined what that means yet. We've only defined the property of being colinear. Nevertheless we have arrived at the idea of a coordinate grid; it's just that our grid may be awkwardly slanted, made of identical parallelogram tiles rather than identical square tiles.
+The vitally important thing to realise about this is that at no point have we said that these vectors are orthogonal. We haven't even defined what that means yet. We've only defined the property of being linear independence. Nevertheless we have arrived at the idea of a coordinate grid; it's just that our grid may be awkwardly slanted, made of identical parallelogram tiles rather than identical square tiles.
 
-So we don't have to keep choosing letters, we will label each dimension with a number. The set of mutually non-colinear vectors that we can use to construct any other vector in the space is called a \textit{basis}. The basis vectors are traditionally written as $\vec{e}_n$, where $n$ is often 1-based (although in relativity it is usually 0-based). The scalar coefficients that construct a given vector $r$ can also be numbered, conventionally with superscript $r^n$:
+So we don't have to keep choosing letters, we will label each dimension with a number. The set of linearly independent vectors that we can use to construct any other vector in the space is called a \textit{basis}. The basis vectors are traditionally written as $\vec{e}_n$, where $n$ is often 1-based (although in relativity it is usually 0-based). The scalar coefficients that construct a given vector $r$ can also be numbered, conventionally with superscript $r^n$:
 
 \begin{equation}
 \begin{split}
@@ -275,7 +275,7 @@ The trick to restricting the complexity of our set of possible mappings is to re
 
 Note that we haven't proven that every possible mapping is a vector. We've merely restricted ourselves to only considering a subset of mappings, those that can be scaled and added to find other mappings from the same restricted subset, such that scaling a mapping by 5 is the same as scaling that mapping by 2 and separately by 3 and then adding those two scaled mappings.
 
-If we label the original vector space $V$ then this associated vector space of mappings $V \mapsto \mathbb{R}$ is written as $V^*$ and is called the dual space of $V$. All we've discovered so far about $V$ also applies to $V^*$, including the idea of two mappings being non-colinear, which means we can select a basis made up of mutually non-colinear covectors chosen from $V^*$ and thus construct any mapping from it by scaling and adding the basis mappings. That's quite a leap, so pause to digest it. The moment you discover a set of objects is a vector space, you know you can choose a basis, and then describe anything in that space in terms of a weighted sum of that basis.
+If we label the original vector space $V$ then this associated vector space of mappings $V \mapsto \mathbb{R}$ is written as $V^*$ and is called the dual space of $V$. All we've discovered so far about $V$ also applies to $V^*$, including the idea of a set of mappings being linearly independent, which means we can select a basis of covectors chosen from $V^*$ and thus construct any mapping from it by scaling and adding the basis mappings. That's quite a leap, so pause to digest it. The moment you discover a set of objects is a vector space, you know you can choose a basis, and then describe anything in that space in terms of a weighted sum of that basis.
 
 We call the mappings taken from $V^*$ \textit{covectors}. The basis covectors are labelled with superscripts $\vec{e}^n$ and the coefficients with subscripts $f_n$, so we can build any covector from the chosen basis:
 
