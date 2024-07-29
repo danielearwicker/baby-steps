@@ -85,9 +85,9 @@ But however abstract things get, it can often be helpful to remember that you ca
 
 The primary intuition we've been implicitly relying on so far is \textit{orthonormality}. With arrow vectors we can simply see when they are orthogonal, or to be more precise we can measure the angle between vectors, and we can measure their lengths, and we can choose a unit length, and so on. We can simply draw a unit vector, and then draw another unit vector that is orthogonal to it.
 
-Likewise from the column vectors we have no difficult choosing a set of orthonormal vectors. They have a single row that contains $1$ and the other rows all contain $0$. In an $n$-dimensional space there can only be $n$ such distinct vectors.
+Likewise from the column vectors we have no difficult choosing a set of orthonormal vectors, the \textit{standard basis}. They are \textit{one-hot}, all values zero except for a single $1$. In an $n$-dimensional space there can only be $n$ such distinct vectors.
 
-None of these intuitive leaps will be available with abstract vector spaces, and orthonormality cannot be used as an elemental building block. Instead we will have to build towards it from more fundamental concepts.
+None of these intuitive leaps will be available with abstract vector spaces, and orthonormality cannot be used as an elemental building block. We will build a quite rich set of more fundamental concepts before we invent orthonormality.
 
 By the way, when in physics we speak of a \textit{vector field}, that is, a vector at each point in space, such as wind speed and direction, or the electric field, we visualise arrows spread out over space. But the value of the field in two different places may be the same.
 
@@ -203,9 +203,9 @@ $$
 
 Eventually we may find (assuming the space is finite dimensional) that it is not possible to extend our linearly independent set $\vec{a}, \vec{b}, \vec{c}, ...$ any further. The size of this set tells us how many dimensions the space has, and these vectors are said to \textit{span} the space.
 
-The vitally important thing to realise about this is that at no point have we said that these vectors are orthogonal. We haven't even defined what that means yet. We've only defined the property of being linear independence. Nevertheless we have arrived at the idea of a coordinate grid; it's just that our grid may be awkwardly slanted, made of identical parallelogram tiles rather than identical square tiles.
+The vitally important thing to realise about this is that at no point have we said that these vectors are orthogonal. We haven't even defined what that means yet. We've only defined the property of linear independence. Nevertheless we have arrived at the idea of a coordinate grid; it's just that our grid may be awkwardly slanted, made of identical parallelogram tiles rather than identical square tiles.
 
-So we don't have to keep choosing letters, we will label each dimension with a number. The set of linearly independent vectors that we can use to construct any other vector in the space is called a \textit{basis}. The basis vectors are traditionally written as $\vec{e}_n$, where $n$ is often 1-based (although in relativity it is usually 0-based). The scalar coefficients that construct a given vector $r$ can also be numbered, conventionally with superscript $r^n$:
+So we don't have to keep choosing letters, we will label each dimension with a number. The set of linearly independent vectors that we can use to construct any other vector in the space is called a \textit{basis}. The basis vectors are traditionally written as $\vec{e}_n$, where $n$ is often 1-based (although in Relativity it is usually 0-based). The scalar coefficients, which we will call coordinates, that construct a given vector $\vec{r}$ can also be numbered, conventionally with superscript $r^n$:
 
 \begin{equation}
 \begin{split}
@@ -216,7 +216,7 @@ So we don't have to keep choosing letters, we will label each dimension with a n
 
 The use of a superscript index is obviously asking for trouble given that it looks like we're raising $r$ to a power, but this notation is universal in physics so we may as well get used to it.
 
-Having chosen a basis, we can describe any vector with a tuple of scalar coefficients $r_n$, so any vector space of dimension $N$ whose scalar field is $\mathbb{F}$ must be isomorphic with $\mathbb{F}^N$. In other words, all vectors can be described by column vectors, but the numbers in the columns will depend on our choice of basis.
+Having chosen a basis, we can describe any vector with a tuple of coordinates $r^n$, so any vector space of dimension $N$ whose scalar field is $\mathbb{F}$ must be isomorphic with $\mathbb{F}^N$. In other words, all vectors can be described by column vectors, but the numbers in the columns will depend on our choice of basis.
 
 But the laws of physics cannot possibly care what basis we choose, so we need ways of obtaining numeric facts about vectors that do not depend on the choice of basis.
 
@@ -265,19 +265,19 @@ $$
 
 That is, it could be that inside the box $f$, there are concealed two boxes $g$ and $h$. When $f$ receives an input vector $\vec{a}$, it passes it to both $g$ and $h$, and adds their results together to obtain its own result. Note that we haven't yet restricted the complexity of $g$ and $h$; we have no idea what they do to produce their individual results.
 
-Likewise, it is possible to scale a mapping by a coefficient $x$:
+Likewise, it is possible to scale a mapping by a factor $x$:
 
 $$
 f(\vec{a}) = x g(\vec{a})
 $$
 
-The trick to restricting the complexity of our set of possible mappings is to require that they comply with the rules of a vector space. Not only can they be added and scaled, but combinations of these operations produce consistent results. But if we do that, then we have also ensured that the set of mappings actually \textit{is} a vector space, and furthermore, that each mapping must be a vector chosen from that space.
+The trick to restricting the complexity of our set of possible mappings is to require that they comply with the rules of a vector space. Not only can they be added and scaled, but combinations of these operations produce consistent results. But if we do that, then we have also ensured that the set of allowed mappings actually \textit{is} a vector space. Every mapping we care about must be a vector chosen from that space.
 
 Note that we haven't proven that every possible mapping is a vector. We've merely restricted ourselves to only considering a subset of mappings, those that can be scaled and added to find other mappings from the same restricted subset, such that scaling a mapping by 5 is the same as scaling that mapping by 2 and separately by 3 and then adding those two scaled mappings.
 
-If we label the original vector space $V$ then this associated vector space of mappings $V \mapsto \mathbb{R}$ is written as $V^*$ and is called the dual space of $V$. All we've discovered so far about $V$ also applies to $V^*$, including the idea of a set of mappings being linearly independent, which means we can select a basis of covectors chosen from $V^*$ and thus construct any mapping from it by scaling and adding the basis mappings. That's quite a leap, so pause to digest it. The moment you discover a set of objects is a vector space, you know you can choose a basis, and then describe anything in that space in terms of a weighted sum of that basis.
+If we label the original vector space $V$ then this associated vector space of mappings $V \mapsto \mathbb{R}$ is written as $V^*$ and is called the dual space of $V$. All we've discovered so far about $V$ also applies to $V^*$, including the idea of a set of mappings being linearly independent, which means we can select a basis of mappings chosen from $V^*$ and thus construct any mapping from it by scaling and adding the basis mappings. That's quite a leap, so pause to digest it. The moment you discover a set of objects is a vector space, you know you can choose a basis, and then describe anything in that space in terms of a weighted sum of that basis.
 
-We call the mappings taken from $V^*$ \textit{covectors}. The basis covectors are labelled with superscripts $\vec{e}^n$ and the coefficients with subscripts $f_n$, so we can build any covector from the chosen basis:
+We call the mappings taken from $V^*$ \textit{covectors}. The basis covectors are labelled with superscripts $\vec{e}^n$ and the coordinates with subscripts $f_n$, so we can build any covector from the chosen basis:
 
 \begin{equation}
     \begin{split}
@@ -288,31 +288,43 @@ We call the mappings taken from $V^*$ \textit{covectors}. The basis covectors ar
 
 It follows that, just as $N$-dimensional vectors are isomorphic with columns of $N$ scalars, so too are their associated covectors.
 
-It is sometimes suggested that all vector spaces have a dual space, as if this was some property hiding in the definition of a vector space. But in truth we have conjured the dual space into existence, first by inventing the idea of a mapping $V \mapsto \mathbb{R}$, then by defining operations on those mappings, then by considering the set of all possible mappings, and finally by imposing the rules of vector spaces, which restricts us to a subset of the possible mappings that we named covectors. There is nothing particularly automatic about this. We made it happen by being curious about ways in which vectors might be paired with numbers.
+It is sometimes suggested that all vector spaces have a dual space, as if this was some property hiding in the definition of a vector space. But in truth we have conjured the dual space into existence, first by inventing the idea of a mapping $V \mapsto \mathbb{R}$, then by defining operations on those mappings, then by considering the set of all possible mappings, and finally by imposing the rules of vector spaces, which restricts us to a subset of the possible mappings that we named covectors. There is nothing particularly automatic about this. We made it happen by being curious about ways in which vectors might be mapped to scalars.
 
 Another important point to note is that as covectors are vectors, the operation we've been writing as $f(\vec{a})$ is in fact much more symmetrical than that notation implies. We take a vector $V$ and a covector from $V^*$ and this produces a scalar from $\mathbb{R}$. 
 
-So we could equally say that a vector "operates" on a covector to produce the scalar. From the point of view of $V^*$ it is $V$ that is the dual space. There is a more symmetrical notation we can use to make this clear:
+So we could equally say that a vector "operates" on a covector to produce the scalar. From the point of view of $V^*$ it is $V$ that is the dual space. There is a more symmetrical notation\footnote{Unfortunately there is almost no consistency on notation in this topic; we're just picking one of many possible notations for this.} we can use to make this clear:
 
 $$\langle \vec{f},\vec{a}\rangle$$
 
-In this notation, the left and right sides of the operation are from mutually dual spaces.
+In this notation, the left and right sides of the operation are from mutually dual spaces, mirror opposites that annihilate one another leaving only a scalar residue.
 
 \section{Connecting the Dual Spaces}
 
-We obviously have a lot of freedom when choosing a basis in either $V$ or $V^*$. What can we usefully do to relate the two sides? We've seen how a covector is built as a weighted sum of basis vectors $\vec{e}^i$ from $V^*$:
+We obviously have a lot of freedom when choosing a basis in either $V$ or $V^*$. What can we usefully do to relate the two sides? We've seen how a covector is built as a weighted sum of basis covectors $\vec{e}^i$ from $V^*$:
 
 $$
 \vec{f} = \sum_i f_i \vec{e}^i
 $$
 
-Now consider how a randomly chosen $V^*$ covector $\vec{f}$ acts on a $V$ basis vector $\vec{e}_j$ to produce a scalar value. We'd like to arrange matters so that, whatever $\vec{f}$ is chosen, that scalar is the $f_j$ coefficient of the covector, so we can give the simple instruction: to obtain the $j$th component of any covector, let it act on the $j$th basis vector:
+And likewise a vector is built as a weighted sum of basis vectors $\vec{e}_i$ from $V$:
+
+$$
+\vec{v} = \sum_i v^i \vec{e}_i
+$$
+
+If we have the vector $\vec{v}$ and we want to extract its $i$th coordinate, $v^i$, that's a function from a vector in $V$ to a scalar, that is, it's a covector from $V^*$. We could choose the basis covectors so that the $i$th basis covector extracts the $i$th coordinate of the vector passed to it:
+
+$$
+v^i = \langle \vec{e}^i , \vec{v} \rangle
+$$ 
+
+Equivalently, if we have a covector $\vec{f}$ and we want to extract its $j$th coordinate, $f_j$, then we need to pass $f$ an input vector chosen from $V$, and we could choose the basis vectors so that the $j$th basis vector makes $\vec{f}$ produce the $j$th coordinate of $\vec{f}$:
 
 $$
 f_j = \langle \vec{f} , \vec{e}_j\rangle
 $$
 
-If that's true then we can substitute $\vec{f}$ expressed as a sum:
+It doesn't matter which of those two ways we approach this, because either will constrain the other. We can substitute $\vec{f}$ expressed as a sum:
 
 $$
 f_j = \langle \sum_i f_i \vec{e}^i , \vec{e}_j\rangle
@@ -339,7 +351,7 @@ So if the $f_j$ are indeed the components of the covector, discovered by making 
 
 So we could choose any basis at all in $V$, and then definition \eqref{eqn:dual-bases-delta} restricts the choice of basis in $V^*$, or vice versa. Such is the symmetry of this situation, we could instead have let a basis covector $\vec{e}^j$ act on a randomly chosen vector $\vec{a}$ and require that this give us the $j$th coordinate of $\vec{a}$, and we'd have reached the same conclusion.
 
-From now on we'll assume that this alignment of the dual bases has been performed. That being the case, we can compute the action of a covector on a vector by arithmetic on their coefficients:
+From now on we'll assume that this alignment of the dual bases has been performed. That being the case, we can compute the action of a covector on a vector by arithmetic on their coordinates:
 
 \begin{equation}
     \begin{split}
@@ -350,25 +362,29 @@ From now on we'll assume that this alignment of the dual bases has been performe
     \end{split}
 \end{equation}
 
-So the linearity allows us to sum over all combinations of $i, j$ and pull the coefficients outside of the action of the covector on the vector, and the dual bases yield the value $1$ where $i = j$ and $0$ otherwise, so we just end up with a simple sum over the products of the paired-up coefficients.
+So the linearity allows us to sum over all combinations of $i, j$ and pull the coordinates outside of the action of the covector on the vector, and the dual bases yield the value $1$ where $i = j$ and $0$ otherwise, so we just end up with a simple sum over the products of the paired-up coordinates.
 
 In a roundabout way we've discovered the dot product, albeit between a covector and a vector rather than two ordinary vectors. We still haven't introduced any concept of orthonormality, or even orthogonality, between pairs of vectors. Our "coordinate grid" is still not necessarily a lattice of squares, and our dot product is between elements of two different vector spaces, but we always choose their basis vectors so they are related by a definite requirement, which we can state in two ways:
 
 \begin{enumerate}
-    \item The $n$th basis covector from $V^*$ can be used to extract the $n$th coefficient of a vector from $V$.
-    \item The $n$th basis vector from $V$ can be used to extract the $n$th coefficient of a covector from $V^*$.
+    \item The $n$th basis covector from $V^*$ can be used to extract the $n$th coordinate of a vector from $V$.
+    \item The $n$th basis vector from $V$ can be used to extract the $n$th coordinate of a covector from $V^*$.
 \end{enumerate}
 
 And as a consequence of this (dual) requirement we find that when the $n$th basis covector acts on the $m$th basis vector, the result is $1$ if $m = n$ and $0$ if $m \ne n$.
 
-If we describe our covectors and vectors as sets of coefficients, to make a covector act on a vector we simply perform the dot product between their coefficients. Or equivalently, we write the covector as a single row matrix on the left, and the vector as a single column matrix on the right, and perform matrix multiplication to get a single scalar.
+If we describe our covectors and vectors as sets of coordinates, to make a covector act on a vector we simply perform the dot product between their coordinates. Or equivalently, we write the covector as a single row matrix on the left, and the vector as a single column matrix on the right, and perform matrix multiplication to get a single scalar.
 
-It may be worth pausing here to see how this result relates to our schoolhouse version of arrows and coordinates and the dot product. In that world-view, the coordinates are just the coefficients that multiply by the orthonormal basis vectors to construct a vector, and the dot product of a basis vector $\vec{e}_i$ and a given vector $\vec{a}$ produces the $a_i$ coordinate of $\vec{a}$. This is how we understand the geometric dot product (with $\cos \theta$) to be related to the idea of simply plucking one of the numbers from a column vector.
+Does this mean we've created a link between \textit{every} vector and a corresponding covector? Absolutely not. We've only linked up the basis vectors with the basis covectors. Still, there is an obvious mapping between vectors and covectors: let the covector have exactly the same coordinates as its vector pair, $f_i = v^i$. But that is only one possible mapping out of an infinity of possibilities, as we could blend the coordinates by any weighted sum we like. So connecting the basis covectors with the basis vectors is a start, but still leaves something to be desired.
 
-But what happens if the unit basis vectors aren't orthogonal? If we have non-orthogonal basis vectors (Figure \ref{fig:vectors-non-orth-1}) we can still sum them to generate any vector in the space (Figure \ref{fig:vectors-non-orth-2}).
+\section{Visualising the dual basis}
+
+It may be worth pausing here to see how this result relates to our schoolhouse version of arrows and coordinates and the dot product. In that world-view, the coordinates are just the scaling factors that weight the orthonormal basis vectors to construct a vector, and the dot product of a basis vector $\vec{e}_i$ and a given vector $\vec{a}$ produces the $a_i$ coordinate of $\vec{a}$. This is how we understand the geometric dot product (with $\cos \theta$) to be related to the idea of simply plucking one of the numbers from a column vector.
+
+But what happens if we deny all knowledge of orthogonality? If we choose any linearly independent basis vectors (Figure \ref{fig:vectors-non-orth-1}) we can still sum them to generate any vector in the space (Figure \ref{fig:vectors-non-orth-2}).
 
 \begin{figure}[h]
-    \caption{Building a vector from a non-orthogonal basis}
+    \caption{Building a vector from any basis}
     \begin{subfigure}{0.5\textwidth}
         \centering
         \begin{tikzpicture}
@@ -377,7 +393,7 @@ But what happens if the unit basis vectors aren't orthogonal? If we have non-ort
             \node at (0,1) {\scriptsize $\vec{e_2}$};
             \draw[thick,->] (0,0) -- (1,0);
         \end{tikzpicture}
-    \caption{Non-orthogonal basis $\vec{e}_n$} \label{fig:vectors-non-orth-1}
+    \caption{Any old basis $\vec{e}_n$} \label{fig:vectors-non-orth-1}
     \end{subfigure}
     \begin{subfigure}{0.5\textwidth}
         \centering
@@ -400,7 +416,7 @@ But what happens if the unit basis vectors aren't orthogonal? If we have non-ort
 The problem comes when we try to recover the coordinates by projecting $\vec{a}$ onto the two basis vectors (Figure \ref{fig:vectors-non-orth-3}).
 
 \begin{figure}[h]
-    \caption{Projecting a vector onto a non-orthogonal basis}
+    \caption{Projecting a vector onto a carelessly chosen basis}
     \begin{subfigure}{0.5\textwidth}
         \centering
         \begin{tikzpicture}
@@ -437,17 +453,96 @@ The problem comes when we try to recover the coordinates by projecting $\vec{a}$
 
 We can visualise this projection process by drawing lines from the tip of $\vec{a}$ so they meet at right angles with the lines extended from the basis vectors. But these imply different coordinates for $\vec{a}$ from the ones that we used to build it using the basis $\vec{e}_n$.
 
-This raises the question: in what basis are these the coordinates for $\vec{a}$? There is such a basis (Figure \ref{fig:vectors-non-orth-4}), $\vec{e^n}$, and we label the coordinates with subscripts, $a_n$, so the reconstructed $\vec{v}$ is given by:
+This raises the question: in what basis are these the coordinates for $\vec{a}$? There is such a basis (Figure \ref{fig:vectors-non-orth-4}), $\vec{e^n}$, and we label the coordinates with subscripts, $a_n$, so the reconstructed $\vec{a}$ is given by:
 
 $$
 \vec{a} = a_1 \vec{e^1} + a_2 \vec{e^2}
 $$
 
-This basis $\vec{e}_j$ is related to the original basis $\vec{e}^i$ by \eqref{eqn:dual-bases-delta}. In other words, when choosing the dual basis vector for a given index, we must choose a vector that is orthogonal to all the other basis vectors, and this means we will have a severely limited choice, because there can be only one alignment that meets this requirement. Furthermore the magnitude of the vector $\vec{e}^i$ is fully determined by the requirement that $\vec{e}_i \cdot \vec{e}^i = 1$, as the ratio between the coordinates is already fixed by the choice of alignment.
+This basis $\vec{e}_j$ is related to the original basis $\vec{e}^i$ by \eqref{eqn:dual-bases-delta}. Looking at it geometrically (that is, cheating), when choosing the dual basis vector for a given index, we must choose a vector that is visibly orthogonal to all the other basis vectors, and this means we will have a severely limited choice, because there can be only one alignment that meets this requirement. Furthermore the magnitude of the vector $\vec{e}^i$ is fully determined by the requirement that $\langle \vec{e}_i, \vec{e}^i \rangle = 1$, as the ratio between the coordinates is already fixed by the choice of alignment.
 
 In this visualisation process we have shown the relationship between $V$ and $V*$ by overlaying them on the same diagram, but they are in fact separate vector spaces: elements of $V$ are not elements of $V*$, and vice versa. But the way we have calibrated these two sets of bases to be mutually consistent is exactly the same as the relationship between the bases of $V$ and $V*$.
 
-If the original basis vectors had been orthogonal, the dot product would have produced exactly the same coordinates we'd used to build the vector in the first place, i.e. figures \ref{fig:vectors-non-orth-2}, \ref{fig:vectors-non-orth-3} and \ref{fig:vectors-non-orth-4} would all be identical: a rectangle with the vector as its diagonal.
+If the original basis vectors had been orthogonal, the dot product would have produced exactly the same coordinates we'd used to build the vector in the first place, i.e. figures \ref{fig:vectors-non-orth-2}, \ref{fig:vectors-non-orth-3} and \ref{fig:vectors-non-orth-4} would all be identical: a rectangle with the vector as its diagonal. But of course, we haven't yet said precisely what orthogonality means.
+
+\section{The same ideas in coordinates}
+
+We can make this concrete by playing with $\mathbb{R}^2$ as our vector space $V$, in which case the dual space of covectors $V^*$ contains mappings $\mathbb{R}^2 \mapsto \mathbb{R}$.
+
+\begin{figure}[h]
+    \caption{Basis vectors in $\mathbb{R}^2$}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \draw[step=1cm,gray,very thin] (1,1) grid (4,4); 
+            \draw[thick,->] (2,2) -- (3,2);
+            \node at (2.5,1.5) {$\vec{e_1}$};
+            \draw[thick,->] (2,2) -- (2,3);
+            \node at (1.5,2.5) {$\vec{e_2}$};        
+        \end{tikzpicture}
+        \caption{Orthonormality} \label{fig:vectors-orthonormality}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \draw[step=1cm,gray,very thin] (1,1) grid (4,4); 
+            \draw[thick,->] (2,2) -- (4,3);
+            \node at (3.2,2.1) {$\vec{e_1}$};
+            \draw[thick,->] (2,2) -- (2,3);
+            \node at (1.5,2.5) {$\vec{e_2}$};
+        \end{tikzpicture}
+        \caption{Awkwardness} \label{fig:vectors-awkwardness}
+    \end{subfigure}
+\end{figure}
+
+With our schoolhouse foreknowledge it would be easy to choose an orthonormal basis in $\mathbb{R}^2$ (Figure \ref{fig:vectors-orthonormality}):
+
+$$
+\vec{e}_1 = \begin{bmatrix}1 \\ 0\end{bmatrix}\,,\,
+\vec{e}_2 = \begin{bmatrix}0 \\ 1\end{bmatrix}
+$$
+
+But we still haven't defined what orthonormal means, so we'll just choose something awkward (Figure \ref{fig:vectors-awkwardness}):
+
+$$
+\vec{e}_1 = \begin{bmatrix}2 \\ 1\end{bmatrix}\,,\,
+\vec{e}_2 = \begin{bmatrix}0 \\ 1\end{bmatrix}
+$$
+
+By the way, it is customary to put the basis vectors in a row matrix, $\begin{bmatrix}\vec{e}_1 & \vec{e}_2\end{bmatrix}$, so they can be matrix-multiplied by a column representation of a vector in $V$, but that's not what we're doing here. We are giving the definition of each basis vector as a matrix, and the basis vectors are ordinary vectors belonging to $V$, so they must be column matrices.
+
+What is the corresponding $V^*$ basis, $\vec{e}^i$? It has to obey:
+
+$$
+\langle \vec{e}_j,\vec{e}^i \rangle = \delta_{ij}
+$$
+
+Some straightforward equation building and substitution yields:
+
+$$
+\vec{e}^1 = \begin{bmatrix}0.5 & 0\end{bmatrix}\,,\,
+\vec{e}^2 = \begin{bmatrix}-0.5 & 1\end{bmatrix}
+$$
+
+And these being covectors from $V^*$, they must be row matrices, as shown. Using our $V$ basis we can construct a vector $\vec{v}$ from the coordinates $(2, 3)$:
+
+$$
+\vec{v} = 2\vec{e}_1 + 3\vec{e}_2
+        = \begin{bmatrix}4 \\ 2\end{bmatrix} + \begin{bmatrix}0 \\ 3\end{bmatrix} 
+        = \begin{bmatrix}4 \\ 5\end{bmatrix}
+$$
+
+What happens if we evaluate the $V^*$ basis covectors against $\vec{v}$?
+
+$$
+\begin{bmatrix}0.5 & 0\end{bmatrix} \begin{bmatrix}4 \\ 5\end{bmatrix} = 2 
+\,,\,
+\begin{bmatrix}-0.5 & 1\end{bmatrix} \begin{bmatrix}4 \\ 5\end{bmatrix} = 3
+$$
+
+We get back the correct coordinates. If we'd just transposed the $V$ basis vectors into rows and left-multiplied them, we would have obtained wrong answers: this is precisely the same problem we saw with projecting onto the non-orthogonal basis.
+
+But the utility of these basis covectors is limited to their ability to extract a scalar coordinate from a vector. For example, there is nothing here that generally relates any vector (other than the basis vectors) with a specific covector partner, or anything that relates one vector with another.
 
 \section{More slots}
 
@@ -492,509 +587,354 @@ Let's upgrade our black box machine so it has two input slots, accepting vectors
     \caption{Box $\vec{h}$ with two slots accepting vectors} \label{fig:2-slot-box}
 \end{figure}
 
-This is a mapping from pairs of vectors to $\mathbb{R}$. In another act of spectacular laziness we we restrict ourselves to considering mappings that can be implemented as follows.
+This is a mapping from pairs of vectors to scalars: $V \times V \mapsto \mathbb{R}$.
 
-Inside the box $\vec{h}$, there are two single-slot boxes (covectors) $\vec{f}$ and $\vec{g}$. The machinery inserts $\vec{a}$ into box $\vec{f}$, and $\vec{b}$ into box $\vec{g}$, to obtain two scalars, which it simply multiplies together to produce its own resultant scalar that falls out of the hole of $\vec{h}$. In other words, it's really just two covectors glued together by scalar multiplication.
-
-This mechanism is \textit{bilinear}, meaning that if either one of $\vec{f}$ or $\vec{g}$ were to be scaled by some factor $y$, the output of $\vec{h}$ would also be scaled by $y$.
-
-The notation for constructing this machine from two covectors is $V^* \otimes V^*$. On seeing that notation, think of each $V^*$ as a slot $\vec{f}$ that is waiting for a vector $\vec{a}$ from $V$ to arrive, so it can make the scalar value $\langle \vec{f},\vec{a}\rangle$. Both slots will do that, and then the resulting scalars are multiplied.
-
-Suppose we've chosen the covectors $\vec{f}$ and $\vec{g}$, so the machinery is:
+Suppose \textit{only to begin with} that the machine had an especially simple inner mechanism: inside the box $\vec{h}$, there are two single-slot boxes (covectors) $\vec{f}$ and $\vec{g}$. The machinery inserts input $\vec{a}$ into box $\vec{f}$, and input $\vec{b}$ into box $\vec{g}$, to obtain two scalars, which it simply multiplies together to produce its own resultant scalar that falls out of the hole of $\vec{h}$. In other words, it's really just two covectors glued together by scalar multiplication, and they act independently on the inputs:
 
 $$
-\vec{h}(\vec{a}, \vec{b}) = \langle \vec{f},\vec{a}\rangle \langle \vec{g},\vec{b}\rangle
+h(\vec{a}, \vec{b}) = \langle \vec{f},\vec{a} \rangle \langle \vec{g},\vec{b} \rangle
 $$
 
-We know that covectors can be expressed as a weighted sum of a basis:
+In fact this design only accounts for a subset of the machines, but it will serve as an intuitive building block for us to construct all the machines we're interested in. We can write it as $\vec{f} \otimes \vec{g}$, which is called the \textit{tensor product} of the two covectors.
+
+So sticking with this simplified design to begin with, consider the space of all such machines containing two covectors. We can define addition and scaling on these pairs in a way that satisfies the requirements of a vector space. Addition is easy. Much as we defined addition for covectors by simply adding their results when given the same input vector, we'll add these two-slot machines by adding their results when they act on the same pair of vectors:
+
+\begin{equation}
+\begin{split}
+    (\vec{f} \otimes \vec{g} + \vec{p} \otimes \vec{q})(\vec{a}, \vec{b}) 
+    &= 
+    \vec{f} \otimes \vec{g} (\vec{a}, \vec{b}) + \vec{p} \otimes \vec{q}(\vec{a}, \vec{b}) \\
+    &= \langle \vec{f}, \vec{a} \rangle
+        \langle \vec{g}, \vec{b} \rangle
+    + \langle \vec{p}, \vec{a} \rangle
+        \langle \vec{q}, \vec{b} \rangle    
+\end{split}        
+\end{equation}
+
+Scaling is even easier:
 
 $$
-\vec{f} = \sum_i f_i \vec{e}^i
+x(\vec{f} \otimes \vec{g})(\vec{a}, \vec{b}) 
+= x \langle \vec{f}, \vec{a} \rangle
+    \langle \vec{g}, \vec{b} \rangle
 $$
-
-And likewise for vectors:
-
-$$
-\vec{a} = \sum_i a^i \vec{e}_i
-$$
-
-So we can substitute to get this mess:
+ 
+Thus we have defined a vector space, and so these two-slot machines are also vectors.\footnote{This is the first indication of how confusing the terminology is: a tensor (of which this two-slot machine is an example) is also a vector, but it is also the case that a vector, and even a scalar, is a tensor. They are each examples of the other, and yet are different things.} We can form a basis for that space by taking all possible pairs of basis covectors, $\vec{e}^i \times \vec{e}^j$. If the (co)vector space is $N$-dimensional, the pair-space will be $N^2$-dimensional, because it requires $N^2$ basis machines to span the space. Any two-slot machine can therefore be written as a linear combination (a weighted sum) of all the basis machines:
 
 $$
-\vec{h}(\vec{a}, \vec{b}) = 
-\langle\sum_i f_i \vec{e}^i,\sum_j a^j \vec{e}_j\rangle 
-\langle\sum_k g_k \vec{e}^k,\sum_l b^l \vec{e}_l\rangle
+\sum_{ij} M_{ij} (\vec{e}^i \otimes \vec{e}^j)
 $$
 
-But linearity means we can write:
+And therefore to describe any two-slot machine in terms of the basis we will need $N^2$ numbers, which we can write as $M_{ij}$. By the way, there's no pressing need to think of it as a matrix, although we sometimes do. The $M$ stands for "machine" in this case. It's just a list of $N^2$ numbers, labelled with two indices that each can take on $N$ integer values, supplying the weighting for each basis machine.
+
+Inserting two vectors $\vec{a}$ and $\vec{b}$ into the slots just means:
 
 $$
-\vec{h}(\vec{a}, \vec{b}) = 
-\left(\sum_{ij} f_i a^j \langle\vec{e}^i,\vec{e}_j\rangle \right)
-\left(\sum_{kl} g_k b^l \langle\vec{e}^k,\vec{e}_l\rangle \right)
+\sum_{ij} M_{ij} \langle \vec{e}^i,\vec{a} \rangle \langle \vec{e}^j,\vec{b} \rangle
 $$
 
-And \eqref{eqn:dual-bases-delta} implies:
+Recall that an expression like $\langle \vec{e}^i,\vec{a} \rangle$ is the scalar resulting from $\vec{e}^i$ acting on $\vec{a}$. But as the input vector $\vec{a}$ can be described using the same (dual) basis, $a^k \vec{e}_k$: 
 
 $$
-\vec{h}(\vec{a}, \vec{b}) = \left(\sum_{i} f_i a^i \right) \left(\sum_{k} g_k b^k \right)
+\sum_{ijk} M_{ij} \langle \vec{e}^i, a^k \vec{e}_k \rangle \langle \vec{e}^j,\vec{b} \rangle
 $$
 
-Multiplying out, we get:
+and the same for $\vec{b}$:
 
 $$
-\vec{h}(\vec{a}, \vec{b}) = \sum_{ik} f_i g_k a^i b^k
+\sum_{ijkl} M_{ij} \langle \vec{e}^i, a^k \vec{e}_k \rangle \langle \vec{e}^j,b^l \vec{e}_l \rangle
 $$
 
-It seems the fixed coefficients of $\vec{f}$ and $\vec{g}$ can be collapsed into a single matrix $M$ whose elements $M_{ik}$ give us the weighting to apply to each possible product of vector coefficients $a^i b^k$.
+Both these substitutions required us to introduce a new summation index, because we are essentially "multiplying out" between the existing expression's summation terms and those of the vector we are substituting. So if the vector space is $2$-dimensional, the above is summing $2 \times 2 \times 2 \times 2 = 16$ terms. By linearity:
 
 $$
-M_{ik} = f_i g_k
+\sum_{ijkl} M_{ij} a^k \langle \vec{e}^i, \vec{e}_k \rangle b^l \langle \vec{e}^j, \vec{e}_l \rangle
 $$
 
-So to represent a two-slot machine with respect to a chosen basis (and corresponding dual basis), we need a matrix.
+We know the basis covectors acting on the basis vectors have very simple results by definition: $\langle \vec{e}^i, \vec{e}_k \rangle$ evaluates to $1$ if $i = k$, but is $0$ otherwise. Likewise $\langle \vec{e}^j, \vec{e}_l \rangle$ is $1$ if $j = l$ but $0$ otherwise. Therefore the $12$ summation terms where either $i \ne k$ or $j \ne l$ must vanish, leaving only $4$ terms where they are equal and the covector-vector interactions are simply replaced with $1$. Therefore we can replace $k$ with $i$ and $l$ with $j$ throughout:
 
-Another way to approach this is to consider the space of all possible pairs of covectors $V^* \times V^*$. We can define addition and scaling on these pairs in a way that satisfies the requirements of a vector space, and thus we have defined a vector space. We can form a basis for that space by taking all possible pairs of basis covectors, $\vec{e}^i \times \vec{e}^j$. If the space is $N$-dimensional, the pair-space will be $N^2$-dimensional. This is the space of all possible two-slot machines. And therefore to describe any two-slot machine in terms of that basis we will need $N^2$ coefficients, which we can arrange into a square of $N$ rows and $N$ columns.
+\begin{equation}
+    \sum_{ij} M_{ij} a^i b^j
+        \label{eqn:two-slot-computation}
+\end{equation}
+
+So to compute the scalar result we only need the coordinates of the two input vectors and a matrix that fully defines how the machine operates, creating summation terms that contribute various weightings of every possible combination of coordinates from the two vectors.
+
+It will often be the case that $M_{ij} = M_{ji}$, which is quite a lot of redundancy. But this is necessary to ensure that the machine is symmetrical: switching the inputs around does not affect the result. Of course, a machine doesn't have to be defined that way.
+
+We were careful to mention at the start that the simplified design (the ordinary product of two scalars obtained by two covectors operating separately on one vector input each) is not powerful enough to describe all these machines, even though we used it to define our basis machines. The simplistic machine is defined by a matrix that can be written as:
+
+$$
+M_{ij} = f_i g_j
+$$
+
+In other words, it can be decomposed into two separate columns of numbers. Such a machine is known as a \textit{decomposable}, \textit{elementary} or just \textit{simple} tensor.
+
+One hint as to why it is so limited is that as $i$ and $j$ have $N$ possible values for an $N$-dimensional space, even though $M$ appears to have $N^2$ independent values, there are really only $2N$ numbers providing the raw ingredients. So we aren't allowing the full flexibility of which $M$ is capable.
+
+Of course, if $N=2$ then $N^2 = 2N = 4$, but even then, there is a restrictive pattern that applies regardless of the dimensions. Viewing $M_{ij}$ as a matrix, every row (labelled by $i$) would be a scaled version of the numbers in $g_j$, and every column (labelled by $j$) would likewise be a scaled version of the numbers in $f_i$. That is, the rows are all linearly dependent on one another, and so are the columns. This would not be the case if the elements of $M$ were truly independent.
+
+There's a subtlety here though: vector addition and scaling operators are meant to be closed. We've proposed a way of defining simple machines, which is a restricted set of objects, and then we've said that scaling and adding simple machines allows us to discover objects that are not in that simple set, which sounds like we're breaking the rules, reaching outside the initial set.
+
+The resolution to this conundrum is that we are dealing with a general set of machines that can be described by the somewhat misleading notation $V^* \otimes V^*$, which we define as not only the simple machines made of any two covectors $f \otimes g$, but also those machines that are \textit{weighted sums} of one or more simple machines. This broader set includes machines that cannot be decomposed into two covectors. We can however choose a basis from the subset that \textit{can} be decomposed, and we do that because it is that subset for which we are able to directly explain how they operate. And from that basis we can build any machine of the form $V^* \otimes V^*$. Covectors are the most basic building block, from which we can make simple machines, from which in turn we can make any machines by linear combination of simple machines.
+
+Another point to note about these two-slot machines is that although here we focused on $V^* \otimes V^*$, we could instead of chosen $V \otimes V$, in which case the simple machine would have consisted of two vectors, and would have acted on two input covectors (recall how the notation $\langle \vec{f}, \vec{a} \rangle = \langle \vec{a}, \vec{f} \rangle$ emphasises symmetry, so we can think of a covector acting on a vector or a vector acting on a covector with no real difference in the result). We can define machines of the form $V \otimes V^*$, or with three or more slots accepting any mixture of vectors and covectors.
 
 \section{The Inner Product}
 
-The most important use case of a specific machine of the form $V^* \otimes V^*$ is to at last come up with a way to define orthogonality, and the length of a vector (and thus orthonormality.)
+The most important necessity for a specific machine of the form $V^* \otimes V^*$ is to at last come up with a way to define orthogonality, and the norm (length) of a vector, and thus orthonormality, but also a specific two-way pairing between every vector and a covector partner.
 
 Nominating one such machine for a given vector space, we can call it the \textit{inner product}, and we say that the combination of the vector space and its inner product is an \textit{inner product space}.
 
+As we've repeatedly observed, we have so far had no way to judge whether two vectors are orthogonal to one another, even though we know that for arrows or column vectors there are some intuitive ways to choose orthogonal vectors. In our abstract development of the subject there was no such thing as orthogonal or orthonormal.
+
+The choice of an inner product determines which vectors are mutually orthogonal, and also which are normalised (of unit norm). Importantly, it will also pair every vector with a single dual covector (and vice versa).
+
 The notation $(\vec{a},\vec{b})$ is sometimes used for the inner product, similar to but deliberately distinct from the $\langle \vec{f},\vec{a}\rangle$ notation for the action of a covector on a vector.\footnote{Sadly the meanings of these notations are sometimes switched, and they aren't the only notations used.}
 
-As we've seen, as it's a two-slot machine, its coordinate representation will be a matrix. In General Relativity this matrix is usually called $g$, and its indices are $\mu$ and $\nu$, so applying it to vectors $\vec{a}$ and $\vec{b}$ will look like this:
+As we've seen, as it's a two-slot machine, its coordinate representation can be thought of as a matrix or a list of numbers addressed by two indices, and it is called the \textit{metric}. In General Relativity the metric is usually written as $g$, and its indices are often $\mu$ and $\nu$, so applying it to vectors $\vec{a}$ and $\vec{b}$ will look like this:
 
 $$
 (\vec{a},\vec{b}) = \sum_{\mu\nu} g_{\mu\nu} a^\mu b^\nu
 $$
 
-It's worth pausing to compare it to the familiar dot product, which would be:
+Or expressed in matrix multiplication, we put one of the vectors on the left of the matrix, transposed into a row, and one on the right as a column.
+
+$$
+(\vec{a}, \vec{b}) =
+\begin{bmatrix}
+a^1 & a^2 & a^3
+\end{bmatrix}
+\begin{bmatrix}
+g_{11} & g_{12} & g_{13} \\
+g_{21} & g_{22} & g_{23} \\
+g_{31} & g_{32} & g_{33}
+\end{bmatrix}
+\begin{bmatrix}
+b^1 \\ b^2 \\ b^3
+\end{bmatrix}
+$$
+
+The central square matrix is always symmetric, $g_{\mu\nu} = g_{\nu\mu}$, so the vector inputs can be switched without affecting the result. The square matrix can multiply with the right column first, or with the left row: the order of operations doesn't matter.
+
+As we will eventually see, this transposition business will wind up being somewhat messier than simply writing down the summations, in which the symmetry is a lot more obvious. This is one reason why it may not be worth thinking of $g$ (or any other two-slot machine) as a matrix.\footnote{Another reason: what if the machine has three or more slots?}
+
+Compare it to the familiar dot product, which would be:
 
 $$
 \vec{a} \cdot \vec{b} = \sum_{\mu} a^\mu b^\mu
 $$
 
-Only one index summed over instead of two, and no scaling of the contribution from the summed terms. So the dot product is like the general inner product but with $g$ replaced with the Kronecker delta (§\ref{def:Kronecker}):
+It's the same row/square/column matrix multiplication except the central square matrix is missing, or equivalently it's the identity matrix:
+
+$$
+(\vec{a}, \vec{b}) =
+\begin{bmatrix}
+a^1 & a^2 & a^3
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+b^1 \\ b^2 \\ b^3
+\end{bmatrix}
+$$
+
+So all the times when you obediently used the dot product to operate on two vectors, you were implicitly setting $g$ to be the Kronecker delta (§\ref{def:Kronecker}):
 
 $$
 g_{\mu\nu} = \delta_{\mu\nu}
 $$
 
-So in comparison with the dot product, the general form of the inner product, or specifically the matrix $g_{\mu\nu}$, captures something about the non-orthonormality of the basis. If it were perfectly orthonormal then $g_{\mu\nu}$ would be the identity matrix and we'd be able to use the dot product as our inner product.
+\textit{By definition} if the inner product is represented by $\delta_{\mu\nu}$ then the basis vectors are orthonormal. In other words, the inner product being represented by the identity matrix doesn't really tell us anything about the inner product. It tells us that we've chosen a set of basis vectors so that they are orthonormal according to this space's nominated inner product. It is always possible to do this, regardless of what the inner product happens to be.\footnote{Strictly speaking it is always possible for a finite-dimensional inner product space.}
 
-This is exactly what we saw with the dual parallelograms resulting from trying to project onto a non-orthogonal basis.
+This means that the previous examples of what we called awkward basis vectors would in fact be orthonormal if we chose a particular inner product.
 
-We can make this concrete by playing with $\mathbb{R}^2$ as our vector space $V$, in which case the dual space of covectors $V^*$ is $\mathbb{R}^2 \mapsto \mathbb{R}$.
+\subsection{No such thing as awkward}
 
-\begin{figure}[h]
-    \caption{Basis vectors in $\mathbb{R}^2$}
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-        \begin{tikzpicture}
-            \draw[step=1cm,gray,very thin] (1,1) grid (4,4); 
-            \draw[thick,->] (2,2) -- (3,2);
-            \node at (2.5,1.5) {$\vec{e_1}$};
-            \draw[thick,->] (2,2) -- (2,3);
-            \node at (1.5,2.5) {$\vec{e_2}$};        
-        \end{tikzpicture}
-        \caption{Orthonormality} \label{fig:vectors-orthonormality}
-    \end{subfigure}
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-        \begin{tikzpicture}
-            \draw[step=1cm,gray,very thin] (1,1) grid (4,4); 
-            \draw[thick,->] (2,2) -- (4,3);
-            \node at (3.2,2.1) {$\vec{e_1}$};
-            \draw[thick,->] (2,2) -- (2,3);
-            \node at (1.5,2.5) {$\vec{e_2}$};
-        \end{tikzpicture}
-        \caption{Awkwardness} \label{fig:vectors-awkwardness}
-    \end{subfigure}
-\end{figure}
-
-It would be easy to choose an orthonormal basis in $\mathbb{R}^2$ (Figure \ref{fig:vectors-orthonormality}):
+Starting with the standard basis in column vectors, we could specify this as the inner product:
 
 $$
-e_1 = \begin{bmatrix}1 \\ 0\end{bmatrix}\,,\,
-e_2 = \begin{bmatrix}0 \\ 1\end{bmatrix}
+g_{\mu\nu} = 
+\begin{bmatrix}
+\frac{1}{2} & -\frac{1}{2} \\
+-\frac{1}{2} & 1
+\end{bmatrix}
 $$
 
-But we'll be awkward and act like we don't know what orthonormal means (Figure \ref{fig:vectors-awkwardness}):
+We had to pick \textit{some} basis as a starting point or we would not have had a way to write down the inner product in numerical form. We used the standard basis, which is made of very simple one-hot vectors, but we now know that we must not call those vectors orthonormal.
+
+Now we'll move the goalposts and choose a different set of vectors to be our basis, and they will be our usual awkward choice:
 
 $$
-e_1 = \begin{bmatrix}2 \\ 1\end{bmatrix}\,,\,
-e_2 = \begin{bmatrix}0 \\ 1\end{bmatrix}
+\vec{e}_1 = \begin{bmatrix}2 \\ 1\end{bmatrix}\,,\,
+\vec{e}_2 = \begin{bmatrix}0 \\ 1\end{bmatrix}
 $$
 
-By the way, it is customary to put the basis vectors in a row matrix, $\begin{bmatrix}\vec{e}_1 & \vec{e}_2\end{bmatrix}$, so they can be matrix-multiplied by a column representation of a vector in $V$, but that's not what we're doing here. We are giving the definition of each basis vector in $V$ as a $1$-dimensional matrix, and the basis vectors are ordinary vectors belonging to $V$, so they must be column matrices.
-
-What is the corresponding $V^*$ basis, $e^i$? It has to obey:
+Let's test our inner product on every possible pairing of these basis vectors:
 
 $$
-\langle e_j,e^i \rangle = \delta \indices{_i^j}
-$$
-
-Some straightforward equation building and substitution yields:
-
-$$
-e^1 = \begin{bmatrix}0.5 & 0\end{bmatrix}\,,\,
-e^2 = \begin{bmatrix}-0.5 & 1\end{bmatrix}
-$$
-
-And these being covectors from $V^*$, they must be row matrices, as shown. Using our $V$ basis we can construct the vector $\vec{v}$ from the coefficients $(2, 3)$:
-
-$$
-\vec{v} = 2e_1 + 3e_2
-        = \begin{bmatrix}4 \\ 2\end{bmatrix} + \begin{bmatrix}0 \\ 3\end{bmatrix} 
-        = \begin{bmatrix}4 \\ 5\end{bmatrix}
-$$
-
-What happens if we evaluate the $V^*$ basis functions against $\vec{v}$?
+(\vec{e}_1, \vec{e}_1) =
+\begin{bmatrix}
+2 & 1
+\end{bmatrix}
+\begin{bmatrix}
+\frac{1}{2} & -\frac{1}{2} \\
+-\frac{1}{2} & 1
+\end{bmatrix}
+\begin{bmatrix}
+2 \\ 1
+\end{bmatrix}
+= 1
+$$    
 
 $$
-\begin{bmatrix}0.5 & 0\end{bmatrix} \begin{bmatrix}4 \\ 5\end{bmatrix} = 2 
-\,,\,
-\begin{bmatrix}-0.5 & 1\end{bmatrix} \begin{bmatrix}4 \\ 5\end{bmatrix} = 3
-$$
-
-We get back the correct coefficients. If we'd just transposed the $V$ basis vectors into rows and left-multiplied them, we would have obtained wrong answers: this is precisely the same problem we saw with projecting onto the non-orthogonal basis.
-
-So much for using the dual basis to get the right answers, but with the inner product we can forget the existence of the dual basis. Instead of having to think of our set of basis vectors $\vec{e}_n$ having corresponding dual covectors $\vec{e}^n$, we instead conceal this detail inside the machinery of a two-slot function that produces a scalar value from any two vectors, the same value we'd get if the basis was orthogonal and we used the regular dot product.
-
-We know the machinery will consist of a matrix, which we can (for the moment, naively) think of as "fixing" a basis vector to be like its dual. What matrix $g_{\mu\nu}$ converts $\vec{e}_n$ into $\vec{e}^n$? Continuing our simple $2$-dimensional example, we'd have:
-
-$$
-g_{\mu\nu} \vec{e}_1 = \vec{e}^1 \,,\, g_{\mu\nu} \vec{e}_2 = \vec{e}^2
-$$
-
-or in matrix notation:
+(\vec{e}_1, \vec{e}_2) =
+\begin{bmatrix}
+2 & 1
+\end{bmatrix}
+\begin{bmatrix}
+\frac{1}{2} & -\frac{1}{2} \\
+-\frac{1}{2} & 1
+\end{bmatrix}
+\begin{bmatrix}
+0 \\ 1
+\end{bmatrix}
+= 0
+$$    
 
 $$
-\begin{bmatrix}g_{11} & g_{12} \\ g_{21} & g_{22}\end{bmatrix}
-\begin{bmatrix}2 \\ 1\end{bmatrix} = 
-\begin{bmatrix}0.5 \\ 0\end{bmatrix}
-$$
-
-and:
-
-$$
-\begin{bmatrix}g_{11} & g_{12} \\ g_{21} & g_{22}\end{bmatrix}
-\begin{bmatrix}0 \\ 1\end{bmatrix} = 
-\begin{bmatrix}-0.5 \\ 1\end{bmatrix}
-$$
-
-This is an easy simultaneous equation problem and the answer is:
-
-$$
-g_{\mu\nu} = \begin{bmatrix}0.5 & -0.5 \\ -0.5 & 1\end{bmatrix}
-$$
-
-So with our awkward basis, the correct form of the inner product, which we can use to extract (say) the first coordinate of $\vec{v}$ using the first basis vector $\vec{e}_1$, is:
+(\vec{e}_2, \vec{e}_1) =
+\begin{bmatrix}
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+\frac{1}{2} & -\frac{1}{2} \\
+-\frac{1}{2} & 1
+\end{bmatrix}
+\begin{bmatrix}
+2 \\ 1
+\end{bmatrix}
+= 0
+$$    
 
 $$
-(\vec{v}, \vec{e}_1) =
-\vec{v} g_{\mu\nu} \vec{e}_1 =
-\begin{bmatrix}2 & 3\end{bmatrix} 
-\begin{bmatrix}0.5 & -0.5 \\ -0.5 & 1\end{bmatrix}
-\begin{bmatrix}2 \\ 1\end{bmatrix}
-=
-2
-$$
+(\vec{e}_2, \vec{e}_2) =
+\begin{bmatrix}
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+\frac{1}{2} & -\frac{1}{2} \\
+-\frac{1}{2} & 1
+\end{bmatrix}
+\begin{bmatrix}
+0 \\ 1
+\end{bmatrix}
+= 1
+$$    
 
-But (to outgrow the naivety alluded to just now) the inner product has symmetry\footnote{Strictly speaking it has conjugate symmetry, but if scalars are real numbers then this is just symmetry.}: we can swap $\vec{v}$ and $\vec{e}_1$ without affecting the result. So there is no special treatment that specifically "fixes" the basis vector by producing its dual. (Indeed, neither of the arguments to the inner product needs to be a basis vector.) We could equally suppose that the matrix $g_{\mu\nu}$ "fixes" $\vec{v}$ to be a different vector so that the unmodified $\vec{e}_1$ can extract the expected value from it (and this is easily corroborated by the above example).
+The basis is orthonormal if $(\vec{e}_i, \vec{e}_j) = \delta_{ij}$. Undeniably, these basis vectors are orthonormal. The inner product says so, and who are we to doubt it? Furthermore, the inner product's matrix \textit{when expressed in this basis} is $\delta_{\mu\nu}$.
 
-Having established an inner product, we can at last give a meaning to the length or \textit{norm} of a vector: it's the square root of the inner product of the vector with itself. Once again, if the basis is orthonormal then the mathematical machinery is immediately familiar: it's just the pythagoras theorem.
+Every distinct basis provides a different way to describe any vector with coordinates, and likewise any covector. Regardless of the basis they are described in, the result of applying a specific covector to a specific vector will be the same scalar value. That is, the choice of basis is not a fact about the vector space, but merely a way to describe the vectors in it.
 
-And we can finally say what we mean by an orthogonal pair of vectors, and an orthonormal basis. Two vectors are orthogonal if their inner product is zero. A basis is orthogonal if the basis vectors are mutually orthogonal. A basis is orthonormal if all the basis vectors are of norm $1$.
-
-\section{Change of Basis}\label{sec:vectors-change-basis}
-
-A matrix can be used to:
+Choosing a different inner product (or equivalent, a metric) is not like that. In fact a given physical situation may impose a metric and we have to accept it; it's a fact of nature. So there are two possible reasons why the matrix $g_{\mu\nu}$ might change:
 
 \begin{itemize}
-    \item map vectors to a new length and direction in the same basis, or
-    \item perform a coordinate conversion on vectors so they remain the same vectors but expressed in different numerical coordinates.
+    \item a change of basis, which will change the coordinates $a^{\mu}$ and $b^{\nu}$ of the two input vectors, as well as the matrix elements $g_{\mu\nu}$, so as to ensure the scalar result of the inner product $(\vec{a}, \vec{b})$ is unchanged, or
+    \item a change of inner product itself, which will not affect the coordinates of anything else, and thus the scalar result of $(\vec{a}, \vec{b})$ may be very different.
 \end{itemize}
 
-The mathematical machinery is identical.
+\subsection{The metric and its inverse}
 
-Viewed as an operator, the matrix may have eigenvectors (lines along which vectors only change length, not direction) only in some directions. The operator is therefore a geometrical object just as a vector is, and the matrix elements may be numerically different depending on the basis, just as the coordinates of a vector may differ depending on the basis, despite describing the very same objects regardless of the basis chosen.
+As always we must be careful not to confuse the coordinate or matrix representation of an object with the object itself. The matrix $g_{\mu\nu}$ is merely a representation in some basis of a machine with two slots awaiting vectors. 
 
-Viewed as a coordinate converter, the matrix effectively depends on two bases, the one being converted from and the one being converted to.
+We know that internal to that machine, it may be simple (consisting of two covectors, which are single-slot machines ready to operate on the two vectors inserted into the slots, and whose scalar results will be multiplied to get the result) or, more generally, it may be a linear combination of such simple two-slot machines.
 
-\subsection{Effect of change of basis on vectors}
+Therefore if a single vector is inserted into the first slot, it will be fed into the first slot of one or more simple two-slot machines, which will all feed that same vector into their first covector. This will produce a set of scaling factors that apply to the second covector of each simple two-slot machine. This is in effect a set of single-slot machines being linearly combined into a single-slot machine (a weighted sum of covectors).
 
-A plane vector $\vec{v}$ in some basis can be expressed in coordinates as a column matrix $v$:
+And we are left with a new single-slot machine awaiting another vector before it can produce a final scalar. In general a machine with $S$ slots can be nibbled away at sequentially, feeding in the $S$ inputs one at a time, each step reducing by one the capacity of the resultant machine to accept further inputs, until eventually all we are left with is a scalar result.
 
-$$v = \begin{bmatrix}3 \\ 4\end{bmatrix}$$
+So as advertised, as well as providing a meaning for orthonormality, the metric also provides a complete pairing between every vector and a corresponding covector. Provide a single vector input to the metric and you will get back \textit{the} covector that is the dual partner to that vector, according to the metric.
 
-Note that, unlike some prior examples, we are not saying the vector \textit{is} the column matrix. We are saying nothing at all about the nature of the vectors, except that they are elements of some vector space. We are describing in numbers a vector of unknown type taken from some vector space, which we can only do because we have chosen a basis, $e$:
-
-$$e = \begin{bmatrix}\vec{e_1} & \vec{e_2}\end{bmatrix}$$
-
-Matrix multiplication builds the vector:
-
-$$\vec{v} = ev = 3\vec{e_1} + 4\vec{e_2}$$
-
-We can create a matrix that will double the length of the basis vectors:
-
-$$G = \begin{bmatrix}2 & 0 \\ 0 & 2\end{bmatrix}$$
-
-By the rules of matrix multiplication the bases needs to be on the left:
-
-$$e' = eG = \begin{bmatrix}2\vec{e_1} & 2\vec{e_2}\end{bmatrix}$$
-
-What coordinates would $\vec{v}$ have in this new basis $e'$? Intuitively the coordinates need to be halved to refer to the same vector. So we need the inverse of $G$, written as $G^{-1}$, which shrinks the coordinates, so we'll call it:
-
-$$S = G^{-1} = \begin{bmatrix}0.5 & 0 \\ 0 & 0.5\end{bmatrix}$$
-
-And so our vector's coordinates become:
-
-$$v' = Sv = \begin{bmatrix}1.5 \\ 2\end{bmatrix}$$
-
-This is the same vector as before, just in different coordinates:
-
-$$\vec{v} = ev = e'v'$$
-
-We say that vectors are \textit{contravariant} under a change of basis.
-
-\subsection{The inner product under change of basis}
-
-We've gone to some trouble so far to define the inner product in such a way that it can produce consistent results even with awkward basis vectors. But the matrix $g_{\mu\nu}$ that defines it may need to be updated depending on the type of change we make to the basis.
-
-If the vector space is rotated or reflected this preserves both lengths and angles, so the inner product between a given pair of vectors before and after that transformation will be the same. Operators that preserve the inner product are \textit{unitary}.
-
-If the basis vectors are scaled, the lengths implied by the coordinates will change and so the inner product will change. To take the above example, we grow the basis vectors with $G$, having the equivalent effect on the coordinates to shrinking the input vectors with $S$ to half their original length, and so the unmodified (now incorrect) inner product would be be $\frac{1}{4}$ of its original value. It therefore needs to be updated to account for the new basis.
-
-A covector can be thought of as a yardstick or a measuring device. By evaluating it with some vector parameter, you are taking a measurement of that vector. The simplest example would be if you wanted to measure the magnitude (length) of $\vec{x}$, in which case you'd use the covector containing an $\vec{f}$ that was a unit vector colinear (lying on the same line) with $\vec{x}$. By the definition of the dot product, the angle between the two vectors being $0$, and the length of $\vec{f}$ being defined as $1$, the resulting scalar would be the length of $\vec{x}$, just as we wanted.
-
-So the ordinary vector $\vec{x}$ is represented by a column matrix $x$ of coordinates in our initial basis, and we left-multiply it by $S^{-1}$ to get it in a new coordinate system:
+It follows that if we find the inverse matrix to $g_{\mu\nu}$, that will act on a covector to reveal its dual vector. Or speaking abstractly, we can build something like the inner product but for getting a scalar from two covectors $(\vec{p}, \vec{q})$. Again the starting point is the simplest two-slot machine equivalent internally to two vectors $\vec{a}$ and $\vec{b}$. Each input covector is combined with one of the vectors and the two scalar results are multiplied together:
 
 $$
-x' = S^{-1} x
+(\vec{p}, \vec{q}) =
+\langle \vec{p}, \vec{a} \rangle
+\langle \vec{q}, \vec{b} \rangle
 $$
 
-For the covector $\vec{f}$, which is a row matrix $f$, we right-multiply by $S$:
-
-$$
-f' = f S
-$$
-
-This ensures that the two representations give us exactly the same numerical result when we evaluate the function on the vector, regardless of the basis:
-
-$$
-f(x) = f'(x')
-$$
-
-The answer to $\vec{f}(\vec{x})$ is a basis-independent physical fact. We can make this absolutely clear by working through the arithmetic with some awkward numbers. Let's suppose our vector $\vec{x}$ is initially represented by a column matrix $x$ of coordinates:
-
-$$
-x = \begin{bmatrix} 3 \\ 2 \end{bmatrix}
-$$
-
-Meanwhile the covector (function) $\vec{f}$ is represented by a row matrix $f$:
-
-$$
-f = \begin{bmatrix} 4 & 4 \end{bmatrix}
-$$
-
-To evaluate $\vec{f}$ on $\vec{x}$, we do matrix multiplication (between a row and a column \textit{in that order}, this is the dot product):
+And in general we would allow a linear combination of a basis form from such simple machines, and of course this would have a matrix representation, because we will choose a vector basis $\vec{e}_{\mu}$, which will determine a covector basis $\vec{e}^{\mu}$:
 
 \begin{equation}
 \begin{split}
-    \vec{f}(\vec{x}) &= \begin{bmatrix} 4 & 4 \end{bmatrix} \begin{bmatrix} 3 \\ 2 \end{bmatrix} \\
-    &= 12 + 8 \\
-    &= 20
+(\vec{f},\vec{g}) 
+    &= \sum_{\mu\nu} \left( p_{\mu} a^{\mu} \right) 
+                     \left( q_{\nu} b^{\nu} \right) \\
+    &= \sum_{\mu\nu} \left( a^{\mu} b^{\nu} \right) 
+                     \left( p_{\mu} q_{\nu} \right) \\
+    &= \sum_{\mu\nu} g^{\mu\nu} p_{\mu} q_{\nu} 
 \end{split}
 \end{equation}
 
-Now let's distort our basis vectors in some peculiar way, with the transformation $S$:
+By our consistent use of subscript and superscript indices, we now have matrix representations for two forms of the inner product:
 
-$$
-S = \begin{bmatrix}
-    2 & 1 \\
-    -4 & 3
-\end{bmatrix}
-$$
+\begin{itemize}
+    \item $g_{\mu\nu}$ operates on two vectors $a^{\mu}$ and $b^{\nu}$
+    \item $g^{\mu\nu}$ operates on two covectors $p_{\mu}$ and $q_{\nu}$
+\end{itemize}
 
-To get the coordinates of $\vec{x}$ in the new basis, we'll need the inverse matrix $S^{-1}$ (fortunately for a 2x2 matrix there's a simple rule for this):
+These operations can be performed in two stages. For example, $g_{\mu\nu}$ can first operate on $a^{\mu}$ to produce \textit{something} that is ready to operate on $b^{\nu}$ and finish the job by producing a scalar. That intermediate something, if it can act on a vector to get a scalar, must be a covector with coordinates $a_{\nu}$, one that is the dual of the vector it was produced from. If the basis happens to be orthonormal, the dual vector and covector will have the same coordinates, $a_{\mu} = a^{\mu}$ (because $g_{\mu\nu} = \delta_{\mu\nu}$).
 
-$$
-S^{-1} = \begin{bmatrix}
-    0.3 & -0.1 \\
-    0.4 & 0.2
-\end{bmatrix}
-$$
+So with reference to the indices being "up" or "down", $g^{\mu\nu}$ is sometimes called the raising operator, because it turns a covector's coordinates (subscript) into vector coordinates (superscript), while $g_{\mu\nu}$ is the lowering operator, working the other way. And described in this way, it is obvious that $g^{\mu\nu}$ undoes the work of $g_{\mu\nu}$, i.e. they are mutually inverse matrices. With our natural bias toward vectors, if $g_{\mu\nu}$ is the metric then $g^{\mu\nu}$ is the \textit{inverse metric}.
 
-And so the coordinates $x'$ in the new basis are:
-
-\begin{equation}
-\begin{split}
-x' &= \begin{bmatrix}
-    0.3 & -0.1 \\
-    0.4 & 0.2
-\end{bmatrix} \begin{bmatrix}
-    3 \\ 2
-\end{bmatrix} \\
-  &= \begin{bmatrix}
-    0.9 - 0.2 \\ 1.2 + 0.4
-\end{bmatrix} \\
-  &= \begin{bmatrix}
-    0.7 \\ 1.6
-\end{bmatrix}
-\end{split}
-\end{equation}
-
-We need to find $\vec{f}$ expressed in the corresponding dual basis, the row vector $f'$, such that $\vec{f}(\vec{x})$ is still $20$. We're still asking the same question of the same vector, so we must get the same answer. To ensure this, we transform the row vector $f$ by multiplying on the right by the matrix $S$, that is, the same matrix we used to distort the basis vectors (this suggests that the dual basis vectors must have been distorted by $S^{-1}$, which is indeed the case):
-
-\begin{equation}
-\begin{split}
-f' &= \begin{bmatrix}
-    4 & 4
-\end{bmatrix} \begin{bmatrix}
-    2 & 1 \\
-    -4 & 3
-\end{bmatrix} \\
-  &= \begin{bmatrix}
-    8 - 16 & 4 + 12
-\end{bmatrix} \\
-  &= \begin{bmatrix}
-    -8 & 16
-\end{bmatrix}
-\end{split}
-\end{equation}
-
-And we can finally check what we get when we evaluate $f(\vec{x})$ in these new coordinate representations:
-
-\begin{equation}
-\begin{split}
-    \vec{f}(\vec{x}) &= \begin{bmatrix} -8 & 16 \end{bmatrix} \begin{bmatrix} 0.7 \\ 1.6 \end{bmatrix} \\
-    &= -5.6 + 25.6 \\
-    &= 20
-\end{split}
-\end{equation}
-
-So a covector is a measuring device, a yardstick, always defined by a row vector, always working via the dot product (that is, matrix multiplication with a column vector), and so as to balance the effect of a coordinate transformation so the measurement remains the same, whatever we do to the coordinates of our vectors, we must do the inverse to the coordinates of our covectors.
-
-If the transformation is a simple scaling up, it is pretty trivial to see that each vector coordinate will grow by a factor, and thus each covector coordinate must shrink by the same factor so that we get the same product when corresponding coordinates are multiplied. But the example above demonstrates how the same is true for any transformation described by a matrix.
-
-Harking back once again to schoolhouse vectors, there is one situation in which this entire conclusion can be ignored, and it is both convenient and a source of confusion. To follow the rules of matrix multiplication, we have to put the matrix on the right of a column and on the left of a row:
-
-\begin{equation}
-    \begin{split}
-        x' &= S^{-1} x \\
-        f' &= f S        
-    \end{split}
-\end{equation}
-
-We can switch the order in either line, but only if we also transpose all the matrices, which in the covector case turns rows into columns:
-
-$$
-f'^T = S^T f^T 
-$$
-
-As a column vector is now being left-multiplied by a matrix, this much more closely resembles the transformation for the ordinary vector, except that instead of $S^{-1}$ it uses $S^T$. But suppose $S$ is a unitary transformation (rotation or reflection, with no scaling or shearing). In that case:
-
-$$
-S^T = S^{-1}
-$$
-
-And so the transformation rule becomes:
-
-$$
-f'^T = S^{-1} f^T 
-$$
-
-So it is in fact identical to the formula for an ordinary vector. Under a unitary change of basis, we can represent covectors by column vectors and they transform exactly the same as ordinary vectors. It is only necessary to treat them differently if we allow non-unitary coordinate changes.
-
-If you begin with an orthonormal basis, and apply a unitary transformation to your vector space, the basis will remain orthonormal. Hence another common name for a unitary transformation: an orthonormal transformation.
-
-\section{Displacement in a scalar field}
-
-We often have a scalar field (in the physics sense), that is, a scalar-valued function of position in space. An example is a survey of the temperature at points on a tabletop. This is highly unlikely to be a linear function of position. At one spot on the table there is a hot cup of tea, and on another there is an ice bucket of champagne. The temperature is a complex, messy function of position.
-
-We can then ask what by what amount does the temperature change if we move from our current position to another spot nearby. This temperature change is given by a scalar-valued function of the displacement vector. Clearly this function has a different definition at each location. Also to be accurate over any distance it would need to be arbitrarily complicated.
-
-The position of a point on the tabletop is given by a position vector and the temperature by the function $f$. We start at the point $\mathcal{P}$, reached by the position vector $\vec{p}$, where the temperature is $f(\vec{p})$, and we want to know by how much the temperature will change if we move by a small displacement $\vec{x}$.
-
-\begin{figure}[h]
-    \centering
-    \begin{tikzpicture}
-        \draw[step=1cm,gray,very thin] (0,0) grid (4,3);
-        \node at (1,0.75) {\scriptsize $\mathcal{P}$};
-        \draw (1,1) circle (0.05);
-        \node at (1.6,1.15) {\scriptsize $\vec{x}$};
-        \draw[thick,->] (1,1) -- (1.7,1.5);
-    \end{tikzpicture}
-    \caption{A small displacement from $\mathcal{P}$.} \label{fig:vector-displacement}
-\end{figure}
-
-The answer is given by the function $d_p(\vec{x})$, which will be a different function depending on where $\mathcal{P}$ is. We can sort of cheat and define it in terms of $f$ with perfect accuracy:
-
-$$
-d_p(\vec{x}) = f(\vec{p} + \vec{x}) - f(\vec{p})
-$$
-
-But that would be overkill. All we really need is a linear approximation that is only precisely accurate at $\mathcal{P}$, where it has the value zero, but will diverge from the truth with increasing distance. That is, for any scalar constant $K$:
-
-$$
-d_p(K \vec{x}) = K d_p(\vec{x})
-$$
-
-Having chosen a direction, the $d_p$ function's value will be proportional to the distance moved. The smaller the displacement, the smaller the error. For large displacement it may be wildly wrong; it doesn't carry enough information about the shape of the temperature map contained in $f$ to reproduce it perfectly. It only knows something about how $f$ changes in the immediate vicinity of $\mathcal{P}$, but that's enough.
-
-Such a function can be defined entirely by a vector that we project the parameter vector onto (using the dot product). The defining vector that characterises the function at each position is just the gradient of $f$ there. The gradient vector of a scalar field $f(\vec{x})$ in $i$ dimensions for some basis $\vec{e}_i$ is the sum of the partial differentials with respect to the $x_i$:
-
-$$
-\nabla f(\vec{x}) = \sum_i \vec{e}_i \frac{\partial f}{\partial x_i}
-$$
-
-Note that, as always, the choice of basis is entirely arbitrary - the gradient vector is a physical fact that has a certain magnitude and direction in space, whatever basis we're using to describe it in coordinates.
-
-So the minimalist function $d_p$ that gives a linear approximation of the change in $f$ at position $\vec{p}$ due to a displacement $\vec{x}$ is:
-
-$$
-d_p(\vec{x}) = \nabla f(\vec{p}) \cdot \vec{x}
-$$
-
-And so $d_p$ is evidently a covector: a scalar-valued linear function of vectors. Therefore if we change the basis vectors by some transformation $S$, the coordinates we use to describe $\vec{x}$ will have to transform by $S^{-1}$, and the coordinates that describe $\nabla f(\vec{p})$ will have to transform by $S$ in order for the function $d_p$ to calculate the same change in the value of the field for the same displacement $\vec{x}$. This is essential because the field in which we are moving is a physical structure, and the displacement vector $\vec{x}$ relates to a physical distance and direction in the field that is not altered by our change of coordinate system. It's still the same displacement and must therefore result in the same change in the value of the field.
+When dealing with objects expressed in coordinates we use the convention that vector coordinates are up and covector coordinates are down, and this lets us always take care to ensure that when we sum their products we always pair a vector (up) with a covector (down) using the same index variable. If necessary we can easily raise or lower using the appropriate version of the metric.
 
 \section{Operators}
 
-An operator $\hat{O}$ is a function that maps from vectors to vectors. That is, the input is a vector and so is the output. It may change the length or direction of the vector.
+In this context, an operator $\hat{O}$ is a function that maps from a vector to a vector, $V \mapsto V$. As usual we are particularly interested in linear operators, for which:
 
-We are particularly interested in linear operators, for which:
+$$
+\hat{O} \vec{a}
+=
+\hat{O}\left(\sum_n a^n\vec{e}_n \right)
+= 
+\sum_n a^n\hat{O}\vec{e}_n
+$$
 
-$$\hat{O}(x\vec{i} + y\vec{j}) = x\hat{O}\vec{i} + y\hat{O}\vec{j}$$
+Why? Because to completely characterise the behaviour of such an $\hat{O}$ we only need to know its effect on the $n$ basis vectors, which we can capture in a square matrix.
 
-Why? Because if you have chosen your basis $\vec{i}, \vec{j}$ and so you can express all vectors in coordinates $(x, y)$, i.e. as simple "weighted sums" of your two basis vectors, $x\vec{i} + y\vec{j}$, then to apply $\hat{O}$ to a vector, all you need to know is $\hat{O}\vec{i}$ and $\hat{O}\vec{j}$.
+This is a new kind of geometric object. It has a physical meaning that is entirely independent of the choice of basis, even though the matrix elements will certainly be different depending on the basis. So just as we can speak of the same vector being represented by different columns of coordinates depending on the choice of basis, we can also speak of the same operator being represented by matrices of different elements depending on the choice of basis.
 
-By applying the operator to the basis vectors, you discover two new basis vectors:
+When we label a matrix with indices, $M_{ij}$, we have choice: should they be subscript or superscript? This was straightforward when we introduced the inner product, because we conceived of it as two covectors tied together by multiplication: $V^* \otimes V^*$, and so their coordinate representations must have subscripts, and hence the metric has subscript indices. Likewise the inverse metric is like two vectors, $V \otimes V$, and so has superscript indices.
 
-$$\vec{i'} = \hat{O}\vec{i}$$
-$$\vec{j'} = \hat{O}\vec{j}$$
+In both those cases, we found that as well as acting as a mapping from two inputs to a scalar, the same object could map a single input to its dual partner.
 
-The coordinates you would use to express an input vector:
+Here we want a machine that maps a vector to a vector. As a hunch, consider a two-slot machine made of a vector and a covector, $\vec{a} \otimes \vec{f}$. Or (as usual) consider the general set of machines $V \otimes V^*$ that are linear combinations of the basis of simple basis machines $\vec{e}_\mu \otimes \vec{e}^\nu$:
 
-$$\vec{v} = x\vec{i} + y\vec{j}$$
+\begin{equation}
+\hat{O} = \sum_{\mu\nu} O\indices{^\mu_\nu} \left( \vec{e}_\mu \otimes \vec{e}^\nu \right)
+\end{equation}
 
-can be used to mix these new basis vectors and get the result of applying the operator to the input vector:
+So the operator is represented (in the current basis) by a matrix with one super and one sub index, being the sum of a set of matrices whose elements are the product of a vector coordinate and a covector coordinate. To find the coordinates of the resultant vector $\vec{b}$ obtained from $\hat{O} \vec{a}$:
 
-$$\hat{O}\vec{v} = \hat{O}(x\vec{i} + y\vec{j}) = x\vec{i'} + y\vec{j'}$$
+$$
+b^\mu = \sum_{\nu} = O\indices{^\mu_\nu} a^\nu
+$$
 
-A matrix can be interpreted as a way to convert coordinate vectors from one basis to another, preserving the same meaning, or as a way to produce a different vector in the same basis.
+There are some operators that have the same coordinates in all bases. The $0$-matrix, which maps all vectors to the $0$-vector, has all its elements $0$. The identity operator, which has no effect on its input, is $\delta_{\mu\nu}$ in all bases.
 
-Considering the latter use, i.e. linear operators that transform vectors, what effect does a change of basis have on vector coordinates?
+We can think of a vector as pointing in a direction in space, and this being an aspect of its geometrical nature. How can we similarly characterise operators?
 
 \section{Eigenvectors and Eigenvalues}\label{sec:vectors-eigen}
 
-An operator that performs only scaling (e.g. $G$ and $S$) is isotropic, treating all directions equivalently.
+An operator that performs only scaling is isotropic, treating all directions equivalently. We can (in somewhat woolly terms) think of it as sphere-shaped.
 
-But some operators are biased with regard to direction. To characterise the behaviour of an operator we can consider those vectors which are scaled by it without their direction being altered (the scaling may be negative, leaving the vector pointing the opposite direction; as long as the resulting vector is co-linear with the input vector, that's insignificant enough.) Such vectors are called the \textit{eigenvectors} of the operator, and the corresponding scalar values are the \textit{eigenvalues}.
+But some operators are biased with regard to direction. To characterise the behaviour of an operator we can consider those vectors which are scaled by it without their direction being altered (the scaling may be negative, leaving the vector pointing the opposite direction; as long as the resulting vector is co-linear with the input vector, that's insignificant enough.) Such vectors are called the \textit{eigenvectors} of the operator, and the scaling value associated with each eigenvector is called an \textit{eigenvalue}. Note that the zero vector is not considered a candidate for an eigenvector. It has no direction, making it impossible to say whether the operator has changed its direction. Also it goes from length zero to length zero under any operator, so any scalar could be the eigenvalue, meaning that the eigenvalue is undefined.
 
-So in the case of $S$ and $G$, all input vectors are eigenvectors: all inputs get only scaled, and always by the same eigenvalue.
+For operators that perform a general isotropic scaling, all input vectors are eigenvectors: all inputs get only scaled, and always by the same eigenvalue.
 
 With vectors in the plane, when the operator is a pure rotation, e.g. by a right-angle anti-clockwise:
 
@@ -1006,11 +946,9 @@ $$R_C = \begin{bmatrix}0 & 1 \\ -1 & 0\end{bmatrix}$$
 
 every vector changes direction by the same angle, and that means there are no eigenvectors.
 
-The zero vector is not considered a candidate for an eigenvector; regardless of the operator, it goes from length zero to length zero, so any scalar could be the eigenvalue, meaning that the eigenvalue is undefined.
+More interestingly, there are operators for which only some vectors are eigenvectors. In three dimensions the rotation has an axis, along which all vectors are eigenvectors, and any vectors not on that axis are not eigenvectors. Curiously, even though these eigenvectors don't exist in the planar case, we can find \textit{complex} eigenvalues for them by supposing that such eigenvectors exist, which is weird.
 
-In three dimensions the rotation has an axis, along which all vectors are eigenvectors. Curiously, even though these vectors don't exist in the plane, we can find \textit{complex} eigenvalues for them by supposing that such eigenvectors exist, which is weird.
-
-More interestingly, there are operators for which only some vectors are eigenvectors. Consider a reflection (call it $M$ for mirror):
+Consider a reflection (call it $M$ for mirror):
 
 $$M = \begin{bmatrix}1 & 0 \\ 0 & -1\end{bmatrix}$$
 
@@ -1036,7 +974,7 @@ We have to leave behind the identity matrix $I$ in place of $v$ because we need 
 
 Having split it into two factors whose product is zero, we know that either one or both of the factors must be zero. We already realised we aren't interested in the case where $v$ is the zero vector because its eigenvalue will be undefined (it could be anything). So we refuse to accept $0$ as an eigenvector. Therefore $v$ is not the zero vector, and so the matrix $M - xI$ must be such that it is able to transform some non-zero vector $v$ into the zero vector. This means it has no inverse, as there is no way to recover the direction of the original vector if we've sent it to $0$ (the zero vector has no direction, or has all directions, so direction is a meaningless concept for it.)
 
-One way to picture the effect of a matrix is to think of it acting on a unit square (where the matrix is $2 \times 2$) and asking what the area of the resulting parallelogram will be. If it is not zero, every point in the original square has a unique point in the parallelogram and vice versa: the matrix is invertible. If the area is zero, the points of the original square have been crammed onto a line of $1$ dimension, so we have destroyed the information about where they came from in $2$ dimensions. All input vectors end up pointing in the same direction, and are only distinguished by length. No linear transform will be able to spread them back out into the correct different directions: the matrix is not invertible.
+Restricting ourselves to a two dimensional vector space, one way to picture the effect of a matrix is to think of it acting on a unit square (where the matrix is $2 \times 2$) and asking what the area of the resulting parallelogram will be. If it is not zero, every point in the original square has a unique point in the parallelogram and vice versa: the matrix is invertible. If the area is zero, the points of the original square have been crammed onto a line of $1$ dimension, so we have destroyed the information about where they came from in $2$ dimensions. All input vectors end up pointing in the same direction, and are only distinguished by length. No linear transform will be able to spread them back out into the correct different directions: the matrix is not invertible.
 
 The area of that parallelogram (or in higher dimensions, the volume of an n-parallelepiped) is called the determinant of the matrix, $\det M$. If it's zero, the matrix is not invertible. And therefore, if:
 
@@ -1048,6 +986,539 @@ $$(M - xI)v = 0$$
 
 one at a time, and solve to find the corresponding $v$. Thankfully all this can be mechanised.
 
+\section{Change of Basis}\label{sec:vectors-change-basis}
+
+We have now accumulated a menagerie of geometric objects that can be described numerically relative to a chosen basis. We now turn to the problem of what happens to the those numerical representations when we choose a different set of basis vectors.
+
+Often in discussions of transformations a tick is added to existing symbols to indicate the transformed version of that symbol, e.g. $x$ becomes $x'$ (pronounced "x prime"). But this clashes horribly with superscripts. So here we will use underlining, e.g. the vector $\vec{a}$ may have a first representation in coordinates $a^i$ and also a transformed representation $\underline{a}^i$.
+
+\subsection{Effect of change of basis on vectors}
+
+A vector $\vec{v}$ in some basis can be expressed in coordinates as a column matrix $v$:
+
+$$v = \begin{bmatrix}3 \\ 4\end{bmatrix}$$
+
+Note that, unlike some prior examples, we are not saying the vector \textit{is} the column matrix. We are saying nothing at all about the nature of the vectors, except that they are elements of some vector space. We are describing in numbers a vector of unknown type taken from some vector space, which we can only do because we have chosen a basis, $e$:
+
+$$e = \begin{bmatrix}\vec{e_1} & \vec{e_2}\end{bmatrix}$$
+
+Matrix multiplication builds the vector:
+
+$$\vec{v} = ev = 3\vec{e_1} + 4\vec{e_2}$$
+
+We can create a matrix that will double the length of the basis vectors:
+
+$$Z = \begin{bmatrix}2 & 0 \\ 0 & 2\end{bmatrix}$$
+
+By the rules of matrix multiplication the bases must be on the left.
+
+$$\underline{e} = eZ = \begin{bmatrix}2\vec{e_1} & 2\vec{e_2}\end{bmatrix}$$
+
+What coordinates would $\vec{v}$ have in this new basis $\underline{e}$? Intuitively the coordinates need to be halved to refer to the same vector. So we need the inverse of $Z$, written as $Z^{-1}$, which shrinks the coordinates:
+
+$$Z^{-1} = \begin{bmatrix}0.5 & 0 \\ 0 & 0.5\end{bmatrix}$$
+
+And so our vector's coordinates become:
+
+$$\underline{v} = Z^{-1}v = \begin{bmatrix}1.5 \\ 2\end{bmatrix}$$
+
+This is the same vector as before, just in different coordinates:
+
+$$\vec{v} = ev = \underline{e} \, \underline{v}$$
+
+We say that vectors are \textit{contravariant} under a change of basis, because their coordinates are transformed by the inverse of the matrix used to transform the basis.
+
+This shows how important it is to be clear about how we're defining the adjustment made to the basis. A transformation $Z$ applied to the basis vectors implies a transformation $Z^{-1}$ on the coordinates of vectors. So when we talk about similar effects on other objects, to avoid confusion we'll consistently start with $Z$, the transformation that updates the basis.
+
+\subsection{Effect of change of basis on covectors} \label{sec:vector-grow-shrink}
+
+A covector can be thought of as a yardstick or a measuring device. By evaluating it with some vector parameter, you are taking a measurement of that vector in the form of an ordinary number, something that is independent of any choice of basis and thus independent of the representation in coordinates.
+
+The ordinary vector $\vec{x}$ is represented by a column matrix $x$ of coordinates in our initial basis. As we're updating the basis with $Z$, therefore we must left-multiply the coordinates of the vector by $Z^{-1}$ to get it in the new coordinate system:
+
+$$
+\underline{x} = Z^{-1} x
+$$
+
+But for the covector $\vec{f}$, which is a row matrix $f$, we right-multiply by the original $Z$ (not the inverse):
+
+$$
+\underline{f} = f Z
+$$
+
+This ensures that the two representations give us exactly the same numerical result when we evaluate the function on the vector, regardless of the basis:
+
+$$
+\langle \vec{f}, \vec{x} \rangle = \underline{f} \, \underline{x} = (f Z) (Z^{-1} x) = f (Z Z^{-1}) x = fx
+$$
+
+The scalar $\langle \vec{f}, \vec{x} \rangle$ is a basis-independent physical fact. To balance the effect of a coordinate transformation, whatever we do to the coordinates of our vectors, we must do the inverse to the coordinates of our covectors.
+
+\subsection{The inner product under change of basis}
+
+The inner product $g$ operates on two vectors. We've written it in matrix multiplication form by putting the transpose $a^\intercal$ of the first vector on the left, so it becomes a single row matrix, with the second vector on the right as a column matrix $b$:
+
+$$
+(\vec{a}, \vec{b}) = a^\intercal g\, b = \sum_{\mu\nu} a^{\mu} g_{\mu\nu} b^{\nu}
+$$
+
+If we transform the basis by $Z$, we know the coordinate columns $a$ and $b$ for the two vectors must transform by $Z^{-1}$ to become $\underline{a}$ and $\underline{b}$. To produce the same result, the metric square matrix $g$ must be replaced with a new matrix $\underline{g}$. 
+
+$$
+(\vec{a}, \vec{b}) = \underline{a}^\intercal \underline{g}\, \underline{b} = a^\intercal g\, b
+$$
+
+So in practical terms, we need a new two-slot machine $\underline{g}$ that hides the original $g$ machine in a compatibility layer, which "un-transforms" the two input vectors before passing them on to its concealed inner $g$.
+
+To get $b$ back from $\underline{b}$ is easy, because we just left multiply by $Z$ to cancel out the $Z^{-1}$:
+
+$$
+b = Z(\underline{b}) = Z(Z^{-1}b) = (Z\,Z^{-1})b = b
+$$
+
+To get $a$ from $\underline{a}$ would be the same, except we want to get $a^\intercal$ from $\underline{a}^\intercal$, so instead we right-multiply by $Z^\intercal$, which looks awful but is really the same thing with everything transposed and with the order flipped:
+
+$$
+a^\intercal = (\underline{a}^\intercal)Z^\intercal = (a^\intercal (Z^{-1})^\intercal) Z^\intercal = a((Z^{-1})^\intercal) Z^\intercal) = a
+$$
+
+So un-transforming the left and right sides means we can use the unmodified $g$:
+
+$$
+(\vec{a}, \vec{b}) = (\underline{a}^\intercal Z^\intercal) g (Z \underline{b}) 
+$$
+
+But associativity means we can bracket the middle square matrix separately:
+
+$$
+(\vec{a}, \vec{b}) = \underline{a}^\intercal (Z^\intercal g Z) \underline{b} 
+$$
+
+And so:
+
+$$
+\underline{g} = Z^\intercal g Z
+$$
+
+By far the ugliest part of this was all the transposition on the left side. But we can avoid matrix notation entirely and use summation. We know that in the original basis:
+
+$$
+(\vec{a}, \vec{b}) = \sum_{\mu\nu} a^{\mu} g_{\mu\nu} b^{\nu}
+$$
+
+This clarifies that we're just adding a lot of products: $a^{\mu}$, $g_{\mu\nu}$ and $b^{\nu}$ are all just ordinary numbers that we're multiplying so although we've written them in the same order they appear in the matrix multiplication, that is entirely unnecessary here.
+
+We've seen how a machine like $g$ can be defined as a linear combination of a set of basis machines that span the space of all possible machines, each basis machine being formed by choosing a distinct pairing of the basis covectors:
+
+$$
+\sum_{\mu\nu} g_{\mu\nu} (\vec{e}^i \otimes \vec{e}^j)
+$$
+
+And how that machine acts on two vectors like so:
+
+$$
+\sum_{\mu\nu} g_{\mu\nu} \langle \vec{e}^\mu,\vec{a} \rangle \langle \vec{e}^\nu,\vec{b} \rangle
+$$
+
+But this time we'll build the vectors $\vec{a}$ and $\vec{b}$ from their coordinates in the transformed basis, $\underline{a}^{i}$ and $\underline{b}^{i}$.
+
+The basis is transformed by $Z$, and so the coordinates of the vectors will have been transformed by $Z^{-1}$, and thus to recover the coordinates in the original basis we'll have to use $Z$:
+
+$$
+\vec{a} = \sum_{\alpha\beta} Z\indices{^\alpha_\beta} \underline{a}^{\beta} \vec{e}_{\alpha}
+\, , \,
+\vec{b} = \sum_{\kappa\lambda} Z\indices{^\kappa_\lambda} \underline{b}^{\lambda} \vec{e}_{\kappa}
+$$
+
+By the usual substitution and linearity jiggling (yes, that's six indices, so $2^6 = 64$ summation terms if the space is $2$-dimensional):
+
+$$
+\sum_{\mu\nu\alpha\beta\kappa\lambda} g_{\mu\nu} Z\indices{^\alpha_\beta} \underline{a}^{\beta} Z\indices{^\kappa_\lambda} \underline{b}^{\lambda} \langle \vec{e}^\mu, \vec{e}_\alpha \rangle \langle \vec{e}^\nu, \vec{e}_\kappa \rangle
+$$
+
+But also as usual, most of the terms vanish because that's how basis covectors operate on basis vectors. We can replace $\alpha$ with $\mu$ and $\kappa$ with $\nu$, eliminating two indices:
+
+$$
+\sum_{\mu\nu\beta\lambda} g_{\mu\nu} Z\indices{^\mu_\beta} \underline{a}^{\beta} Z\indices{^\nu_\lambda} \underline{b}^{\lambda}
+$$
+
+Merely reordering and grouping so that the input vector coordinates are last:
+
+$$
+\sum_{\beta\lambda\mu\nu} \left[g_{\mu\nu} Z\indices{^\mu_\beta} Z\indices{^\nu_\lambda} \right] \underline{a}^{\beta} \underline{b}^{\lambda} 
+$$
+
+This is an example of a self-contained set of summed terms that can be extracted, by defining:
+
+$$
+\underline{g}_{\beta\lambda} = 
+\sum_{\mu\nu} g_{\mu\nu} Z\indices{^\mu_\beta} Z\indices{^\nu_\lambda}
+$$
+
+Which is the rule for transforming $g$ to account for a basis transformation $Z$, giving us two ways to calculate the same inner product value:
+
+$$
+(\vec{a}, \vec{b})
+= 
+\sum_{\beta\lambda} \underline{g}_{\beta\lambda} \underline{a}^{\beta} \underline{b}^{\lambda}
+= 
+\sum_{\mu\nu} g_{\mu\nu} a^{\mu} b^{\nu}
+$$
+
+\subsection{Linear operators under change of basis}
+
+We've just seen how to transform a matrix, $g$ into $g$, so now we know how to transform matrices, nothing to see here, move along, right?
+
+A linear operator is a mapping $V \mapsto V$, whereas the inner product maps $V \mapsto V^*$. Among other observations, we saw that there is always a basis in which the inner product is represented by $g_{\mu\nu} = \delta_{\mu\nu}$, but if a linear operator is represented by $\delta_{\mu\nu}$ then it maps every vector to itself, and that means it must be represented by $\delta_{\mu\nu}$ \textit{regardless of the basis}. So they are not the same.
+
+
+
+
+\section{Displacement in a scalar field}
+
+\subsection{Temperature as a function of position}
+
+We often have a scalar field (in the physics sense), that is, a scalar-valued function of position in space. An example is a survey of the temperature at points on a tabletop. This is highly unlikely to be a linear function of position. In one region of the table there is a hot cup of tea, and in another there is an ice bucket of champagne. The temperature is a complex, messy function of position.
+
+We can then ask what by what amount does the temperature change if we move from our current position to another spot nearby. This temperature change is given by a scalar-valued function of the displacement vector (like a covector). Clearly this function has a different definition at each location. But to be accurate over any distance it would need to be arbitrarily complicated (unlike a covector)
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \draw[step=1cm,gray,very thin] (0,0) grid (4,3);
+        \node at (1,0.75) {\scriptsize $\mathcal{P}$};
+        \draw (1,1) circle (0.05);
+        \node at (1.6,1.15) {\scriptsize $\vec{x}$};
+        \draw[thick,->] (1,1) -- (1.7,1.5);
+    \end{tikzpicture}
+    \caption{A small displacement from $\mathcal{P}$.} \label{fig:vector-displacement}
+\end{figure}
+
+The position of a point on the tabletop (Figure \ref{fig:vector-displacement}) is given by a position vector and the temperature by the function $T$. We start at the point $\mathcal{P}$, reached by the position vector $\vec{p}$, where the temperature is $T(\vec{p})$, and we want to know by how much the temperature will change if we move by a small displacement $\vec{x}$.
+
+The answer is given by the function $dT(\vec{x})$, which will be a different function depending on where $\mathcal{P}$ is. We can sort of cheat and define it in terms of $T$ with perfect accuracy:
+
+$$
+dT(\vec{x}) = T(\vec{p} + \vec{x}) - T(\vec{p})
+$$
+
+But that would be overkill. All we really need is a linear approximation that is only precisely accurate at $\mathcal{P}$, where it has the value zero, but will change linearly with increasing distance (and may diverge from the truth). 
+
+That is, for any scalar constant $k$:
+
+$$
+dT(k \vec{x}) = k \, dT(\vec{x})
+$$
+
+As $k$ shrinks, the error vanishes:
+
+\begin{equation}
+    dT(\vec{x}) = \lim_{k \to 0} \frac{T(\vec{p} + k\vec{x}) - T(\vec{p})}{k}
+    \label{eqn:directional-derivative-limit}
+\end{equation}
+
+Having chosen a direction, the $dT$ function's value will be proportional to the distance moved, which is to say, the magnitude of the supplied displacement vector. The smaller the displacement, the smaller the value, but also the smaller the error. For large displacement it may be wildly wrong; it doesn't carry enough information about the shape of the temperature map contained in $T$ to reproduce it perfectly. It only knows something about how $T$ changes in the immediate vicinity of $\mathcal{P}$, but that's enough, because if $T$ is a complicated function then there will be a different $dT$ function associated with each point in space, and that variation will encode the underlying shape of $T$.
+
+A function that maps vectors to scalars in this simple linear way is clearly a covector, $\vec{d}$. Given a covector basis $\vec{e}^n$, there will be a set of coordinates $d_n$:
+
+\begin{equation}
+    dT(\vec{x}) = \vec{d} = \sum_n \vec{e}^n d_n
+    \label{eqn:covector-directional-derivative}
+\end{equation}
+
+For every covector there is a dual vector, from the vector space that we use to describe the displacement $x$, that we could use to convey the same information as $\vec{d}$. If we call that vector $\vec{s}$ (short for "slope", for reasons that may become clear), we know how to convert covector coordinates into vector coordinates with the inverse metric $g^{\mu\nu}$:
+
+\begin{equation}
+\begin{split}
+\vec{s} 
+&= \sum_{\mu} \left( \sum_{\nu} g^{\mu\nu} d_{\nu} \right) \vec{e}_{\mu} \\
+&= \sum_{\mu} s_{\mu} \vec{e}_{\mu}
+\label{eqn:vector-gradient}
+\end{split}
+\end{equation}
+
+Of course just as the function $df$ (a.k.a. the covector $\vec{d}$) is different at each point in the physical space, so too is the corresponding vector $\vec{s}$. It's a vector field. The official name for $\vec{s}$ is the \textit{gradient}\footnote{We can't reasonably call it $\vec{g}$, as that is the metric (blame Gauss.)} of $T(x)$.
+
+\subsection{Uniform gradient in orthonormal basis}
+
+\begin{figure}[h]
+    \caption{Simplified scalar field}
+    \centering
+    \begin{tikzpicture}
+        \draw[dashed] (1,0) -- (0,1);
+        \node at (-0.25,1) {-3};
+        \draw[dashed] (2,0) -- (0,2);
+        \node at (-0.25,2) {-2};
+        \draw[dashed] (3,0) -- (0,3);
+        \node at (-0.25,3) {-1};
+        \draw[dashed] (4,0) -- (0,4);
+        \node at (-0.2,4) {0};
+        \node at (4.2,0) {0};
+        \draw[dashed] (4,1) -- (1,4);
+        \node at (4.2,1) {1};
+        \draw[dashed] (4,2) -- (2,4);
+        \node at (4.2,2) {2};
+        \draw[dashed] (4,3) -- (3,4);
+        \node at (4.2,3) {3};
+        \draw[thick,->] (2,2) -- (3,2);
+        \node at (2.7,1.7) {$\vec{e_1}$};
+        \draw[thick,->] (2,2) -- (2,3);
+        \node at (1.7,2.6) {$\vec{e_2}$};
+    \end{tikzpicture}
+    \label{fig:scalar-field-std-basis}
+\end{figure}
+
+To drastically simplify, we'll consider a scalar field that has the same gradient everywhere in space. This means that the temperature function of absolute position $T(\vec{p})$ depends in a simple way on the position. We can define it in familiar way by using the standard basis, that is, orthonormal basis vectors $\vec{e}_n$, which are shown in Figure \ref{fig:scalar-field-std-basis} overlaid on dashed lines of equal temperature.
+
+The temperature as a function of the position coordinates $p^n$ is given by:
+
+\begin{equation}
+    T(\vec{p}) = p^1 + p^2
+    \label{eqn:t-absolute}
+\end{equation}
+
+The temperature is simply the sum of the coordinates, and so at the origin the temperature is $0$, likewise at coordinates $(1, -1), (2, -2), (-1, 1), (-2, 2)$ and so on, which is to say that there is a diagonal line along which $T$ is $0$. Similarly there is a parallel line along which $T$ is $1$, another where it is $-1$ and so on. These lines are \textit{isolines} or \textit{contours}\footnote{Strangely they are sometimes called "contour lines" even if they are curved paths.}
+
+The simplification arsing from a scalar field whose contours are evenly spaced parallel lines is that although $T$ changes with position, there is no variation in \textit{how it changes} with position. This means that the function $dT$ for the change made by a small displacement $\vec{x}$ is structurally identical to \eqref{eqn:t-absolute}:
+
+\begin{equation}
+    dT(\vec{x}) = x^1 + x^2
+    \label{eqn:t-rel}
+\end{equation}
+
+(As always in this topic, $x^2$ means the second coordinate of a column vector, not the square of a variable $x$.) We can express this function in matrix multiplication:
+
+\begin{equation}
+    T(\vec{x}) = 
+    \begin{bmatrix}1 & 1\end{bmatrix}
+    \begin{bmatrix}x^1 \\ x^2\end{bmatrix}
+    \label{eqn:t-rel-matrices}
+\end{equation}
+
+That is, it's the action of a covector with coordinates $(1, 1)$, which we called $\vec{d}$ in \eqref{eqn:covector-directional-derivative}:
+
+$$
+T(\vec{x}) = \langle \vec{d}, \vec{x} \rangle
+$$
+
+The dual of $\vec{d}$ is the vector we called $\vec{s}$ in \eqref{eqn:vector-gradient}, and because we're in the standard orthonormal basis the coordinates are the same, $d_n = s^n$. This is the gradient vector and can be legitimately drawn in physical space as a vector (Figure \ref{fig:gradient-vector}).
+
+\begin{figure}[h]
+    \caption{Gradient vector}
+    \centering
+    \begin{tikzpicture}
+        \draw[dashed] (1,0) -- (0,1);
+        \node at (-0.25,1) {-3};
+        \draw[dashed] (2,0) -- (0,2);
+        \node at (-0.25,2) {-2};
+        \draw[dashed] (3,0) -- (0,3);
+        \node at (-0.25,3) {-1};
+        \draw[dashed] (4,0) -- (0,4);
+        \node at (-0.2,4) {0};
+        \node at (4.2,0) {0};
+        \draw[dashed] (4,1) -- (1,4);
+        \node at (4.2,1) {1};
+        \draw[dashed] (4,2) -- (2,4);
+        \node at (4.2,2) {2};
+        \draw[dashed] (4,3) -- (3,4);
+        \node at (4.2,3) {3};
+        \draw[thick,->] (2,2) -- (3,3);
+        \node at (2.9,2.6) {$\vec{s}$};
+    \end{tikzpicture}
+    \label{fig:gradient-vector}
+\end{figure}
+
+Note how it is perpendicular to the contours. It points in the direction of "steepest increase" of the field. Also its magnitude is significant: if you move $1$ unit of distance along the direction of $\vec{s}$, the field will increase by $\|\vec{s}\|$, which in this case is $\sqrt{2}$.
+
+(The diagram is possibly confusing on this point, because it actually shows that a displacement by $\vec{s}$, i.e. moving along the direction of $s$ by distance $\|\vec{s}\|$, will increase $T$ by $2$, which is the same thing.)
+
+\subsection{Uniform gradient in a non-orthonormal basis}
+
+How can we be sure that this description wasn't affected by our use of the standard basis?
+
+\begin{figure}[h]
+    \caption{Simplified scalar field in another basis}
+    \centering
+    \begin{tikzpicture}
+        \draw[dashed] (1,0) -- (0,1);
+        \node at (-0.25,1) {-3};
+        \draw[dashed] (2,0) -- (0,2);
+        \node at (-0.25,2) {-2};
+        \draw[dashed] (3,0) -- (0,3);
+        \node at (-0.25,3) {-1};
+        \draw[dashed] (4,0) -- (0,4);
+        \node at (-0.2,4) {0};
+        \node at (4.2,0) {0};
+        \draw[dashed] (4,1) -- (1,4);
+        \node at (4.2,1) {1};
+        \draw[dashed] (4,2) -- (2,4);
+        \node at (4.2,2) {2};
+        \draw[dashed] (4,3) -- (3,4);
+        \node at (4.2,3) {3};
+        \draw[thick,->] (2,2) -- (3,1);
+        \node at (2.3,1.3) {$\vec{e_1}$};
+        \draw[thick,->] (2,2) -- (2,2.5);
+        \node at (1.7,2.6) {$\vec{e_2}$};
+    \end{tikzpicture}
+    \label{fig:scalar-field-awkward-basis}
+\end{figure}
+
+Let's rewind back to the start and pick a different basis (Figure \ref{fig:scalar-field-awkward-basis}). We've changed $\vec{e}_1$ to point diagonally downwards and to the right, so in terms of the standard basis it would have coordinates $(1, -1)$. We've also made $\vec{e}_2$ half its previous length.
+
+The significant thing about this (apart from the abandoning of both orthogonality and equal lengths) is that $\vec{e}_1$ is parallel to the contours. This means that a displacement that adjusts only the first coordinate will not affect the value of $T$, because it just moves along the current contour. But a displacement in the second coordinate will have half the effect it had before. So we expect:
+
+\begin{equation}
+    dT(\vec{x}) = \frac{1}{2}x^2
+    \label{eqn:t-rel-awk}
+\end{equation}
+
+(Again, that is not "x squared"! It's the second coordinate of $\vec{x}$.) Or in matrix multiplication it's:
+
+\begin{equation}
+    T(\vec{x}) = 
+    \begin{bmatrix}0 & \frac{1}{2}\end{bmatrix}
+    \begin{bmatrix}x^1 \\ x^2\end{bmatrix}
+    \label{eqn:t-rel-matrices-awk}
+\end{equation}
+
+That is, it's the action of a covector $\vec{d}$ with coordinates $(0, \frac{1}{2})$:
+
+$$
+T(\vec{x}) = \langle \vec{d}, \vec{x} \rangle
+$$
+
+As always, a covector $\vec{d}$ must have a dual vector $\vec{s}$, but this time we can't simply transpose the row of coordinates $d_n$ into a column of $s^n$. The coordinates of the dual vector/covector pair are different in a non-orthonormal basis. We can use the inverse metric (the "raising" metric) to convert the coordinates, if we can figure out what it is. The shortcut is to express our basis vectors as coordinates in terms of the standard orthonormal basis:
+
+$$
+\vec{e}_1 = \begin{bmatrix}
+    1 \\
+    -1
+\end{bmatrix}
+\, , \,
+\vec{e}_2 = \begin{bmatrix}
+    0 \\
+    \frac{1}{2}
+\end{bmatrix}
+$$
+
+and then the lowering metric's elements can be calculated by the dot product\footnote{This is only allowed because we're temporarily back in the standard orthonormal basis!}:
+
+\begin{equation}
+\begin{split}
+    g_{\mu\nu} &= \vec{e}_{\mu} \cdot \vec{e}_{\nu} \\
+    &= \begin{bmatrix}
+        2 & -\frac{1}{2} \\
+        -\frac{1}{2} & \frac{1}{4}
+        \end{bmatrix}
+\end{split}
+\end{equation}
+
+The raising metric is the inverse of that:
+
+\begin{equation}
+    g^{\mu\nu} = 
+    \begin{bmatrix}
+    1 & 2 \\
+    2 & 8
+    \end{bmatrix}
+\end{equation}
+
+So we can apply that to our transposed $d_n$ coordinates to get $s^n$ coordinates:
+
+$$
+\begin{bmatrix}
+    1 & 2 \\
+    2 & 8
+\end{bmatrix}
+\begin{bmatrix}
+    0 \\
+    \frac{1}{2}
+\end{bmatrix}
+= 
+\begin{bmatrix}
+    1 \\
+    4
+\end{bmatrix}
+$$
+
+And once again, these being the coordinates of an ordinary vector, we can legitimately plot that vector on the same diagram of the field's contours:
+
+\begin{figure}[h]
+    \caption{Gradient vector in other basis}
+    \centering
+    \begin{tikzpicture}
+        \draw[dashed] (1,0) -- (0,1);
+        \node at (-0.25,1) {-3};
+        \draw[dashed] (2,0) -- (0,2);
+        \node at (-0.25,2) {-2};
+        \draw[dashed] (3,0) -- (0,3);
+        \node at (-0.25,3) {-1};
+        \draw[dashed] (4,0) -- (0,4);
+        \node at (-0.2,4) {0};
+        \node at (4.2,0) {0};
+        \draw[dashed] (4,1) -- (1,4);
+        \node at (4.2,1) {1};
+        \draw[dashed] (4,2) -- (2,4);
+        \node at (4.2,2) {2};
+        \draw[dashed] (4,3) -- (3,4);
+        \node at (4.2,3) {3};
+        \draw[thick,->] (2,2) -- (3,3);
+        \node at (2.5,2.8) {$\vec{s}$};
+        \draw[thin,->] (2,2) -- (3,1);
+        \node at (2.3,1.3) {$\vec{e_1}$};
+        \draw[thin,->] (3,1) -- (3,1.5);
+        \draw[thin,->] (3,1.5) -- (3,2);
+        \draw[thin,->] (3,2) -- (3,2.5);
+        \draw[thin,->] (3,2.5) -- (3,3);
+        \node at (3.4,2) {$4\vec{e_2}$};
+    \end{tikzpicture}
+    \label{fig:gradient-vector-awk}
+\end{figure}
+
+For absolute clarity we've spelled out the scaling and addition of the basis vectors, to show that $\vec{s}$ is equivalent to adding $4$ lots of $\vec{e}_2$ on to the end of $\vec{e}_1$, just as the coordinates of $\vec{s}$ tell us to do. But the key point is that this is physically the same vector we found when working in the standard orthonormal basis (Figure \ref{fig:gradient-vector}). It is described by different coordinates, of course, but it's the same vector, pointing in the direction of steepest increase. It even has the same magnitude $\|\vec{s}\|$, which is the square root of the inner product of $\vec{s}$ with itself. The inner product will use the lowering metric to convert one of those $\vec{s}$ inputs to $\vec{d}$ so it can act on the other $\vec{s}$, ensuring a consistent result.
+
+Similarly, given $\vec{s}$ and some other vector $\vec{x}$ representing a displacement, we can directly obtain the change in $T$ due to that displacement using the inner product $(\vec{s}, \vec{x})$ between them:
+
+\begin{equation}
+\begin{split}
+dT &= (\vec{s}, \vec{x}) \\
+   &= \sum_{\nu} \left( \sum_{\mu} g_{\mu\nu} s^{\mu} \right) x^{\nu} \\
+    &= \sum_{\nu} d_{\nu} x^{\nu}
+\end{split}
+\end{equation}
+
+\subsection{Smoothly varying gradients}
+
+Generalising this to the more complicated kinds of $T$ scalar field, the scalar-valued function $dT(\vec{x})$, that tells us how $T$ changes due to a small displacement $\vec{x}$, may have a different definition at each point in space. But we can retain the simplification that we only need to know the linear approximation of that function at each point.
+
+The displacement will be described by a number in each dimension: a relative coordinate change associated with each position basis vector. If we only allow one coordinate, $x^i$, to vary and leave the others constant, $dT$ becomes a scalar-valued function of a single variable, $x^i$, which if plotted would simply be a line through the origin (i.e. it is $0$ when its parameter is $0$). It is therefore characterised entirely by a single number, its gradient, the number by which it multiplies its input.
+
+The function $T$ is of course not necessarily linear in $x^i$. Following the Maclaurin method (§\ref{sec:unit-circle-maclaurin}), we assume that whatever the function is, it can be expressed as a polynomial series\footnote{Warning! In this context we're dealing with scalar variables and $x^n$ briefly means "$x$ to the power of $n$", not the $n$th component of $\vec{x}$.} of the form $d_n x^n$. The first term ($n = 0$, $x^0 = 1$) is just a constant: the value of $T$ at the current position. We will be subtracting this from the total, because we want to know how $T$ changes as we move away from that position. The terms $n > 1$ involve $x^2$, $x^3$ and so on. As $x$ becomes arbitrarily small, these terms plummet in significance very rapidly. So that leaves just the term $d_1 x$, and $d_1$ is the only number we need to describe the tangent line to the curve of the function at the current position. We can therefore discard its subscript label, and replace it with $i$, as it's the sole outcome of this analysis when varying the $i$th component of $\vec{x}$:
+
+$$
+\frac{\partial T(\vec{x})}{\partial x^i} = d_i
+$$
+
+We carry out this analysis $i$ times to get the linear gradient number for all $i$ components, and thanks to linearity we can simply add them to get the total change in $F$:
+
+$$
+d T(\vec{x}) = \sum_i \frac{\partial T(\vec{x})}{\partial x^i}
+= \sum_i d_i x^i
+= \langle \vec{d} , \vec{x} \rangle
+$$
+
+Once again it's just the covector $\vec{d}$ described by coordinates $d_i$, acting on the displacement vector $\vec{x}$ described by coordinates $x^i$. Then to obtain the components of the gradient vector, which is the dual of $d$, we apply the raising metric $g^{\mu\nu}$ to $d$.
+
+The trivial example of the linear field with constant gradient $T(\vec{x}) = x^1 + x^2$ was therefore in fact fully illustrative, because if the function had any terms that weren't linear, we would have just ignored them anyway.
+
+The way this is usually described, the operator that obtains the field of gradient vectors (the $\vec{s}$ associated with each point in space) from a field of scalars $T(\vec{p})$ is $\nabla T(\vec{p})$, the $\nabla$ being pronounced "del". This is very often conflated with the \textit{total derivative}, which is the somewhat confusing name for the covector $\vec{d}$ associated with each point in space. The reason they are often casually conflated is because if the basis vectors are orthonormal then they have the same coordinates. A careful author will be clear about this requirement when claiming that "the dot product" (rather than the properly defined inner product) can be used to get the \textit{directional derivative} from the gradient vector and the unit vector in the direction of interest.
+
+\subsection{Sources of confusion}
+
+A major potential source of confusion in this area is the distinction between the total derivative, a covector, and the gradient, a vector, and how and why they might be affected by a change of basis. As we've seen, they are \textit{not} affected by a change of basis. Vectors and covectors never are. Their coordinates are affected, of course.
+
+Another source of confusion is the way we think of the gradient as the rate of change of the scalar field, computed with respect to a change in position. This means that a physical distance appears on the bottom of a fraction, and therefore if we increase the size of our unit of distance, the number on the bottom of the fraction decreases, which increases the overall value of the fraction. This reminds us of covariance; is this the source of some inherently covector-like nature in gradients? No. As we've seen, the gradient is actually a vector, and so its coordinates transform contravariantly. The total derivative is a covector that maps a displacement vector to a change in the scalar field, so its coordinates transform covariantly. These two representations actually convey the same information (even in the form of the same set of numbers if the basis is orthonormal).
+
 \section{Symmetric Matrices}\label{ch:vectors-symmetric}
 
 One interesting kind of operator is any represented by a symmetric matrix in some basis, so $M^\intercal = M$, or $M_{ij} = M_{ji}$ for all combinations of $i$ and $j$. So the diagonal elements are unconstrained, but all others have to match their diagonally-opposite element.
@@ -1056,93 +1527,11 @@ The curious thing about them is that their eigenvectors are orthogonal and compl
 
 This means that if you find the eigenvectors of the operator, you've found an orthogonal basis. This is hugely important in Quantum Mechanics (§\ref{ch:qm}), albeit with some modifications for complex numbers.
 
-\section{Effect of Change of Basis on Operator}
-
-If we apply $R_A$ to our two basis vectors, all our non-zero vectors' coordinates will need to change (while still being the same vectors, of course, just expressed in a new basis.) This means, just as we had to fix our covector, we now need to come up with the matrix $M'$ that mirrors around the same line as $M$ did in the un-rotated basis. We say that $M'$ and $M$ represent the same operator in different coordinate systems.
-
-This time it will be a three step process:
-
-\begin{itemize}
-    \item adjust the input vector so it is expressed in $M$-compatible ("pre-rotation") coordinates
-    \item apply $M$ to the pre-rotation coordinates, to get the reflected vector in pre-rotation coordinates
-    \item adjust the reflected vector into post-rotation coordinates
-\end{itemize}
-
-As we applied $R_A$ to the basis vectors, that means we must have applied $R_C$ to all the column matrices representing our vectors in coordinate form (clockwise rotation being the inverse of anti-clockwise rotation). So the three steps appear to the left of our input $V$:
-
-$$M'V = R_CMR_AV$$
-
-In English, reading from the right, take the input $V$, rotate it anti-clockwise (to undo the clockwise rotation we assume has been performed on it), then apply the original $M$ matrix for reflection, then rotate clockwise.
-
-As with the covector example, we can ditch the example input $V$ and just compute the matrix by itself for later use with any $V$:
-
-$$M' = R_CMR_A$$
-
-So the matrix $M'$ represents the same operator as $M$ in the anti-clockwise rotated coordinate system.
-
-When it comes to classifying this as covariant or contravariant, we have a puzzle. It was necessary to perform both kinds of coordinate transformation here.
-
-There is a general pattern to these examples, vectors, covectors and operators, which is captured in the notion of a tensor.
-
-\section{Inner Product}
-
-An inner product is a scalar-valued operator between two vectors:
-
-$$\langle \vec{p},\vec{q}\rangle$$
-
-A vector space equipped with such an operator is called an \textit{inner product space}. The most well known example is the dot product. To qualify as an inner product an operator must satisfy certain properties. It must be commutative:
-
-$$\langle \vec{p},\vec{q}\rangle = \langle \vec{q},\vec{p}\rangle$$
-
-This is obviously true for the dot product as we simply multiply matched components and then sum them. Denoting the $i$-th component by $p_i$ and $q_i$:
-
-$$\sum_i p_i q_i = \sum_i q_i p_i$$
-
-We also require:
-
-$$\langle \vec{p}+\vec{r},\vec{q}\rangle = \langle \vec{p},\vec{q}\rangle + \langle \vec{r},\vec{q}\rangle$$
-
-Again this is obviously true as it's just multiplying out each term of the summation:
-
-$$\sum_i (p_i + r_i)q_i = \sum_i p_iq_i + r_iq_i$$
-
-The inner product notation is simply telling what is true of each term.
-
-The next requirement ($\alpha$ being some scalar constant) is therefore no surprise:
-
-$$\langle \alpha \vec{p},\vec{q}\rangle = \langle \vec{p},\alpha \vec{q}\rangle = \alpha \langle \vec{p},\vec{q}\rangle$$
-
-and so we are always just summing the product $\alpha p_i q_i$ and the order makes no difference to the result.
-
-There are further requirements that are discarded in some contexts:
-
-$$\langle \vec{p},\vec{p}\rangle \geq 0$$
-
-For the Euclidean dot product we're squaring the coordinates $p_i$ so the result must be positive. But in Relativity (§\ref{ch:relativity}) we allow negative ("spacelike") intervals, which is why this requirement is not always applied.
-
-Finally, $\langle \vec{p},\vec{p}\rangle = 0$ if and only if $\vec{p}$ is the zero vector. Again this could be untrue in Relativity if the time and space contributions cancel out ("lightlike").
-
-Generalising on the dot product, we can introduce a second summation index $j$ and make all the combinations $p_iq^j$, and then decide how much of a contribution to the sum each combination should make by controlling it with a matrix $A^i_j$ and now per Einstein we can say:
-
-$$p_i A^i_j q^j$$
-
-Which is equivalent to putting the transpose of $\vec{p}$ on the left, the matrix $\mathbf{A}$ in the middle and $\vec{q}$ on the right and doing matrix multiplication (and it doesn't matter how we group the operations):
-
-$$\vec{p}^\intercal\mathbf{A}\vec{q}$$
-
-Indeed, the above requirements on an inner product effectively mean that any inner product must be expressible in this form.
-
-In the standard dot product, we are only interested in the diagonal combinations, $p_i q_j$ where $i=j$, but this is equivalent to saying that $\mathbf{A}$ is the identity matrix $\delta$.
-
-This idea is generalised further when considering complex vector spaces.
-
 \section{Complex vector spaces}\label{sec:vectors-complex}
 
-Any vector space is defined over a \textit{field}. This is unrelated to the physics meaning of "field", a value defined at each point in a space. Here a field is any set of objects with binary operators for addition, subtraction, multiplication and division that behave like those of the real numbers, so $\mathbb{R}$ is a field.
+We've mentioned that a vector space has an associated set of scalars, and this is often $\mathbb{R}$, but it may instead be $\mathbb{C}$, meaning that vectors can be scaled by a complex number, and if expressed as a column of coordinates, those coordinates may be complex.
 
-But as complex numbers meet this criterion therefore $\mathbb{C}$ is also a field, and therefore a vector space may be complex, and have complex coordinates.
-
-Even the simplest non-trivial example, $\mathbb{C}^2$, is not directly imaginable, because although each vector requires two coordinates, each of those is a complex number incorporating a real and imaginary part, so each vector requires four real numbers to describe it, and so $\mathbb{C}^2$ can be mapped to $\mathbb{R}^4$, which is impossible to visualise directly.
+Even the simplest non-trivial example of such a space, $\mathbb{C}^2$, is not directly imaginable, because although each vector requires two coordinates, each of those is a complex number incorporating a real and imaginary part, so each vector requires four real numbers to describe it, and so $\mathbb{C}^2$ is isomorphic with $\mathbb{R}^4$, which is impossible to visualise directly.
 
 Even so, concepts applicable to real vector spaces also work for complex, although with some modifications. The main issue is determining the modulus, for which we must introduce an inner product.
 
