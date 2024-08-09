@@ -1,4 +1,4 @@
-\chapter{Vectors} \label{ch:vectors}
+\chapter{From Vectors to Tensors} \label{ch:vectors}
 
 \section{What we need to unlearn}
 
@@ -153,7 +153,7 @@ In quantum mechanics we will contend with infinite-dimensional complex vector sp
 
 \subsection{Fields}
 
-The kind of set that can serve as a scalar is called a \textit{field}, which is a set of objects on which we have defined addition, subtraction, multiplication and division, so real or complex numbers usually serve this purpose (and always do in physics), but vectors in general cannot serve as a field of scalars for other vector spaces, because the definition of a vector space says nothing about there being a natural way to multiply or divide pairs of vectors to obtain other vectors.
+The kind of set that can serve as a scalar is called by mathematicians a \textit{field} (an unfortunate collision of terminology given the very different meaning in physics), which is a set of objects on which we have defined addition, subtraction, multiplication and division, so real or complex numbers usually serve this purpose (and always do in physics), but vectors in general cannot serve as a field of scalars for other vector spaces, because the definition of a vector space says nothing about there being a natural way to multiply or divide pairs of vectors to obtain other vectors.
 
 In the same way, you can't have a vector space of $\mathbb{R}$ over the field of $\mathbb{C}$, because although we can use regular multiplication to "scale" a vector from $\mathbb{R}$ by a scalar from $\mathbb{C}$, the result is likely to be a member of $\mathbb{C}$ but not of $\mathbb{R}$, and thus not a vector from the same space.
 
@@ -290,7 +290,7 @@ It follows that, just as $N$-dimensional vectors are isomorphic with columns of 
 
 It is sometimes suggested that all vector spaces have a dual space, as if this was some property hiding in the definition of a vector space. But in truth we have conjured the dual space into existence, first by inventing the idea of a mapping $V \mapsto \mathbb{R}$, then by defining operations on those mappings, then by considering the set of all possible mappings, and finally by imposing the rules of vector spaces, which restricts us to a subset of the possible mappings that we named covectors. There is nothing particularly automatic about this. We made it happen by being curious about ways in which vectors might be mapped to scalars.
 
-Another important point to note is that as covectors are vectors, the operation we've been writing as $f(\vec{a})$ is in fact much more symmetrical than that notation implies. We take a vector $V$ and a covector from $V^*$ and this produces a scalar from $\mathbb{R}$. 
+Another important point to note is that as covectors are vectors, the operation we've been writing as $f(\vec{a})$ is in fact much more symmetrical than that notation implies. We combine a vector from $V$ and a covector from $V^*$ and this produces a scalar from $\mathbb{R}$. 
 
 So we could equally say that a vector "operates" on a covector to produce the scalar. From the point of view of $V^*$ it is $V$ that is the dual space. There is a more symmetrical notation\footnote{Unfortunately there is almost no consistency on notation in this topic; we're just picking one of many possible notations for this.} we can use to make this clear:
 
@@ -298,7 +298,9 @@ $$\langle \vec{f},\vec{a}\rangle$$
 
 In this notation, the left and right sides of the operation are from mutually dual spaces, mirror opposites that annihilate one another leaving only a scalar residue.
 
-\section{Connecting the Dual Spaces}
+Keep in mind that just as we've thought of a covector as machine that accepts a vector as input, we could just as well think of a vector as a machine that accepts a covector as input.
+
+\subsection{Connecting the Dual Spaces}
 
 We obviously have a lot of freedom when choosing a basis in either $V$ or $V^*$. What can we usefully do to relate the two sides? We've seen how a covector is built as a weighted sum of basis covectors $\vec{e}^i$ from $V^*$:
 
@@ -377,7 +379,7 @@ If we describe our covectors and vectors as sets of coordinates, to make a covec
 
 Does this mean we've created a link between \textit{every} vector and a corresponding covector? Absolutely not. We've only linked up the basis vectors with the basis covectors. Still, there is an obvious mapping between vectors and covectors: let the covector have exactly the same coordinates as its vector pair, $f_i = v^i$. But that is only one possible mapping out of an infinity of possibilities, as we could blend the coordinates by any weighted sum we like. So connecting the basis covectors with the basis vectors is a start, but still leaves something to be desired.
 
-\section{Visualising the dual basis}
+\subsection{Visualising the dual basis}
 
 It may be worth pausing here to see how this result relates to our schoolhouse version of arrows and coordinates and the dot product. In that world-view, the coordinates are just the scaling factors that weight the orthonormal basis vectors to construct a vector, and the dot product of a basis vector $\vec{e}_i$ and a given vector $\vec{a}$ produces the $a_i$ coordinate of $\vec{a}$. This is how we understand the geometric dot product (with $\cos \theta$) to be related to the idea of simply plucking one of the numbers from a column vector.
 
@@ -465,7 +467,7 @@ In this visualisation process we have shown the relationship between $V$ and $V*
 
 If the original basis vectors had been orthogonal, the dot product would have produced exactly the same coordinates we'd used to build the vector in the first place, i.e. figures \ref{fig:vectors-non-orth-2}, \ref{fig:vectors-non-orth-3} and \ref{fig:vectors-non-orth-4} would all be identical: a rectangle with the vector as its diagonal. But of course, we haven't yet said precisely what orthogonality means.
 
-\section{The same ideas in coordinates}
+\subsection{The same ideas in coordinates}
 
 We can make this concrete by playing with $\mathbb{R}^2$ as our vector space $V$, in which case the dual space of covectors $V^*$ contains mappings $\mathbb{R}^2 \mapsto \mathbb{R}$.
 
@@ -544,7 +546,7 @@ We get back the correct coordinates. If we'd just transposed the $V$ basis vecto
 
 But the utility of these basis covectors is limited to their ability to extract a scalar coordinate from a vector. For example, there is nothing here that generally relates any vector (other than the basis vectors) with a specific covector partner, or anything that relates one vector with another.
 
-\section{More slots}
+\section{Tensors}
 
 Let's upgrade our black box machine so it has two input slots, accepting vectors $\vec{a}$ and $\vec{b}$ from the same vector space $V$, but still one output hole that gives us back a scalar $x$ (Figure \ref{fig:2-slot-box}).
 
@@ -611,15 +613,16 @@ So sticking with this simplified design to begin with, consider the space of all
 \end{split}        
 \end{equation}
 
-Scaling is even easier:
+Scaling by some $x$ is even easier:
 
 $$
-x(\vec{f} \otimes \vec{g})(\vec{a}, \vec{b}) 
+\left[x(\vec{f} \otimes \vec{g})\right](\vec{a}, \vec{b}) 
+= x(\vec{f} \otimes \vec{g})(\vec{a}, \vec{b}) 
 = x \langle \vec{f}, \vec{a} \rangle
     \langle \vec{g}, \vec{b} \rangle
 $$
  
-Thus we have defined a vector space, and so these two-slot machines are also vectors.\footnote{This is the first indication of how confusing the terminology is: a tensor (of which this two-slot machine is an example) is also a vector, but it is also the case that a vector, and even a scalar, is a tensor. They are each examples of the other, and yet are different things.} We can form a basis for that space by taking all possible pairs of basis covectors, $\vec{e}^i \times \vec{e}^j$. If the (co)vector space is $N$-dimensional, the pair-space will be $N^2$-dimensional, because it requires $N^2$ basis machines to span the space. Any two-slot machine can therefore be written as a linear combination (a weighted sum) of all the basis machines:
+Thus we have defined a vector space, and so these two-slot machines are also vectors. We can form a basis for that space by taking all possible pairs of basis covectors, $\vec{e}^i \times \vec{e}^j$. If the (co)vector space is $N$-dimensional, the pair-space will be $N^2$-dimensional, because it requires $N^2$ basis machines to span the space. Any two-slot machine can therefore be written as a linear combination (a weighted sum) of all the basis machines:
 
 $$
 \sum_{ij} M_{ij} (\vec{e}^i \otimes \vec{e}^j)
@@ -658,11 +661,15 @@ We know the basis covectors acting on the basis vectors have very simple results
         \label{eqn:two-slot-computation}
 \end{equation}
 
-So to compute the scalar result we only need the coordinates of the two input vectors and a matrix that fully defines how the machine operates, creating summation terms that contribute various weightings of every possible combination of coordinates from the two vectors.
+So to compute the scalar result we only need the coordinates of the two input vectors and a list of numeric parameters that fully defines how the machine operates, creating summation terms that contribute various weightings of every possible combination of coordinates from the two vectors.
+
+This kind of machine is called a \textit{tensor}.
 
 It will often be the case that $M_{ij} = M_{ji}$, which is quite a lot of redundancy. But this is necessary to ensure that the machine is symmetrical: switching the inputs around does not affect the result. Of course, a machine doesn't have to be defined that way.
 
-We were careful to mention at the start that the simplified design (the ordinary product of two scalars obtained by two covectors operating separately on one vector input each) is not powerful enough to describe all these machines, even though we used it to define our basis machines. The simplistic machine is defined by a matrix that can be written as:
+\subsection{Simple tensors}
+
+We mentioned at the start that the simplified design (the ordinary product of two scalars obtained by two covectors operating separately on one vector input each) is not powerful enough to describe all these machines, even though we used it to define our basis machines. The simplistic machine is defined by a matrix that can be written as:
 
 $$
 M_{ij} = f_i g_j
@@ -670,15 +677,145 @@ $$
 
 In other words, it can be decomposed into two separate columns of numbers. Such a machine is known as a \textit{decomposable}, \textit{elementary} or just \textit{simple} tensor.
 
-One hint as to why it is so limited is that as $i$ and $j$ have $N$ possible values for an $N$-dimensional space, even though $M$ appears to have $N^2$ independent values, there are really only $2N$ numbers providing the raw ingredients. So we aren't allowing the full flexibility of which $M$ is capable.
+One hint as to why it is so limited is that as $f_i$ and $g_j$ provide $N$ values each for an $N$-dimensional space, that is only $2N$ adjustable parameters, even though $M$ appears to have $N^2$ independent values. So we aren't allowing the full flexibility of which $M$ is capable.
 
 Of course, if $N=2$ then $N^2 = 2N = 4$, but even then, there is a restrictive pattern that applies regardless of the dimensions. Viewing $M_{ij}$ as a matrix, every row (labelled by $i$) would be a scaled version of the numbers in $g_j$, and every column (labelled by $j$) would likewise be a scaled version of the numbers in $f_i$. That is, the rows are all linearly dependent on one another, and so are the columns. This would not be the case if the elements of $M$ were truly independent.
 
 There's a subtlety here though: vector addition and scaling operators are meant to be closed. We've proposed a way of defining simple machines, which is a restricted set of objects, and then we've said that scaling and adding simple machines allows us to discover objects that are not in that simple set, which sounds like we're breaking the rules, reaching outside the initial set.
 
-The resolution to this conundrum is that we are dealing with a general set of machines that can be described by the somewhat misleading notation $V^* \otimes V^*$, which we define as not only the simple machines made of any two covectors $f \otimes g$, but also those machines that are \textit{weighted sums} of one or more simple machines. This broader set includes machines that cannot be decomposed into two covectors. We can however choose a basis from the subset that \textit{can} be decomposed, and we do that because it is that subset for which we are able to directly explain how they operate. And from that basis we can build any machine of the form $V^* \otimes V^*$. Covectors are the most basic building block, from which we can make simple machines, from which in turn we can make any machines by linear combination of simple machines.
+The resolution to this conundrum is that we are dealing with a general set of machines that can be described by the somewhat misleading notation $V^* \otimes V^*$, which we define as not only the simple machines made of any two covectors $f \otimes g$, but also those machines that are \textit{weighted sums} of one or more simple machines. This broader set includes machines that cannot be decomposed into two covectors. We can however choose a basis from the subset that \textit{can} be decomposed, and we do that because it is that subset for which we are able to directly explain how they operate. And from that basis we can build any machine of the form $V^* \otimes V^*$. Covectors (one-slot machines) are the most basic building block, from which we can make simple (two-slot) machines, from which in turn we can make any machines by linear combination of simple machines.
 
-Another point to note about these two-slot machines is that although here we focused on $V^* \otimes V^*$, we could instead of chosen $V \otimes V$, in which case the simple machine would have consisted of two vectors, and would have acted on two input covectors (recall how the notation $\langle \vec{f}, \vec{a} \rangle = \langle \vec{a}, \vec{f} \rangle$ emphasises symmetry, so we can think of a covector acting on a vector or a vector acting on a covector with no real difference in the result). We can define machines of the form $V \otimes V^*$, or with three or more slots accepting any mixture of vectors and covectors.
+\subsection{Any number of slots}
+
+Another point to note about these two-slot machines is that although here we focused on $V^* \otimes V^*$, we could instead of chosen $V \otimes V$, in which case the simple machine would have consisted of two vectors, and would have acted on two input covectors (recall how the notation $\langle \vec{f}, \vec{a} \rangle = \langle \vec{a}, \vec{f} \rangle$ emphasises symmetry, so we can think of a covector acting on a vector or a vector acting on a covector with no real difference in the result). We can define machines of the form: 
+
+$$
+V \otimes V^* \otimes V \otimes \ldots
+$$ 
+
+having any number of slots accepting any mixture of vectors and covectors in some specific order. A machine with five slots will be represented by a list of numbers labelled with five indices. The slots that accept vectors (being defined by covectors) will have down indices, and the slots that accept covectors (being defined by vectors) will have up indices. For example, we can say our machine is from the space:
+
+$$
+V \otimes V^* \otimes V \otimes V \otimes V^*
+$$ 
+
+or we can say it is represented by the numerical parameters:
+
+$$
+M\indices{^i_j^k^l_m}
+$$
+
+These convey the same information. Sometimes the indexed parameter notation is used as a compact way to describe the structure of the machine, the only downside being that we have to unnecessarily choose symbols for the indices.\footnote{Some authors call this \textit{slot-naming index notation}.}
+
+\subsection{What is a tensor?}
+
+These machines are tensors, though as we've seen, the space of machines of a given type is also a vector space, so tensors are vectors.
+
+We have proposed creating a five-slot machine $M\indices{^i_j^k^l_m}$, and so it seems entirely proper to treat a 1-slot machine $M_i$ or $M^i$ as part of the same family of objects. We've been calling them covectors and vectors, which is accurate (we had to invent them first in order to build toward tensors), but they are also themselves tensors in this general sense.
+
+Perhaps more surprising, but no less consistent, is the idea that a machine with no slots also belongs to the same family. It's just a scalar value.
+
+Sometimes the type of a tensor is written $(u, d)$ where $u$ tells you how many up indices and $d$ tells you how many down indices it has. So a scalar is a $(0, 0)$-tensor, a vector is a $(1, 0)$-tensor, a covector is a $(0, 1)$-tensor, and we will soon encounter practical uses for $(1, 1)$, $(0, 2)$ and $(2, 0)$-tensors, all of which are also elements of vector spaces.
+
+In summary, everything is seemingly an example of everything else, and yet all are different things.
+
+\subsection{Contraction} \label{tensor-contraction}
+
+When we insert a vector or covector into a suitable slot of a machine, we are effectively merging two tensors, by "wiring up" them up so that they share an index variable, which makes that variable disappear due to summation over it.
+
+Starting with a five-slot machine $M\indices{^i_j^k^l_m}$ (which incidentally is a $(3,2)$-tensor), we will insert a covector $a_k$ into the middle slot, resulting in a machine $N$ with four slots (a $(2,2)$-tensor):
+
+$$
+N\indices{^i_j^l_m} = \sum_{k} M\indices{^i_j^k^l_m} a_k
+$$
+
+The index $k$ effectively disappears. This process is more formally regarded as a two stage process. First, we form the tensor product, which is an object with a separately named index for every index of the two source tensors:
+
+$$
+P\indices{^i_j^k^l_m_n} = M\indices{^i_j^k^l_m} a_n
+$$
+
+This step doesn't involve any summation. If the vector space is 4-dimensional, $P$ is a list of $4^6 = 4096$ numbers, each being the product of a distinct pair from the $4^5 = 1024$ numbers in $M$ and the $4$ numbers in $a$.
+
+Then we link two of the slots by giving them the same index name and summing over that index (in this case by renaming $n$ to $k$):
+
+$$
+N\indices{^i_j^l_m} = \sum_{k} P\indices{^i_j^k^l_m_k}
+$$
+
+It's that second step, renaming $n$ to $k$ and summing over $k$, that is the actual contraction. We could then perform two contractions at once on $N$:
+
+$$
+x = \sum_{il} N\indices{^i_i^l_l}
+$$
+
+Each contraction ties two indices together and eliminates them, so this last double-contraction has eliminated four indices at once, leaving us with a scalar.
+
+\section{Einstein notation}
+
+We have been following a rule where basis vectors are given subscript indices, while vector components are given superscript indices. Then we do the opposite with basis covectors and components. This means that whenever one basis object acts on another:
+
+$$
+\langle e^i, e_j \rangle
+$$
+
+they always have opposing index positions. This is mirrored exactly by the way components are allowed to be multiplied. We've found that the dot product is only valid between the coordinates of a vector and a covector, so a product like this inside a summation, where we have repeated the same index variable:
+
+$$
+a^i b_i
+$$
+
+is valid, but neither of these is allowed because they imply a dot product between two vectors or two covectors:
+
+$$
+a^i b^i \, , \, a_i b_i
+$$
+
+Here's a real example that we'll encounter later:
+
+$$
+\sum_{\mu\nu\beta\lambda} g_{\mu\nu} Z\indices{^\mu_\beta} \underline{a}^{\beta} Z\indices{^\nu_\lambda} \underline{b}^{\lambda}
+$$
+
+Every single one of the four indices appears in two places, once up and once down. This immediately tells us that the result is a scalar. A simpler example shows how index variables are not necessarily introduced by summation:
+
+$$
+b^\mu = \sum_{\nu} O\indices{^\mu_\nu} a^\nu
+$$
+
+The $\nu$ index is repeated up/down in the way that is characteristic of all summation variables, but $\mu$ is introduced on the left to indicate that the expression computes the value of one component of several that represent a vector (we know it's a vector because the index is up).
+
+From these patterns we can deduce something surprising: it is completely unnecessary to write the summation symbol and state what the summation index variables are! If an expression consisting indexed quantities multiplied together contains exactly two references to the same index, once up and once down, then that index is a summation index.
+
+$$
+g_{\mu\nu} Z\indices{^\mu_\beta} \underline{a}^{\beta} Z\indices{^\nu_\lambda} \underline{b}^{\lambda}
+=
+\sum_{\mu\nu\beta\lambda} g_{\mu\nu} Z\indices{^\mu_\beta} \underline{a}^{\beta} Z\indices{^\nu_\lambda} \underline{b}^{\lambda}
+$$
+
+$$
+b^\mu = O\indices{^\mu_\nu} a^\nu = \sum_{\nu} O\indices{^\mu_\nu} a^\nu
+$$
+
+This shorthand applies just as well to basis vectors:
+
+$$
+\vec{a} = a^i \vec{e}_i = \sum_{i} a^i \vec{e}_i
+$$
+
+The recent example of a tensor product cannot be mistaken for an implied summation because there are no repeated indices:
+
+$$
+P\indices{^i_j^k^l_m_n} = M\indices{^i_j^k^l_m} a_n
+$$
+ 
+Whereas the contraction example unmistakably sums over $k$ alone:
+
+$$
+N\indices{^i_j^l_m} = P\indices{^i_j^k^l_m_k}
+$$
+
+Einstein came up with this abbreviation while developing General Relativity.
 
 \section{The Inner Product}
 
@@ -686,13 +823,13 @@ The most important necessity for a specific machine of the form $V^* \otimes V^*
 
 Nominating one such machine for a given vector space, we can call it the \textit{inner product}, and we say that the combination of the vector space and its inner product is an \textit{inner product space}.
 
-As we've repeatedly observed, we have so far had no way to judge whether two vectors are orthogonal to one another, even though we know that for arrows or column vectors there are some intuitive ways to choose orthogonal vectors. In our abstract development of the subject there was no such thing as orthogonal or orthonormal.
+As we've incessantly complained, we have so far had no way to judge whether two vectors are orthogonal to one another, even though we know that for arrows or column vectors there are some intuitive ways to choose orthogonal vectors. In our abstract development of the subject there was no such thing as orthogonal or orthonormal.
 
 The choice of an inner product determines which vectors are mutually orthogonal, and also which are normalised (of unit norm). Importantly, it will also pair every vector with a single dual covector (and vice versa).
 
 The notation $(\vec{a},\vec{b})$ is sometimes used for the inner product, similar to but deliberately distinct from the $\langle \vec{f},\vec{a}\rangle$ notation for the action of a covector on a vector.\footnote{Sadly the meanings of these notations are sometimes switched, and they aren't the only notations used.}
 
-As we've seen, as it's a two-slot machine, its coordinate representation can be thought of as a matrix or a list of numbers addressed by two indices, and it is called the \textit{metric}. In General Relativity the metric is usually written as $g$, and its indices are often $\mu$ and $\nu$, so applying it to vectors $\vec{a}$ and $\vec{b}$ will look like this:
+As it's a two-slot machine, its coordinate representation can be thought of as a matrix or a list of numbers addressed by two indices, and it is called the \textit{metric}. In General Relativity the metric is usually written as $g$, and its indices are often $\mu$ and $\nu$, so applying it to vectors $\vec{a}$ and $\vec{b}$ will look like this:
 
 $$
 (\vec{a},\vec{b}) = \sum_{\mu\nu} g_{\mu\nu} a^\mu b^\nu
@@ -750,7 +887,9 @@ $$
 
 \textit{By definition} if the inner product is represented by $\delta_{\mu\nu}$ then the basis vectors are orthonormal. In other words, the inner product being represented by the identity matrix doesn't really tell us anything about the inner product. It tells us that we've chosen a set of basis vectors so that they are orthonormal according to this space's nominated inner product. It is always possible to do this, regardless of what the inner product happens to be.\footnote{Strictly speaking it is always possible for a finite-dimensional inner product space.}
 
-This means that the previous examples of what we called awkward basis vectors would in fact be orthonormal if we chose a particular inner product.
+This means that if we can use a single inner product consistently, we may as well define the basis to be orthonormal according that inner product, which means we will always be able to use the dot product between vectors, and the distinction between vectors and covectors becomes unimportant. We can even define all other multi-slot machines in terms of vectors acting on other vectors (via the inner product). That is, every machine would be of the form $V \otimes V \otimes V \otimes \ldots$, and would accept vectors as inputs.
+
+This also means that the previous examples of what we called awkward basis vectors would in fact be orthonormal if we chose a particular inner product.
 
 \subsection{No such thing as awkward}
 
@@ -866,24 +1005,17 @@ $$
 \langle \vec{q}, \vec{b} \rangle
 $$
 
-And in general we would allow a linear combination of a basis form from such simple machines, and of course this would have a matrix representation, because we will choose a vector basis $\vec{e}_{\mu}$, which will determine a covector basis $\vec{e}^{\mu}$:
+And in general we would allow a linear combination of a basis formed from such simple machines, and of course this would have a matrix representation, because we will choose a vector basis $\vec{e}_{\mu}$, which will determine a covector basis $\vec{e}^{\mu}$:
 
-\begin{equation}
-\begin{split}
-(\vec{f},\vec{g}) 
-    &= \sum_{\mu\nu} \left( p_{\mu} a^{\mu} \right) 
-                     \left( q_{\nu} b^{\nu} \right) \\
-    &= \sum_{\mu\nu} \left( a^{\mu} b^{\nu} \right) 
-                     \left( p_{\mu} q_{\nu} \right) \\
-    &= \sum_{\mu\nu} g^{\mu\nu} p_{\mu} q_{\nu} 
-\end{split}
-\end{equation}
+$$
+(\vec{f},\vec{g}) = \sum_{\mu\nu} g^{\mu\nu} p_{\mu} q_{\nu} 
+$$
 
 By our consistent use of subscript and superscript indices, we now have matrix representations for two forms of the inner product:
 
 \begin{itemize}
-    \item $g_{\mu\nu}$ operates on two vectors $a^{\mu}$ and $b^{\nu}$
-    \item $g^{\mu\nu}$ operates on two covectors $p_{\mu}$ and $q_{\nu}$
+    \item $g_{\mu\nu}$ operates on two vectors $a^{\mu}$ and $b^{\nu}$ to produce a scalar, or on one vector $a^{\mu}$ to produce its dual covector $p_{\mu}$.
+    \item $g^{\mu\nu}$ operates on two covectors $p_{\mu}$ and $q_{\nu}$ to produce a scalar, or on one covector $p_{\mu}$ to produce its dual vector $a^{\mu}$. 
 \end{itemize}
 
 These operations can be performed in two stages. For example, $g_{\mu\nu}$ can first operate on $a^{\mu}$ to produce \textit{something} that is ready to operate on $b^{\nu}$ and finish the job by producing a scalar. That intermediate something, if it can act on a vector to get a scalar, must be a covector with coordinates $a_{\nu}$, one that is the dual of the vector it was produced from. If the basis happens to be orthonormal, the dual vector and covector will have the same coordinates, $a_{\mu} = a^{\mu}$ (because $g_{\mu\nu} = \delta_{\mu\nu}$).
@@ -912,7 +1044,7 @@ When we label a matrix with indices, $M_{ij}$, we have choice: should they be su
 
 In both those cases, we found that as well as acting as a mapping from two inputs to a scalar, the same object could map a single input to its dual partner.
 
-Here we want a machine that maps a vector to a vector. As a hunch, consider a two-slot machine made of a vector and a covector, $\vec{a} \otimes \vec{f}$. Or (as usual) consider the general set of machines $V \otimes V^*$ that are linear combinations of the basis of simple basis machines $\vec{e}_\mu \otimes \vec{e}^\nu$:
+Here we want a machine that maps a vector to a vector. As a hunch, consider the set of $V \otimes V^*$ machines. Such a machine will be a linear combination of simple machines made of a vector and a covector, $\vec{a} \otimes \vec{f}$:
 
 \begin{equation}
 \hat{O} = \sum_{\mu\nu} O\indices{^\mu_\nu} \left( \vec{e}_\mu \otimes \vec{e}^\nu \right)
@@ -921,7 +1053,7 @@ Here we want a machine that maps a vector to a vector. As a hunch, consider a tw
 So the operator is represented (in the current basis) by a matrix with one super and one sub index, being the sum of a set of matrices whose elements are the product of a vector coordinate and a covector coordinate. To find the coordinates of the resultant vector $\vec{b}$ obtained from $\hat{O} \vec{a}$:
 
 $$
-b^\mu = \sum_{\nu} = O\indices{^\mu_\nu} a^\nu
+b^\mu = \sum_{\nu} O\indices{^\mu_\nu} a^\nu
 $$
 
 There are some operators that have the same coordinates in all bases. The $0$-matrix, which maps all vectors to the $0$-vector, has all its elements $0$. The identity operator, which has no effect on its input, is $\delta_{\mu\nu}$ in all bases.
@@ -985,6 +1117,14 @@ then we definitely have some eigenvalues. The determinant can be expanded out in
 $$(M - xI)v = 0$$
 
 one at a time, and solve to find the corresponding $v$. Thankfully all this can be mechanised.
+
+\subsection{Symmetric Matrices}\label{ch:vectors-symmetric}
+
+A matrix where $M^\intercal = M$, or $M_{ij} = M_{ji}$ is of particular interest. We've seen how it can be used to define an operation on two vectors that produces a scalar, such that the operation is symmetric (commutative).
+
+Also it is possible to select from its eigenvectors a set that are orthogonal and completely span the vector space. That is, in an N dimensional space, they perform a scaling in all N available orthogonal directions, stretching or squishing. We need to be clear about what we mean by orthogonal, of course: this is a matrix in isolation from any defined geometric context, so we're talking about column vectors in the standard basis.
+
+This is hugely important in Quantum Mechanics (§\ref{ch:qm}), albeit with some modifications for complex numbers.
 
 \section{Change of Basis}\label{sec:vectors-change-basis}
 
@@ -1517,15 +1657,27 @@ The way this is usually described, the operator that obtains the field of gradie
 
 A major potential source of confusion in this area is the distinction between the total derivative, a covector, and the gradient, a vector, and how and why they might be affected by a change of basis. As we've seen, they are \textit{not} affected by a change of basis. Vectors and covectors never are. Their coordinates are affected, of course.
 
-Another source of confusion is the way we think of the gradient as the rate of change of the scalar field, computed with respect to a change in position. This means that a physical distance appears on the bottom of a fraction, and therefore if we increase the size of our unit of distance, the number on the bottom of the fraction decreases, which increases the overall value of the fraction. This reminds us of covariance; is this the source of some inherently covector-like nature in gradients? No. As we've seen, the gradient is actually a vector, and so its coordinates transform contravariantly. The total derivative is a covector that maps a displacement vector to a change in the scalar field, so its coordinates transform covariantly. These two representations actually convey the same information (even in the form of the same set of numbers if the basis is orthonormal).
+Another source of confusion is the way we think of the gradient as the rate of change of the scalar field, computed with respect to a change in position. This means that a physical distance appears on the bottom of a fraction, and therefore if we increase the size of our unit of distance, the number on the bottom of the fraction decreases, which increases the overall value of the fraction. This reminds us of covariance; is this the source of some inherently covector-like nature in gradients? No. As we've seen, the gradient is actually a vector, and so its coordinates transform contravariantly. The total derivative is a covector that maps a displacement vector to a change in the scalar field, so its coordinates transform covariantly. These two representations actually convey the same information (even in the form of the same set of numbers if the basis is orthonormal), so there is nothing inherently covariant about that information.
 
-\section{Symmetric Matrices}\label{ch:vectors-symmetric}
+\chapter{Potentials} \label{ch:potential}
 
-One interesting kind of operator is any represented by a symmetric matrix in some basis, so $M^\intercal = M$, or $M_{ij} = M_{ji}$ for all combinations of $i$ and $j$. So the diagonal elements are unconstrained, but all others have to match their diagonally-opposite element.
+A force field is a vector-valued function of space, i.e. at each point in space we imagine there is a vector giving the strength and direction of the force that would felt at that point.
 
-The curious thing about them is that their eigenvectors are orthogonal and completely span the vector space. That is, in an N dimensional space, they perform a scaling in all N available orthogonal directions, stretching or squishing.
+The force fields we observe in nature have an interesting property: it is always possible to replace the force field with a scalar-valued function of space, i.e. at each point in space there is merely an ordinary number, not a vector. We can then take the vector gradient $\nabla$ of this scalar field and we recover the force field.
 
-This means that if you find the eigenvectors of the operator, you've found an orthogonal basis. This is hugely important in Quantum Mechanics (§\ref{ch:qm}), albeit with some modifications for complex numbers.
+By analogy, picture a hilly landscape. The height $H$ above sea level is the scalar field value, so the landscape is fully described by the scalar field $H(x, y)$. From this we can derive $\nabla H$, a two-dimensional vector field (picture it as an arrow that never points up or down, always parallel to the horizon). As we travel around we sometimes face steep slopes, where $\nabla H$ points in the steepest direction, or stationary points such as hilltops or valley basins where $\nabla H$ is the zero vector (to distinguish between peaks and valleys, we'd need to take the second derivative, $\nabla^2H$).
+
+If we wander on some pathway through this landscape and return back to where we started, our height will be the same as it was when we started (assuming the landscape hasn't changed shape). This is true regardless of the path we take, as the height is a fact about the start/end point of the path. This is so obvious as to seem hardly worth stating.
+
+And yet if we only had some vector field, and wondered if the path integral of any closed loop through that field was always zero, how would we know? Some paths might go mainly through regions with vectors all pointing in one direction, and so not sum to zero. Not all vector fields have this self-balancing property.
+
+Those that do are known as conservative fields, and these are fields which can be reduced to a scalar field from which the vectors can be recovered by applying $\nabla$, and these are all the force fields we encounter in nature.
+
+When we describe a force field by a scalar field, we call that field a \textit{potential}. It has units of energy. As a particle moves through a potential, it experiences a potential difference between two points. If this difference is negative, i.e. the potential energy drops between the two points, the particle gains kinetic energy (speeds up). This is exactly like a ball rolling down a slope; the potential energy is exactly equivalent to the height of the landscape.
+
+If the potential does not vary, the gradient is zero. This is true regardless of the potential's constant value, which is like a constant of integration, i.e. a global increase in potential is physically meaningless.
+
+An important example is a force field conforming to the inverse square law, so the force is proportional to $r^{-2}$ where $r$ is the distance from the origin of the force. The potential must therefore be proportional to $r^{-1}$, so that it has the required gradient (differentiation subtracts 1 from the power of a polynomial).
 
 \section{Complex vector spaces}\label{sec:vectors-complex}
 
@@ -1589,7 +1741,7 @@ Another interesting kind of operator in complex spaces is those where:
 
 $$\mathbf{U}^\dagger \mathbf{U} = I$$
 
-i.e. the identity operator. These are known as unitary operators. They have the property of preserving the inner product (which is the same property we observed before for rotations and mirrorings):
+i.e. the identity operator. These are known as unitary operators. They have the property of preserving the inner product (is the same property we observed before for rotations and mirrorings):
 
 $$\langle \vec{u}, \vec{v} \rangle = \langle \mathbf{U} \vec{u}, \mathbf{U} \vec{v} \rangle$$
 
