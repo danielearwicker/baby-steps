@@ -1,0 +1,594 @@
+\chapter{Miscellany}
+
+There are a few basic ideas that are of fundamental importance and can be summarised in a basic way quite briefly.
+
+\section{Linearity} \label{sec:linearity}
+
+Given a function $\mathbf{f}(x)$ and some constant $c$, we can ask if it matters whether we multiply the input $x$ by $c$ and then apply the function to the result, or we apply the function to $x$ and multiply the result by $c$. That is, does this equation hold?
+
+$$\mathbf{f}(cx) = c\mathbf{f}(x)$$
+
+Or to put it another way, if we "scale up" the input, does the output scale up in proportion?
+
+Also for two variables $x$ and $y$:
+
+$$\mathbf{f}(x + y) = \mathbf{f}(x) + \mathbf{f}(y)$$
+
+That is, it may be that it doesn't matter whether we sum the inputs and then apply the function to the sum, or apply the function to each input and then sum the results.
+
+If both these equations hold, we say $\mathbf{f}$ is linear.
+
+Actually if you take the addition rule and set $y = x$:
+
+$$\mathbf{f}(x + x) = \mathbf{f}(x) + \mathbf{f}(x)$$
+
+or:
+
+$$\mathbf{f}(2x) = 2\mathbf{f}(x)$$
+
+Which is surely a huge clue about the scaling rule! Though neither is a complete statement of linearity without the other.
+
+Sometimes these are combined into a single, albeit more confusing, requirement:
+
+$$\mathbf{f}(ax + by) = a\mathbf{f}(x) + b\mathbf{f}(y)$$
+
+We can generalise this concept beyond functions that act on numbers. Think of $\mathbf{f}$ as an operator. The objects it operates on can be of any type for which we can define addition and scaling (multiplication by a constant), as that's all we need to check the linearity requirement.
+
+We can define these capabilities for vectors, matrices and indeed all tensors, so operators acting on all those things can be linear. Now, it's easy to see how this might happen, because all those things can be described by scalar components, which can themselves be added and scaled.
+
+So let's consider something way more abstract. It's also commonplace to define addition for functions (forget about our previous use of $\mathbf{f}$):
+
+$$\mathbf{h} = \mathbf{f} + \mathbf{g}$$
+
+The sum of two functions is another function, one whose value is the sum of the values of the other two functions for the same input:
+
+$$\mathbf{h}(x) = \mathbf{f}(x) + \mathbf{g}(x)$$
+
+And similarly we can scale a function, to make another function:
+
+$$\mathbf{h} = k \mathbf{f}$$
+
+$$\mathbf{h}(x) = k \,\mathbf{f}(x)$$
+
+If we encounter an operator $\hat{O}$ that somehow acts on a function to produce another function, we can ask if $\hat{O}$ is linear. That is:
+
+$$\hat{O}(\mathbf{f} + \mathbf{g}) = \hat{O}(\mathbf{f}) + \hat{O}(\mathbf{g})$$
+
+is true, as is:
+
+$$\hat{O}(k\mathbf{f}) = k\,\hat{O}(\mathbf{f})$$
+
+Note that an operator is not restricted to mappings that perform arithmetic on parameters. An operator may dig into the \textit{definition} of a function and transform it through analysis (in coding terms, an operator can read the source of the input function, not merely call it.)
+
+So an example of an operator would be differentiation. A function such as $\sin$ can be differentiated analytically and the result is $\cos$. If we differentiate $\cos$ we get $-\sin$. It doesn't matter if we:
+
+\begin{itemize}    
+    \item add the functions, then differentiate, or
+    \item differentiate the functions, then add
+\end{itemize}
+
+Either way, we end up with $\cos - \sin$. This is true whatever functions we're adding, because differentiation works on each term individually and then adds the results.
+
+The same goes for scaling, because when you amplify a function, you amplify the slope of the function.
+
+\begin{quote}
+    Of course, by scaling a function we mean multiplying it by a \textit{constant}; if we multiplied $f(x)$ by another function $g(x)$, the gradient curve could end up with a wildly different shape. If we differentiate $f(x)$ and then multiply it by $g(x)$, we've skipped the differentiation of $g$.    
+\end{quote}
+
+So, the "differentiation operator" meets the requirements of linearity, so differentiation is linear (and intuitively as integration is the inverse operation of differentiation, it too must be linear).
+
+Another example is the Fourier transform, $\mathcal{F}$ (§\ref{sec:fourier}). If you add two waves and take the Fourier transform of the combined wave, you get the same frequency distribution as if you took the Fourier transform of each wave separately and then added the two frequency distributions:
+
+$$\mathcal{F} (\mathbf{g} + \mathbf{h}) = \mathcal{F} (\mathbf{g}) + \mathcal{F} (\mathbf{h})$$
+
+And unsurprisingly, it's the same story with scaling:
+
+$$\mathcal{F} (k \mathbf{g}) = k \, \mathcal{F} (\mathbf{g})$$
+
+(And the same for $\mathcal{F}^{-1}$ as you'd expect.)
+
+This next one is a little looser as an analogy. We can classify all objects in a binary way, dividing them into members and non-members of some set. Suppose we come up with a sense in which we can add two members of the set, or scale them. Is the result always a member of the set also? If so, that's a kind of linearity.
+
+For example, if two functions are solutions to the Schrödinger equation with some potential, they may be scaled and added to produce a third solution, so we say the Schrödinger equation is linear.
+
+\section{Indices}
+
+An index (plural: indices) is a subscript (and in some contexts a superscript) that stands for an integer.
+
+$$a_n$$
+
+This tells us that $a$ is not just one value, but several. The $n$ can be assumed to take a small range of values such as $1, 2, 3$, the exact size of this range depending on the situation. (In physics if we have a function of integers it's usually written as a set with an index like this, with $f(x)$ reserved for functions of continuous values.)
+
+Instead of labelling spatial coordinates $x, y, z$, we can call them $x_1, x_2, x_3$ and avoid the need to repeat ourselves by just giving the rule for the behaviour of $x_n$, which is then unambiguously the same for all three dimensions of space.
+
+Often we want to add the values:
+
+$$x_1 + x_2 + x_3 + \dots + x_n$$
+
+The shorthand for this is to use the $\Sigma$ symbol:
+
+$$\sum_n{x_n} = x_1 + x_2 + x_3 + \dots + x_n$$
+
+Later this will become so commonplace that we'll adopt an even shorter shorthand.
+
+\subsection{Vectors and Matrices}
+
+Thinking initially of vectors as mere collections of numbers (a viewpoint which we will rethink in §\ref{ch:vectors}), indices give us a way to talk about them. $x_n$ could represent a single row or column of $n$ numbers.
+
+Likewise we can use two indices to label the numbers in a grid or matrix (plural: matrices). Given:
+
+$$
+M = \begin{bmatrix}
+5 & 2 & 7 \\
+0 & 1 & 0 \\
+4 & 6 & 8
+\end{bmatrix}
+$$
+
+We can refer to the elements of $M$ as $M_{ij}$, with $i$ giving the row and $j$ the column. So:
+
+$$M_{32} = 6$$
+
+This unfortunately looks a lot like the number $32$. When it's clear we aren't talking about raising numbers to powers, we use a combination of subscript and superscript indices, with superscripts meaning rows and subscripts meaning columns:
+
+$$M^3_2 = 6$$
+
+\subsection{Matrix multiplication} \label{sec:matrix-multiplication}
+
+The simplest introduction to the purpose of a matrix is to consider a transformation that operates on the Euclidean plane, mapping any point given by coordinates $(p_1, p_2)$ to new positions given by $(q_1, q_2)$. We will restrict ourselves to transformations that can be expressed as:
+
+\begin{equation}
+\begin{split}
+q_1 = M_{11}p_1 + M_{12}p_2 \\
+q_2 = M_{21}p_1 + M_{22}p_2
+\end{split}
+\label{eqn:matrix-multiplication-raw}
+\end{equation}
+
+That is, we only choose four numbers $M_{ij} = (M_{11}, M_{12}, M_{21}, M_{22})$ to completely control the transformation. In matrix notation the above is:
+
+\begin{equation}
+\begin{split}
+\begin{bmatrix}
+q_1 \\
+q_2
+\end{bmatrix}
+&=
+\begin{bmatrix}
+M_{11} & M_{12} \\
+M_{21} & M_{22}
+\end{bmatrix}
+\begin{bmatrix}
+p_1 \\
+p_2
+\end{bmatrix} \\
+&=
+M
+\begin{bmatrix}
+p_1 \\
+p_2
+\end{bmatrix}
+\end{split}
+\end{equation}
+
+Or as a summation, where the $i$ and $j$ can take on the values $1$ or $2$:
+
+\begin{equation}
+q_i = \sum_{j} M_{ij} p_j
+\label{eqn:matrix-multiplication-summation}
+\end{equation}
+
+What if we then apply to $(q_1, q_2)$ a second such transformation described by $N_{11}, N_{12}, N_{21}, N_{22}$ to get $(r_1, r_2)$? 
+
+\begin{equation}
+\begin{split}
+\begin{bmatrix}
+r_1 \\
+r_2
+\end{bmatrix}
+&=
+\begin{bmatrix}
+N_{11} & N_{12} \\
+N_{21} & N_{22}
+\end{bmatrix}
+\begin{bmatrix}
+q_1 \\
+q_2
+\end{bmatrix} \\
+&= 
+\begin{bmatrix}
+N_{11} & N_{12} \\
+N_{21} & N_{22}
+\end{bmatrix}
+\left(
+\begin{bmatrix}
+M_{11} & M_{12} \\
+M_{21} & M_{22}
+\end{bmatrix}
+\begin{bmatrix}
+p_1 \\
+p_2
+\end{bmatrix}
+\right)
+\end{split}
+\label{eqn:matrix-bracketing}
+\end{equation}
+
+By returning to the actual formulae and doing the substitution we can arrive at the answer, via a mess that ends up very simple. Doing the tedious work for $r_1$ alone:
+
+\begin{equation}
+\begin{split}
+r_1 &= N_{11}(M_{11}p_1 + M_{12}p_2) + N_{12}(M_{21}p_1 + M_{22}p_2)  \\
+    &= N_{11}M_{11}p_1 + N_{11}M_{12}p_2 + N_{12}M_{21}p_1 + N_{12}M_{22}p_2    \\
+    &= (N_{11}M_{11} + N_{12}M_{21})p_1 + (N_{11}M_{12} + N_{12}M_{22})p_2    
+\end{split}
+\end{equation}
+
+Doing the same for $r_2$, it turns out that applying these two transformations is like applying a single transformation given by another matrix $O$ that we can prepare directly from $M$ and $N$:
+
+$$
+\begin{bmatrix}
+r_1 \\
+r_2
+\end{bmatrix}
+= 
+\begin{bmatrix}
+N_{11}M_{11} + N_{12}M_{21} & N_{11}M_{12} + N_{12}M_{22} \\
+N_{21}M_{11} + N_{22}M_{21} & N_{21}M_{12} + N_{21}M_{22}
+\end{bmatrix}
+\begin{bmatrix}
+p_1 \\
+p_2
+\end{bmatrix}
+$$
+
+Which means that instead of bracketing how we did in \eqref{eqn:matrix-bracketing}, we can "multiply" the two matrices first:
+
+\begin{equation}
+\begin{bmatrix}
+N_{11} & N_{12} \\
+N_{21} & N_{22}
+\end{bmatrix}
+\begin{bmatrix}
+M_{11} & M_{12} \\
+M_{21} & M_{22}
+\end{bmatrix}
+=
+\begin{bmatrix}
+N_{11}M_{11} + N_{12}M_{21} & N_{11}M_{12} + N_{12}M_{22} \\
+N_{21}M_{11} + N_{22}M_{21} & N_{21}M_{12} + N_{21}M_{22}
+\end{bmatrix}
+\label{eqn:matrix-combination}
+\end{equation}
+
+Generalising, if we're multiplying two matrices $M$ and $N$ to get $O$:
+
+$$O = MN$$
+
+in summation notation we can define the cell at row $i$ and column $j$ of $O$ as follows:
+
+$$O_{ij} = \sum_k M_{ik} N_{kj}$$
+
+This formula describes all the above examples of matrix multiplication. If $j$ is only allowed to take on the value 1 then $N$ and $O$ become column matrices with no need of a second index, and we've recreated \eqref{eqn:matrix-multiplication-summation} albeit with some light renaming.
+
+Note that in general $MN \ne NM$, that is, multiplication is not necessarily commutative, because referring to the result of \eqref{eqn:matrix-combination} we can see there is no way to rearrange the terms to make the two results equal. However they can be made to match up if the matrices are symmetric, meaning that diagonally opposite elements are equal ($M_{ij} = M_{ji}$), or equivalently the matrix is equal to its transpose ($M = N^T$), so in that case there is commutativity.
+
+But also matrix multiplication turns out to be merely one combination of some more basic concepts we'll return to in §\ref{tensor-contraction}.
+
+\subsection{Kronecker Delta} \label{def:Kronecker}
+
+One of the most important examples of a matrix is the \textit{identity} that makes no difference when it appears in a multiplication. Referring to \eqref{eqn:matrix-multiplication-raw}, we want $q_i = p_i$ and therefore the main diagonal elements $M_{ii}$ need to be $1$, and all others are $0$. This generalises to any size of square matrix, but is awkward to represent in a stretchy way:
+
+$$
+\hat{I} = \begin{bmatrix}
+1 & 0 & 0 & \dots & 0 \\
+0 & 1 & 0 & \dots & 0 \\
+0 & 0 & 1 & \dots & 0 \\
+\vdots & \vdots & \vdots & \ddots & \vdots\\
+0 & 0 & 0 & \dots & 1
+\end{bmatrix}
+$$
+
+So instead we define the Kronecker delta, which has two indices representing row and column:
+
+$$
+\delta_{ij} = \begin{cases}
+0 &\text{if } i \neq j,   \\
+1 &\text{if } i=j.   \end{cases}
+$$
+
+Although in this case it's not important which index is the row and which the column, due to the symmetry of the identity matrix.
+
+\subsection{Manipulating Summations}
+
+As a summation is just a template for generating terms that added, the algebraic manipulations we casually use all the time for addition and multiplication are automatically available. Multiplication is distributive across addition, so:
+
+$$
+\sum_{n} x f(n) = x \sum_{n} f(n)
+$$
+
+where $x$ is a constant. Also, think about "multiplying out" two multi-term expressions:
+
+$$
+(a_1 + a_2 + a_3)(b_1 + b_2) = a_1b_1 + a_1b_2 + a_2b_1 + a_2b_2 + a_3b_1 + a_3b_2  
+$$
+
+So in a summation we can name two indices and this produces a term for every combination of their allowed values:
+
+$$
+\left( \sum_{i} a_i \right) \left( \sum_{j} b_j \right) = \sum_{ij} a_i b_j
+$$
+
+This works in both directions. If we initially have a summation expression:
+
+$$
+\sum_{kl} a_k b_l 
+$$
+
+and then we discover that $a_k$ is itself actually the result of another summation:
+
+$$
+a_k = \sum_{j} M_{kj}
+$$
+
+(and here, note that $k$ is acting like an integer parameter of a function), we can obviously perform a substitution:
+
+$$
+\sum_{kl} \left( \sum_{j} M_{kj} \right) b_l 
+$$
+
+Unfolding that, supposing all three indices may take the values $\{1, 2\}$:
+
+\begin{equation}
+    \begin{aligned}
+        & (M_{11} b_1 + M_{12} b_1) + \\
+        & (M_{21} b_1 + M_{22} b_1) + \\
+        & (M_{11} b_2 + M_{12} b_2) + \\
+        & (M_{21} b_2 + M_{22} b_2)            
+    \end{aligned}
+\end{equation}
+
+Each of the four parenthesised pieces results from one expansion of the inner sum over $j$, but the parentheses can melt away leaving eight terms added together, which can be written as:
+
+$$
+\sum_{jkl} M_{kj} b_l
+$$
+
+But equally we could begin with the above and extract the concept of summing a slice of $M$ by inventing:
+
+$$
+a_k = \sum_{j} M_{kj}
+$$
+
+Which has the effect of removing the $j$ summation index, as it's hidden within the computation of $a_k$:
+
+$$
+\sum_{kl} a_k b_l 
+$$
+
+These may appear counter-intuitive at first glance but when you remember what summation expands into, they are quite obvious.
+
+\section{Expectation Value} \label{sec:expectation-value}
+
+This unfortunate statistical term is used everywhere; unfortunate because it describes a value that we do not necessarily expect to ever measure, and even more unfortunate that it is often garbled into ``the expected value'', which may be entirely untrue. It is the expected \textit{mean} of a set of repeated measurement values.
+
+For a set of discrete values taken by some integer variable $n$, the values may be $2, 3, 3, 3, 4, 4, 5$, which sums to $24$, and there are $7$ values, so the mean value is $3.42857...$ which is not an integer so clearly cannot be an expected value.
+
+Looking at the list of values, we can tabulate them by giving the observed (``frequentist'') probability $P$ of each value (number of times it occurs divided by the size of the set of values):
+
+\begin{center}
+    \begin{tabular}{ c|c|c }
+        $n$ & $P_n$ \\
+        \hline
+        $2$ & $1/7$  \\
+        $3$ & $3/7$  \\
+        $4$ & $2/7$  \\
+        $5$ & $1/7$
+    \end{tabular}
+\end{center}
+
+$P_n$ is zero for all $n$ except the above exceptions, where it is between zero and $1$, and of course all values of $P_n$ add up to $1$ because we fixed them to do that when we divided them all by $7$. $P_n$ is literally ``what fraction of the $7$ values is contributed by $n$''.
+
+Therefore by computing the weighted sum:
+
+$$ \langle {n} \rangle = \sum_n{n\,P_n} $$
+
+we recover the mean value $\langle{n}\rangle$. The point here is that, inside a sum at least, it makes sense to multiply a value by the probability of obtaining that value.
+
+In the continuous case, the probability density function $\rho(x)$ does not give us the probability of $x$, a meaningless concept for a continuous variable (any specific value is infinitesimally unlikely), but it can be integrated over some region to get the probability of the value appearing in that region.
+
+The integral over all values of $x$:
+
+$$
+\langle x \rangle =
+\int_{-\infty}^{+\infty}
+x\,\rho(x)
+\,dx
+$$
+
+is the continuous equivalent of $(1)$ and gives the mean value of a large set of measurements of $x$. If we think of all the values of $x$ as a cloud of matter that is more or less densely concentrated here or there, $\langle x \rangle$ is like its centre of mass.
+
+But $\rho(x)$ may be symmetrical around the origin and vanish at the origin, e.g. two peaks on either side, making $\langle x \rangle = 0$ despite $x$ never taking the value $0$; so if we are required to call it "the expectation value", we must always remember that it may be a value that never occurs.
+
+\section{Fourier Transform} \label{sec:fourier}
+
+Given a real-valued function $f(x)$, and supposing it is periodic, e.g. it describes the sound of a bell ringing, you might ask what frequencies appear in the sound. In fact your ear-brain system is an adaptation for answering that very question, and if you listen carefully you can often discern several different notes within the sound of a bell.
+
+What we're really asking is how "loud" the signal is at each frequency. We can detect this for a given frequency $\nu$ by multiplying the function by $e^{-i2\pi\nu x}$, in which:
+
+\begin{itemize} 
+    \item the minus sign is purely a convention (and not a universal one)
+    \item $i$ is the magic ingredient that makes it go round and round
+    \item $2\pi$ converts to radians
+    \item $\nu$ is the frequency
+    \item $x$ is the parameter to the function
+\end{itemize}
+
+So if $\nu$ is 1, the complex value performs a whole rotation as $x$ goes from $0$ to $1$, and again from $1$ to $2$, etc.
+
+By itself this factor is a unit complex number, i.e. of "length" 1, but by multiplying it by the function we adjust its length so it oscillates "in and out" as it rotates, exactly like our signal:
+
+$$f(x)e^{-i2\pi\nu x}$$
+
+If the oscillations of $f$ don't coincide with the frequency $\nu$, the above expression will, averaged over all values of $x$, be about zero, there being no particular reason for the complex value to be biased in any direction. That is:
+
+$$\int_{-\infty}^{\infty} f(x)e^{-i2\pi\nu x} dx \approx 0 $$
+
+But if the oscillations do coincide, then there will be a bias; each time the oscillation of $f(x)$ reaches a maximum it will be on the same side of the circle traced by $e^{-i2\pi\nu x}$.
+
+(A minor subtlety is that whenever $f(x)$ is at a negative minimum, $e^{-i2\pi\nu x}$ will be on the other side of the circle; however, multiplying it by the negative value of $f(x)$ will flip it round by $180$ degrees, so both positive peaks and negative troughs will both contribute to the same biased direction.)
+
+So we can define a complex-valued function of frequency:
+
+\begin{equation}
+    \hat{f}(\nu) = \int_{-\infty}^{\infty} f(x)e^{-i2\pi\nu x} dx
+    \label{eq:fourier}
+\end{equation}
+
+and this will be about zero for frequencies that don't appear in the function, and non-zero for frequencies that do appear. These values are \textit{complex} amplitudes; they tell us how loud the signal is at that frequency, but also their phase tells us how the signal is offset at that frequency.
+
+As a shorthand we can write it as a fancy $\mathcal{F}$:
+
+$$\hat{g} = \mathcal{F} g$$
+
+We can do the opposite transformation:
+
+\begin{equation}    
+f(x) = \int_{-\infty}^{\infty} \hat{f}(\nu)e^{i2\pi\nu x} d\nu
+\label{eq:invfourier}
+\end{equation}
+
+Shorthand:
+
+$$g = \mathcal{F}^{-1} \hat{g}$$
+
+This pretty much literally says that you can make any function by adding together an infinite collection of oscillations at every possible frequency. You just need a (complex) function $\hat{f}(\nu)$ that tells you how "loud" each frequency needs to be.
+
+\subsection{Negative Frequencies}
+
+By the way, note how when we do the integral over $\hat{f}$ in the inverse transform, we include negative values. What on earth is a negative frequency?! It's not that weird, really. It just makes the complex factor rotate the other way. This underscores the fact that the minus sign is just a convention. The integrals cover both "directions".
+
+There's a special relationship between the positive and negative sides of the frequency spectrum. According to equation \eqref{eq:fourier}, if you want the amplitude for frequency $-\nu$, it must be:
+
+$$
+\hat{f}(-\nu) = \int f(x)e^{i2\pi\nu x} dx
+\label{3}
+$$
+
+Which means $\hat{f}(-\nu)$ is the complex conjugate of $\hat{f}(\nu)$.
+
+$$
+\hat{f}(-\nu) = \left[ \hat{f}(\nu) \right]^*
+$$
+
+Therefore having done the hard work of computing one side, it is very easy to get the other side - it contains no different information.
+
+Also, note that as we're integrating over all $x$ from $-\infty$ to $\infty$, we can negate $x$ through the integral without changing the result. So this produces the exact same frequency amplitudes as equation \eqref{eq:fourier}:
+
+$$\hat{f}(\nu) = \int f(-x)e^{i2\pi\nu x} dx$$
+
+Suppose $f$ happens to be an even function:
+
+$$f(-x) = f(x)$$
+
+Then we can switch freely:
+
+$$\hat{f}(\nu) = \int f(x)e^{i2\pi\nu x} dx$$
+
+If we mirror the frequency:
+
+$$\hat{f}(-\nu) = \int f(x)e^{-i2\pi\nu x} dx$$
+
+But we've arrived back at equation \eqref{eq:fourier}, meaning it must be perfectly symmetrical around $\nu = 0$ when applied to an even function. This means it must also be real at all frequencies - how else could all this be true?
+
+$$
+\hat{f}(-\nu) = \hat{f}(\nu) = \left[ \hat{f}(\nu) \right]^*
+$$
+
+Now suppose $f$ is odd:
+
+$$f(-x) = -f(x)$$
+
+By a similar argument, when we substitute:
+
+$$
+\hat{f}(\nu) = - \int f(x)e^{i2\pi\nu x}
+dx
+$$
+
+And mirror:
+
+$$
+\hat{f}(-\nu) = - \int f(x)e^{-i2\pi\nu x}
+dx
+= -\hat{f}(\nu)
+$$
+
+If taking the complex conjugate is the same as negating, we must be talking about a purely imaginary number. So the transform of an odd function is imaginary and odd.
+
+\subsection{Spikes} \label{sec:fourier-spike}
+
+What happens if we take the Fourier transform of a pure $\sin$ wave? Only a single frequency is present. To describe this situation, the mathematical tool we need is called the Dirac delta, $\delta(x)$, and is often referred to as a function, or a "function" with scare-quotes. It has a number of strange properties if regarded as a function, so it's simpler to think of it as only ever appearing as a factor inside an integral. But in simple terms, it is zero except at $x = 0$, where it is infinite. We can use an expression like $\delta(x - \alpha)$ to move the spike from zero to the location $\alpha$ of our choice.\footnote{It's like the real number equivalent of the Kronecker delta, though we write that slightly differently. You can think of the Kronecker $\delta_{nm}$ (§\ref{def:Kronecker}) as conceptually similar to the Dirac $\delta(n - m)$: if $n \ne m$, the result is $0$.}
+
+Why does it have to be infinite at the spike? We recover the function from its transform with the inverse transform, which is an integral:
+
+$$
+f(x) = \int_{-\infty}^{\infty} \hat{f}(\nu)e^{i2\pi\nu x} d\nu
+$$
+
+Substituting $\delta(\nu - \alpha)$ as the transform from which we're recovering the function, i.e. a spike at $\alpha$:
+
+$$
+f(x) = \int_{-\infty}^{\infty} \delta(\nu - \alpha)e^{i2\pi\nu x} d\nu
+$$
+
+Imagine the value of $\nu$ sweeping through the range of values from $-\infty$ to $+\infty$, everywhere contributing nothing except at the instant it passes through $\nu = \alpha$. That contributes $e^{i2\pi\alpha x}$. To accomplish that, the other factors must have the product $1$:
+
+$$
+\delta(\nu - \alpha) d\nu = 1
+$$
+
+and so:
+
+$$
+\delta(\nu - \alpha) = \frac{1}{d\nu}
+$$
+
+So the spike at $\alpha$ from $\delta(\nu - \alpha)$ must be infinite so as to counteract the infinitesimal smallness of $d\nu$. In other words, we have to think about any transform as an amplitude \textit{density} function.
+
+\subsection{The Gaussian}
+
+An infinitesimally narrow spike in the frequency spectrum represents the single frequency present in a pure wave that goes on forever. And a pure wave in the frequency spectrum represent the infinite set of frequencies that must be summed to get an infinitesimally narrow spike. Each is the Fourier transform of the other. They are the two extremes of:
+
+- being localised in position but spread out in frequency
+- being spread out in position but localised in frequency
+
+Between these two there is a middle ground, a shape that is its own Fourier transform. The best known example is the Gaussian, of the form:
+
+$$g(x) = Ae^{Bx^2}$$
+
+Where $A$ and $B$ are constants. There are several ways of concluding that its Fourier transform is:
+
+$$\hat{g}(\nu) = A \sqrt{\pi/B} e^{-\frac{\pi^2}{B} \nu^2}$$
+
+This is evidently of the same form. Aside from being a function of frequency $\nu$ instead of position $x$, the constant $A$ has become $A \sqrt{\pi/B}$, and $B$ has become $-\frac{\pi^2}{B}$, and these are just different constants.
+
+\section{Potentials} \label{sec:potential}
+
+A force field is a vector-valued function of space, i.e. at each point in space we imagine there is a vector giving the strength and direction of the force that would felt at that point.
+
+The force fields we observe in nature have an interesting property: it is always possible to replace the force field with a scalar-valued function of space, i.e. at each point in space there is merely an ordinary number, not a vector. We can then take the vector gradient $\nabla$ of this scalar field and we recover the force field.
+
+By analogy, picture a hilly landscape. The height $H$ above sea level is the scalar field value, so the landscape is fully described by the scalar field $H(x, y)$. From this we can derive $\nabla H$, a two-dimensional vector field (picture it as an arrow that never points up or down, always parallel to the horizon). As we travel around we sometimes face steep slopes, where $\nabla H$ points in the steepest direction, or stationary points such as hilltops or valley basins where $\nabla H$ is the zero vector (to distinguish between peaks and valleys, we'd need to take the second derivative, $\nabla^2H$).
+
+If we wander on some pathway through this landscape and return back to where we started, our height will be the same as it was when we started (assuming the landscape hasn't changed shape). This is true regardless of the path we take, as the height is a fact about the start/end point of the path. This is so obvious as to seem hardly worth stating.
+
+And yet if we only had some vector field, and wondered if the path integral of any closed loop through that field was always zero, how would we know? Some paths might go mainly through regions with vectors all pointing in one direction, and so not sum to zero. Not all vector fields have this self-balancing property.
+
+Those that do are known as conservative fields, and these are fields which can be reduced to a scalar field from which the vectors can be recovered by applying $\nabla$, and these are all the force fields we encounter in nature.
+
+When we describe a force field by a scalar field, we call that field a \textit{potential}. It has units of energy. As a particle moves through a potential, it experiences a potential difference between two points. If this difference is negative, i.e. the potential energy drops between the two points, the particle gains kinetic energy (speeds up). This is exactly like a ball rolling down a slope; the potential energy is exactly equivalent to the height of the landscape.
+
+If the potential does not vary, the gradient is zero. This is true regardless of the potential's constant value, which is like a constant of integration, i.e. a global increase in potential is physically meaningless.
+
+An important example is a force field conforming to the inverse square law, so the force is proportional to $r^{-2}$ where $r$ is the distance from the origin of the force. The potential must therefore be proportional to $r^{-1}$, so that it has the required gradient (differentiation subtracts 1 from the power of a polynomial).

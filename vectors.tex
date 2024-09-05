@@ -205,7 +205,7 @@ Eventually we may find (assuming the space is finite dimensional) that it is not
 
 The vitally important thing to realise about this is that at no point have we said that these vectors are orthogonal. We haven't even defined what that means yet. We've only defined the property of linear independence. Nevertheless we have arrived at the idea of a coordinate grid; it's just that our grid may be awkwardly slanted, made of identical parallelogram tiles rather than identical square tiles.
 
-So we don't have to keep choosing letters, we will label each dimension with a number. The set of linearly independent vectors that we can use to construct any other vector in the space is called a \textit{basis}. The basis vectors are traditionally written as $\vec{e}_n$, where $n$ is often 1-based (although in Relativity it is usually 0-based). The scalar coefficients, which we will call coordinates, that construct a given vector $\vec{r}$ can also be numbered, conventionally with superscript $r^n$:
+So we don't have to keep choosing letters, we will label each dimension with a number. The set of linearly independent vectors that we can use to construct any other vector in the space is called a \textit{basis}. The basis vectors are traditionally written as $\vec{e}_n$, where $n$ is often 1-based (although in Relativity it may be 0-based; this is purely a notational convention and makes no arithmetic difference). The scalar coefficients, which we will call coordinates, that construct a given vector $\vec{r}$ can also be numbered, conventionally with superscript $r^n$:
 
 \begin{equation}
 \begin{split}
@@ -214,13 +214,13 @@ So we don't have to keep choosing letters, we will label each dimension with a n
 \end{split}
 \end{equation}
 
-The use of a superscript index is obviously asking for trouble given that it looks like we're raising $r$ to a power, but this notation is universal in physics so we may as well get used to it.
+The use of a superscript index is obviously asking for trouble given that it looks like we're raising $r$ to a power\footnote{or possibly indicating an undetermined footnote?}, but this notation is universal in physics so we may as well get used to it.
 
 Having chosen a basis, we can describe any vector with a tuple of coordinates $r^n$, so any vector space of dimension $N$ whose scalar field is $\mathbb{F}$ must be isomorphic with $\mathbb{F}^N$. In other words, all vectors can be described by column vectors, but the numbers in the columns will depend on our choice of basis.
 
 But the laws of physics cannot possibly care what basis we choose, so we need ways of obtaining numeric facts about vectors that do not depend on the choice of basis.
 
-\section{Covectors}
+\section{Covectors} \label{covector}
 
 Think of a scalar-valued function of a vector. That is, a black box with a single input slot accepting a vector $\vec{a}$, and an output hole that gives us back a scalar $x$ (Figure \ref{fig:1-slot-box}).
 
@@ -298,11 +298,11 @@ $$\langle \vec{f},\vec{a}\rangle$$
 
 In this notation, the left and right sides of the operation are from mutually dual spaces, mirror opposites that annihilate one another leaving only a scalar residue.
 
-Keep in mind that just as we've thought of a covector as machine that accepts a vector as input, we could just as well think of a vector as a machine that accepts a covector as input.
+Although we will mostly think of a covector as a function and a vector as something that can be a parameter to a covector, keep in mind that just as we've thought of a covector as machine that accepts a vector as input, we could just as well think of a vector as a machine that accepts a covector as input.
 
 \subsection{Connecting the Dual Spaces}
 
-We obviously have a lot of freedom when choosing a basis in either $V$ or $V^*$. What can we usefully do to relate the two sides? We've seen how a covector is built as a weighted sum of basis covectors $\vec{e}^i$ from $V^*$:
+We obviously have a lot of freedom when choosing a basis in either $V$ or $V^*$. What can we usefully do to relate the two sides? We've seen how a covector may be built as a weighted sum of basis covectors $\vec{e}^i$ from $V^*$:
 
 $$
 \vec{f} = \sum_i f_i \vec{e}^i
@@ -366,7 +366,7 @@ From now on we'll assume that this alignment of the dual bases has been performe
 
 So the linearity allows us to sum over all combinations of $i, j$ and pull the coordinates outside of the action of the covector on the vector, and the dual bases yield the value $1$ where $i = j$ and $0$ otherwise, so we just end up with a simple sum over the products of the paired-up coordinates.
 
-In a roundabout way we've discovered the dot product, albeit between a covector and a vector rather than two ordinary vectors. We still haven't introduced any concept of orthonormality, or even orthogonality, between pairs of vectors. Our "coordinate grid" is still not necessarily a lattice of squares, and our dot product is between elements of two different vector spaces, but we always choose their basis vectors so they are related by a definite requirement, which we can state in two ways:
+In a roundabout way we've discovered the dot product, albeit between a covector and a vector rather than two ordinary vectors. We still haven't introduced any concept of orthonormality, or even orthogonality, between pairs of vectors. Our "coordinate grid" is still not necessarily a lattice of squares, and our dot product is between elements of two different (dual) vector spaces, but we always choose their basis vectors so they are related by a definite requirement, which we can state in two ways:
 
 \begin{enumerate}
     \item The $n$th basis covector from $V^*$ can be used to extract the $n$th coordinate of a vector from $V$.
@@ -377,7 +377,7 @@ And as a consequence of this (dual) requirement we find that when the $n$th basi
 
 If we describe our covectors and vectors as sets of coordinates, to make a covector act on a vector we simply perform the dot product between their coordinates. Or equivalently, we write the covector as a single row matrix on the left, and the vector as a single column matrix on the right, and perform matrix multiplication to get a single scalar.
 
-Does this mean we've created a link between \textit{every} vector and a corresponding covector? Absolutely not. We've only linked up the basis vectors with the basis covectors. Still, there is an obvious mapping between vectors and covectors: let the covector have exactly the same coordinates as its vector pair, $f_i = v^i$. But that is only one possible mapping out of an infinity of possibilities, as we could blend the coordinates by any weighted sum we like. So connecting the basis covectors with the basis vectors is a start, but still leaves something to be desired.
+Does this mean we've created a dual link between \textit{every} vector and a corresponding covector? Absolutely not. We've only linked up the basis vectors with the basis covectors. Still, there is an obvious mapping between vectors and covectors: let the covector have exactly the same coordinates as its vector pair, $f_i = v^i$. But that is only one possible mapping out of an infinity of possibilities, as we could blend the coordinates by any weighted sum we like. So connecting the basis covectors with the basis vectors is a start, but still leaves something to be desired.
 
 \subsection{Visualising the dual basis}
 
@@ -461,7 +461,7 @@ $$
 \vec{a} = a_1 \vec{e^1} + a_2 \vec{e^2}
 $$
 
-This basis $\vec{e}_j$ is related to the original basis $\vec{e}^i$ by \eqref{eqn:dual-bases-delta}. Looking at it geometrically (that is, cheating), when choosing the dual basis vector for a given index, we must choose a vector that is visibly orthogonal to all the other basis vectors, and this means we will have a severely limited choice, because there can be only one alignment that meets this requirement. Furthermore the magnitude of the vector $\vec{e}^i$ is fully determined by the requirement that $\langle \vec{e}_i, \vec{e}^i \rangle = 1$, as the ratio between the coordinates is already fixed by the choice of alignment.
+This basis $\vec{e}^j$ is related to the original basis $\vec{e}_i$ by \eqref{eqn:dual-bases-delta}. Looking at it geometrically (that is, cheating), when choosing the dual basis vector for a given index, we must choose a vector that is visibly orthogonal to all the other basis vectors, and this means we will have a severely limited choice, because there can be only one alignment that meets this requirement. Furthermore the magnitude of the vector $\vec{e}^i$ is fully determined by the requirement that $\langle \vec{e}_i, \vec{e}^i \rangle = 1$, as the ratio between the coordinates is already fixed by the choice of alignment.
 
 In this visualisation process we have shown the relationship between $V$ and $V*$ by overlaying them on the same diagram, but they are in fact separate vector spaces: elements of $V$ are not elements of $V*$, and vice versa. But the way we have calibrated these two sets of bases to be mutually consistent is exactly the same as the relationship between the bases of $V$ and $V*$.
 
@@ -667,7 +667,7 @@ This kind of machine is called a \textit{tensor}.
 
 It will often be the case that $M_{ij} = M_{ji}$, which is quite a lot of redundancy. But this is necessary to ensure that the machine is symmetrical: switching the inputs around does not affect the result. Of course, a machine doesn't have to be defined that way.
 
-\subsection{Simple tensors}
+\subsection{Simple tensors} \label{simple-tensor}
 
 We mentioned at the start that the simplified design (the ordinary product of two scalars obtained by two covectors operating separately on one vector input each) is not powerful enough to describe all these machines, even though we used it to define our basis machines. The simplistic machine is defined by a matrix that can be written as:
 
@@ -679,7 +679,7 @@ In other words, it can be decomposed into two separate columns of numbers. Such 
 
 One hint as to why it is so limited is that as $f_i$ and $g_j$ provide $N$ values each for an $N$-dimensional space, that is only $2N$ adjustable parameters, even though $M$ appears to have $N^2$ independent values. So we aren't allowing the full flexibility of which $M$ is capable.
 
-Of course, if $N=2$ then $N^2 = 2N = 4$, but even then, there is a restrictive pattern that applies regardless of the dimensions. Viewing $M_{ij}$ as a matrix, every row (labelled by $i$) would be a scaled version of the numbers in $g_j$, and every column (labelled by $j$) would likewise be a scaled version of the numbers in $f_i$. That is, the rows are all linearly dependent on one another, and so are the columns. This would not be the case if the elements of $M$ were truly independent.
+Of course, if $N=2$ then $N^2 = 2N = 4$, but even then, there is a restrictive pattern that applies regardless of the dimensions. Viewing $M_{ij}$ as a matrix, every row (labelled by $i$) would be a scaled version of the numbers in $g_j$, and every column (labelled by $j$) would likewise be a scaled version of the numbers in $f_i$. That is, the rows are all linearly dependent on one another, and so are the columns. This would not be the case if the elements of $M$ were truly independent.\footnote{Can any symmetric matrix be expressed as the product of a row and a column? No. Try to find a row and a column that can be multiplied to produce the identity matrix. The columns are linearly independent, as are the rows.}
 
 There's a subtlety here though: vector addition and scaling operators are meant to be closed. We've proposed a way of defining simple machines, which is a restricted set of objects, and then we've said that scaling and adding simple machines allows us to discover objects that are not in that simple set, which sounds like we're breaking the rules, reaching outside the initial set.
 
@@ -785,7 +785,7 @@ $$
 
 The $\nu$ index is repeated up/down in the way that is characteristic of all summation variables, but $\mu$ is introduced on the left to indicate that the expression computes the value of one component of several that represent a vector (we know it's a vector because the index is up).
 
-From these patterns we can deduce something surprising: it is completely unnecessary to write the summation symbol and state what the summation index variables are! If an expression consisting indexed quantities multiplied together contains exactly two references to the same index, once up and once down, then that index is a summation index.
+From these patterns we can deduce something surprising: it is completely unnecessary to write the summation symbol and state what the summation index variables are! If an expression consisting of indexed quantities multiplied together contains exactly two references to the same index, once up and once down, then that index is a summation index.
 
 $$
 g_{\mu\nu} Z\indices{^\mu_\beta} \underline{a}^{\beta} Z\indices{^\nu_\lambda} \underline{b}^{\lambda}
@@ -817,7 +817,7 @@ $$
 
 Einstein came up with this abbreviation while developing General Relativity.
 
-\section{The Inner Product}
+\section{The Inner Product} \label{inner-product}
 
 The most important necessity for a specific machine of the form $V^* \otimes V^*$ is to at last come up with a way to define orthogonality, and the norm (length) of a vector, and thus orthonormality, but also a specific two-way pairing between every vector and a covector partner.
 
@@ -828,6 +828,8 @@ As we've incessantly complained, we have so far had no way to judge whether two 
 The choice of an inner product determines which vectors are mutually orthogonal, and also which are normalised (of unit norm). Importantly, it will also pair every vector with a single dual covector (and vice versa).
 
 The notation $(\vec{a},\vec{b})$ is sometimes used for the inner product, similar to but deliberately distinct from the $\langle \vec{f},\vec{a}\rangle$ notation for the action of a covector on a vector.\footnote{Sadly the meanings of these notations are sometimes switched, and they aren't the only notations used.}
+
+The \textit{squared-norm} of a vector $\vec{a}$ is $(\vec{a},\vec{a})$, so the norm is $\sqrt{(\vec{a},\vec{a})}$. In most situations (Newtonian and Quantum) there is a rule that the norm must be \textit{positive definite}, meaning that it is never negative and is only zero for the zero vector. The exception is just about anything involving Einstein, who favours inner products that break this rule in every way.
 
 As it's a two-slot machine, its coordinate representation can be thought of as a matrix or a list of numbers addressed by two indices, and it is called the \textit{metric}. In General Relativity the metric is usually written as $g$, and its indices are often $\mu$ and $\nu$, so applying it to vectors $\vec{a}$ and $\vec{b}$ will look like this:
 
@@ -887,7 +889,9 @@ $$
 
 \textit{By definition} if the inner product is represented by $\delta_{\mu\nu}$ then the basis vectors are orthonormal. In other words, the inner product being represented by the identity matrix doesn't really tell us anything about the inner product. It tells us that we've chosen a set of basis vectors so that they are orthonormal according to this space's nominated inner product. It is always possible to do this, regardless of what the inner product happens to be.\footnote{Strictly speaking it is always possible for a finite-dimensional inner product space.}
 
-This means that if we can use a single inner product consistently, we may as well define the basis to be orthonormal according that inner product, which means we will always be able to use the dot product between vectors, and the distinction between vectors and covectors becomes unimportant. We can even define all other multi-slot machines in terms of vectors acting on other vectors (via the inner product). That is, every machine would be of the form $V \otimes V \otimes V \otimes \ldots$, and would accept vectors as inputs.
+This means that if we can use a single inner product consistently, we may as well define the basis to be orthonormal according that inner product, which means we will always be able to use the dot product between vectors, and the distinction between vectors and covectors becomes unimportant. We can even define all other multi-slot machines in terms of vectors acting on other vectors (via the inner product). That is, every machine would be of the form $V \otimes V \otimes V \otimes \ldots$, and would accept vectors as inputs. You may wonder if all that care we took to distinguish superscript and subscript indices was a waste of time. Indeed in many contexts, including all Newtonian classical mechanics and quantum mechanics, it is a waste of time.
+
+The exception is General Relativity, where the inner product varies from place to place, becoming a \textit{tensor field}. To describe it, we have to fix the basis somehow, and allow the metric to vary. As a result of this, if you want to understand GR, you need to understand that to get the squared-norm of a vector, you need to get the equivalent covector so it can act on the original vector. But in many other topics, you can just think of the vector acting on itself.
 
 This also means that the previous examples of what we called awkward basis vectors would in fact be orthonormal if we chose a particular inner product.
 
@@ -978,7 +982,7 @@ The basis is orthonormal if $(\vec{e}_i, \vec{e}_j) = \delta_{ij}$. Undeniably, 
 
 Every distinct basis provides a different way to describe any vector with coordinates, and likewise any covector. Regardless of the basis they are described in, the result of applying a specific covector to a specific vector will be the same scalar value. That is, the choice of basis is not a fact about the vector space, but merely a way to describe the vectors in it.
 
-Choosing a different inner product (or equivalent, a metric) is not like that. In fact a given physical situation may impose a metric and we have to accept it; it's a fact of nature. So there are two possible reasons why the matrix $g_{\mu\nu}$ might change:
+Choosing a different inner product (or equivalently a metric) is not like that. In fact a given physical situation may impose a metric and we have to accept it; it's a fact of nature. So there are two possible reasons why the matrix $g_{\mu\nu}$ might change:
 
 \begin{itemize}
     \item a change of basis, which will change the coordinates $a^{\mu}$ and $b^{\nu}$ of the two input vectors, as well as the matrix elements $g_{\mu\nu}$, so as to ensure the scalar result of the inner product $(\vec{a}, \vec{b})$ is unchanged, or
@@ -1057,6 +1061,12 @@ b^\mu = \sum_{\nu} O\indices{^\mu_\nu} a^\nu
 $$
 
 There are some operators that have the same coordinates in all bases. The $0$-matrix, which maps all vectors to the $0$-vector, has all its elements $0$. The identity operator, which has no effect on its input, is $\delta_{\mu\nu}$ in all bases.
+
+A unitary operator is one that is equivalent to a combination of rotation and reflection. One handy fact about such an operator is that if we have its matrix representation (in any basis), we can find the inverse simply by transposing it:
+
+$$
+(O^\intercal) O = I
+$$
 
 We can think of a vector as pointing in a direction in space, and this being an aspect of its geometrical nature. How can we similarly characterise operators?
 
@@ -1251,7 +1261,7 @@ This clarifies that we're just adding a lot of products: $a^{\mu}$, $g_{\mu\nu}$
 We've seen how a machine like $g$ can be defined as a linear combination of a set of basis machines that span the space of all possible machines, each basis machine being formed by choosing a distinct pairing of the basis covectors:
 
 $$
-\sum_{\mu\nu} g_{\mu\nu} (\vec{e}^i \otimes \vec{e}^j)
+\sum_{\mu\nu} g_{\mu\nu} (\vec{e}^\mu \otimes \vec{e}^\nu)
 $$
 
 And how that machine acts on two vectors like so:
@@ -1629,7 +1639,7 @@ dT &= (\vec{s}, \vec{x}) \\
 
 \subsection{Smoothly varying gradients}
 
-Generalising this to the more complicated kinds of $T$ scalar field, the scalar-valued function $dT(\vec{x})$, that tells us how $T$ changes due to a small displacement $\vec{x}$, may have a different definition at each point in space. But we can retain the simplification that we only need to know the linear approximation of that function at each point.
+Generalising this to the more complicated kinds of $T$ scalar field, the scalar-valued function $dT(\vec{x})$, which tells us how $T$ changes due to a small displacement $\vec{x}$, may have a different definition at each point in space. But we can retain the simplification that we only need to know the linear approximation of that function at each point.
 
 The displacement will be described by a number in each dimension: a relative coordinate change associated with each position basis vector. If we only allow one coordinate, $x^i$, to vary and leave the others constant, $dT$ becomes a scalar-valued function of a single variable, $x^i$, which if plotted would simply be a line through the origin (i.e. it is $0$ when its parameter is $0$). It is therefore characterised entirely by a single number, its gradient, the number by which it multiplies its input.
 
@@ -1659,94 +1669,124 @@ A major potential source of confusion in this area is the distinction between th
 
 Another source of confusion is the way we think of the gradient as the rate of change of the scalar field, computed with respect to a change in position. This means that a physical distance appears on the bottom of a fraction, and therefore if we increase the size of our unit of distance, the number on the bottom of the fraction decreases, which increases the overall value of the fraction. This reminds us of covariance; is this the source of some inherently covector-like nature in gradients? No. As we've seen, the gradient is actually a vector, and so its coordinates transform contravariantly. The total derivative is a covector that maps a displacement vector to a change in the scalar field, so its coordinates transform covariantly. These two representations actually convey the same information (even in the form of the same set of numbers if the basis is orthonormal), so there is nothing inherently covariant about that information.
 
-\chapter{Potentials} \label{ch:potential}
-
-A force field is a vector-valued function of space, i.e. at each point in space we imagine there is a vector giving the strength and direction of the force that would felt at that point.
-
-The force fields we observe in nature have an interesting property: it is always possible to replace the force field with a scalar-valued function of space, i.e. at each point in space there is merely an ordinary number, not a vector. We can then take the vector gradient $\nabla$ of this scalar field and we recover the force field.
-
-By analogy, picture a hilly landscape. The height $H$ above sea level is the scalar field value, so the landscape is fully described by the scalar field $H(x, y)$. From this we can derive $\nabla H$, a two-dimensional vector field (picture it as an arrow that never points up or down, always parallel to the horizon). As we travel around we sometimes face steep slopes, where $\nabla H$ points in the steepest direction, or stationary points such as hilltops or valley basins where $\nabla H$ is the zero vector (to distinguish between peaks and valleys, we'd need to take the second derivative, $\nabla^2H$).
-
-If we wander on some pathway through this landscape and return back to where we started, our height will be the same as it was when we started (assuming the landscape hasn't changed shape). This is true regardless of the path we take, as the height is a fact about the start/end point of the path. This is so obvious as to seem hardly worth stating.
-
-And yet if we only had some vector field, and wondered if the path integral of any closed loop through that field was always zero, how would we know? Some paths might go mainly through regions with vectors all pointing in one direction, and so not sum to zero. Not all vector fields have this self-balancing property.
-
-Those that do are known as conservative fields, and these are fields which can be reduced to a scalar field from which the vectors can be recovered by applying $\nabla$, and these are all the force fields we encounter in nature.
-
-When we describe a force field by a scalar field, we call that field a \textit{potential}. It has units of energy. As a particle moves through a potential, it experiences a potential difference between two points. If this difference is negative, i.e. the potential energy drops between the two points, the particle gains kinetic energy (speeds up). This is exactly like a ball rolling down a slope; the potential energy is exactly equivalent to the height of the landscape.
-
-If the potential does not vary, the gradient is zero. This is true regardless of the potential's constant value, which is like a constant of integration, i.e. a global increase in potential is physically meaningless.
-
-An important example is a force field conforming to the inverse square law, so the force is proportional to $r^{-2}$ where $r$ is the distance from the origin of the force. The potential must therefore be proportional to $r^{-1}$, so that it has the required gradient (differentiation subtracts 1 from the power of a polynomial).
-
 \section{Complex vector spaces}\label{sec:vectors-complex}
 
 We've mentioned that a vector space has an associated set of scalars, and this is often $\mathbb{R}$, but it may instead be $\mathbb{C}$, meaning that vectors can be scaled by a complex number, and if expressed as a column of coordinates, those coordinates may be complex.
 
 Even the simplest non-trivial example of such a space, $\mathbb{C}^2$, is not directly imaginable, because although each vector requires two coordinates, each of those is a complex number incorporating a real and imaginary part, so each vector requires four real numbers to describe it, and so $\mathbb{C}^2$ is isomorphic with $\mathbb{R}^4$, which is impossible to visualise directly.
 
-Even so, concepts applicable to real vector spaces also work for complex, although with some modifications. The main issue is determining the modulus, for which we must introduce an inner product.
+Even so, concepts applicable to real vector spaces also work for complex, although with some modifications. Linear independence of a set of N vectors still means that no one of them can be recreated via a linear combination of the others. A mapping from a vector to a scalar, where the scalar is a complex number, is still called a covector. All the related concepts work the same.
 
-If we use the usual dot product definition then we have a problem because we naturally expect the modulus to be a positive real number. Summing the squares of the components of a complex vector could well produce a negative result, and then we need to take the square root to get the modulus, so the modulus wouldn't even be a real number.
+\subsection{Complex dual space}
 
-To ensure $\langle \vec{u}, \vec{v} \rangle$ is real and positive, we amend the inner product so that we first take the complex conjugate of one its arguments:
+A basis of linearly independent vectors can be chosen, and a dual basis in the covectors is then defined by \eqref{eqn:dual-bases-delta}:
 
 $$
-\langle \vec{u}, \vec{v} \rangle
+\langle \vec{e}^i,\vec{e}_j\rangle = \delta\indices{^i_j}
+$$  
+
+For example, regarding column vectors from $\mathbb{C}^2$, these are linearly independent:
+
+$$
+\vec{e}_1 = \begin{bmatrix}1 \\ 0\end{bmatrix}
+, \,
+\vec{e}_2 = \begin{bmatrix}0 \\ i\end{bmatrix}
+$$
+
+We gleaned from our experiments with one-hot basis vectors in $\mathbb{R}^2$ that $\vec{e}^1 = \begin{bmatrix}1 & 0\end{bmatrix}$, to ensure that $\langle \vec{e}^1,\vec{e}_1\rangle = 1$. By leaning on our schoolhouse assumption of orthonormality based on the dot product, we observed that if the basis vectors are orthonormal, each basis covector will have the same coordinates as its corresponding basis vector.
+
+But by definition $(i)^2 = -1$. So to ensure $\langle \vec{e}^2,\vec{e}_2\rangle = 1$, it must be that:
+
+$$
+\vec{e}^2 = \begin{bmatrix}0 & -i\end{bmatrix}
+$$
+
+Intriguing! What $1$ and $i$ have in common is that they are unitary (having modulus $1$). On the complex plane such numbers form the unit circle $e^{i\theta}$ (§\ref{euler-formula}). When $\theta = \pi / 4$ (45\textdegree) the real and imaginary ingredients are balanced, making an equal contribution to it having modulus $1$:
+
+$$
+\frac{1}{\sqrt{2}} + \frac{i}{\sqrt{2}}
+$$
+
+Both terms squared equal a half, so Pythagoras finds the "length" of the number to be $1$. An equivalent way to find the modulus is to multiply the number by its complex conjugate, where the sign of the imaginary part is reversed. So if:
+
+$$
+\vec{e}_2 = \begin{bmatrix}0 \\ \frac{1}{\sqrt{2}} + \frac{i}{\sqrt{2}}\end{bmatrix}
+$$
+
+then it must be that:
+
+$$
+\vec{e}^2 = \begin{bmatrix}0 \\ \frac{1}{\sqrt{2}} - \frac{i}{\sqrt{2}}\end{bmatrix}
+$$
+
+The covector coordinates are not the same: they are the conjugates of the vector coordinates. Of course, a real number having zero imaginary part, it is equal to its own conjugate, which is why our original "same coordinates" rule worked. But we have now shown how to amend it to cover complex vector spaces in a backward compatible way.
+
+In matrix terms, a covector acts on a vector by a row multiplying with a column. By selecting an orthonormal basis according to whatever inner product exists, the inner product expressed in that basis becomes the dot product, so a vector is able to "act on" any other vector just like it was a covector. A vector can act on itself with the dot product to find its own norm-squared. But we generally expect the norm of a vector to be a positive real number, even though the vector may have complex components.
+
+So given two vectors $\vec{a}$ and $\vec{b}$ defined by column matrices $a$ and $b$, where before the simple form of the inner product was defined as:
+
+$$
+(\vec{a}, \vec{b}) = (a^\intercal) b = a_n b_n
+$$
+
+it is now given by:
+
+$$
+(\vec{a}, \vec{b}) = (a^\dagger) b = (a_n^*) b_n
+$$
+
+where we use the dagger $^\dagger$ symbol to mean \textit{conjugate transpose}, where we both transpose the matrix and also take the complex conjugate of every element. This is also called the \textit{Hermitian transpose}.
+
+Care has been taken above to use parentheses to clarify that $^\dagger$ and $^*$ are operators acting on the single object to their left, but these are usually omitted:
+
+$$
+(\vec{a}, \vec{b}) = a^\dagger b = a_n^* b_n
+$$
+
+This might be misconstrued as suggesting that $^\dagger$ is a binary operator acting on the two objects on either side of it, like $+$, so be wary.
+
+Although this definition ensures the norm is positive and real, it has the downside of destroying the symmetry of the inner product between two different vectors:
+
+$$
+(\vec{a}, \vec{b})
+\ne
+(\vec{b}, \vec{a})
+$$
+
+All we can say is that:
+
+$$
+(\vec{a}, \vec{b})
 =
-\vec{u}^* \cdot \vec{v}
+\left[ (\vec{b}, \vec{a}) \right]^*
 $$
 
-This has the complicating side-effect that commutativity:
+This is sometimes called conjugate symmetry. This does mean that when taking the inner product of two different complex vectors, it matters to which one we apply the dagger. In physics the convention is to take the conjugate of the left vector, as shown above, and in pure mathematics they take the conjugate of the right vector - \textit{c'est la vie}.
 
-$$
-\langle \vec{u}, \vec{v} \rangle
-=
-\langle \vec{v}, \vec{u} \rangle
-$$
+\subsection{Hermitian operators}
 
-no longer applies. But who says it needs to? We instead make the requirement be:
+A similar adjustment must be made to the idea of a symmetric matrix (§\ref{ch:vectors-symmetric}), with their useful properties. Rather than requiring the matrix to equal its own transpose, it must equal its own Hermitian transpose:
 
-$$
-\langle \vec{u}, \vec{v} \rangle
-=
-\left[ \langle \vec{v}, \vec{u} \rangle \right]^*
-$$
+$$M^\dagger = M$$
 
-This is sometimes called conjugate symmetry. If all the components are real then complex conjugation makes no difference and commutativity is restored, so the nice thing is that we've amended the rule in a way that is "backward compatible" with real vectors.
+That is, every element is the complex conjugate of its diagonally opposing element:
 
-This does mean that when taking the inner product of two different complex vectors, it matters which one we take the complex conjugate of. In physics the convention is to take the conjugate of the LHS vector.
+$$M_{ij} = (M_{ji})^*$$
 
-The general form of the inner product, where we supply a matrix to control how to pair up and weight the coordinates, is similarly amended.
+Therefore elements on the diagonal are real (they aren't moved by the transposition and so must equal their own complex conjugates). We call this a Hermitian matrix,
 
-We use the dagger $^\dagger$ symbol to mean conjugate transpose, where we transpose a matrix (so turn a column vector into a row) and also take the complex conjugate of every element. It's equivalent to applying both $^\intercal$ and $^*$.
+Regardless of the basis, given an inner product, if:
 
-$$
-\langle \vec{u}, \vec{v} \rangle
-=
-u^\dagger \mathbf{M} v
-$$
+$$(\hat{M} \vec{a}, \vec{b}) = (\vec{a}, \hat{M} \vec{b})$$
 
-As usual if $\mathbf{M}$ is $\delta$ then this reduces to the first definition given above. It should at least be be self-adjoint or Hermitian, which is to say that:
+then $\hat{M}$ is a Hermitian operator, and in an orthogonal basis it is represented by a Hermitian matrix.
 
-$$\mathbf{M}^\dagger = \mathbf{M}$$
+Several other important facts about Hermitian operators can be derived: their eigenvalues are all real and from their eigenvectors it is possible to choose an orthonormal basis that spans the space.
 
-That is, every element is the complex conjugate of its diagonally opposing element, and that therefore elements on the diagonal are real (they aren't moved by the transposition and so must equal their own complex conjugates).
+\subsection{Complex unitary operators}
 
-A matrix like this is the complex equivalent of the real symmetric matrix for which we gave a definition (§\ref{ch:vectors-symmetric}).
+We defined unitary operators in real spaces by saying that their inverse is their transpose. Unsurprisingly in complex spaces this definition has to be modified:
 
-Several other important facts about Hermitian operators can be derived: their eigenvalues are all real, their eigenvectors are orthogonal and span the space and so can be used to construct an orthonormal basis.
+$$(O^\dagger) O = I$$
 
-Another interesting kind of operator in complex spaces is those where:
-
-$$\mathbf{U}^\dagger \mathbf{U} = I$$
-
-i.e. the identity operator. These are known as unitary operators. They have the property of preserving the inner product (is the same property we observed before for rotations and mirrorings):
-
-$$\langle \vec{u}, \vec{v} \rangle = \langle \mathbf{U} \vec{u}, \mathbf{U} \vec{v} \rangle$$
-
-If you have a Hermitian operator expressed by the matrix $M$ you can convert it to another representation by wrapping it in a transformation $T$ and its inverse:
-
-$$M' = T M T^{-1}$$
-
-If $T$ is unitary then $M'$ will be Hermitian, recognisable by the relationship between diagonally opposite matrix elements.
+Also the intuitive understanding that a unitary operator performs a combination of rotation and reflection on a vector is no longer strictly true, because it may also "rotate" the individual coordinates in the complex plane (that is, multiply them by a unitary complex number).

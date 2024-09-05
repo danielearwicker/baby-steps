@@ -6,48 +6,50 @@ In quantum mechanics everything knowable about the state of some system is descr
 
 The inner product in this context is written like this:
 
-$$\langle a|b \rangle$$
+$$\langle \vec{a}|\vec{b} \rangle$$
 
-If the vectors $\vec{a}$ and $\vec{b}$ are represented by column matrices $a$ and $b$ (to spare ourselves, for the moment, from things we can't imagine, let's pretend we're discussing a finite-dimensional vector space), the above is equivalent to conjugate-transpose of $a$, written as $a^{\dagger}$ ("a-dagger"), matrix-multiplied by $b$:
+Note that this is not the same as the notations we've used for a covector acting on a vector (§\ref{covector}), nor for the inner product (§\ref{inner-product}). The distinction between them is somewhat irrelevant here, as in the state vector space we will always be able to choose an orthonormal basis.
+
+If the vectors $\vec{a}$ and $\vec{b}$ are represented by column matrices $a$ and $b$ (to spare ourselves, for the moment, from things we can't imagine, let's pretend we're discussing a finite-dimensional vector space), the above is equivalent to:
 
 $$a^{\dagger} \, b$$
 
-We can split this inner product notation into separate pieces, so we can write $\langle a|$ to mean the vector whose matrix representation in some basis is a single row containing the complex conjugates of the elements in the single column of the matrix representing $|a \rangle$ in the corresponding dual basis.
+We can split this inner product notation into separate pieces, so we can write $\langle \vec{a}|$ to mean the vector whose matrix representation in some basis is a single row containing the complex conjugates of the elements in the single column of the matrix representing $|\vec{a} \rangle$.
 
-Or more simply, $\langle a|$ is the covector of $|a \rangle$. The convention is therefore to think of $\langle a|$ as a function that extracts the coordinate of a basis vector $|a \rangle$ from its argument, which will be some vector $|b \rangle$, as in the expression $\langle a|b \rangle$. And in concrete matrix terms we can picture $\langle a|$ as a 1-row matrix (a row vector) that is the dual of the 1-column matrix (column vector) $|a \rangle$, and their corresponding coordinates are mutually complex conjugates.
+It is valid to say that $\langle \vec{a}|$ is the covector of $|\vec{a} \rangle$, or that $\langle \vec{a}|$ as a function that extracts the coordinate of a basis vector $|\vec{a} \rangle$ from its argument, which will be some vector $|\vec{b} \rangle$, as in the expression $\langle \vec{a}|\vec{b} \rangle$. And in concrete matrix terms we can picture $\langle \vec{a}|$ as a 1-row matrix (a row vector) that is the dual of the 1-column matrix (column vector) $|\vec{a} \rangle$, and their corresponding coordinates are mutually complex conjugates.
 
-And with this in mind, it follows that we can write them the other way round from the inner product:
+And with this matrix representation in mind, it follows that we can write them the other way round from the inner product:
 
-$$|b \rangle \langle a |$$
+$$|\vec{b} \rangle \langle \vec{a} |$$
 
-which must therefore define a matrix: the product of a column vector on the left and a row vector on the right. This is the \textit{outer} product. A matrix can act as a vector-valued function of vectors: apply it to a vector to transform that vector to another vector. So:
+which must therefore produce a square matrix: the product of a column vector on the left and a row vector on the right. This is the \textit{outer} product. A matrix can act as a vector-valued function of vectors: apply it to a vector to transform that vector to another vector. So:
 
-$$|b \rangle \langle a | c \rangle$$
+$$|\vec{b} \rangle \langle \vec{a} | \vec{c} \rangle$$
 
-See how the notation nicely suggests we bracket the $\langle a | c \rangle$ first as an inner product and thus a mere number. So we immediately know that the result will be the vector $|b \rangle$ scaled by a number, i.e. it will be co-linear with $|b \rangle$. We've measured $|c \rangle$ against $|a \rangle$ and used that to scale $|b \rangle$.
+See how the notation nicely suggests we bracket the $\langle \vec{a} | \vec{c} \rangle$ first as an inner product and thus a mere number. So we immediately know that the result will be the vector $|\vec{b} \rangle$ scaled by a number, i.e. it will be co-linear with $|\vec{b} \rangle$. We've measured $|\vec{c} \rangle$ against $|\vec{a} \rangle$ and used that to scale $|\vec{b} \rangle$.
 
-Given an orthonormal basis $|b_n \rangle$, we can picture it as a set of $n$ column vectors, and expressed in their own basis they would be the standard basis. The outer product:
+Given an orthonormal basis $|\vec{b_n} \rangle$, we can picture it as a set of $n$ column vectors, and expressed in their own basis they would be the standard basis. The outer product:
 
-$$|b_n \rangle \langle b_n |$$
+$$|\vec{b_n} \rangle \langle \vec{b_n} |$$
 
 will produce a matrix with a single $1$ in one place of the diagonal. So if we sum over all $n$, we get the identity matrix, a matrix that makes no difference to whatever vector it applies to. Spelling this out, if our vector space has just two basis vectors:
 
-$$|0 \rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$$
+$$|\vec{0} \rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$$
 
 and
 
-$$|1 \rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$$
+$$|\vec{1} \rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$$
 
-Then the outer product of $|0 \rangle$ with itself is just:
+Then the outer product of $|\vec{0} \rangle$ with itself is just:
 
 $$
-|0 \rangle \langle 0| = 
+|\vec{0} \rangle \langle \vec{0}| = 
 \begin{bmatrix} 1 \\ 0 \end{bmatrix}
 \begin{bmatrix} 1 & 0 \end{bmatrix} =
 \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}
 $$
 
-and likewise of $|1 \rangle$ with itself:
+and likewise of $|\vec{1} \rangle$ with itself:
 
 $$
 |1 \rangle \langle 1| = 
@@ -64,13 +66,13 @@ $$
 \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
 $$
 
-Even if the $|b_n \rangle$ were expressed in some other basis, the above summation would still be the identity matrix. Now for any vector $|c \rangle$ we can construct for each $n$:
+Even if the $|\vec{b}_n \rangle$ were expressed in some other basis, the above summation would still be the identity matrix. Now for any vector $|\vec{c} \rangle$ we can construct for each $n$:
 
-$$|b_n \rangle \langle b_n | c \rangle$$
+$$|\vec{b}_n \rangle \langle \vec{b}_n | c \rangle$$
 
-The $|b_n \rangle \langle b_n|$ operator is called a projection operator, because it projects its argument onto the subspace spanned by $|b_n \rangle$, resulting in a component vector of the argument in the direction of $|b_n \rangle$. Clearly if we act with the same projection operator again on that result, nothing will change, because it's already projected. This is a way of defining a projection operator: it's idempotent.
+The $|\vec{b}_n \rangle \langle \vec{b}_n|$ operator is called a projection operator, because it projects its argument onto the subspace spanned by $|\vec{b}_n \rangle$, resulting in a component vector of the argument in the direction of $|\vec{b}_n \rangle$. Clearly if we act with the same projection operator again on that result, nothing will change, because it's already projected. This is a way of defining a projection operator: it's idempotent.
 
-And the sum of all those resulting vectors for all $n$ will just be $|c \rangle$, of course, because we've done the equivalent of acting with the identity operator.
+And the sum of all those resulting vectors for all $n$ will just be $|\vec{c} \rangle$, of course, because we've done the equivalent of acting with the identity operator.
 
 \section{Hilbert Spaces}
 
@@ -82,30 +84,30 @@ The vector spaces used to represent physical states are examples of Hilbert spac
   \item the space may be infinite dimensional.
 \end{itemize}
 
-The latter possibility includes infinities that are continuous (uncountable). Such vectors cannot be represented by a column of discrete values, not even an infinitely long column. Instead we have to specify a complex-valued function over a continuous (real) variable. Such functions can be added and scaled, as is required of a vector (§\ref{ch:linearity}) and so they qualify as elements of a vector space (§\ref{sec:vectors-space}) and we therefore have no choice but to admit that they are vectors.
+The latter possibility includes infinities that are continuous (uncountable). Such vectors cannot be represented by a column of discrete values, not even an infinitely long column. Instead we have to specify a complex-valued function over a continuous (real) variable. Such functions can be added and scaled, as is required of a vector, and so they qualify as elements of a vector space (§\ref{sec:vectors-space}) and we therefore have no choice but to admit that they are vectors.
 
 The real parameter of such a function is analogous to the integer index that labels the rows in a column vector; instead of fetching the $i$th component by its position in the column, we evaluate the function with some real value $x$ to get its component "at" $x$.
 
 Similarly, whereas the inner product over discrete components is:
 
 $$
-\langle a | b \rangle
+\langle \vec{a} | \vec{b} \rangle
 =
 \sum_i
-x_i^* y_i
+a_i^* b_i
 $$
 
 the inner product over functions $f$ and $g$ of a real variable $x$ is:
 
 $$
-\langle f | g \rangle
+\langle \vec{f} | \vec{g} \rangle
 =
 \int_{-\infty}^{+\infty}
 f(x)^* g(x)
 dx
 $$
 
-This is also called the overlap integral, because it measures the extent to which the two functions overlap, but it is most definitely also the inner product between two vectors. Thus we can in some sense find the square of the "length" of a function: $\langle f | f \rangle$. This sounds like gibberish, but it is an unavoidable consequence of the definition of a vector space, which is abstract enough to admit a space of possible functions.
+This is also called the overlap integral, because it measures the extent to which the two functions overlap, but it is most definitely also the inner product between two vectors. Thus we can in some sense find the square of the "length" of a function: $\langle \vec{f} | \vec{f} \rangle$. This sounds like gibberish, but it is an unavoidable consequence of the definition of a vector space, which is abstract enough to admit a space of possible functions.
 
 \section{Physical Interpretation}
 
@@ -131,21 +133,21 @@ Thus after measuring an observable, subsequent measurements of the same observab
 
 Having constructed a column representation of a state vector in one basis, relating to one observable, we can switch to another. The operation for doing this will depend on both the "before" and "after" bases (§\ref{sec:vectors-change-basis}). A state vector contains everything knowable about a system, including all we can know about any of its observable quantities. By re-expressing the same state vector as a different set of components in terms of the basis associated with a different observable, we recover the probability distribution for that observable.
 
-As always when using an operator to transform a vector's components we need to be clear on whether we want to get a different vector in the same basis or the same vector in a different basis. In this case, physically we're talking about the latter; a state vector represents something physically real, and we're just changing how we describe it. On the other hand, mathematically all we have is the description, and the choice of basis is not entirely arbitrary because a basis relates to an observable quantity.
+The operation that switches basis will be a matrix if we're dealing with a finite-dimensional space, or something analogous to that if the space is infinite. As always when using a matrix to transform a vector's components we need to be clear on whether we want to get a different vector in the same basis or the same vector in a different basis. In this case we're talking about the latter; a state vector represents something physically real, and we're just changing how we describe it. On the other hand the choice of basis is not entirely arbitrary because a basis relates to an observable quantity.
 
-An operator used to switch to another basis must preserve the inner product (and thus the lengths of, and angles between, vectors). This means it must be a \textit{unitary} operator, $\hat{U}$, for which the Hermitian conjugate serves as the inverse:
+Any basis we change to must still be orthonormal. Therefore the transformation must preserve the inner product between any pairs of vectors, i.e. it must be unitary, and if it's represented by a matrix then the Hermitian conjugate serves as the inverse:
 
 $$\hat{U} \hat{U}^\dagger = I$$
 
 \section{Operators Representing Observables} \label{sec:qm-operators1}
 
-Observables have an associated operator. Note that this is \textit{not} the same as the operator for converting a state vector to a different basis. In QM when we talk about the observable's associated operator, we are talking about something that is not directly of any use for converting between bases (it is not unitary, for one thing), though it will indicate how we could perform such an operation.
+Observables have an associated operator, which maps vectors to different vectors. This has nothing to do with a change of basis. In QM when we talk about the observable's associated operator, we are talking about something that is not directly of any use for converting between bases (it is not unitary, for one thing), though it will indicate how we could perform such an operation.
 
 An observable operator can be applied to a state vector as a kind of test, but it is much more powerful when we picture it applying to every possible state vector (that is, all unit vectors in the space) to find out how it affects them.
 
 In QM operators associated with observables are Hermitian or self-adjoint, meaning that for an operator $\hat{O}$:
 
-$$\langle a|\hat{O} b \rangle = \langle \hat{O} a| b \rangle$$
+$$\langle \vec{a}|\hat{O} \vec{b} \rangle = \langle \hat{O} \vec{a}| \vec{b} \rangle$$
 
 This has a few useful implications:
 
@@ -174,13 +176,217 @@ If a system's state vector matches one of these eigenvectors, then the system is
 
 Otherwise, the state vector will be a linear combination of the eigenstates, and if the observable is measured and found to have a particular value, then the state vector will have instantaneously realigned itself with an eigenvector having that eigenvalue.
 
-It is therefore very clearly the case that an observable's operator should not be mistaken for a means to transform a state vector into the basis of the observable. Consider a state vector that is already aligned with an eigenstate of the operator, but is currently expressed as a linear combination of some other basis, so it has several non-zero coordinates. But in the basis of the observable, its coordinates should all be zero except for the eigenstate's coordinate, which will have some complex value of modulus $1$. The observable's operator clearly cannot bring about this transformation: the state vector's coordinates will all be scaled by the same factor (the eigenvalue), by the very definition of eigenvectors.
+For the avoidance of confusion:
 
-But if we solve the eigenvalue equation for the operator, we will know the complete basis of the observable, along with the eigenvalue associated with each basis vector, and we can then resolve our state vector against those basis vectors. Then we will have a set of coordinates that serve as probability amplitudes for the associated (measurable) eigenvalues.
+\begin{itemize}
+  \item Applying the operator to the state is not the same as "making a measurement"; that is something you do in the real world, where you may not even have any knowledge of the state prior to the measurement.
+  \item Applying the operator to the state does not reveal the probability of anything (but see below about finding the expectation value.)
+  \item Applying the operator to the state is not the same as changing its coordinate representation to be in the basis associated with the observable for that operator.
+\end{itemize}
 
-In addition, there is a meaningful interpretation for the result of applying the operator for an observable to a given state vector: the inner product of that vector with the original state vector gives the expectation value (§\ref{ch:expectation}) of the observable.
+If you apply the operator to a state vector (which is, as always, of unit magnitude) and it is already aligned with an eigenstate, then its alignment will not be affected and its magnitude will change to experimental value you would get if you measured the observable in a system in that state. If it is not aligned with an eigenstate, the vector's alignment will change, but it will not snap into alignment with an eigenstate, which is what happens when a real world measurement is performed.
+
+But if you solve the eigenvalue equation for the operator, you will know the complete basis of the observable, along with the eigenvalue associated with each basis vector, and you can then resolve our state vector against those basis vectors. Then you will have a set of coordinates that serve as probability amplitudes for the associated (measurable) eigenvalues.
+
+In addition, there is a meaningful interpretation for the result of applying the operator for an observable to a given state vector: the inner product of the resulting vector with the original state vector gives the expectation value (§\ref{sec:expectation-value}) of the observable.
 
 While we've discussed all this in terms of more easily pictured finite-dimensional vectors with discrete complex components, all the same concepts translate to complex-valued functions of an integer or real parameter.
+
+\section{Euclidean Visualisation}
+
+If we simplify radically, keeping to real numbers and two-dimensional Hilbert space, which is to say, the Euclidean plane, it becomes possible to draw pictures and invoke familiar geometric concepts. This is just a real-valued analogy for the complex-valued situations we will encounter in QM, so it has certain limitations, but it is accurate in many important details.
+
+A state $|\psi\rangle$ is a vector. \textit{It is not intrinsically in any basis.} But it is certainly of unit length.
+
+\begin{figure}[h]
+  \centering
+    \begin{tikzpicture}
+      \draw (0,0) circle (1);
+      \draw[thick,->] (0,0) -- (0.383,0.924) node[anchor=south] {$|\psi\rangle$};
+    \end{tikzpicture}
+  \centering
+  \caption{Anonymous state vector} \label{fig:state-vector}
+\end{figure}
+
+Suppose the system can be found to be in one of two moods, $|a\rangle$ (affable) and $|b\rangle$ (bored). These will correspond to two orthonormal state vectors:
+
+\begin{figure}[h]
+  \centering
+    \begin{tikzpicture}
+      \draw (0,0) circle (1);
+      \draw[thick,->] (0,0) -- (0.383,0.924) node[anchor=south west] {$|\psi\rangle$};
+      \draw[dashed,->] (0,0) -- (1,0) node[anchor=west] {$|b\rangle$};
+      \draw[dashed,->] (0,0) -- (0,1) node[anchor=south] {$|a\rangle$};
+    \end{tikzpicture}
+  \centering
+  \caption{Mood basis} \label{fig:mood-basis}
+\end{figure}
+
+Naturally $\psi$ can be resolved into a pair of coordinates by using the orthonormal vectors of mood as a basis. We are tempted to say that the mood is presently more closely aligned with affable rather than bored, but must always remember that the mood can only ever be measured to be exactly affable or exactly bored (upon which it will snap into alignment with $|a\rangle$ or $|b\rangle$ accordingly). It is just more likely to found affable, with probability given by the square of the coordinate given by the inner product $\langle a|\psi \rangle$.
+
+Also the system can be found to be listening to music in one of two genres, $|c\rangle$ (country) or $|d\rangle$ (disco):
+
+\begin{figure}[h]
+  \centering
+    \begin{tikzpicture}
+      \draw (0,0) circle (1);
+      \draw[thick,->] (0,0) -- (0.383,0.924) node[anchor=south] {$|\psi\rangle$};
+      \draw[dashed,->] (0,0) -- (-0.707,0.707) node[anchor=south east] {$|c\rangle$};
+      \draw[dashed,->] (0,0) -- (0.707,0.707) node[anchor=south west] {$|d\rangle$};
+    \end{tikzpicture}
+  \centering
+  \caption{Genre basis} \label{fig:genre-basis}
+\end{figure}
+
+Against this genre basis the coordinates for the same $|\psi\rangle$ are clearly going to be different from what they were in the mood basis, and our $|\psi\rangle$ is leaning more toward disco than country. If you tilt your head to the left\footnote{That is, apply a unitary operator} so as to align $|d\rangle$ with the horizontal, pointing right, and $|c\rangle$ with the vertical, pointing up, then $|\psi\rangle$ will appear to be closer to horizontal than vertical.
+
+Returning to the mood observable, there is an operator $\hat{M}$ associated with that observable. We can think of the operator as acting on all possible state vectors, represented by an evenly-spaced selection of them.
+
+\begin{figure}[h]    
+  \caption{Effect of operator $\hat{M}$}
+  \begin{subfigure}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \draw (0,0) circle (1);
+        \draw[->] (0,0) -- (1.000,0.000);
+        \draw[->] (0,0) -- (0.924,0.383);
+        \draw[->] (0,0) -- (0.707,0.707);
+        \draw[->] (0,0) -- (0.383,0.924);
+        \draw[->] (0,0) -- (0.000,1.000);
+        \draw[->] (0,0) -- (-0.383,0.924);
+        \draw[->] (0,0) -- (-0.707,0.707);
+        \draw[->] (0,0) -- (-0.924,0.383);
+        \draw[->] (0,0) -- (-1.000,0.000);
+        \draw[->] (0,0) -- (-0.924,-0.383);
+        \draw[->] (0,0) -- (-0.707,-0.707);
+        \draw[->] (0,0) -- (-0.383,-0.924);
+        \draw[->] (0,0) -- (-0.000,-1.000);
+        \draw[->] (0,0) -- (0.383,-0.924);
+        \draw[->] (0,0) -- (0.707,-0.707);
+        \draw[->] (0,0) -- (0.924,-0.383);
+      \end{tikzpicture}
+  \caption{Before} \label{fig:mood-before}
+  \end{subfigure}
+  \begin{subfigure}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \draw (0,0) circle (1);
+        \draw[dotted] (0,0) ellipse (0.8 and 1.2);
+        \draw[thick,->] (0,0) -- (0.800,0.000);
+        \draw[dotted,->] (0,0) -- (0.739,0.459);
+        \draw[dotted,->] (0,0) -- (0.566,0.849);
+        \draw[dotted,->] (0,0) -- (0.306,1.109);
+        \draw[thick,->] (0,0) -- (0.000,1.200);
+        \draw[dotted,->] (0,0) -- (-0.306,1.109);
+        \draw[dotted,->] (0,0) -- (-0.566,0.849);
+        \draw[dotted,->] (0,0) -- (-0.739,0.459);
+        \draw[dotted,->] (0,0) -- (-0.800,0.000);
+        \draw[dotted,->] (0,0) -- (-0.739,-0.459);
+        \draw[dotted,->] (0,0) -- (-0.566,-0.849);
+        \draw[dotted,->] (0,0) -- (-0.306,-1.109);
+        \draw[dotted,->] (0,0) -- (-0.000,-1.200);
+        \draw[dotted,->] (0,0) -- (0.306,-1.109);
+        \draw[dotted,->] (0,0) -- (0.566,-0.849);
+        \draw[dotted,->] (0,0) -- (0.739,-0.459);
+      \end{tikzpicture}
+      \caption{After} \label{fig:mood-after}
+  \end{subfigure}
+\end{figure}
+
+After the operator has done its work, the adjusted vectors fit into an ellipse rather than a circle: they are no longer all unit vectors. There are just two directions along which the vectors preserved their alignment: these are the eigenvectors of $\hat{M}$. They are orthogonal. This is how we discovered the basis vectors $|a\rangle$ and $|b\rangle$, by finding the states $|\psi\rangle$ for which:
+
+$$
+\hat{M}|\psi\rangle = m|\psi\rangle
+$$
+
+where $m$ is just a number, i.e. the directions along which $\hat{M}$ does not change the alignment of the vector, only the length. Also the scaling factor along (say) the $|b\rangle$ direction is the numerical measurement that we interpret as the bored state.
+
+Operators associated with observables, such as $\hat{M}$, are Hermitian, which (in this real vector space with only two orthogonal directions) means they can be represented by a symmetric $2 \times 2$ matrix, and will always have the effect of stretching or squashing along two orthogonal directions, thus picking out the two basis vectors for the observable.
+
+And to be complete we should visualise the effect of the genre operator $\hat{G}$.
+
+\begin{figure}[h]    
+  \caption{Effect of operator $\hat{G}$}
+  \begin{subfigure}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \draw (0,0) circle (1);
+        \draw[->] (0,0) -- (1.000,0.000);
+        \draw[->] (0,0) -- (0.924,0.383);
+        \draw[->] (0,0) -- (0.707,0.707);
+        \draw[->] (0,0) -- (0.383,0.924);
+        \draw[->] (0,0) -- (0.000,1.000);
+        \draw[->] (0,0) -- (-0.383,0.924);
+        \draw[->] (0,0) -- (-0.707,0.707);
+        \draw[->] (0,0) -- (-0.924,0.383);
+        \draw[->] (0,0) -- (-1.000,0.000);
+        \draw[->] (0,0) -- (-0.924,-0.383);
+        \draw[->] (0,0) -- (-0.707,-0.707);
+        \draw[->] (0,0) -- (-0.383,-0.924);
+        \draw[->] (0,0) -- (-0.000,-1.000);
+        \draw[->] (0,0) -- (0.383,-0.924);
+        \draw[->] (0,0) -- (0.707,-0.707);
+        \draw[->] (0,0) -- (0.924,-0.383);
+      \end{tikzpicture}
+  \caption{Before} \label{fig:genre-before}
+  \end{subfigure}
+  \begin{subfigure}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \draw (0,0) circle (1);
+        \draw[rotate=45,dotted] (0,0) ellipse (0.8 and 1.2);
+        \draw[rotate=45,thick,->] (0,0) -- (0.800,0.000);
+        \draw[rotate=45,dotted,->] (0,0) -- (0.739,0.459);
+        \draw[rotate=45,dotted,->] (0,0) -- (0.566,0.849);
+        \draw[rotate=45,dotted,->] (0,0) -- (0.306,1.109);
+        \draw[rotate=45,thick,->] (0,0) -- (0.000,1.200);
+        \draw[rotate=45,dotted,->] (0,0) -- (-0.306,1.109);
+        \draw[rotate=45,dotted,->] (0,0) -- (-0.566,0.849);
+        \draw[rotate=45,dotted,->] (0,0) -- (-0.739,0.459);
+        \draw[rotate=45,dotted,->] (0,0) -- (-0.800,0.000);
+        \draw[rotate=45,dotted,->] (0,0) -- (-0.739,-0.459);
+        \draw[rotate=45,dotted,->] (0,0) -- (-0.566,-0.849);
+        \draw[rotate=45,dotted,->] (0,0) -- (-0.306,-1.109);
+        \draw[rotate=45,dotted,->] (0,0) -- (-0.000,-1.200);
+        \draw[rotate=45,dotted,->] (0,0) -- (0.306,-1.109);
+        \draw[rotate=45,dotted,->] (0,0) -- (0.566,-0.849);
+        \draw[rotate=45,dotted,->] (0,0) -- (0.739,-0.459);
+      \end{tikzpicture}
+      \caption{After} \label{fig:genre-after}
+  \end{subfigure}
+\end{figure}
+
+It's another Hermitian operator, so it has again picked out two orthogonal directions along which it only applies a scaling.
+
+There is no "true" basis against which a state vector is actually supposed to be measured. Basis vectors are just states that have a particular significance for certain operators.
+
+\begin{figure}[h]
+  \centering
+    \begin{tikzpicture}
+      \draw (0,0) circle (1);
+      \draw[thick,->] (0,0) -- (0.383,0.924);
+      \node at (0.500,1.190) {$|\psi\rangle$};
+      \draw[dashed,->] (0,0) -- (1,0) node[anchor=west] {$|b\rangle$};
+      \draw[dashed,->] (0,0) -- (0,1) node[anchor=south] {$|a\rangle$};
+      \draw[dashed,->] (0,0) -- (-0.707,0.707) node[anchor=south east] {$|c\rangle$};
+      \draw[dashed,->] (0,0) -- (0.707,0.707) node[anchor=south west] {$|d\rangle$};
+    \end{tikzpicture}
+  \centering
+  \caption{No special basis} \label{fig:state-no-special-basis}
+\end{figure}
+
+The state could be aligned with $|a\rangle$, so the genre would be uncertain, and then it could become aligned with $|c\rangle$ and then the mood would be uncertain.
+
+To relate all this back to more realistic QM scenarios:
+
+\begin{itemize}
+  \item instead of restricting to real scalars, we allow complex scalars,
+  \item as well as just two orthogonal directions in state space, we allow infinitely many, even a continuum (as with position and momentum),
+  \item we use the Hermitian inner product, taking the complex conjugate on the left, which means that the inner product of a vector with itself will always be real and positive, but the inner product between two different vectors may be complex,
+  \item operators cannot generally be represented by matrices due to the continuous nature of some state spaces, but where they can, the matrix is Hermitian or self-adjoint, meaning that it is equal to its own conjugate transpose, which is the complex equivalent of a symmetric matrix,
+  \item orthogonal eigenvectors of a Hermitian operator may in some cases have the same eigenvalue, and thus represent states that cannot be distinguished between by means of a measurement of the observable (picture our circle of state vectors growing or shrinking uniformly in all directions and thus remaining a circle, instead of being distorted into an ellipse),
+  \item to get a probability from a complex coordinate, we take the modulus squared, to ensure it's a real number.
+\end{itemize}
 
 \section{The Wave Function}
 
@@ -760,7 +966,7 @@ How does this relate to our previous discussion about observable operators (§\r
 
 If the particle is very precisely localised, the function's value (the coordinates) will be zero everywhere except at that precise location. At the theoretical extreme, it will zero everywhere except at an infinitesimal single position (§\ref{sec:fourier-spike}). That is, it will be a basis vector in the position basis.
 
-An observable operator has to scale its eigenvectors by the value that would be measured for a state equal to that eigenvector. That is exactly what happens if we multiply $\psi(x)$ by $x$: if it is a pure spike (a complex value of modulus $1$) at some position $x_1$, and zero everywhere else, the spike (and thus the whole vector) will be scaled by the value $x_1$. Whereas if it isn't a pure spike (not a position eigenvector), each non-zero value will be multiplied by a different value (its own position value), which will distort the shape of the function (or equivalently, change the "direction" of the vector).
+An observable operator has to scale its eigenvectors by the value that would be measured for a state equal to that eigenvector. That is exactly what happens if we multiply $\psi(x)$ by $x$: if it is a pure spike (a complex value of modulus $1$) at some position $x_1$, and zero everywhere else, the spike (and thus the whole vector) will be scaled by the value $x_1$. Whereas if it isn't a pure spike (not a position eigenvector), each non-zero value will be multiplied by a different value (its own position value), which will distort the shape of the function (or equivalently, change the "direction" and magnitude of the vector).
 
 We also mentioned in passing that if we apply an observable's operator to a specific state vector, we get an adjusted vector, and if we take the inner product between the original state vector and the adjusted vector, the resulting scalar value will be the expectation value of the observable. So this is just another way of writing down the above integral:
 
@@ -818,7 +1024,7 @@ The momentum operator $\hat{p}$, which we discovered above by looking for the ex
 
 Compared to the position operator, it is somewhat less obvious what the momentum operator is doing to produce an expectation value for momentum. The intuitive process would be to sum (over all possible momenta) the product of each momentum and its probability of being measured. That would seem to require a wave function of momentum instead of position, and an integral over all momenta. And yet here we still have an integral over all positions, involving a wave function of position. \textit{We have not yet changed basis.}
 
-To represent a vector as a set of coordinate in some basis, we extract each coordinate of the vector by performing the inner product between the unit basis vector for that coordinate and the vector in question. But for these functions of real parameters like position and momentum, the definition of a vector (that is, the set of its coordinates) is given by a function of the real parameter, the values of that function being the coordinates, each coordinate labelled with the real parameter, and the inner product is an integral over all values of the real parameter.
+To represent a vector as a set of coordinates in some basis, we extract each coordinate of the vector by performing the inner product between the unit basis vector for that coordinate and the vector in question. But for these functions of real parameters like position and momentum, the definition of a vector (that is, the set of its coordinates) is given by a function of the real parameter, the values of that function being the coordinates, each coordinate labelled with the real parameter, and the inner product is an integral over all values of the real parameter.
 
 Momentum basis vectors in the position basis are of the form:
 
@@ -870,7 +1076,7 @@ $$
 
 And $\psi(p)^*\psi(p)$ is the mod-square of the coordinate for $p$, that is, the probability that the momentum has the value $p$. 
 
-The point is if we do change basis, we are not materially changing what is calculated. It is perhaps easier to comprehend this intuitively through the analogy with regular vectors, and by remembering that vectors are basis independent objects (§\ref{sec:vectors-geometric}). The observable operator acts on the state vector, in general changing both its length and alignment (unless the state vector happens to already be an eigenstate of the observable, in which case only the length changes). But this action would be the same regardless of the basis we are working in, and so it isn't necessary to get hung up on that point. Likewise, projecting the operated-on vector back on to the original state vector, to produce a scalar expectation value, is a geometrical, basis-independent operation. The inner product depends on the relative lengths and the angle between the two vectors. As long as when we change basis we do so in a way that preserves the inner product (that is, by a \textit{unitary} operator), then the choice of basis is physically irrelevant. 
+The point is if we do change basis, we are not materially changing what is calculated. It is perhaps easier to comprehend this intuitively through the analogy with regular vectors, and by remembering that vectors are basis independent objects. The observable operator acts on the state vector, in general changing both its length and alignment (unless the state vector happens to already be an eigenstate of the observable, in which case only the length changes). But this action would be the same regardless of the basis we are working in, and so it isn't necessary to get hung up on that point. Likewise, projecting the operated-on vector back on to the original state vector, to produce a scalar expectation value, is a geometrical, basis-independent operation. The inner product depends on the relative lengths and the angle between the two vectors. As long as when we change basis we do so in a way that preserves the inner product (that is, by a \textit{unitary} operator), then the choice of basis is physically irrelevant. 
 
 Therefore, in this recipe for the expectation value, the operator $\hat{O}$, the state vector $| \psi \rangle$ and the adjusted vector $\hat{O} | \psi \rangle$ should all be understood as having an independent existence from any choice of basis:
 
@@ -879,198 +1085,6 @@ $$
 $$
 
 That expression is a scalar value, and is the same regardless of the basis we work in (if we switch basis, we must use a unitary operator so the inner product between any two vectors is unaffected by the change of basis). When we want to calculate the value, we use the same basis throughout.
-
-One way to visualise this is by simplifying radically, keeping to real numbers and two-dimensional Hilbert space, which is to say, the Euclidean plane, making it possible to draw pictures. A state $|\psi\rangle$ is a vector. \textit{It is not intrinsically in any basis.} But it is certainly of unit length.
-
-\begin{figure}[h]
-  \centering
-    \begin{tikzpicture}
-      \draw (0,0) circle (1);
-      \draw[thick,->] (0,0) -- (0.383,0.924) node[anchor=south] {$|\psi\rangle$};
-    \end{tikzpicture}
-  \centering
-  \caption{Anonymous state vector} \label{fig:state-vector}
-\end{figure}
-
-Suppose the system can be found to be in one of two moods, $|a\rangle$ (affable) and $|b\rangle$ (bored). These will correspond to two orthonormal state vectors:
-
-\begin{figure}[h]
-  \centering
-    \begin{tikzpicture}
-      \draw (0,0) circle (1);
-      \draw[thick,->] (0,0) -- (0.383,0.924) node[anchor=south west] {$|\psi\rangle$};
-      \draw[dashed,->] (0,0) -- (1,0) node[anchor=west] {$|b\rangle$};
-      \draw[dashed,->] (0,0) -- (0,1) node[anchor=south] {$|a\rangle$};
-    \end{tikzpicture}
-  \centering
-  \caption{Mood basis} \label{fig:mood-basis}
-\end{figure}
-
-Naturally $\psi$ can be resolved into pair of coordinates by using the orthonormal vectors of mood as a basis. We are tempted to say that the mood is presently more closely aligned with affable rather than bored, but must always remember that the mood can only ever be measured to be exactly affable or exactly bored (upon which it will snap into alignment with $|a\rangle$ or $|b\rangle$ accordingly). It is just more likely to found affable, with probability given by the square of the coordinate given by the inner product $\langle a|\psi \rangle$.
-
-Also the system can be found to be listening to music in one of two genres, $|c\rangle$ (country) or $|d\rangle$ (disco):
-
-\begin{figure}[h]
-  \centering
-    \begin{tikzpicture}
-      \draw (0,0) circle (1);
-      \draw[thick,->] (0,0) -- (0.383,0.924) node[anchor=south] {$|\psi\rangle$};
-      \draw[dashed,->] (0,0) -- (-0.707,0.707) node[anchor=south east] {$|c\rangle$};
-      \draw[dashed,->] (0,0) -- (0.707,0.707) node[anchor=south west] {$|d\rangle$};
-    \end{tikzpicture}
-  \centering
-  \caption{Genre basis} \label{fig:genre-basis}
-\end{figure}
-
-Against this genre basis the coordinates for the same $|\psi\rangle$ are clearly going to be different from what they were in the mood basis, and our $|\psi\rangle$ is leaning more toward disco than country. If you tilt your head to the left\footnote{That is, apply a unitary operator} so as to align $|d\rangle$ with the horizontal, pointing right, and $|c\rangle$ with the vertical, pointing up, then $|\psi\rangle$ will appear to be closer to horizontal than vertical.
-
-Returning to the mood observable, there is an operator $\hat{M}$ associated with that observable. We can think of the operator as acting on all possible state vectors, represented by an evenly-spaced selection of them.
-
-\begin{figure}[h]    
-  \caption{Effect of operator $\hat{M}$}
-  \begin{subfigure}{0.5\textwidth}
-      \centering
-      \begin{tikzpicture}
-        \draw (0,0) circle (1);
-        \draw[->] (0,0) -- (1.000,0.000);
-        \draw[->] (0,0) -- (0.924,0.383);
-        \draw[->] (0,0) -- (0.707,0.707);
-        \draw[->] (0,0) -- (0.383,0.924);
-        \draw[->] (0,0) -- (0.000,1.000);
-        \draw[->] (0,0) -- (-0.383,0.924);
-        \draw[->] (0,0) -- (-0.707,0.707);
-        \draw[->] (0,0) -- (-0.924,0.383);
-        \draw[->] (0,0) -- (-1.000,0.000);
-        \draw[->] (0,0) -- (-0.924,-0.383);
-        \draw[->] (0,0) -- (-0.707,-0.707);
-        \draw[->] (0,0) -- (-0.383,-0.924);
-        \draw[->] (0,0) -- (-0.000,-1.000);
-        \draw[->] (0,0) -- (0.383,-0.924);
-        \draw[->] (0,0) -- (0.707,-0.707);
-        \draw[->] (0,0) -- (0.924,-0.383);
-      \end{tikzpicture}
-  \caption{Before} \label{fig:mood-before}
-  \end{subfigure}
-  \begin{subfigure}{0.5\textwidth}
-      \centering
-      \begin{tikzpicture}
-        \draw (0,0) circle (1);
-        \draw[dotted] (0,0) ellipse (0.8 and 1.2);
-        \draw[thick,->] (0,0) -- (0.800,0.000);
-        \draw[dotted,->] (0,0) -- (0.739,0.459);
-        \draw[dotted,->] (0,0) -- (0.566,0.849);
-        \draw[dotted,->] (0,0) -- (0.306,1.109);
-        \draw[thick,->] (0,0) -- (0.000,1.200);
-        \draw[dotted,->] (0,0) -- (-0.306,1.109);
-        \draw[dotted,->] (0,0) -- (-0.566,0.849);
-        \draw[dotted,->] (0,0) -- (-0.739,0.459);
-        \draw[dotted,->] (0,0) -- (-0.800,0.000);
-        \draw[dotted,->] (0,0) -- (-0.739,-0.459);
-        \draw[dotted,->] (0,0) -- (-0.566,-0.849);
-        \draw[dotted,->] (0,0) -- (-0.306,-1.109);
-        \draw[dotted,->] (0,0) -- (-0.000,-1.200);
-        \draw[dotted,->] (0,0) -- (0.306,-1.109);
-        \draw[dotted,->] (0,0) -- (0.566,-0.849);
-        \draw[dotted,->] (0,0) -- (0.739,-0.459);
-      \end{tikzpicture}
-      \caption{After} \label{fig:mood-after}
-  \end{subfigure}
-\end{figure}
-
-After the operator has done its work, the adjusted vectors fit into an ellipse rather than a circle: they are no longer all unit vectors. There are just two directions along which the vectors preserved their alignment: these are the eigenvectors of $\hat{M}$. They are orthogonal. This is how we discovered the basis vectors $|a\rangle$ and $|b\rangle$, by finding the states $|\psi\rangle$ for which:
-
-$$
-\hat{M}|\psi\rangle = m|\psi\rangle
-$$
-
-where $m$ is just a number, i.e. the directions along which $\hat{M}$ does not change the alignment of the vector, only the length. Also the scaling factor along (say) the $|b\rangle$ direction is the numerical measurement that we interpret as the bored state.
-
-Operators associated with observables, such as $\hat{M}$, are Hermitian, which (in this real vector space with only two orthogonal directions) means they can be represented by a symmetric $2 \times 2$ matrix, and will always have the effect of stretching or squashing along two orthogonal directions, thus picking out the two basis vectors for the observable.
-
-And to be complete we should visualise the effect of the genre operator $\hat{G}$.
-
-\begin{figure}[h]    
-  \caption{Effect of operator $\hat{G}$}
-  \begin{subfigure}{0.5\textwidth}
-      \centering
-      \begin{tikzpicture}
-        \draw (0,0) circle (1);
-        \draw[->] (0,0) -- (1.000,0.000);
-        \draw[->] (0,0) -- (0.924,0.383);
-        \draw[->] (0,0) -- (0.707,0.707);
-        \draw[->] (0,0) -- (0.383,0.924);
-        \draw[->] (0,0) -- (0.000,1.000);
-        \draw[->] (0,0) -- (-0.383,0.924);
-        \draw[->] (0,0) -- (-0.707,0.707);
-        \draw[->] (0,0) -- (-0.924,0.383);
-        \draw[->] (0,0) -- (-1.000,0.000);
-        \draw[->] (0,0) -- (-0.924,-0.383);
-        \draw[->] (0,0) -- (-0.707,-0.707);
-        \draw[->] (0,0) -- (-0.383,-0.924);
-        \draw[->] (0,0) -- (-0.000,-1.000);
-        \draw[->] (0,0) -- (0.383,-0.924);
-        \draw[->] (0,0) -- (0.707,-0.707);
-        \draw[->] (0,0) -- (0.924,-0.383);
-      \end{tikzpicture}
-  \caption{Before} \label{fig:genre-before}
-  \end{subfigure}
-  \begin{subfigure}{0.5\textwidth}
-      \centering
-      \begin{tikzpicture}
-        \draw (0,0) circle (1);
-        \draw[rotate=45,dotted] (0,0) ellipse (0.8 and 1.2);
-        \draw[rotate=45,thick,->] (0,0) -- (0.800,0.000);
-        \draw[rotate=45,dotted,->] (0,0) -- (0.739,0.459);
-        \draw[rotate=45,dotted,->] (0,0) -- (0.566,0.849);
-        \draw[rotate=45,dotted,->] (0,0) -- (0.306,1.109);
-        \draw[rotate=45,thick,->] (0,0) -- (0.000,1.200);
-        \draw[rotate=45,dotted,->] (0,0) -- (-0.306,1.109);
-        \draw[rotate=45,dotted,->] (0,0) -- (-0.566,0.849);
-        \draw[rotate=45,dotted,->] (0,0) -- (-0.739,0.459);
-        \draw[rotate=45,dotted,->] (0,0) -- (-0.800,0.000);
-        \draw[rotate=45,dotted,->] (0,0) -- (-0.739,-0.459);
-        \draw[rotate=45,dotted,->] (0,0) -- (-0.566,-0.849);
-        \draw[rotate=45,dotted,->] (0,0) -- (-0.306,-1.109);
-        \draw[rotate=45,dotted,->] (0,0) -- (-0.000,-1.200);
-        \draw[rotate=45,dotted,->] (0,0) -- (0.306,-1.109);
-        \draw[rotate=45,dotted,->] (0,0) -- (0.566,-0.849);
-        \draw[rotate=45,dotted,->] (0,0) -- (0.739,-0.459);
-      \end{tikzpicture}
-      \caption{After} \label{fig:genre-after}
-  \end{subfigure}
-\end{figure}
-
-It's another Hermitian operator, so it has again picked out two orthogonal directions along which it only applies a scaling.
-
-There is no "true" basis against which a state vector is actually supposed to be measured. Basis vectors are just states that have a particular significance for certain operators.
-
-\begin{figure}[h]
-  \centering
-    \begin{tikzpicture}
-      \draw (0,0) circle (1);
-      \draw[thick,->] (0,0) -- (0.383,0.924);
-      \node at (0.500,1.190) {$|\psi\rangle$};
-      \draw[dashed,->] (0,0) -- (1,0) node[anchor=west] {$|b\rangle$};
-      \draw[dashed,->] (0,0) -- (0,1) node[anchor=south] {$|a\rangle$};
-      \draw[dashed,->] (0,0) -- (-0.707,0.707) node[anchor=south east] {$|c\rangle$};
-      \draw[dashed,->] (0,0) -- (0.707,0.707) node[anchor=south west] {$|d\rangle$};
-    \end{tikzpicture}
-  \centering
-  \caption{No special basis} \label{fig:state-no-special-basis}
-\end{figure}
-
-The state could be aligned with $|a\rangle$, so the genre would be uncertain, and then it could become aligned with $|c\rangle$ and then the mood would be uncertain.
-
-To relate all this back to more realistic QM scenarios:
-
-\begin{itemize}
-  \item instead of restricting to real scalars, we allow complex scalars,
-  \item as well as just two orthogonal directions in state space, we allow infinitely many, even a continuum (as with position and momentum),
-  \item we use the Hermitian inner product, taking the complex conjugate on the left, which means that the inner product of a vector with itself will always be real and positive, but the inner product between two different vectors may be complex,
-  \item operators cannot generally be represented by matrices due to the continuous nature of some state spaces, but where they can, the matrix is Hermitian or self-adjoint, meaning that it is equal to its own conjugate transpose, which is the complex equivalent of a symmetric matrix,
-  \item orthogonal eigenvectors of a Hermitian operator may in some cases have the same eigenvalue, and thus represent states that cannot be distinguished between by means of a measurement of the observable (picture our circle of state vectors growing or shrinking uniformly in all directions and thus remaining a circle, instead of being distorted into an ellipse),
-  \item to get a probability from a complex coordinate, we take the modulus squared, to ensure it's a real number.
-\end{itemize}
 
 \section{Time Independent Potentials}
 
@@ -1250,7 +1264,7 @@ So there is no limit on what the initial state can be, but by decomposing that $
 
 So we have an exact solution for how any initial state will evolve inside an infinite well potential, assuming the total energy is constant. The energy, by definition, is the quantity that is preserved as time passes, and that's why energy eigenfunctions are of primary importance in analysing the time evolution of a system. To get an exact expression for the wave function as a function of time, we resolve it into a sum of energy eigenfunctions, each of which has its time evolution entirely determined by the factor $e^{-iEt/\hbar}$.
 
-The energy eigenfunctions serve as a set of basis vectors. Why? Because the energy operator is Hermitian, so among its eigenvectors, any two that corresponding to distinct eigenvalues will be orthogonal. For stationary states $m$ and $n$:
+The energy eigenfunctions serve as a set of basis vectors. Why? Because the energy operator is Hermitian, so among its eigenvectors, any two that correspond to distinct eigenvalues will be orthogonal. For stationary states $m$ and $n$:
 
 $$
 \int
