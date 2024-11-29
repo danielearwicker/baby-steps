@@ -93,7 +93,7 @@ By the way, when in physics we speak of a \textit{vector field}, that is, a vect
 
 This is obvious (and less confusing) in the case of a scalar field, such as temperature. At two different locations in a room, the temperature may be the same. It's a numerical value that varies from place to place, and the same number may appear in two places.
 
-But exactly the same is true for a vector field. If the wind is some particular speed and direction at two different places on the map, we say the vectors are equal: they are the \textit{same vector}. From the point of view of considering their equality, it is irrelevant that they are associated with different locations in physical space. In vector space, there is one vector with that direction and length.
+But exactly the same is true for a vector field. If the wind is some particular speed and direction at two different places on the map, we say the vectors are equal: they are the \textit{same vector}. From the point of view of considering their equality, it is irrelevant that they are associated with different locations in physical space. In vector space, there is one vector with that direction and length.\footnote{Although it will turn out that the luxury of using the same vector space for every point in physical space is only afforded to us if we assume that physical space is flat, which we will for now.}
 
 On to the abstract stuff.
 
@@ -127,7 +127,9 @@ Referring back to schoolhouse vectors, we can see how the arrows and the columns
 
 \subsection{They can be scaled}
 
-There is an associated set of objects called scalars, typically restricted to real or complex numbers. Our objects can be multiplied by a scalar to get another object. Scaling them by $1$ makes no difference. Scaling them by $-1$ discovers the additive inverse.
+For any vector space we must nominate an associated set of objects called scalars, having its own abstract requirements. In classical physics we almost always use the real numbers $\mathbb{R}$ as the scalars (in QM we use the complex numbers $\mathbb{C}$).
+
+Our vectors can be multiplied by a scalar to get another object. Scaling them by $1$ makes no difference. Scaling them by $-1$ discovers the additive inverse.
 
 Given two scalars $a$ and $b$, we can compute $c = ab$ and then scale an object $\vec{v}$ by it, or we can separately scale the object first by $a$ and then by $b$, and the result is the same:
 
@@ -195,7 +197,7 @@ $$
 \vec{c} \ne x \vec{a} + y \vec{b}
 $$
 
-Now we can construct any vector in three dimensions:
+Visualising geometrically, we could say that $\vec{c}$ points outside of the planar subspace reachable by linear combination of $\vec{a}$ and $\vec{b}$. Now we can construct any vector in three dimensions:
 
 $$
 \vec{r} = x \vec{a} + y \vec{b} + z \vec{c}
@@ -205,7 +207,7 @@ Eventually we may find (assuming the space is finite dimensional) that it is not
 
 The vitally important thing to realise about this is that at no point have we said that these vectors are orthogonal. We haven't even defined what that means yet. We've only defined the property of linear independence. Nevertheless we have arrived at the idea of a coordinate grid; it's just that our grid may be awkwardly slanted, made of identical parallelogram tiles rather than identical square tiles.
 
-So we don't have to keep choosing letters, we will label each dimension with a number. The set of linearly independent vectors that we can use to construct any other vector in the space is called a \textit{basis}. The basis vectors are traditionally written as $\vec{e}_n$, where $n$ is often 1-based (although in Relativity it may be 0-based; this is purely a notational convention and makes no arithmetic difference). The scalar coefficients, which we will call coordinates, that construct a given vector $\vec{r}$ can also be numbered, conventionally with superscript $r^n$:
+So we don't have to keep choosing letters, we will label each dimension with an integer.\footnote{Note that this use of integers is quite wasteful, as usually they can be added, multiplied, etc. but we will just be using integers as mere labels.} The set of linearly independent vectors that we can use to construct any other vector in the space is called a \textit{basis}. The basis vectors are traditionally written as $\vec{e}_n$, where $n$ is often 1-based (although in Relativity it may be 0-based; this is purely a notational convention and makes no arithmetic difference). The scalar coefficients, which we will call coordinates, that construct a given vector $\vec{r}$ can also be numbered, conventionally with superscript $r^n$:
 
 \begin{equation}
 \begin{split}
@@ -255,7 +257,7 @@ Think of a scalar-valued function of a vector. That is, a black box with a singl
     \caption{Function $f$ with a single slot accepting a vector} \label{fig:1-slot-box}
 \end{figure}
 
-More precisely, this machine is a mapping from the vector space to the real numbers. There are infinitely many such mappings and they could be rather complicated. We will restrict ourselves to a simple subset of these mappings.
+More precisely, this machine is a mapping from the vector space to the real numbers. There are infinitely many such mappings and they could be arbitrarily complicated. We will restrict ourselves to a simple subset of these mappings.
 
 First, we note that it is possible to define the addition operator on mappings:
 
@@ -338,7 +340,7 @@ $$
 f_j = \sum_i f_i \langle \vec{e}^i , \vec{e}_j\rangle
 $$
 
-But if that's true for \textit{any} $\vec{f}$, and not just a coincidence applying to some specific example, then the scalar factor $\langle \vec{e}^i , \vec{e}_j\rangle$ must be "selecting" just one of the $f_i$ terms, specifically the one where $i = j$, and eliminating all others, or to put it another way:
+But if that's true for \textit{any} $\vec{f}$, and not just a coincidence applying to some specific example, then the scalar factor $\langle \vec{e}^i , \vec{e}_j\rangle$ must be "selecting" just one of the $f_i$ terms, specifically the one where $i = j$, and eliminating all others, or to put it more succinctly using the Kronecker delta (§\ref{def:Kronecker}):
 
 $$
 f_j = \sum_i f_i \delta \indices{^i_j}
@@ -377,9 +379,11 @@ And as a consequence of this (dual) requirement we find that when the $n$th basi
 
 If we describe our covectors and vectors as sets of coordinates, to make a covector act on a vector we simply perform the dot product between their coordinates. Or equivalently, we write the covector as a single row matrix on the left, and the vector as a single column matrix on the right, and perform matrix multiplication to get a single scalar.
 
-Does this mean we've created a dual link between \textit{every} vector and a corresponding covector? Absolutely not. We've only linked up the basis vectors with the basis covectors. Still, there is an obvious mapping between vectors and covectors: let the covector have exactly the same coordinates as its vector pair, $f_i = v^i$. But that is only one possible mapping out of an infinity of possibilities, as we could blend the coordinates by any weighted sum we like. So connecting the basis covectors with the basis vectors is a start, but still leaves something to be desired.
+Does this mean we've created a dual link between \textit{every} vector and a corresponding covector? Absolutely not. We've only linked up the basis vectors with the basis covectors. Still, there is an obvious mapping between vectors and covectors: let the covector have exactly the same coordinates as its vector pair, $f_i = v^i$. And indeed this is the assumption made with schoolhouse vectors, where we freely perform the dot product between vectors described by coordinates, without worrying about whether they are from mutually dual spaces.
 
-\subsection{Visualising the dual basis}
+But that is only one possible mapping out of an infinity of possibilities, as we could blend the coordinates by any weighted sum we like. So connecting the basis covectors with the basis vectors is a start, but still leaves something to be desired.
+
+\subsection{Visualising the dual basis} \label{sec:dual-bases}
 
 It may be worth pausing here to see how this result relates to our schoolhouse version of arrows and coordinates and the dot product. In that world-view, the coordinates are just the scaling factors that weight the orthonormal basis vectors to construct a vector, and the dot product of a basis vector $\vec{e}_i$ and a given vector $\vec{a}$ produces the $a_i$ coordinate of $\vec{a}$. This is how we understand the geometric dot product (with $\cos \theta$) to be related to the idea of simply plucking one of the numbers from a column vector.
 
@@ -411,7 +415,7 @@ But what happens if we deny all knowledge of orthogonality? If we choose any lin
             \draw[thick,->] (0,0) -- (3.684,1.879);
             \node at (3.85,1.9) {\scriptsize $\vec{a}$};
         \end{tikzpicture}
-        \caption{$\vec{a} = \vec{e}_1 a^1 + \vec{e}_2 a^2$} \label{fig:vectors-non-orth-2}
+        \caption{$\vec{a} = a^1 \vec{e}_1 + a^2 \vec{e}_2$} \label{fig:vectors-non-orth-2}
     \end{subfigure}
 \end{figure}
 
@@ -511,7 +515,7 @@ $$
 \vec{e}_2 = \begin{bmatrix}0 \\ 1\end{bmatrix}
 $$
 
-By the way, it is customary to put the basis vectors in a row matrix, $\begin{bmatrix}\vec{e}_1 & \vec{e}_2\end{bmatrix}$, so they can be matrix-multiplied by a column representation of a vector in $V$, but that's not what we're doing here. We are giving the definition of each basis vector as a matrix, and the basis vectors are ordinary vectors belonging to $V$, so they must be column matrices.
+By the way, it is customary to put the basis vectors in a row matrix, $\begin{bmatrix}\vec{e}_1 & \vec{e}_2\end{bmatrix}$, so they can be matrix-multiplied by a column representation of a vector in $V$, but that's not what we're doing here. We are giving the definition of each basis vector as a matrix, and the basis vectors are ordinary vectors belonging to $V$, and customarily they are presented as column matrices.
 
 What is the corresponding $V^*$ basis, $\vec{e}^i$? It has to obey:
 
@@ -526,7 +530,7 @@ $$
 \vec{e}^2 = \begin{bmatrix}-0.5 & 1\end{bmatrix}
 $$
 
-And these being covectors from $V^*$, they must be row matrices, as shown. Using our $V$ basis we can construct a vector $\vec{v}$ from the coordinates $(2, 3)$:
+And these being covectors from $V^*$, we present them as row matrices. Using our $V$ basis we can construct a vector $\vec{v}$ from the coordinates $(2, 3)$:
 
 $$
 \vec{v} = 2\vec{e}_1 + 3\vec{e}_2
@@ -693,7 +697,7 @@ $$
 V \otimes V^* \otimes V \otimes \ldots
 $$ 
 
-having any number of slots accepting any mixture of vectors and covectors in some specific order. A machine with five slots will be represented by a list of numbers labelled with five indices. The slots that accept vectors (being defined by covectors) will have down indices, and the slots that accept covectors (being defined by vectors) will have up indices. For example, we can say our machine is from the space:
+having any number of slots accepting any mixture of vectors and covectors in some specific order. A machine with five slots will be represented by a list of $N^5$ numbers labelled with five indices. The slots that accept vectors (being defined by covectors) will have down indices, and the slots that accept covectors (being defined by vectors) will have up indices. For example, we can say our machine is from the space:
 
 $$
 V \otimes V^* \otimes V \otimes V \otimes V^*
@@ -705,15 +709,15 @@ $$
 M\indices{^i_j^k^l_m}
 $$
 
-These convey the same information. Sometimes the indexed parameter notation is used as a compact way to describe the structure of the machine, the only downside being that we have to unnecessarily choose symbols for the indices.\footnote{Some authors call this \textit{slot-naming index notation}.}
+These convey the same information. Sometimes the indexed parameter notation is used as a compact way to describe the structure of the machine, the only downside being that we have to unnecessarily choose symbols for the indices.\footnote{Some authors call this \textit{slot-naming index notation}, others \textit{abstract index notation}.}
 
 \subsection{What is a tensor?}
 
-These machines are tensors, though as we've seen, the space of machines of a given type is also a vector space, so tensors are vectors.
+These machines, which are used to compute a scalar value from some (co)vector inputs, are all tensors, though as we've seen, the space of machines of a given type is also a vector space, so tensors are vectors.
 
 We have proposed creating a five-slot machine $M\indices{^i_j^k^l_m}$, and so it seems entirely proper to treat a 1-slot machine $M_i$ or $M^i$ as part of the same family of objects. We've been calling them covectors and vectors, which is accurate (we had to invent them first in order to build toward tensors), but they are also themselves tensors in this general sense.
 
-Perhaps more surprising, but no less consistent, is the idea that a machine with no slots also belongs to the same family. It's just a scalar value.
+Perhaps more surprising, but no less consistent, is the idea that a machine with no slots also belongs to the same family. It's just a scalar value, which can be thought of as a machine that produces a scalar value from \textit{no} inputs.
 
 Sometimes the type of a tensor is written $(u, d)$ where $u$ tells you how many up indices and $d$ tells you how many down indices it has. So a scalar is a $(0, 0)$-tensor, a vector is a $(1, 0)$-tensor, a covector is a $(0, 1)$-tensor, and we will soon encounter practical uses for $(1, 1)$, $(0, 2)$ and $(2, 0)$-tensors, all of which are also elements of vector spaces.
 
@@ -777,15 +781,15 @@ $$
 \sum_{\mu\nu\beta\lambda} g_{\mu\nu} Z\indices{^\mu_\beta} \underline{a}^{\beta} Z\indices{^\nu_\lambda} \underline{b}^{\lambda}
 $$
 
-Every single one of the four indices appears in two places, once up and once down. This immediately tells us that the result is a scalar. A simpler example shows how index variables are not necessarily introduced by summation:
+Every single one of the four indices appears in two places, once up and once down, so it's a quadruple contraction, eliminating all the indices and so the result is a scalar. A simpler example shows how index variables are not necessarily introduced by summation:
 
 $$
 b^\mu = \sum_{\nu} O\indices{^\mu_\nu} a^\nu
 $$
 
-The $\nu$ index is repeated up/down in the way that is characteristic of all summation variables, but $\mu$ is introduced on the left to indicate that the expression computes the value of one component of several that represent a vector (we know it's a vector because the index is up).
+The $\nu$ index is repeated up/down in the way that is characteristic of all summation variables, but $\mu$ is introduced on the left to indicate that the expression computes the value of one component of several that represent a vector (we know it's a vector rather than a covector because the index is up).
 
-From these patterns we can deduce something surprising: it is completely unnecessary to write the summation symbol and state what the summation index variables are! If an expression consisting of indexed quantities multiplied together contains exactly two references to the same index, once up and once down, then that index is a summation index.
+From these patterns Einstein deduced something tremendously helpful: it is completely unnecessary to write the summation symbol and state what the summation index variables are! If an expression consisting of indexed quantities multiplied together contains exactly two references to the same index, once up and once down, then that index is a summation index.
 
 $$
 g_{\mu\nu} Z\indices{^\mu_\beta} \underline{a}^{\beta} Z\indices{^\nu_\lambda} \underline{b}^{\lambda}
@@ -814,8 +818,6 @@ Whereas the contraction example unmistakably sums over $k$ alone:
 $$
 N\indices{^i_j^l_m} = P\indices{^i_j^k^l_m_k}
 $$
-
-Einstein came up with this abbreviation while developing General Relativity.
 
 \section{The Inner Product} \label{inner-product}
 
@@ -1012,17 +1014,12 @@ $$
 And in general we would allow a linear combination of a basis formed from such simple machines, and of course this would have a matrix representation, because we will choose a vector basis $\vec{e}_{\mu}$, which will determine a covector basis $\vec{e}^{\mu}$:
 
 $$
-(\vec{f},\vec{g}) = \sum_{\mu\nu} g^{\mu\nu} p_{\mu} q_{\nu} 
+(\vec{p},\vec{q}) = \sum_{\mu\nu} g^{\mu\nu} p_{\mu} q_{\nu} 
 $$
 
-By our consistent use of subscript and superscript indices, we now have matrix representations for two forms of the inner product:
+So to recap, $g_{\mu\nu}$ can be evaluated in two stages. First it operates on a vector $a^{\mu}$ to produce \textit{something} that is ready to later operate on some second vector $b^{\nu}$ and so finish the job by producing a scalar. That intermediate something, if it can act on a vector to get a scalar, must be a covector, which we could call $a_{\nu}$, as it is \textit{the} dual of the vector $a^{\nu}$. If the basis happens to be orthonormal, the dual vector and covector will have the same coordinates, $a_{\mu} = a^{\mu}$ (because $g_{\mu\nu} = \delta_{\mu\nu}$). But in any case, once the second vector $b^{\nu}$ is eventually available, the scalar is just the contraction $a_{\nu} b^{\nu}$.
 
-\begin{itemize}
-    \item $g_{\mu\nu}$ operates on two vectors $a^{\mu}$ and $b^{\nu}$ to produce a scalar, or on one vector $a^{\mu}$ to produce its dual covector $p_{\mu}$.
-    \item $g^{\mu\nu}$ operates on two covectors $p_{\mu}$ and $q_{\nu}$ to produce a scalar, or on one covector $p_{\mu}$ to produce its dual vector $a^{\mu}$. 
-\end{itemize}
-
-These operations can be performed in two stages. For example, $g_{\mu\nu}$ can first operate on $a^{\mu}$ to produce \textit{something} that is ready to operate on $b^{\nu}$ and finish the job by producing a scalar. That intermediate something, if it can act on a vector to get a scalar, must be a covector with coordinates $a_{\nu}$, one that is the dual of the vector it was produced from. If the basis happens to be orthonormal, the dual vector and covector will have the same coordinates, $a_{\mu} = a^{\mu}$ (because $g_{\mu\nu} = \delta_{\mu\nu}$).
+And exactly the same is true for $g^{\mu\nu}$, which can operate on a covector $p_{\mu}$ to produce its unique dual vector $p^{\mu}$.
 
 So with reference to the indices being "up" or "down", $g^{\mu\nu}$ is sometimes called the raising operator, because it turns a covector's coordinates (subscript) into vector coordinates (superscript), while $g_{\mu\nu}$ is the lowering operator, working the other way. And described in this way, it is obvious that $g^{\mu\nu}$ undoes the work of $g_{\mu\nu}$, i.e. they are mutually inverse matrices. With our natural bias toward vectors, if $g_{\mu\nu}$ is the metric then $g^{\mu\nu}$ is the \textit{inverse metric}.
 
@@ -1317,10 +1314,9 @@ $$
 
 \subsection{Linear operators under change of basis}
 
-We've just seen how to transform a matrix, $g$ into $g$, so now we know how to transform matrices, nothing to see here, move along, right?
+We've just seen how to transform a matrix, $g$ into $\underline{g}$, so now we know how to transform matrices, nothing to see here, move along, right?
 
-A linear operator is a mapping $V \mapsto V$, whereas the inner product maps $V \mapsto V^*$. Among other observations, we saw that there is always a basis in which the inner product is represented by $g_{\mu\nu} = \delta_{\mu\nu}$, but if a linear operator is represented by $\delta_{\mu\nu}$ then it maps every vector to itself, and that means it must be represented by $\delta_{\mu\nu}$ \textit{regardless of the basis}. So they are not the same.
-
+A linear operator is a mapping $V \mapsto V$, whereas the inner product maps $V \mapsto V^*$. Among other observations, we saw that there is always a basis in which the inner product is represented by $g_{\mu\nu} = \delta_{\mu\nu}$, but if a linear operator is represented by $\delta_{\mu\nu}$ then it maps every vector to itself, and that means it must be represented by $\delta_{\mu\nu}$ \textit{regardless of the basis}. So the matrix representation of a linear operator cannot transform in the same way as the matrix representation of the inner product.
 
 
 
@@ -1427,7 +1423,7 @@ The temperature as a function of the position coordinates $p^n$ is given by:
     \label{eqn:t-absolute}
 \end{equation}
 
-The temperature is simply the sum of the coordinates, and so at the origin the temperature is $0$, likewise at coordinates $(1, -1), (2, -2), (-1, 1), (-2, 2)$ and so on, which is to say that there is a diagonal line along which $T$ is $0$. Similarly there is a parallel line along which $T$ is $1$, another where it is $-1$ and so on. These lines are \textit{isolines} or \textit{contours}\footnote{Strangely they are sometimes called "contour lines" even if they are curved paths.}
+The temperature is simply the sum of the coordinates, and so at the origin the temperature is $0$, likewise at coordinates $(1, -1), (2, -2), (-1, 1), (-2, 2)$ and so on, which is to say that there is a diagonal line along which $T$ is $0$. Similarly there is a parallel line along which $T$ is $1$, another where it is $-1$ and so on. These lines are \textit{isolines} or \textit{contours}\footnote{Strangely they are sometimes called "contour lines" even if they are curved paths. The word "line" was once used to refer to any path, curved or straight, and this usage survives in some terminology.}
 
 The simplification arsing from a scalar field whose contours are evenly spaced parallel lines is that although $T$ changes with position, there is no variation in \textit{how it changes} with position. This means that the function $dT$ for the change made by a small displacement $\vec{x}$ is structurally identical to \eqref{eqn:t-absolute}:
 
@@ -1480,7 +1476,7 @@ The dual of $\vec{d}$ is the vector we called $\vec{s}$ in \eqref{eqn:vector-gra
 
 Note how it is perpendicular to the contours. It points in the direction of "steepest increase" of the field. Also its magnitude is significant: if you move $1$ unit of distance along the direction of $\vec{s}$, the field will increase by $\|\vec{s}\|$, which in this case is $\sqrt{2}$.
 
-(The diagram is possibly confusing on this point, because it actually shows that a displacement by $\vec{s}$, i.e. moving along the direction of $s$ by distance $\|\vec{s}\|$, will increase $T$ by $2$, which is the same thing.)
+(The diagram is possibly confusing on this point, because it actually shows that a displacement by $\vec{s}$, i.e. moving along the direction of $\vec{s}$ by distance $\|\vec{s}\|$, will increase $T$ by $2$, which is the same thing.)
 
 \subsection{Uniform gradient in a non-orthonormal basis}
 
@@ -1661,8 +1657,6 @@ Once again it's just the covector $\vec{d}$ described by coordinates $d_i$, acti
 
 The trivial example of the linear field with constant gradient $T(\vec{x}) = x^1 + x^2$ was therefore in fact fully illustrative, because if the function had any terms that weren't linear, we would have just ignored them anyway.
 
-The way this is usually described, the operator that obtains the field of gradient vectors (the $\vec{s}$ associated with each point in space) from a field of scalars $T(\vec{p})$ is $\nabla T(\vec{p})$, the $\nabla$ being pronounced "del". This is very often conflated with the \textit{total derivative}, which is the somewhat confusing name for the covector $\vec{d}$ associated with each point in space. The reason they are often casually conflated is because if the basis vectors are orthonormal then they have the same coordinates. A careful author will be clear about this requirement when claiming that "the dot product" (rather than the properly defined inner product) can be used to get the \textit{directional derivative} from the gradient vector and the unit vector in the direction of interest.
-
 \subsection{Sources of confusion}
 
 A major potential source of confusion in this area is the distinction between the total derivative, a covector, and the gradient, a vector, and how and why they might be affected by a change of basis. As we've seen, they are \textit{not} affected by a change of basis. Vectors and covectors never are. Their coordinates are affected, of course.
@@ -1773,7 +1767,7 @@ That is, every element is the complex conjugate of its diagonally opposing eleme
 
 $$M_{ij} = (M_{ji})^*$$
 
-Therefore elements on the diagonal are real (they aren't moved by the transposition and so must equal their own complex conjugates). We call this a Hermitian matrix,
+Therefore elements on the diagonal are real (they aren't moved by the transposition and so must equal their own complex conjugates). We call this a Hermitian matrix.
 
 Regardless of the basis, given an inner product, if:
 

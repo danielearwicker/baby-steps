@@ -2,21 +2,21 @@
 
 \section{State Vectors and Dirac Notation}
 
-In quantum mechanics everything knowable about the state of some system is described in a vector, known as the state vector. The vector is from a vector space defined over the field of complex numbers, so it is important to use the correct definition of the inner product (§\ref{sec:vectors-complex}) where we take the conjugate of one of the vectors, to ensure that the inner product of a vector with itself is a non-negative a real number.
+In quantum mechanics everything knowable about the state of some system is described in a vector, known as the state vector. The vector is from a vector space defined over the field of complex numbers, so it is important to use the correct definition of the inner product (§\ref{sec:vectors-complex}) where we take the conjugate of one of the vectors, to ensure that the inner product of a vector with itself is a positive real number.
 
 The inner product in this context is written like this:
 
 $$\langle \vec{a}|\vec{b} \rangle$$
 
-Note that this is not the same as the notations we've used for a covector acting on a vector (§\ref{covector}), nor for the inner product (§\ref{inner-product}). The distinction between them is somewhat irrelevant here, as in the state vector space we will always be able to choose an orthonormal basis.
+Note that this is not the same as the notations we've used for a covector acting on a vector (§\ref{covector}), nor for the inner product (§\ref{inner-product}). If the vector space had real scalars, the distinction between those would be somewhat irrelevant, as in the state vector space we will always be able to choose an orthonormal basis, and so we'll never need to worry about how the metric tensor is defined (it will always be $\delta_{ij}$). But as we're dealing with a complex vector space, even though coordinates are always on an orthonormal basis, the dual covector of a vector has coordinates that are the complex conjugates of the vector's own coordinates, so we need to be careful about the distinction.
 
-If the vectors $\vec{a}$ and $\vec{b}$ are represented by column matrices $a$ and $b$ (to spare ourselves, for the moment, from things we can't imagine, let's pretend we're discussing a finite-dimensional vector space), the above is equivalent to:
+If the vectors $\vec{a}$ and $\vec{b}$ are represented by column matrices $a$ and $b$ (to spare ourselves, for the moment, from things we can't imagine, let's assume we're discussing a finite-dimensional vector space), the above is equivalent to:
 
 $$a^{\dagger} \, b$$
 
-We can split this inner product notation into separate pieces, so we can write $\langle \vec{a}|$ to mean the vector whose matrix representation in some basis is a single row containing the complex conjugates of the elements in the single column of the matrix representing $|\vec{a} \rangle$.
+We can split the new inner product notation into separate pieces, so we can write $\langle \vec{a}|$ to mean the covector whose matrix representation in some orthonormal basis is a single row containing the complex conjugates of the elements in the single column of the matrix representing $|\vec{a} \rangle$.
 
-It is valid to say that $\langle \vec{a}|$ is the covector of $|\vec{a} \rangle$, or that $\langle \vec{a}|$ as a function that extracts the coordinate of a basis vector $|\vec{a} \rangle$ from its argument, which will be some vector $|\vec{b} \rangle$, as in the expression $\langle \vec{a}|\vec{b} \rangle$. And in concrete matrix terms we can picture $\langle \vec{a}|$ as a 1-row matrix (a row vector) that is the dual of the 1-column matrix (column vector) $|\vec{a} \rangle$, and their corresponding coordinates are mutually complex conjugates.
+It is valid to say that $\langle \vec{a}|$ is the covector of $|\vec{a} \rangle$, which is the same as saying that $\langle \vec{a}|$ is a function that acts on some vector $|\vec{b} \rangle$ to extract the coordinate of a basis vector $|\vec{a} \rangle$, as in the expression $\langle \vec{a}|\vec{b} \rangle$. And in concrete matrix terms we can picture $\langle \vec{a}|$ as a 1-row matrix (a row vector) that is the dual of the 1-column matrix (column vector) $|\vec{a} \rangle$, and their corresponding coordinates are mutually complex conjugates.
 
 And with this matrix representation in mind, it follows that we can write them the other way round from the inner product:
 

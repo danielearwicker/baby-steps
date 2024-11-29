@@ -60,7 +60,7 @@ $$\hat{O}(k\mathbf{f}) = k\,\hat{O}(\mathbf{f})$$
 
 Note that an operator is not restricted to mappings that perform arithmetic on parameters. An operator may dig into the \textit{definition} of a function and transform it through analysis (in coding terms, an operator can read the source of the input function, not merely call it.)
 
-So an example of an operator would be differentiation. A function such as $\sin$ can be differentiated analytically and the result is $\cos$. If we differentiate $\cos$ we get $-\sin$. It doesn't matter if we:
+So an example of a linear operator would be differentiation. A function such as $\sin$ can be differentiated analytically and the result is $\cos$. If we differentiate $\cos$ we get $-\sin$. It doesn't matter if we:
 
 \begin{itemize}    
     \item add the functions, then differentiate, or
@@ -481,7 +481,7 @@ $$
 \hat{f}(-\nu) = \left[ \hat{f}(\nu) \right]^*
 $$
 
-Therefore having done the hard work of computing one side, it is very easy to get the other side - it contains no different information.
+Therefore having done the hard work of computing one side, it is very easy to get the other side --- it contains no different information.
 
 Also, note that as we're integrating over all $x$ from $-\infty$ to $\infty$, we can negate $x$ through the integral without changing the result. So this produces the exact same frequency amplitudes as equation \eqref{eq:fourier}:
 
@@ -499,7 +499,7 @@ If we mirror the frequency:
 
 $$\hat{f}(-\nu) = \int f(x)e^{-i2\pi\nu x} dx$$
 
-But we've arrived back at equation \eqref{eq:fourier}, meaning it must be perfectly symmetrical around $\nu = 0$ when applied to an even function. This means it must also be real at all frequencies - how else could all this be true?
+But we've arrived back at equation \eqref{eq:fourier}, meaning it must be perfectly symmetrical around $\nu = 0$ when applied to an even function. This means it must also be real at all frequencies --- how else could all this be true?
 
 $$
 \hat{f}(-\nu) = \hat{f}(\nu) = \left[ \hat{f}(\nu) \right]^*
@@ -560,8 +560,10 @@ So the spike at $\alpha$ from $\delta(\nu - \alpha)$ must be infinite so as to c
 
 An infinitesimally narrow spike in the frequency spectrum represents the single frequency present in a pure wave that goes on forever. And a pure wave in the frequency spectrum represent the infinite set of frequencies that must be summed to get an infinitesimally narrow spike. Each is the Fourier transform of the other. They are the two extremes of:
 
-- being localised in position but spread out in frequency
-- being spread out in position but localised in frequency
+\begin{itemize}
+    \item being localised in position but spread out in frequency, and
+    \item being spread out in position but localised in frequency.
+\end{itemize}
 
 Between these two there is a middle ground, a shape that is its own Fourier transform. The best known example is the Gaussian, of the form:
 

@@ -1,0 +1,562 @@
+\chapter{Curvature} \label{ch:curvature}
+
+Having applied the idea of vectors (and tensors) to flat surfaces, we now ponder how to apply the same idea to curved ones. This presents a new set of challenges that throw the whole concept into fresh paroxysms of doubt.
+
+Much of the mathematical equipment introduced here may be somewhat baffling without an understanding of the motivations, which have to do with the way that so many of the assumptions that we can safely make in flat space are wildly wrong in a curved space. Rather than building the equipment up from the most minimal low-level axioms, we will instead try to naively use our flat space assumptions on curved surfaces and see what problems we encounter. Those problems will require us to rethink our assumptions and drive the introduction of new mathematical tools.
+
+We will then work our way back to more fundamental concepts, as when working with examples there is always a risk that we depend on some special feature of that example --- the dreaded "loss of generality."
+
+The most symmetrical example of a curved surface is the sphere, and the Earth's global coordinate system provides an example of how to label the points on it. It may be tempting to think that because there is evidently a practical way to associate pairs of coordinates with points on the surface of the planet, therefore we can treat it much the same as a flat geometrical space, or that the standard global coordinate system is fundamental.
+
+But that coordinate system is only a pragmatic compromise, as is any such attempt to map the sphere. There is no single "right" way to cover a sphere with coordinates. Furthermore, as we shall see, even on a surface as symmetrical and simple as a sphere, normally safe assumptions of geometry are overturned, and vectors fail us altogether.
+
+On our way to resolving these problems, we will have to invent a generalisation of the idea of a space that can be associated with coordinates, of which the familiar flat plane is only one example.
+
+\section{Mapping the Globe}
+
+The Earth, controversially, is roughly spherical. It is only very slightly oblate so we'll talk about it as an ideal sphere. 
+
+\begin{figure}[h]
+    \caption{Standard global coordinate system}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \begin{tikzpicture}[tdplot_main_coords, scale = 2]
+ 
+            \shade[ball color = lightgray,
+                opacity = 0.4
+            ] (0,0,0) circle (1cm);
+             
+            \tdplotsetrotatedcoords{0}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{70}{230}{}{}
+
+            \tdplotsetrotatedcoords{203}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{270}{80}{}{}
+
+            \tdplotsetrotatedcoords{225}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{220}{70}{}{}
+
+            \tdplotsetrotatedcoords{247}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{220}{50}{}{}
+
+            \tdplotsetrotatedcoords{270}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{200}{40}{}{}
+
+            \tdplotsetrotatedcoords{292}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{200}{40}{}{}
+
+            \tdplotsetrotatedcoords{315}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{200}{40}{}{}
+
+            \tdplotsetrotatedcoords{337}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{200}{40}{}{}
+
+        \end{tikzpicture}
+        \caption{Longitude} \label{fig:globe-longitude}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \begin{tikzpicture}[tdplot_main_coords, scale = 2]
+ 
+            \shade[ball color = lightgray,
+                opacity = 0.4
+            ] (0,0,0) circle (1cm);
+             
+            \tdplotsetrotatedcoords{0}{0}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0.924)}{0.383}{-130}{180}{}{}
+            
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0.707)}{0.707}{-80}{140}{}{}
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0.383)}{0.924}{-70}{130}{}{}
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{-50}{110}{}{}
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,-0.383)}{0.924}{-50}{110}{}{}
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,-0.707)}{0.707}{-30}{90}{}{}
+            
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,-0.924)}{0.383}{-20}{50}{}{}
+            
+        \end{tikzpicture}
+    \caption{Latitude} \label{fig:globe-latitude}
+    \end{subfigure}
+\end{figure}
+
+If you examine a globe you'll find it is marked with circular paths. Some pass through both the North and South Poles, and are called lines of equal \textit{longitude} (Figure \ref{fig:globe-longitude}). Some, including the equator, do not pass through either pole, and are called lines of equal \textit{latitude} (Figure \ref{fig:globe-latitude}). Of course none of these are lines,\footnote{The word \textit{line} has a messy history, and early imprecise uses of it survive in modern language.} so we'll call them curves. Along these curves one of our coordinates is held constant and the other is allowed to vary.
+
+There is a mapping from coordinate pairs onto points on the surface. It is \textit{surjective}, meaning that no point is without a coordinate pair. But it is not \textit{injective}, because some points have multiple coordinate pairs. These troublesome points are the poles, and in fact they have infinitely many coordinate pairs because the latitude coordinate must have a specific value but the longitude can have any value. If we could find a way to match coordinate pairs up with points on the sphere that was one-to-one in both directions, it would be a \textit{bijection}, but this is impossible on a sphere.
+
+The two kinds of curve commonly used to map the globe, latitude and longitude, are very different in nature. The difference is that every curve of longitude is the same length, the longest a circular path can be on the surface of a sphere, called a \textit{great circle}, whereas curves of latitude vary in length. The equator is the only curve of latitude that is a great circle; the others are all smaller circles and thus shorter routes back to any starting point. At the poles the circles of latitude vanish: if you vary your longitude coordinate at the poles, you don't move at all.
+
+Suppose latitude worked like longitude, in that the equator remains a great circle, and some nearby curve of latitude is another great circle tilted so that one side rises to the north and the other side dips to the south (Figure \ref{fig:globe-alt-latitude}.)
+
+\begin{figure}[h]
+    \caption{Non-standard global coordinate system}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \begin{tikzpicture}[tdplot_main_coords, scale = 2]
+
+            \shade[ball color = lightgray,
+            opacity = 0.4
+        ] (0,0,0) circle (1cm);
+         
+        \tdplotsetrotatedcoords{90}{0}{0};
+
+        \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{210}{390}{}{}
+
+        \tdplotsetrotatedcoords{90}{22}{0};
+
+        \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{190}{360}{}{}
+
+        \tdplotsetrotatedcoords{90}{45}{0};
+
+        \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{180}{350}{}{}
+
+        \tdplotsetrotatedcoords{90}{67}{0};
+
+        \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{170}{340}{}{}
+
+        \tdplotsetrotatedcoords{90}{90}{0};
+
+        \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{160}{340}{}{}
+
+        \tdplotsetrotatedcoords{90}{113}{0};
+
+        \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{140}{320}{}{}
+ 
+        \tdplotsetrotatedcoords{90}{135}{0};
+
+        \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{140}{320}{}{}
+
+        \tdplotsetrotatedcoords{90}{157}{0};
+
+        \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{150}{320}{}{}
+        
+        \end{tikzpicture}
+        \caption{Alternative latitude} \label{fig:globe-alt-latitude}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \begin{tikzpicture}[tdplot_main_coords, scale = 2]
+
+            \shade[ball color = lightgray,
+            opacity = 0.4
+        ] (0,0,0) circle (1cm);
+
+            \tdplotsetrotatedcoords{0}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{70}{230}{}{}
+
+            \tdplotsetrotatedcoords{203}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{270}{80}{}{}
+
+            \tdplotsetrotatedcoords{225}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{220}{70}{}{}
+
+            \tdplotsetrotatedcoords{247}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{220}{50}{}{}
+
+            \tdplotsetrotatedcoords{270}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords]{(0,0,0)}{1}{200}{40}{}{}
+
+            \tdplotsetrotatedcoords{292}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{200}{40}{}{}
+
+            \tdplotsetrotatedcoords{315}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{200}{40}{}{}
+
+            \tdplotsetrotatedcoords{337}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{200}{40}{}{}
+
+            \tdplotsetrotatedcoords{90}{0}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{210}{390}{}{}
+
+            \tdplotsetrotatedcoords{90}{22}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{190}{360}{}{}
+
+            \tdplotsetrotatedcoords{90}{45}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{180}{350}{}{}
+
+            \tdplotsetrotatedcoords{90}{67}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{170}{340}{}{}
+
+            \tdplotsetrotatedcoords{90}{113}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{140}{320}{}{}
+     
+            \tdplotsetrotatedcoords{90}{135}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{140}{320}{}{}
+
+            \tdplotsetrotatedcoords{90}{157}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed]{(0,0,0)}{1}{150}{320}{}{}
+     
+        \end{tikzpicture}
+    \caption{Four poles} \label{fig:globe-terrible}
+    \end{subfigure}
+\end{figure}
+
+The result would be another pair of poles. The Earth would have four poles, two in the usual locations where the longitude curves all cross, and another two on opposite points of the equator, where the latitude curves all cross. Let's suppose these poles to be where the equator intersects the International Dateline. This would leave two non-polar regions of the Earth where the curves locally take on the appearance of a helpful coordinate grid, one centred near a group of islands to the west of Ecuador, the other south of the Bay of Bengal.
+
+The deal breaker for this system is that the International Dateline (the solid curve in Figure \ref{fig:globe-terrible}) is simultaneously a curve of equal latitude and equal longitude, so that it is impossible to give the coordinates of any specific point on that curve. The mapping between points and coordinates is neither injective nor surjective.
+
+In any case, the regular approach to drawing curves of equal latitude has an obvious practical motivation: the Earth rotates, and the poles are positioned on the axis of rotation. If you stand rooted to one spot on the surface, over the course of 24 hours, relative to the Sun, you will travel along a curve of equal latitude. If you stand on either of the poles, you won't move at all.\footnote{You will rotate on the spot, but the direction you are facing is really a different degree of freedom, available wherever you might find yourself.}
+
+In addition, if a planet's axis of rotation is orientated roughly normal to the plane of its orbit, the poles will receive less light and so be much colder and less hospitable. As few if any people live permanently on the poles, they are the ideal place to hide problems with your coordinate system.
+
+\section{Drawing a rectangle}
+
+On a flat Euclidean plane, drawing a rectangle is the simplest of challenges. But what about on the sphere?
+
+Returning to the deceptive simplicity of the standard global coordinate system, we might naively attempt to trace a pseudo-rectangular route on the surface by moving first north (keeping longitude constant), then east (latitude constant), then south (longitude again) and finally west (latitude). There is one thing this gets right: each of the corners, locally, is a right-angle, which is one of the things we expect of a rectangle. But what about the edges?
+
+As always, we are more interested in geometrically reality, distinct from any choice of coordinate system. There is something intrinsically important about a great circle, which is that if you pick any two points on a sphere and draw a great circle through them, it will have two segments, and the shorter of the two is the shortest possible path on the surface between those two points (if the two points are \textit{antipodes}, exact opposite points, both segments are the shortest path). This gives it something in common with a straight line between two points on a flat surface.
+
+For this reason, we give special significance to curves on a sphere that follow part of a great circle, as they are the closest thing we have to a straight line in that environment. We also regard them as "locally straight", in the sense that to a small creature (such as a person) walking on the surface of the sphere, at a scale where it appears locally flat, and such that they are walking in what they regard as a straight line, turning neither left nor right, they will in fact be following the curve of a great circle. The technical name for such a curve is a \textit{geodesic}, from the Greek word for surveying the Earth, but used in the same general sense on all curved surfaces regardless of shape.
+
+With the concept of the geodesic, or locally straight path, we can now be clear about what a person has to do to follow a curve of latitude in our usual global coordinate system: unless they do this at the equator, they can't be walking in a straight path even from their own local perspective. They have to constantly veer from the locally straight path.
+
+This is comically clear when the person is standing a metre away from the North Pole, where if they walk due east they will be walking in a circle two metres in diameter, and will arrive back where they started after perhaps ten paces. To go west, they walk around the same circle in the opposite direction. Were they to walk (and swim) straight forwards, they would follow a great circle that eventually brought them to a location exactly one metre from the South Pole.
+
+So our first attempt at a rectangle had right-angle corners, but a person travelling on the latitude-following edges would need to continuously steer away from their locally straight path, so we cannot seriously accept this as a rectangle.
+
+Perhaps we can get closer to a rectangle by tracing a shape that has four sides that are all parts of geodesics. Our non-standard coordinate system will help, as long as we stick to one of the areas away from the four poles.
+
+But it's no use: we just trade one problem for another.
+
+\begin{figure}[h]
+    \caption{Hardly a rectangle}
+        \centering
+        \begin{tikzpicture}[tdplot_main_coords, scale = 2]
+
+            \shade[ball color = lightgray,
+            opacity = 0.4
+        ] (0,0,0) circle (1cm);
+
+            \tdplotsetrotatedcoords{0}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed, color = gray]{(0,0,0)}{1}{70}{230}{}{}
+
+            \tdplotsetrotatedcoords{203}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed, color = gray]{(0,0,0)}{1}{270}{80}{}{}
+
+            \tdplotsetrotatedcoords{225}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed, color = gray]{(0,0,0)}{1}{220}{70}{}{}
+
+            \tdplotsetrotatedcoords{247}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed, color = gray]{(0,0,0)}{1}{220}{50}{}{}
+
+            \tdplotsetrotatedcoords{270}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed, color = gray]{(0,0,0)}{1}{200}{40}{}{}
+
+            \tdplotsetrotatedcoords{292}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed, color = gray]{(0,0,0)}{1}{200}{40}{}{}
+
+            \tdplotsetrotatedcoords{315}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed, color = gray]{(0,0,0)}{1}{200}{40}{}{}
+
+            \tdplotsetrotatedcoords{337}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed, color = gray]{(0,0,0)}{1}{200}{40}{}{}
+
+            \tdplotsetrotatedcoords{90}{0}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed, color = gray]{(0,0,0)}{1}{210}{390}{}{}
+
+            \tdplotsetrotatedcoords{30}{22}{450};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed, color = gray]{(0,0,0)}{1}{190}{360}{}{}
+
+            \tdplotsetrotatedcoords{30}{45}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed, color = gray]{(0,0,0)}{1}{300}{410}{}{}
+
+            \tdplotsetrotatedcoords{30}{113}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed, color = gray]{(0,0,0)}{1}{100}{270}{}{}
+     
+            \tdplotsetrotatedcoords{30}{135}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed, color = gray]{(0,0,0)}{1}{100}{270}{}{}
+
+            \tdplotsetrotatedcoords{30}{157}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, dashed, color = gray]{(0,0,0)}{1}{100}{270}{}{}
+     
+            \tdplotsetrotatedcoords{30}{113}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, solid]{(0,0,0)}{1}{163.5}{207}{}
+     
+            \tdplotsetrotatedcoords{30}{22}{450};
+
+            \tdplotdrawarc[tdplot_rotated_coords, solid]{(0,0,0)}{1}{219}{305}{}{}
+
+            \tdplotsetrotatedcoords{247}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, solid]{(0,0,0)}{1}{145}{76}{}{}
+
+            \tdplotsetrotatedcoords{337}{90}{0};
+
+            \tdplotdrawarc[tdplot_rotated_coords, solid]{(0,0,0)}{1}{152}{72}{}{}
+
+        \end{tikzpicture}
+\end{figure}
+
+To gain geodesic edges, we've lost all our right-angles. Also the opposite sides still aren't the same length; yes, they are all four "steps" long, where a step is the gap between the geodesics shown as dotted curves, but those steps are clearly not reliable units of length.
+
+The shocking truth is that on a sphere there are no rectangles. There aren't even parallelograms, which is a disaster for vectors.
+
+\section{Vectors as curved arrows}
+
+Our intuitive picture of vectors as arrows is only going to mislead us now. An arrow has direction and length. Clearly at any point on the sphere we can choose a direction leading away from that point, and we know that the closest thing to a straight line on the surface of a sphere is a great circle, and we can measure distance around such a circle if we know the radius, which for a great circle is the same as the radius of the sphere itself. So what if we think of vectors as arcs of great circles? These curved arrows will have a direction and a length, and this suggests we can add them by placing them head to tail as usual, so points on the sphere correspond to elements of a vector space.
+
+But this fails even the simplest requirement of a vector space. Vector addition must be commutative: $\vec{a} + \vec{b} = \vec{b} + \vec{a}$. Suppose you stand on the equator facing north. You are going to make a journey by turning 90 degrees to the right and walking straight for 100 metres, then 90 degrees to the left and travelling 10,000 metres. That is, you will walk along the equator a short distance and then north along a curve of longitude for a much longer distance. You will therefore end up at a latitude that is exactly 10,000 metres from the equator. This is like adding two of our would-be vectors: the first leg is $\vec{a}$, the second is $\vec{b}$, and so the final destination is $\vec{a} + \vec{b}$. This is version 1 of the journey. 
+
+What if we create a version 2 by swapping the stages? There is no need to make any initial turn; just start walking 10,000 metres north (that is, along $\vec{b}$), then turn 90 degrees to the right before travelling 100 metres (along $\vec{a}$), which means walking "straight" along a geodesic far from the equator, and so you will diverge from the local curve of latitude and end up somewhat less than 10,000 metres from the equator, further south than the end of the first version of the journey. You will also be further to the east, because curves of longitude converge, so in version 1 the eastward translation by 100m was shrunk significantly by the journey north.
+
+We are forced to conclude that $\vec{a} + \vec{b} \ne \vec{b} + \vec{a}$. Curved arrows are not elements of a vector space. There is no such thing as a curved vector space.
+
+However, we began with what felt like a promising idea: at any point there is a real choice of directions we can face in, which is equivalent to choosing one of the infinite set of great circles through that point. There is nothing uncertain or subjective about this. If we can't have vectors, can we salvage something objective about directions?
+
+To associate a number with a direction, we need to pick an origin direction that we label as zero, and $\pi$ is the exact opposite direction. An angle is a piece of objective information. We can carry that kind of information with us as we travel. That is, we move in direction $x$ while always holding an arrow that points in direction $y$, or we can note the angle between $x$ and $y$ and thus easily recreate $y$ at any point along our journey by using a protractor to measure the angle from the direction we're facing.
+
+So is the angle $y$ an objective fact at every location? Absolutely not, and this time we don't even to compare the results of two journeys. Once again, start on the equator and head north. Keep going until you go right through the North Pole and hit the equator again on the other side of the globe, heading south. This whole time you've been carrying an arrow pointing in the direction you're travelling. Now you're going to turn 90 degrees to the right, but you take care to not change the direction of the arrow you're carrying, so now it points to your left. You travel around the equator back to your starting point. When you set off, the arrow you were carrying was pointing north, but now after two semicircular journeys it's pointing south. You were very careful never to rotate it even slightly, and as a result it is pointing the opposite way.
+
+Alternatively you could start on the equator and head north but this time stop at the North Pole. Turn 90 degrees to the right (but keeping the arrow you're carrying pointing the same way as before, so now it's pointing to your left) and move down to the equator. One more turn 90 degrees to the right (the arrow is now pointing backward) and then travel back along the equator to your starting point. In this scenario the arrow will have rotated 90 degrees during the journey.
+
+Directions are not objective facts that can be moved around the space. If you take a vector on a journey, it's not possible to objectively say that you have taken the same vector to all the places you visit, no matter how careful you are to avoid rotating it.
+
+To add one vector to another, we have to transport the origin of one of the vectors to where the other vector ends, so they are head-to-tail. On what basis can we claim that the transported vector is still the same vector, given that we can't reliably say it continues to point in the same direction?
+
+\section{Curves through scalar fields}
+
+One way to recognise that you are moving on a surface is to note how the environment is changing. If it is completely featureless then this will be difficult; this was surely a problem faced by early seafarers, as once you have sailed out of sight of land, one region of the ocean looks much like any other.
+
+Scalars are simple, uncontroversial and easy to work with. We can suppose there is a scalar field on a curved surface, that is, a scalar-valued function of points, $x(\mathcal{P})$ that varies smoothly with position. Such fields describe familiar physical phenomena, such as temperature. It doesn't matter how you arrive at a point, the scalar field's value at that point is purely a function of position, and obviously you can carry a scalar value with you on any journey over the surface without it mysteriously changing --- a reassuring contrast with the vexing perversity of vectors.
+
+As the field varies smoothly with position, we can draw contours, curves along which the field's value does not change. At each point there is a direction in which the field's value increases most steeply (perpendicular to the contour through that point), and the steepness provides a magnitude. So there is \textit{unavoidably} a gradient vector at every point. Furthermore there are infinitely many possible scalar fields that could be overlaid on the surface, each causing a different gradient at a given point. So each point has an associated vector space, containing all the gradient vectors that would be given to that point by all the possible scalar fields.
+
+It's important to note that this gradient is not about the shape of the surface and its curvature. It's about the way the field varies from place to place, and the field is just an arbitrary pattern of numerical values overlaid on the surface.
+
+A curve is then a point-valued function of a scalar variable, $t$, so that journey along a curve as time passes can be written as the function $\mathcal{P}(t)$. Of course, we don't have a way to do arithmetic with abstract points themselves, so this is all quite conceptual. But we can clear that obstacle by feeding the curve's points into our scalar field by composing the two functions:
+
+$$
+(x \circ \mathcal{P})(t) = x(\mathcal{P}(t))
+$$
+
+This is the simplest thing we ever deal with: a scalar-valued function of a scalar parameter $t$, directly giving the value of the field at each point along the curve.
+
+Given the definition of such a function, we can differentiate with respect to $t$ to get the gradient, although this too is a scalar, and is the directional derivative $\frac{d}{dt} x(t)$ at the point $\mathcal{P}(t)$, in the direction that the curve is heading at time $t$ (and, by the way, scaled according to how fast the motion is taking place along the curve at time $t$.)
+
+As we noted before, the scalar field $x(\mathcal{P})$ is merely one chosen from the infinitely many possible scalar fields, but now also the curve $\mathcal{P}(t)$ is chosen from infinitely many possible curves that \textit{could} pass through that point. These two possibilities are both vector spaces, and by choosing a vector from each space we get a scalar gradient.
+
+It's important to bear in mind that these vector spaces we've uncovered do not solve any of the problems we identified previously. Each vector space is associated with a single point on the surface, and we have not figured out a way to say that any given vector at one point has any relationship to a vector at some other point. Vectors associated with different points on the curved surface live in entirely different vector spaces.
+
+\section{Coordinate systems as scalar fields}
+
+Suppose we choose two scalar fields existing at once on our (two-dimensional) surface. Every point now has two numbers associated with it. Also the fields each vary in such a way that over some regions the contours of the two fields criss-cross each other in a way that looks rather like a coordinate grid. That's because in effect they \textit{are} together a coordinate grid. A two-dimensional coordinate system is just a pair of scalar fields $x^i(\mathcal{P})$ where $i$ is $1$ or $2$. A contour is a curve along which only one coordinate is allowed to vary, and all other coordinates are held constant.
+
+When studying vectors and tensors, we began with the abstract definition of a vector space, and then the idea of a basis of linearly independent vectors that can be combined in a weighted sum to produce any vector, the coefficients of that sum being the coordinates of the vector so produced. We can then (optionally) picture a physical space as a vector space, by identifying points in space with vectors.
+
+But now we're allowing a coordinate system to extend over a space, in a way that doesn't necessarily relate to vectors. Within the rather loose arrangement we've been discussing involving arbitrary fields, each coordinate is merely a field which tells us the value of that coordinate at each point, and a contour is a curve along which one coordinate varies and the other coordinates are fixed. This is true regardless of the shape of the surface and regardless of the fields we've chosen --- which, as a reminder, are two entirely separate variables in this setup. The way the fields vary has nothing necessarily to do with the shape of the surface. So the coordinates don't appear to tell us anything about surface itself at all.
+
+To clarify our predicament, one way to put a coordinate system on at least part of a curved surface is to obtain from somewhere a perfectly flat floating platform equipped with an orthonormal Cartesian coordinate system, and to let it hover above the curved surface, and to project the coordinate grid downward. Imagine a roving laser beam on the underside of the floating flat platform that shines downward and lights up a spot on the curved surface, so that every point on the flat coordinate system has a corresponding point on the curved surface.\footnote{The reason this might not work for an entire space is because any perfectly vertical cliffs will associate the same coordinate pair with an infinitely dense set of points on the cliff face. So restrict your imagination here to a landscape that has some hills and valleys but no cliffs or caves.} The coordinates are perfectly simple and well-behaved in the flat surface, we can associate every point with a vector in the flat surface, and we can do vector arithmetic on these vectors just fine. The flat space is a vector space even though the curved space is not. But it tells us absolutely nothing about the reality on the surface. This illustrates the futility of trusting a coordinate system alone. Given the coordinates for two points, how far apart are they? We have no idea.
+
+\section{The Metric}
+
+And so evidently the thing that links a coordinate system to reality is a metric, a way of measuring the distance between two points. As always, the way we describe the metric numerically will depend on the coordinate system, but for it to have a physical significance, it must be constrained by a measurable scalar property that we call distance (ultimately: how long does it take a photon to travel through a vacuum between the two points?)
+
+Also, the metric itself -- or its description in the coordinate system, which is a different thing -- may vary between points. This is a crucial distinction and is well illustrated by considering a sphere, which has perfect symmetry and the metric is exactly the same everywhere.
+
+Over an arbitrarily short distance, the effect of any curvature becomes arbitrarily small. To put it another way, all surfaces are flat if you zoom in close enough! This means that the metric at a point, which only describes that point and has no extent, is the metric of flat space. We know that in a vector space with a metric, we can always choose a basis in which the metric is represented by the identity matrix.
+
+But the symmetry of the sphere dictates that the metric is the same everywhere. If the metric is represented by the identity matrix everywhere, how is the sphere any different from a flat space? The resolution to this apparent paradox lies in all the agonising we experienced when trying to cover the sphere with a consistent coordinate system spanning long distances. At some point on the sphere we can make something that is locally a square coordinate grid, and at that point the metric could be described by the identity matrix. But as we move away from that point the coordinate grid becomes distorted by the curvature, so the same metric has to be described by a different matrix. The nature of the curvature is described by the change in the metric's matrix representation as we move around the surface. It's the same metric everywhere, but described by different numbers due to the necessary warping of the coordinate grid (it can't be square everywhere). If the metric is described by the identity matrix in one location, it will have to diverge from that in neighbouring locations.
+
+At a single point we can use vectors, tensors and all associated apparatus, but at extended distances those things break down and cannot be relied on directly. A coordinate system (a collection of $N$ different scalar fields for $N$-dimensional space) can cover extended distances, although in general it too will stop working in some places.
+
+\section{Distance along a curve}
+
+The distance between two substantially separated points will depend on what happens along the journey between them. There must be some chosen curve that connects the two points, and we want to find the length of that curve.
+
+The parameter $t$ that guides our journey along a curve $\mathcal{P}(t)$ can be thought of as time passing as we move. Of course, we could speed up and slow down during our journey, but actually it doesn't matter whether we travel at constant speed or not.\footnote{If we somehow knew that our speed was constant, we wouldn't need the metric to find the total distance for our journey --- we'd just need a clock.} The variable $t$ is really just a parameter that moves us along the curve of our journey as it increases, but we can also think of it as time passing.
+
+In our journey along some curve, in the time interval $\Delta t$ we move from $\mathcal{P}(t)$ to $\mathcal{P}(t + \Delta t)$. Our coordinates, given by $x^i(\mathcal{P})$, change by:
+
+$$
+x^i(\mathcal{P}(t + \Delta t))
+-
+x^i(\mathcal{P}(t))
+$$
+
+As we're immediately converting points $\mathcal{P}$ to coordinates $x^i$, we may as well directly say that the coordinates along the curve are functions $x^i(t)$, and so the coordinates change by:
+
+$$
+x^i(t + \Delta t)
+-
+x^i(t)
+$$
+
+But if we try to invoke the metric to convert these separate coordinate changes into a single scalar distance, we have a problem, because there are two metrics in play: the one at $t$ and the one at $t + \Delta t$. Which metric do we use to convert this coordinate changes into a distance? This is a job for calculus. We shrink $\Delta t$ toward zero so that we can use the metric at $t$, so the time interval involved is the infinitesimal $dt$.
+
+We differentiate the $i$th coordinate with respect to $t$:
+
+$$
+v^i(t) = \frac{d}{dt} x^i(t)
+$$
+
+In keeping with the interpretation of $t$ as the elapsed time, and $x^i(t)$ as the coordinates of something moving along the curve, $v^i(t)$ would be the velocity at $t$. Equivalently it is the tangent vector to the curve at $x^i(t)$.
+
+The metric $g_{ij}$ at each point is a $(0, 2)$ tensor, evaluating to a scalar when supplied with two vector inputs. To find the squared-length of a vector, we simply supply that vector as the input for both slots:
+
+$$
+g_{ij}(t)
+\left( v^i(t) \right) 
+\left( v^j(t) \right)
+$$
+
+Here we're using the notation $g_{ij}(t)$ to remind ourselves that $g_{ij}$ is not a constant but is smoothly varying across our journey. Also note that we're using Einstein summation notation as usual, so the above is the sum over all pairs of $(i, j)$ values.
+
+The integral of the distances yielded by the smoothly changing metric along the curve will be the total length. The infinitesimal contributions need only be the linear approximation at each point, so the metric at a point can be fully characterised by a matrix, $g_{ij}$, though this is necessarily a function of $t$, $g_{ij}(t)$, and \textit{that} function is decidedly not linear in general. Even so, we can write the integral down as:
+
+$$
+L =
+\int
+\sqrt{
+    \mathop{g_{ij}(t)}
+    \mathop{v^i(t)}
+    \mathop{v^j(t)}
+}
+\mathop{dt}
+$$
+
+That is, we've put the same vector into both the $i$ and $j$ slots of the metric tensor, and both that vector (the infinitesimal tangent displacement, the velocity) and the metric tensor are smoothly varying functions of the position along the curve. The scalar result of evaluating the tensor is the square of the infinitesimal distance, so we take the square root to get the infinitesimal distance. We can then integrate that over some portion of the curve, say $0 \le t \le 1$, to find the distance traversed.
+
+This is our first hint of a way to compute something involving points on the surface that are separated by arbitrary distances: using calculus to connect together the isolated vector spaces at each point.
+
+\section{Coordinate basis}
+
+We assume the existence of scalar fields $x^i(\mathcal{P})$ which serve as a coordinate system for our curved surface. These automatically have a gradient at each point. The choice of scalar fields (and thus coordinate systems) is entirely arbitrary, having nothing necessarily to do with any curvature of the surface. So there is a vector space at each point called the \textit{tangent space}, whose elements are the vector gradients that would be associated with every possible scalar field around that point.
+
+Our choice of coordinate fields ($x^1$ and $x^2$ on our two-dimensional curved surface) picks out two tangent vectors at each point, the gradient of each field there. Near to some area of interest they are hopefully almost orthonormal, although further away they will diverge more and more from orthonormality (either by a change in angles or relative length.)
+
+But in any case, they provide each point's vector space with a pair of basis vectors, as we assume they are linearly independent (at least over some useful area of the surface) and can therefore be blended in a linear combination to generate every possible vector in that point's vector space.
+
+The notation we'll use for these basis vectors is curiously familiar:
+
+$$
+\frac{\partial}{\partial x^i}
+$$
+
+It's exactly the same notation as a partial derivative with respect to one of the coordinates, except with nothing to differentiate, so it's just an operator. The reason for this will become clear, but for now thinking of it as just a notation for a basis vector, where you'd otherwise write $\vec{e}_i$. And therefore any vector $\vec{v}$ in a point's tangent space can be constructed in terms of the basis:
+
+$$
+\vec{v} 
+= 
+v^1 \frac{\partial}{\partial x^1}
++
+v^2 \frac{\partial}{\partial x^2}
+$$
+
+A common abbreviation for $\partial / \partial x^i$ is $\partial_i $ which has the advantage of being slightly less effort to write out.
+
+How about the reverse, pulling a vector $\vec{v}$ apart to get the coordinates $v^i$? We know that the tangents of the coordinate curves passing through a point are not likely to be orthonormal, so this is an awkward basis, meaning that to retrieve the coordinate we need a scalar-valued linear function of a vector: a covector. For these (again, it's going to look familiar) we use the notation:
+
+$$
+dx^i
+$$
+
+That's a function that takes a vector from the tangent space and returns a scalar. As always with basis covectors, when they act on a basis vector the result is either $0$ or $1$, according to the usual rule:
+
+$$
+dx^i \left( \frac{\partial}{\partial x^j} \right)
+=
+\delta_{ij}
+$$
+
+Given a metric at some point, we can convert the coordinates of any vector $\vec{v}$ from that point's tangent space into the corresponding covector coordinates:
+
+$$
+\omega_i = g_{ij} v^j
+$$
+
+And so on, as usual. We have all the regular equipment of the vector space, the dual covector space, and any tensor spaces we want to invent by combining these.
+
+The basis vector $\partial_i$ represents the direction that the $i$th coordinate increases most steeply, and the steepness of that increase. Given a scalar field $f$ defined over our space, which is not the same as either coordinate field, but could be some physical fact such as the temperature at each point, if we wanted to know that field's rate of increase along the direction of the $i$th coordinate's contour curve, we'd write that as the partial derivative:
+
+$$
+\frac{\partial f}{\partial x^i}
+$$
+
+And that also looks like we've written the long-form notation for the $i$th basis vector and provided it with something to operate on. The same would apply with any other direction in which we wanted to know the rate of change of the field, where we can define that direction as a vector:
+
+$$
+\vec{v} 
+= 
+v^1 \frac{\partial}{\partial x^1}
++
+v^2 \frac{\partial}{\partial x^2}
+$$
+
+and then apply it to our field:
+
+$$
+\vec{v}(f)
+= 
+v^1 \frac{\partial f}{\partial x^1}
++
+v^2 \frac{\partial f}{\partial x^2}
+$$
+
+We've previously thought of covectors as functions and vectors as something more basic and elemental. Well, now the vectors appear ready to act on something, but it's important to note that they are not functions that act on vectors to produce scalars, so they cannot be confused with covectors. In this case, the vector \textit{operates} on a scalar field (in a way that a mere function cannot - the result depends on how the field changes around the point, not just its value at the point) and in fact the input could be any tensor field: a scalar is just an example of a tensor of type $(0, 0)$. The tangent space is the set of all possible directions along which we can take the gradient of \textit{anything}. The basis tangent vectors are just a couple of directions from which we can construct all other possible directions.
+
+Similarly the notation for the basis covectors $dx^i$ has a sensible interpretation in terms of integrals. The basis covector can operate on any tangent vector $\vec{v}$ to produce the scalar value which is the change in the $i$th coordinate that would occur due to a displacement by $\vec{v}$, although as usual it can only be at best a linear approximation to that change, because both the field and the curve of the $i$th coordinate contour may not be changing linearly as we move around the surface.
+
+\section{Covariant derivative}
+
+A potential $V$ is a scalar field, and the corresponding force $F = \nabla V$ is a vector field. However it would be more accurate to call it a covector field, a distinction we don't care about in flat space where we can choose a universal coordinate system and therefore make it Euclidean.
+
+We can generalise the $\nabla$ operator to operate on any tensor field, whether a scalar, a vector, a covector or any higher type. For every number describing the input, we take its partial derivative with respect to each coordinate of the space. Therefore if the input field $a$ is a tensor of type $(k, l)$ then $\nabla a$ is of type $(k, l + 1)$. That is, in coordinate form, and N dimensions, the input is described by $N^{(k+l)}$ numbers. Taking the derivative involves finding $N$ numbers for every number in the input, so requiring $N^{(k+l+1)}$ numbers to describe the output.
+
+The additional covariant index is often denoted by prefixing it with a comma. So if the input field is of the form $T\indices{^{ab}_{cde}}$ then the covariant derivative is given by $T\indices{^{ab}_{cde,f}}$, which is literally:
+
+$$
+\nabla T\indices{^{ab}_{cde}}
+=
+T\indices{^{ab}_{cde,f}}
+=
+\frac{\partial}{\partial x^f} T\indices{^{ab}_{cde}}
+$$
+
+We can contract this derivative with some vector $v^f$ to get the change in the field due to moving in the direction of that vector (scaled by its magnitude).
+
+This gets us back to a tensor of the same type as the original input, except that now it tells us how much all the components of that input would change (to a linear approximation) under a shift of position given by $v^f$. So in the example of a vector field as the input, the derivative is a $(1, 1)$-tensor, and after contraction with an ordinary vector $v^i$ it becomes another ordinary vector describing how the field changes in the direction of $v^i$.
+
+Note that this really the other way around to the interpretation of vectors as directional derivative \textit{operators}, being composed from the basis vectors $\partial_i$. Either way, the end result is a quantified directional derivative, i.e. some actual numbers, for which you need two ingredients: a field to operate on and a nominated direction to resolve along. Either you can nominate the direction, quite apart from any decision about what field might eventually be analysed (such directions by themselves are the elements of our tangent vectors spaces), or you can pick your field and generate the covariant derivative up front with $\nabla$, and delay specifying a direction until later.
+
+The ability to take the derivative of a vector field is the key to solving the problem of relating vectors in different tangent spaces. The derivative is the difference between the vectors at two points separated by an infinitesimal distance. Suppose the derivative finds that they don't differ: that is equivalent to saying that they are the same vector in two different tangent spaces.
