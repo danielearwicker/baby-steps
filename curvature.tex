@@ -6,13 +6,15 @@ Much of the mathematical equipment introduced here may be somewhat baffling with
 
 We will then work our way back to more fundamental concepts, as when working with examples there is always a risk that we depend on some special feature of that example --- the dreaded "loss of generality."
 
+\section{Mapping the Globe}
+
 The most symmetrical example of a curved surface is the sphere, and the Earth's global coordinate system provides an example of how to label the points on it. It may be tempting to think that because there is evidently a practical way to associate pairs of coordinates with points on the surface of the planet, therefore we can treat it much the same as a flat geometrical space, or that the standard global coordinate system is fundamental.
 
 But that coordinate system is only a pragmatic compromise, as is any such attempt to map the sphere. There is no single "right" way to cover a sphere with coordinates. Furthermore, as we shall see, even on a surface as symmetrical and simple as a sphere, normally safe assumptions of geometry are overturned, and vectors fail us altogether.
 
 On our way to resolving these problems, we will have to invent a generalisation of the idea of a space that can be associated with coordinates, of which the familiar flat plane is only one example.
 
-\section{Mapping the Globe}
+\subsection{Coordinates on the sphere}
 
 The Earth, controversially, is roughly spherical. It is only very slightly oblate so we'll talk about it as an ideal sphere. 
 
@@ -90,7 +92,7 @@ The Earth, controversially, is roughly spherical. It is only very slightly oblat
     \end{subfigure}
 \end{figure}
 
-If you examine a globe you'll find it is marked with circular paths. Some pass through both the North and South Poles, and are called lines of equal \textit{longitude} (Figure \ref{fig:globe-longitude}). Some, including the equator, do not pass through either pole, and are called lines of equal \textit{latitude} (Figure \ref{fig:globe-latitude}). Of course none of these are lines,\footnote{The word \textit{line} has a messy history, and early imprecise uses of it survive in modern language.} so we'll call them curves. Along these curves one of our coordinates is held constant and the other is allowed to vary.
+If you examine a globe you'll find it is marked with circular paths. Some pass through both the North and South Poles, and are called lines of equal \textit{longitude} (Figure \ref{fig:globe-longitude}). Some, including the equator, do not pass through either pole, and are commonly called lines of equal \textit{latitude} (Figure \ref{fig:globe-latitude}). Of course in modern geometry the word \textit{line} has a stricter meaning\footnote{In modern geometrical terminology, a line is always straight and extends to infinity in both directions. What Euclid called a straight line (according to his English translators) is nowadays called a line segment.} so we'll call them curves. Along these curves one of our coordinates is held constant and the other is allowed to vary.
 
 There is a mapping from coordinate pairs onto points on the surface. It is \textit{surjective}, meaning that no point is without a coordinate pair. But it is not \textit{injective}, because some points have multiple coordinate pairs. These troublesome points are the poles, and in fact they have infinitely many coordinate pairs because the latitude coordinate must have a specific value but the longitude can have any value. If we could find a way to match coordinate pairs up with points on the sphere that was one-to-one in both directions, it would be a \textit{bijection}, but this is impossible on a sphere.
 
@@ -224,7 +226,7 @@ In any case, the regular approach to drawing curves of equal latitude has an obv
 
 In addition, if a planet's axis of rotation is orientated roughly normal to the plane of its orbit, the poles will receive less light and so be much colder and less hospitable. As few if any people live permanently on the poles, they are the ideal place to hide problems with your coordinate system.
 
-\section{Drawing a rectangle}
+\subsection{Drawing a rectangle}
 
 On a flat Euclidean plane, drawing a rectangle is the simplest of challenges. But what about on the sphere?
 
@@ -236,7 +238,7 @@ For this reason, we give special significance to curves on a sphere that follow 
 
 With the concept of the geodesic, or locally straight path, we can now be clear about what a person has to do to follow a curve of latitude in our usual global coordinate system: unless they do this at the equator, they can't be walking in a straight path even from their own local perspective. They have to constantly veer from the locally straight path.
 
-This is comically clear when the person is standing a metre away from the North Pole, where if they walk due east they will be walking in a circle two metres in diameter, and will arrive back where they started after perhaps ten paces. To go west, they walk around the same circle in the opposite direction. Were they to walk (and swim) straight forwards, they would follow a great circle that eventually brought them to a location exactly one metre from the South Pole.
+This is comically clear when the person is standing a metre away from the North Pole, where if they walk due west (constant latitude, increasing longitude) they will be walking in a circle two metres in diameter, and will arrive back where they started after perhaps ten paces. To go east, they walk around the same circle in the opposite direction. Were they to walk (and swim) straight forwards, they would follow a great circle that eventually brought them to a location exactly one metre from the South Pole.
 
 So our first attempt at a rectangle had right-angle corners, but a person travelling on the latitude-following edges would need to continuously steer away from their locally straight path, so we cannot seriously accept this as a rectangle.
 
@@ -328,15 +330,15 @@ But it's no use: we just trade one problem for another.
         \end{tikzpicture}
 \end{figure}
 
-To gain geodesic edges, we've lost all our right-angles. Also the opposite sides still aren't the same length; yes, they are all four "steps" long, where a step is the gap between the geodesics shown as dotted curves, but those steps are clearly not reliable units of length.
+To gain geodesic edges, we've lost all our right-angles. Also both our attempts have the problem that the opposite sides aren't the same length: equal changes in one of the coordinates does not imply equal distances travelled.
 
 The shocking truth is that on a sphere there are no rectangles. There aren't even parallelograms, which is a disaster for vectors.
 
-\section{Vectors as curved arrows}
+\subsection{Failure of vectors on the sphere}
 
 Our intuitive picture of vectors as arrows is only going to mislead us now. An arrow has direction and length. Clearly at any point on the sphere we can choose a direction leading away from that point, and we know that the closest thing to a straight line on the surface of a sphere is a great circle, and we can measure distance around such a circle if we know the radius, which for a great circle is the same as the radius of the sphere itself. So what if we think of vectors as arcs of great circles? These curved arrows will have a direction and a length, and this suggests we can add them by placing them head to tail as usual, so points on the sphere correspond to elements of a vector space.
 
-But this fails even the simplest requirement of a vector space. Vector addition must be commutative: $\vec{a} + \vec{b} = \vec{b} + \vec{a}$. Suppose you stand on the equator facing north. You are going to make a journey by turning 90 degrees to the right and walking straight for 100 metres, then 90 degrees to the left and travelling 10,000 metres. That is, you will walk along the equator a short distance and then north along a curve of longitude for a much longer distance. You will therefore end up at a latitude that is exactly 10,000 metres from the equator. This is like adding two of our would-be vectors: the first leg is $\vec{a}$, the second is $\vec{b}$, and so the final destination is $\vec{a} + \vec{b}$. This is version 1 of the journey. 
+But this fails even the simplest requirement of a vector space. Vector addition must be commutative: $\vec{a} + \vec{b} = \vec{b} + \vec{a}$, and we usually picture this as a parallelogram giving use two equivalent routes between opposite corners. Suppose you stand on the equator facing north. You are going to make a journey by turning 90 degrees to the right and walking straight for 100 metres, then 90 degrees to the left and travelling 10,000 metres. That is, you will walk along the equator a short distance and then north along a curve of longitude for a much longer distance. You will therefore end up at a latitude that is exactly 10,000 metres from the equator. This is like adding two of our would-be vectors: the first leg is $\vec{a}$, the second is $\vec{b}$, and so the final destination is $\vec{a} + \vec{b}$. This is version 1 of the journey. 
 
 What if we create a version 2 by swapping the stages? There is no need to make any initial turn; just start walking 10,000 metres north (that is, along $\vec{b}$), then turn 90 degrees to the right before travelling 100 metres (along $\vec{a}$), which means walking "straight" along a geodesic far from the equator, and so you will diverge from the local curve of latitude and end up somewhat less than 10,000 metres from the equator, further south than the end of the first version of the journey. You will also be further to the east, because curves of longitude converge, so in version 1 the eastward translation by 100m was shrunk significantly by the journey north.
 
@@ -348,63 +350,532 @@ To associate a number with a direction, we need to pick an origin direction that
 
 So is the angle $y$ an objective fact at every location? Absolutely not, and this time we don't even to compare the results of two journeys. Once again, start on the equator and head north. Keep going until you go right through the North Pole and hit the equator again on the other side of the globe, heading south. This whole time you've been carrying an arrow pointing in the direction you're travelling. Now you're going to turn 90 degrees to the right, but you take care to not change the direction of the arrow you're carrying, so now it points to your left. You travel around the equator back to your starting point. When you set off, the arrow you were carrying was pointing north, but now after two semicircular journeys it's pointing south. You were very careful never to rotate it even slightly, and as a result it is pointing the opposite way.
 
-Alternatively you could start on the equator and head north but this time stop at the North Pole. Turn 90 degrees to the right (but keeping the arrow you're carrying pointing the same way as before, so now it's pointing to your left) and move down to the equator. One more turn 90 degrees to the right (the arrow is now pointing backward) and then travel back along the equator to your starting point. In this scenario the arrow will have rotated 90 degrees during the journey.
+Alternatively you could start on the equator and head north but this time stop at the North Pole. Turn 90 degrees to the right (but keeping the arrow you're carrying pointing the same way as before, so now it's pointing to your left) and move down to the equator. One more turn 90 degrees to the right (the arrow is now pointing backward) and then travel back along the equator to your starting point. In this scenario the arrow will have rotated 90 degrees during the journey. Note how the effect is altered by the path we took.
 
-Directions are not objective facts that can be moved around the space. If you take a vector on a journey, it's not possible to objectively say that you have taken the same vector to all the places you visit, no matter how careful you are to avoid rotating it.
+Directions are not objective facts that can be moved around the space. If you take a vector on a journey, it's not possible to objectively say that you have taken the same vector to all the places you visit, no matter how careful you are to avoid rotating it. To return the vector to your starting point unchanged, you would need to exactly retrace your steps in reverse. If you took a different path back, your vector would twist out of recognition.
 
 To add one vector to another, we have to transport the origin of one of the vectors to where the other vector ends, so they are head-to-tail. On what basis can we claim that the transported vector is still the same vector, given that we can't reliably say it continues to point in the same direction?
 
-\section{Curves through scalar fields}
+\section{Rebuilding vectors}
 
-One way to recognise that you are moving on a surface is to note how the environment is changing. If it is completely featureless then this will be difficult; this was surely a problem faced by early seafarers, as once you have sailed out of sight of land, one region of the ocean looks much like any other.
+It seems for the moment we have to abandon any attempt to relate vectors at different locations to one another on a curved surface. But we can recover a form of this capability by stealth if we tread carefully. For now, forget any notion of distances, geodesics, trying to travel in a locally straight line or carrying a vector around on a journey like a pet being taken out for a day-trip to the beach, however adorable that may seem.
 
-Scalars are simple, uncontroversial and easy to work with. We can suppose there is a scalar field on a curved surface, that is, a scalar-valued function of points, $x(\mathcal{P})$ that varies smoothly with position. Such fields describe familiar physical phenomena, such as temperature. It doesn't matter how you arrive at a point, the scalar field's value at that point is purely a function of position, and obviously you can carry a scalar value with you on any journey over the surface without it mysteriously changing --- a reassuring contrast with the vexing perversity of vectors.
+\subsection{Coordinate systems as scalar fields}
 
-As the field varies smoothly with position, we can draw contours, curves along which the field's value does not change. At each point there is a direction in which the field's value increases most steeply (perpendicular to the contour through that point), and the steepness provides a magnitude. So there is \textit{unavoidably} a gradient vector at every point. Furthermore there are infinitely many possible scalar fields that could be overlaid on the surface, each causing a different gradient at a given point. So each point has an associated vector space, containing all the gradient vectors that would be given to that point by all the possible scalar fields.
+Scalars are reliable, simple, uncontroversial and easy to work with. We can certainly accept that there could be a scalar field on a curved surface, that is, a scalar-valued function of points, $x(\mathcal{P})$ that varies smoothly with position. Such fields describe familiar physical phenomena, such as temperature. The scalar field's value at a point can be measured and agreed upon by independent observers, regardless of how they arrived there, and obviously you can carry a scalar value with you on any journey over the surface without it mysteriously having changed when you get home --- a reassuring contrast with the twistiness of vectors.
 
-It's important to note that this gradient is not about the shape of the surface and its curvature. It's about the way the field varies from place to place, and the field is just an arbitrary pattern of numerical values overlaid on the surface.
+One way to recognise that you are moving on a surface is to note how the environment is changing. If it is completely featureless then this will be difficult; this was surely a problem faced by early seafarers, as once you have sailed out of sight of land, one region of the ocean looks much like any other, so how do you know where you are? Even on a clear night with the map of the stars above you, you still need to know the time accurately to know your longitude, and unfortunately the behaviour of pendulum clocks was erratic at sea.
 
-A curve is then a point-valued function of a scalar variable, $t$, so that journey along a curve as time passes can be written as the function $\mathcal{P}(t)$. Of course, we don't have a way to do arithmetic with abstract points themselves, so this is all quite conceptual. But we can clear that obstacle by feeding the curve's points into our scalar field by composing the two functions:
+If you could measure various scalar values at each point that depended only on position, you might find that two of these fixed scalar fields vary with position in such a way that each point in some region has its own unique pair of scalar values. The values measured at a point would label that point; that is, they could be used as the coordinates of that point. Want to know where you are? Measure those two observable scalars --- now you know. Why do you need two? If you measure one scalar observable, that is likely not enough to say where you are, because there will probably be a contour consisting of all the points with the same value. If you measure a second observable, that will have its own contour that crosses the first one at your location. Both numbers together identify that crossing point. Note that the coordinate system may fail in various ways over a large area: suppose the contours for your two coordinates are two circles that cross each other in two places; if you wrote down those coordinates in your log book, there are two places you might have been. But we can assume such problems do not occur over a large enough area such that the coordinate system is practically useful.
+
+A two-dimensional coordinate system is just a pair of scalar fields $x^i(\mathcal{P})$ where $i$ is $1$ or $2$. Obviously the curves along which $x^1$ is constant (the contours of $x^1$) are also curves along which only $x^2$ is changing, there being only two coordinates. In three dimensions we can hold one of the three coordinates constant and this will highlight a single two-dimensional sheet of points (a contour surface), on which we can again play with the remaining two coordinates to find contour curves and ultimately their crossing points.
+
+The way these coordinate fields vary has nothing necessarily to do with any intrinsic curvature of the surface. So the coordinates don't necessarily tell us anything about surface itself at all. A polar coordinate system can be overlaid on a perfectly flat surface, and may be a helpful way to analyse some situations, especially those involving rotating systems. Intuitively we can say that the coordinate system is free to be "more curved than necessary", regardless of the surface.
+
+\subsection{Each point has its own vector space}
+
+As our scalar fields vary smoothly with position, at each point there is a direction in which a field's value increases most steeply. So we have a natural reason to think of not only of directions existing at each point, but of each scalar field providing us with an objective direction that any observer in that vicinity can determine by measurement: the direction of that field's steepest increase. 
+
+If there is a smoothly varying scalar field in the neighbourhood of a point, there is \textit{unavoidably} a gradient vector at that (and every) point. Furthermore there are infinitely many possible scalar fields that could be overlaid on the surface, each causing a different gradient to exist at a given point. We say that there is an entirely separate, isolated vector space at each point called the \textit{tangent space} at $\mathcal{P}$, whose elements are the vector gradients that would be associated with every possible scalar field around that point. This is sometimes pictured as a flat plane touching the surface at the point, and thus tangent to it. It is a perfectly good intuitive picture, but it's important to remember that we are interested here in describing the curved surface without reference to anything "outside" it. By tangent we really mean the idea in calculus that the derivative of a function gives us the linear approximation to the function around some location, the gradient of a tangent line. A vector in the tangent space is a direction along which we could take the derivative of a scalar field over the actual space.
+
+Even before we choose our coordinate fields $x^i$, a vector space already "exists" at every point merely because scalar fields are a theoretical possibility. When two particular scalar fields have been overlaid on the surface, this picks out two basis vectors $\vec{e}_i$ at each point, pointing along the direction of motion due to an infinitesimal increase of the $i$th coordinate, and we can use these as the basis vectors within each point's tangent space.
+
+Near to some area of interest these basis vectors are hopefully almost orthonormal, although further away, if the surface is curved, they will have to diverge more and more from orthonormality (either by a change in angles, or relative length, or both.) But in any case, they provide each point's vector space with a pair of basis vectors, as we assume they are linearly independent (at least over some useful area of the surface) and can therefore be blended in a linear combination to generate every possible vector in that point's vector space. 
+
+We can make all these concept more concrete by imagining that every point on the surface of a sphere has a pair of tangent arrows sprouting from it: a red arrow (the first basis vector) and a blue arrow (the second). At some location they may happen to be perfectly orthonormal, but at neighbouring points they will gradually diverge from orthonormality. In some places they may even become colinear, or one of them may become the zero vector, either of which is a disaster, but this kind of problem is inescapable when trying to cover a whole sphere with one coordinate system. It doesn't matter; we just need there to be a point where the red arrow points in a different direction from the blue arrow, and for it to be surrounded by similar such points.
+
+What is the magnitude of these basis vectors? Of course it depends what you are measuring them against. If you measure them against themselves (and what else do you have, so far?) evidently they must be unit vectors in the coordinate system they arose from. But they can be pictured as getting longer in areas where it is necessary to travel farther to make a coordinate increase by 1.
+
+\subsection{Basis vector notation}
+
+One fairly standard notation for these basis vectors is curiously familiar, but is liable to trigger confusion if used everywhere:
 
 $$
-(x \circ \mathcal{P})(t) = x(\mathcal{P}(t))
+\frac{\partial}{\partial x^i} = \vec{e}_i
 $$
 
-This is the simplest thing we ever deal with: a scalar-valued function of a scalar parameter $t$, directly giving the value of the field at each point along the curve.
+It's exactly the same notation as a partial derivative with respect to one of the coordinates, except with nothing to differentiate, so it's just an operator. This very precisely captures the description of the $i$th basis vector as pointing along the direction of motion due to an infinitesimal increase of the $i$th coordinate. Such a motion could cause a corresponding infinitesimal change in the value of some unspecified field of scalars.
 
-Given the definition of such a function, we can differentiate with respect to $t$ to get the gradient, although this too is a scalar, and is the directional derivative $\frac{d}{dt} x(t)$ at the point $\mathcal{P}(t)$, in the direction that the curve is heading at time $t$ (and, by the way, scaled according to how fast the motion is taking place along the curve at time $t$.)
+Some authors stick doggedly to this notation and never relinquish it, so any vector $\vec{v}$ in a point's tangent space can be constructed in terms of the basis written like this (in summation convention):
 
-As we noted before, the scalar field $x(\mathcal{P})$ is merely one chosen from the infinitely many possible scalar fields, but now also the curve $\mathcal{P}(t)$ is chosen from infinitely many possible curves that \textit{could} pass through that point. These two possibilities are both vector spaces, and by choosing a vector from each space we get a scalar gradient.
+$$
+\vec{v} 
+= 
+v^i \frac{\partial}{\partial x^i}
+= 
+v^i \vec{e}_i
+$$
 
-It's important to bear in mind that these vector spaces we've uncovered do not solve any of the problems we identified previously. Each vector space is associated with a single point on the surface, and we have not figured out a way to say that any given vector at one point has any relationship to a vector at some other point. Vectors associated with different points on the curved surface live in entirely different vector spaces.
+Note that the resulting $\vec{v}$ is also an operator waiting for a field to operate on --- nothing has been differentiated, not even partially! Compare these two entirely different things:
 
-\section{Coordinate systems as scalar fields}
+$$
+a \frac{\partial}{\partial x^1}
+\quad \quad
+\frac{\partial a}{\partial x^1} 
+$$
 
-Suppose we choose two scalar fields existing at once on our (two-dimensional) surface. Every point now has two numbers associated with it. Also the fields each vary in such a way that over some regions the contours of the two fields criss-cross each other in a way that looks rather like a coordinate grid. That's because in effect they \textit{are} together a coordinate grid. A two-dimensional coordinate system is just a pair of scalar fields $x^i(\mathcal{P})$ where $i$ is $1$ or $2$. A contour is a curve along which only one coordinate is allowed to vary, and all other coordinates are held constant.
+On the left, we are scaling the first basis vector by the factor $a$, the result being a vector at each point that is colinear with that basis vector. On the right we are finding the rate of change of some scalar $a$ as we change only the first coordinate, holding any other coordinate(s) constant, the result being a scalar at each point. It may be that $a$ doesn't vary due to that coordinate so the result is always $0$. It may be that $a = x^1$ everywhere, so the result everywhere is $1$. But it is a scalar, not a vector.
 
-When studying vectors and tensors, we began with the abstract definition of a vector space, and then the idea of a basis of linearly independent vectors that can be combined in a weighted sum to produce any vector, the coefficients of that sum being the coordinates of the vector so produced. We can then (optionally) picture a physical space as a vector space, by identifying points in space with vectors.
+Also note that in this notation there is an $x^i$ on the bottom of the partial derivative. At first glance, due to the presence of a superscript index, you might mistake it for a basis covector $\vec{e}^i$, but it's not. It's a basis vector $\vec{e}_i$. For the purposes of tensor index manipulation, this $i$ must be treated as a lower index. In a topic already ripe with opportunities for confusion, this feels like an act of aggression, but we won't be able to avoid it when digging further into partial derivative expressions.
 
-But now we're allowing a coordinate system to extend over a space, in a way that doesn't necessarily relate to vectors. Within the rather loose arrangement we've been discussing involving arbitrary fields, each coordinate is merely a field which tells us the value of that coordinate at each point, and a contour is a curve along which one coordinate varies and the other coordinates are fixed. This is true regardless of the shape of the surface and regardless of the fields we've chosen --- which, as a reminder, are two entirely separate variables in this setup. The way the fields vary has nothing necessarily to do with the shape of the surface. So the coordinates don't appear to tell us anything about surface itself at all.
+Some authors prefer the abbreviation:
 
-To clarify our predicament, one way to put a coordinate system on at least part of a curved surface is to obtain from somewhere a perfectly flat floating platform equipped with an orthonormal Cartesian coordinate system, and to let it hover above the curved surface, and to project the coordinate grid downward. Imagine a roving laser beam on the underside of the floating flat platform that shines downward and lights up a spot on the curved surface, so that every point on the flat coordinate system has a corresponding point on the curved surface.\footnote{The reason this might not work for an entire space is because any perfectly vertical cliffs will associate the same coordinate pair with an infinitely dense set of points on the cliff face. So restrict your imagination here to a landscape that has some hills and valleys but no cliffs or caves.} The coordinates are perfectly simple and well-behaved in the flat surface, we can associate every point with a vector in the flat surface, and we can do vector arithmetic on these vectors just fine. The flat space is a vector space even though the curved space is not. But it tells us absolutely nothing about the reality on the surface. This illustrates the futility of trusting a coordinate system alone. Given the coordinates for two points, how far apart are they? We have no idea.
+$$
+\partial_i = \frac{\partial}{\partial x^i} = \vec{e}_i
+$$
 
-\section{The Metric}
+which has the advantage of being slightly less effort to write out, and clarifies the index's lower position. But this notation is also freely used as an abbreviation for taking the partial derivative of whatever is on the right with respect to the $i$th coordinate, so is subject to much of the same potential for confusion.
 
-And so evidently the thing that links a coordinate system to reality is a metric, a way of measuring the distance between two points. As always, the way we describe the metric numerically will depend on the coordinate system, but for it to have a physical significance, it must be constrained by a measurable scalar property that we call distance (ultimately: how long does it take a photon to travel through a vacuum between the two points?)
+To sidestep these issues, we'll stick with $\vec{e}_i$ for basis vectors except when we actually need to remember that they are the partial derivative operation with respect to a coordinate. This is a fact that can be easily substituted when required. There is such a thing as "cognitive load", the number of things you have to hold in your head at the same time to understand a topic. Feel free to lighten the load by mostly forgetting the origin story of our vector spaces as derivatives.
 
-Also, the metric itself -- or its description in the coordinate system, which is a different thing -- may vary between points. This is a crucial distinction and is well illustrated by considering a sphere, which has perfect symmetry and the metric is exactly the same everywhere.
+Speaking of covectors, we know they are needed to pull a vector $\vec{v}$ apart to get the coordinates $v^i$, at least in an awkward basis as ours is bound to be. For these (again, it's going to look familiar) some authors use the notation:
 
-Over an arbitrarily short distance, the effect of any curvature becomes arbitrarily small. To put it another way, all surfaces are flat if you zoom in close enough! This means that the metric at a point, which only describes that point and has no extent, is the metric of flat space. We know that in a vector space with a metric, we can always choose a basis in which the metric is represented by the identity matrix.
+$$
+dx^i
+$$
 
-But the symmetry of the sphere dictates that the metric is the same everywhere. If the metric is represented by the identity matrix everywhere, how is the sphere any different from a flat space? The resolution to this apparent paradox lies in all the agonising we experienced when trying to cover the sphere with a consistent coordinate system spanning long distances. At some point on the sphere we can make something that is locally a square coordinate grid, and at that point the metric could be described by the identity matrix. But as we move away from that point the coordinate grid becomes distorted by the curvature, so the same metric has to be described by a different matrix. The nature of the curvature is described by the change in the metric's matrix representation as we move around the surface. It's the same metric everywhere, but described by different numbers due to the necessary warping of the coordinate grid (it can't be square everywhere). If the metric is described by the identity matrix in one location, it will have to diverge from that in neighbouring locations.
+It looks like what you'd see in an integral, but in this context it's a linear function that takes a vector from the tangent space and returns a scalar, essentially measuring it along the $i$th coordinate direction. As always with basis covectors, when they act on a basis vector the result is either $0$ or $1$, according to the rule:
 
-At a single point we can use vectors, tensors and all associated apparatus, but at extended distances those things break down and cannot be relied on directly. A coordinate system (a collection of $N$ different scalar fields for $N$-dimensional space) can cover extended distances, although in general it too will stop working in some places.
+$$
+dx^i \left( \frac{\partial}{\partial x^j} \right)
+=
+\delta^i_j
+$$
 
-\section{Distance along a curve}
+We may as well stick with $\vec{e}^{i}$ as our notation for basis covectors too, so we can express the relationship between the dual bases in the usual way:
+
+$$
+\langle \vec{e}^i , \vec{e}_i \rangle = \delta^i_j
+$$
+
+\subsection{The metric as a field}
+
+For there to be an isomorphism between vectors and covectors, we need a metric tensor (§\ref{inner-product}). More precisely, as every point has its own independent vector space with its own basis vectors, we need a different metric tensor for each point: a metric tensor field. Indeed, this only makes sense because each point has its own separate vector space, because a vector space can only have one metric.
+
+But at each point, in that point's private metric tensor space, it works as usual. Given a metric $g_{ij}$ at some point, we can convert the coordinates of any vector $\vec{v}$ chosen from that point's tangent space into the corresponding covector coordinates:
+
+$$
+\omega_i = g_{ij} v^j
+$$
+
+Thus we have all the regular equipment of the vector space, the dual covector space, and any tensor spaces we want to invent by combining these, and if we prefer, we can use abstract index notation to avoid even needing a notation for basis vectors: $v^i$ is interpreted as a vector, with no need to write $v^i \vec{e}_i$ explicitly. Some authors use Latin indices $a$, $b$ ... for this abstract notation, and reserve Greek indices (typically $\mu$, $\nu$...) for denoting actual numerical coordinates.
+
+The metric will turn out to be the key to connecting our coordinate system to the physical reality. A change of the $x^i$ coordinate induces a real physical displacement by some distance. The metric at the starting point gives us that distance, or rather the linear approximation of it at the starting point, which becomes less reliable the larger the change of the coordinate.
+
+One crucial distinction is that metric field in geometric terms may be constant everywhere in the surface, and yet its description in coordinates will depend on position. This may cause confusion, so be sure to play with this concept.
+
+Over an arbitrarily short distance, the effect of any curvature becomes arbitrarily small. To put it another way, all surfaces are flat if you zoom in close enough! This means that the one metric at an exact point, which only describes that point and has no extent, does not describe curvature at all. A vector space has only one metric, and is always flat. We know that in a vector space with a metric, we can always choose a basis in which the metric is represented by the identity matrix.
+
+But the symmetry of the sphere dictates that the metric is the same everywhere. If the metric could be represented by the identity matrix everywhere, how is the sphere any different from a flat space? The resolution to this apparent paradox lies in all the agonising we experienced when trying to cover the sphere with a consistent coordinate system spanning long distances. At some point on the sphere we can make something that is locally a square coordinate grid, and at that point the metric could be described by the identity matrix.
+
+But as we move away from that point the coordinate grid becomes distorted by the curvature, so the same metric has to be described by a different matrix. The nature of the curvature is described by the change in the metric's matrix representation as we move around the surface. Geometrically speaking, it's the same metric everywhere, but described by different numbers due to the necessary warping of the coordinate grid --- it can't be square everywhere. If the metric is described by the identity matrix in one location, it will have to diverge from that description in neighbouring locations.
+
+In the (latitude, longitude) coordinate system the longitude basis vectors get shorter toward the poles, and this has to be captured in the metric's representation in coordinates.
+
+Alternatively in a more haphazardly warped surface, the metric itself may really be changing.
+
+\subsection{Other potential sources of confusion}
+
+We've previously thought of covectors as functions acting on vectors, and vectors as something more basic and elemental. Now (dreging up their underlying meaning briefly) the vectors also appear ready to act on something, but it's important to note that they are not functions that act on vectors to produce scalars, so they cannot be confused with covectors. In this case, a vector is able to operate on a scalar field in a way that a mere function cannot. The result depends on how the field changes in the immediate vicinity of the point, not just its value exactly at the point.
+
+The tangent space is the set of all possible directions along which we can take the gradient of \textit{anything}. The basis tangent vectors are just a couple of directions from which we can construct all other possible directions. Vectors have a backstory as partial derivative operators, but we can set that aside when it feels confusing. The important thing is that we've found fully functioning vector spaces, but a completely separate one at every point. We still have nothing to relate their vectors, and no way to take a vector on a journey away from a point.
+
+Another cause of potential confusion, stemming from mental habits acquired in thinking about flat surfaces that can be equated with a single vector space, is to think of a vector as being able to reach between distant points on any surface. After all, points have coordinates, and we can take the difference in the coordinates between two points, and that pair of numbers could be regarded as a vector in $R^N$. But this is just the failed "curved arrow" idea again. The metric allows us to convert coordinate changes into real distances, but the metric may also vary smoothly from place to place, so it is not able to accurately tell us anything if we take a single quantum jump from one coordinate pair to another. Everything must be done in a smooth, infinitesimal way.
+
+If we have functions $p_i(t)$ giving the $N$ coordinates of a moving object on the surface, we can obtain the coordinates of velocity vector $\vec{v}$ at time $t$ by taking the time derivative of the position coordinates:
+
+$$
+v_i(t) = \frac{d p^i}{dt}
+$$
+
+This is an entirely valid vector, but only at the point $p_i(t)$. We could define the path as:
+
+$$
+p_1(t) = t \quad \quad p_2(t) = 0
+$$
+
+That is, the object is travelling along the first coordinate's curve, and its speed happens to be just so that the first coordinate tells you how many seconds have elapsed. Therefore at any point on the curve, the curve is aligned with the tangent vector given by the coordinates $(1, 0)$, which is just the first basis vector.
+
+Alternatively the motion given by $p_i(t)$ could be far more complicated, and the derivative velocity would vary in both coordinates, but at each point the velocity vector would be an arrow tangent to the path as it passes through that point, expressed in tangent vector coordinates that are the individual derivatives of the position coordinates with respect to $t$.
+
+\section{Calculus on a curved surface}
+
+Our goal will be to formalise the idea of a geodesic, which we've previously likened to "flying straight" on a globe. To get to that goal we'll need a way of figuring out how a vector changes as we move it. Now we have basis vectors from our coordinate system, we need to confront the fact that whatever coordinate system we've chosen will have something arbitrary about it, and the truth about the geometry of the space is obscured by the behaviour of the coordinates, and the way the basis vectors change from place to place.
+
+\subsection{How basis vectors change}
+
+Ideally (for at least some good sized region) the coordinates are independent parameters that together specify a unique point. It is possible to vary one coordinate while holding other coordinates constant, and so trace out a specific path. It goes without saying that the partial derivative of one coordinate with respect to another is $0$ if they are different coordinates, or $1$ if they are the same:
+
+$$
+\frac{\partial x^i}{\partial x^j} = \delta^i_j
+$$
+
+But this independence does not apply to the basis vectors. In the standard global coordinate system, as we move north from the equator along a curve of longitude, our latitude is constant. But the latitude basis vector associated with each point becomes ever smaller, because if we were to increase the latitude coordinate, the resulting displacement would be smaller the further north we'd reached. This is a relatively simple example because at least the basis vectors remain orthogonal and only change length; in general they could twist relative to each other as well.
+
+With the standard equipment provided by a vector space, we can describe numerically how the basis vectors vary with reference to each other. How does the $i$th basis vector change as we change only the $j$th coordinate?
+
+$$
+\frac{\partial \vec{e}_i}{\partial x^j}
+$$
+
+The answer is an ordinary vector. But that means we can describe it with ordinary numbers, by acting on it with the basis covectors $\vec{e}^k$ to fetch the coordinates in terms of the local basis:
+
+$$
+\Gamma\indices{_i_j^k} = \biggl< \vec{e}^k , \frac{\partial \vec{e}_i}{\partial x^j} \biggr>
+$$
+
+This $\Gamma$ is called the Christoffel symbol. For two dimensions, is a collection of $2^3 = 8$ numbers defined at each point. Structurally (as suggested by how we've indexed it) it is like a $(1, 2)$-tensor (one up, two down). But it's not really a tensor, because it encodes information about the coordinate basis we've chosen, rather than anything geometrically intrinsic. It will nevertheless play an essential role in accounting for the arbitrary way the basis vectors change, so we need to know what it is when working with coordinates.
+
+In summary, the way the $i$th basis vector changes as we change only the $j$th coordinate is described by a vector that can be written as a linear combination of the basis vectors:
+
+$$
+\frac{\partial \vec{e}_i}{\partial x^j}
+= \Gamma\indices{_i_j^k} \vec{e}_k
+$$
+
+It should be noted that although we've given a symbol to the object that describes how the basis vectors work, we haven't said how to determine what it is. We have great freedom to set the numbers however we like, which means we don't yet really know how to describe the twisting of our basis vectors. There is seemingly an infinity of possible ways to do so. Patience --- we are going to find a single, unique, natural definition for the Christoffel symbol that works perfectly for physics.
+
+One thing we can observe right away, and which will be very useful in a while, is that the two lower indices can be interchanged, as is clear if you consider the underlying meaning of $\vec{e}_i$, which is itself the act of differentiating in the direction of the $i$th coordinate, so it follows that we are building an operator that differentiates twice, and the order of taking derivatives doesn't matter for smooth functions. So:
+
+$$
+\Gamma\indices{_i_j^k} = \Gamma\indices{_j_i^k}
+$$
+
+That is, among the numbers that make up this pseudo-tensor there is much duplication, in a similar manner to a symmetric matrix. If you fetch a value with the $i$ and $j$ indices reversed by accident, it wouldn't matter because you'll get the same number.
+
+Also, like any tensor we can raise and lower indices if we have a metric. So for example:
+
+$$
+\Gamma\indices{_i_j_k} 
+= 
+g_{kl}
+\Gamma\indices{_i_j^l}
+$$
+
+The $k$ index now denotes a basis vector instead of a basis covector, so instead of a covector acting on the vector derivative to extract a scalar coordinate, the inner product is used to do the same thing with a vector:
+
+$$
+\Gamma\indices{_i_j_k} = \left( \vec{e}^k , \frac{\partial \vec{e}_i}{\partial x^j} \right)
+$$
+
+\subsection{Using the metric to get the connection coefficients}
+
+The Christoffel symbol $\Gamma\indices{_i_j^k}$ contains information about how the basis vectors change with position, whereas the metric tells you how to relate the coordinate representation of vectors to genuine distances and angles. If you know your velocity at an instant at some point in the space, but it's expressed as the rate at which each coordinate is changing (that is, as coordinates of the velocity vector in the basis), the metric allows you to convert these multiple coordinates into a single scalar: your actual speed, which has nothing to do with the structure of the coordinate system. This is of course the whole point of tensors: they compute scalars out of vectors so we can compare predictions with reality.
+
+But like everything else in this topic, the metric is really a field: a smooth function of position, $g(\mathcal{P})\indices{_i_j}$ --- we don't bother to include the parameter because it is implicit in all the objects we're considering. Because it's a smooth function, it's possible to take a derivative of it with respect to a coordinate direction, and this produces precisely the information we need for Christoffel symbol.
+
+The Christoffel symbol is defined as:
+
+\begin{equation}
+    \Gamma\indices{_i_j^k}
+=
+\biggl<
+\vec{e}^k,
+\frac{\partial \vec{e}_i}{\partial x^j}
+\biggr>
+\end{equation}
+
+That is, the $k$th basis covector acts on the vector that is the derivative of the $i$th basis vector with respect to the $j$th coordinate. Having reduced these to a pseudo-tensor, we can raise and lower the indices with the metric tensor as we saw before.
+
+Meanwhile, the metric tensor is just the inner product of all pairs of basis vectors:
+
+\begin{equation}
+g_{ij} = \left( \vec{e}_i,\vec{e}_j \right)
+\end{equation}
+
+We can take the derivative of it with respect to coordinate direction $k$:
+
+\begin{equation}
+\frac{\partial g_{ij}}{\partial x^k} 
+=
+\frac{\partial}{\partial x^k}
+\left(
+\vec{e}_i,\vec{e}_j
+ \right)
+\end{equation}
+
+The result of the metric tensor applied to two vectors, i.e. the inner product, is a scalar, so we are taking the derivative of a scalar function.
+
+We will assume for the moment that something like the product rule works over the inner product. It is not obvious why, so we will return to this later:
+
+\begin{equation}
+\frac{\partial g_{ij}}{\partial x^k} 
+=
+\left(
+\frac{\partial \vec{e}_i}{\partial x^k}
+,\vec{e}_j
+ \right)
++
+\left(
+\frac{\partial \vec{e}_j}{\partial x^k}
+,\vec{e}_i
+ \right)
+\end{equation}
+
+And then we notice that these inner product expressions are just Christoffel symbols with all the indices lower:
+
+\begin{equation}
+\frac{\partial g_{ij}}{\partial x^k} 
+=
+\Gamma_{ikj}+\Gamma_{jki}
+\end{equation}
+
+It follows that we can produce equivalents for all the combinations of $i$, $j$, $k$.
+
+\begin{equation}
+\frac{\partial g_{kj}}{\partial x^i} 
+=
+\Gamma_{kij}+\Gamma_{jik}
+\end{equation}
+
+\begin{equation}
+\frac{\partial g_{ik}}{\partial x^j} 
+=
+\Gamma_{ijk}+\Gamma_{kji}
+\end{equation}
+
+But the first two indices are interchangeable, $\Gamma_{ijk} = \Gamma_{jik}$, which means we can get most of the terms to cancel by adding and subtracting appropriately:
+
+\begin{equation}
+    \begin{split}
+        \frac{\partial g_{kj}}{\partial x^i} 
+        +
+        \frac{\partial g_{ik}}{\partial x^j} 
+        -
+        \frac{\partial g_{ij}}{\partial x^k}
+        &=
+        \Gamma_{kij}+\Gamma_{jik}
+        +
+        \Gamma_{ijk}+\Gamma_{kji}
+        -
+        \Gamma_{ikj}-\Gamma_{jki} \\
+        &=        
+        (\Gamma_{ikj}-\Gamma_{ikj})
+        +
+        (\Gamma_{jki}-\Gamma_{jki})
+        +
+        (\Gamma_{ijk}+\Gamma_{ijk}) \\
+        &= 2\Gamma_{ijk}       
+    \end{split}
+\end{equation}
+
+And so:
+
+\begin{equation}
+\Gamma_{jik}
+=
+\frac{1}{2}
+\left(
+\frac{\partial g_{kj}}{\partial x^i} 
++
+\frac{\partial g_{ik}}{\partial x^j} 
+-
+\frac{\partial g_{ij}}{\partial x^k} 
+\right)
+\end{equation}
+
+And therefore we can get the original form of the Christoffel symbol by using the raising metric to hoist the third index:
+
+\begin{equation}
+\Gamma\indices{_i_j^l}
+=
+g^{kl}
+\frac{1}{2}
+\left(
+\frac{\partial g_{kj}}{\partial x^i} 
++
+\frac{\partial g_{ik}}{\partial x^j} 
+-
+\frac{\partial g_{ij}}{\partial x^k} 
+\right)
+\end{equation}
+
+The beauty of this is that if we have the metric as a function of position, it's just a collection of numbers address by indices, so each of the partial derivative terms is an ordinary scalar derivative, producing an ordinary number. We haven't yet had to take a derivative of a vector field, but are now equipped with the tool we need to tackle that challenge.
+
+\subsection{Derivative of a vector field}
+
+We previously took partial derivatives of scalar fields, using this to find our basis vectors, and by linear combinations of those basis vectors we can describe any vector in the tangent space existing at each point. These could correspond to the gradients of any scalar fields, beyond those that serve as our coordinate system. But this of course means that we can envisage vector fields --- indeed, that's what the basis vectors are.
+
+We can consider how we would calculate the derivative of a vector field, or indeed any tensor field, just because the challenge is there. But there is a more urgent motivation: the ability to take the derivative of a vector field is the key to solving the problem of relating vectors in different tangent spaces. The derivative is notionally the difference between the vectors at two points separated by an infinitesimal distance. If the difference is zero, they aren't different --- they are \textit{connected}.
+
+The normal notation for the geometrical derivative of a scalar field $a$ is $\grad a$. In simplified discussions it is loosely described as the gradient vector field. However it would be more accurate to call it a covector field, a distinction we don't care about if we have the luxury of an orthonormal basis, allowing us to interchangeably talk about the total derivative or the gradient. But now we are unable to assume orthonormality, we must remember that $\grad a$ produces the total derivative, a covector that can act on a vector $\vec{v}$ to produce the scalar change in $a$ due to a displacement by $\vec{v}$.
+
+We can generalise the $\grad$ operator to operate on any tensor field, whether a scalar, a vector, a covector or any higher type of tensor. For every number describing the input, we will find how it changes with respect to each coordinate of the space separately. Therefore if the input field $a$ is a tensor at each point of type $(k, l)$ then $\grad a$ is of type $(k, l + 1)$. That is, in coordinate form, and N dimensions, the input field is described by $N^{(k+l)}$ numbers. Taking the derivative involves finding $N$ numbers (in an $N$ dimensional space) for every number in the input, so requiring $N^{(k+l+1)}$ numbers to describe the output.
+
+We can indicate this increase in the covariant tensor type by writing the operator with its own lower index $\grad_i$. That is, an expression such as $\grad_i v^j$ stands for $N^2$ expressions (like a matrix), one vector (column) for each coordinate direction $i$ it takes the derivative along and one row for each vector coordinate $j$. Of course we are not limited to inquiring about the coordinate basis directions: as this extra index is covariant (lower), we can contract it with a vector (upper) to get the derivative in the direction of that vector. This is sometimes abbreviated by putting the vector of interest as the lower index:
+
+$$
+\grad_{\vec{a}} \vec{v} = a^i (\grad_i v^j) \vec{e}_j
+$$
+
+As an operator we can think of (and write down) $\grad$ geometrically, operating directly on vectors and such, or algebraicly, as a means of taking the derivatives of numerical quantities labelled by indices. Both are valid notations, as shown in the above example. The operator without a subscript (though rarely used from here on) can apply to a geometrical vector to produce a geometrical tensor, which itself may be factored into an algebraic/numeric equivalent multiplied by a tensor basis:
+
+$$
+\grad \vec{v} = (\grad_i v^j) \vec{e}^i \otimes \vec{e}_j,
+$$
+
+But using a kind of doublethink to switch between interpretations, we can merely write:
+
+$$
+\grad_i v^j
+$$
+
+Depending on our frame of mind, this is either a matrix of numbers addressed by covariant $i$ and contravariant $j$, supporting contraction with opposite-sense indices according to the usual rules, or else it's abstract index notation for a geometric object, a $V^* \otimes V$ tensor -- a two-slot machine accepting a vector and a covector to produce a scalar value.
+
+If all this operator did was to take the partial derivative of every component in the input tensor with respect to the $i$th coordinate (sometimes called the \textit{ordinary derivative}), it would be influenced by the perhaps twisty behaviour of the coordinate basis. Consider a vector field expressed in the basis at each point:
+
+$$
+\vec{v} = v^i \vec{e}_i
+$$
+
+This is a product of two things that could \textit{both} change as we vary one coordinate. So to take the partial derivative with respect to each coordinate $j$, we need to use the product rule:
+
+$$
+\frac{\partial \vec{v}}{x^j} 
+= \frac{\partial v^i}{\partial x^j} \vec{e}_i
++ v^i\frac{\vec{e}_i}{\partial x^j}
+$$
+
+The second term includes the partial derivative of a basis vector, which we already found we could write as a linear combination in terms of the Christoffel symbol as:
+
+$$
+\frac{\partial \vec{e}_i}{\partial x^j}
+= \Gamma\indices{_i_j^k} \vec{e}_k
+$$
+
+So we can substitute that:
+
+$$
+\frac{\partial \vec{v}}{x^j} 
+= \frac{\partial v^i}{\partial x^j} \vec{e}_i
++ v^i \Gamma\indices{_i_j^k} \vec{e}_k
+$$
+
+Now in the first term we're using $i$ as the summation index but that's an arbitrary label. The summation convention means that the first term is actually $N$ terms (two if we're working in two dimensions) that will be evaluated and added, and we can freely switch labels. If we switch that index to $k$:
+
+$$
+\frac{\partial \vec{v}}{x^j} 
+= \frac{\partial v^k}{\partial x^j} \vec{e}_k
++ v^i \Gamma\indices{_i_j^k} \vec{e}_k
+$$
+
+we can pull out the $\vec{e}_k$ basis vector common factor:
+
+$$
+\frac{\partial \vec{v}}{x^j} 
+= \left(
+  \frac{\partial v^k}{\partial x^j}
+  + v^i \Gamma\indices{_i_j^k} 
+\right)
+\vec{e}_k
+$$
+
+This is still a summation over $k$, and is now more clearly building a vector out of a linear combination of the basis vectors. The factor in parentheses is just a number, the $k$th coordinate of the vector being computed. It is the ordinary derivative but "corrected" by the information in $\Gamma$ that concerns the behaviour of the basis vectors alone. This is the true \textit{covariant derivative} of a vector field. Geometrically (though still neatly factored):
+
+$$
+\grad_j \vec{v}
+= \left(
+  \frac{\partial v^k}{\partial x^j}
+  + v^i \Gamma\indices{_i_j^k} 
+\right)
+\vec{e}_k
+$$
+
+or leaving it as a type $(1, 1)$-tensor:
+
+$$
+\grad \vec{v}
+= \left(
+  \frac{\partial v^k}{\partial x^j}
+  + v^i \Gamma\indices{_i_j^k} 
+\right)
+\vec{e}^j \otimes \vec{e}_k
+$$
+
+or trimming away all vestiges of explicit geometry:
+
+$$
+\grad_j v^k
+= 
+\frac{\partial v^k}{\partial x^j}
++ v^i \Gamma\indices{_i_j^k}
+$$
+
+The covariant derivative connects vectors between different locations. Given two nearby points, $\mathcal{P}$ and $\mathcal{Q}$, and a vector $\vec{v}$ at $\mathcal{P}$ and a vector $\vec{w}$ at $\mathcal{Q}$, can we say that $\vec{v}$ and $\vec{w}$ are the same vector? No, this isn't a meaningful concept by itself. We have to specify a curve along which we travel between $\mathcal{P}$ and $\mathcal{Q}$. Each infinitesimal movement gives us an unambiguous connection to the next equivalent vector, and it could be the case that by transporting $\vec{v}$ from $\mathcal{P}$ to $\mathcal{Q}$, it arrives identical to $\vec{w}$, depending on the curve.
+
+\subsection{Identifying geodesic curves}
+
+Suppose that there is a vector field in the space, $\vec{f}(\mathcal{P})$, which we can represent in coordinates as $N$ smooth functions $\mathbb{R}^N \mapsto \mathbb{R}$ of position coordinates $x^i$:
+
+$$
+f^i(x) = f^i(x^1, x^2 \dots x^N)
+$$
+
+As always, feel free to assume $N = 2$ for visualisation purposes, so that this is simply a way to map a pair of position coordinates to a pair of vector coordinates at that position, a field of arrows all over the surface, with lengths and directions that smoothly vary with position.
+
+Meanwhile, a curve is a function $\mathbb{R} \mapsto \mathcal{P}$ from some real parameter, $t$. This is sometimes likened to time passing as we make the journey along the curve, but really it's just an independent variable that we can smoothly adjust however we like, like a control knob that makes a point move back and forth on the curve. But we'll say "at time $t$" for short.
+
+The coordinates of the points on the curve are defined by $c^i(t)$, which can be thought of as both a function $\mathbb{R} \mapsto \mathbb{R}^N$ and also $N$ functions $\mathbb{R} \mapsto \mathbb{R}$, giving the coordinates of the point on the curve $c$ at time $t$.
+
+We now have a way to get \textit{two} vectors at each point. First, we can hand the coordinates $c^i(t)$ straight to our vector field functions $f^i(x)$:
+
+$$
+f^i(c(t)) = f^i(c^1(t), c^2(t) \dots c^N(t))
+$$
+
+So we have a field vector for every point along the curve. Second, we can get the "velocity" vector $\vec{v}$ at time time $t$ in our journey, which is simply the ordinary derivative of the coordinates of our curved path:
+
+$$
+v^i(t) = \frac{d c^i(t)}{dt} = 0
+$$
+
+Note that this is not the same as taking the derivative of a vector field: the coordinates of points are not vectors, because the surface is not itself a vector space.
+
+Now, it may be that along the curve, either of these vectors, e.g. $f$, always has the same coordinates:
+
+$$
+\frac{d f^i(t)}{dt} = 0
+$$
+
+But this would not by itself be of any significance: if we changed to a different coordinate system, naturally these same vectors would be represented by different coordinates that might not remain constant along the curve. Obviously it entirely depends what the coordinate system is doing in that region. On the global with the usual coordinate system, if the field of vectors happens to be identical to the basis vectors aligned with the curves of equal longitude, they will have the coordinates $(1, 0)$ at every point, and so along any curved path the ordinary derivative of the coordinates will be $0$. But if we change the coordinate system, the field vectors will no longer match it and the derivative of their coordinates will depend on the path taken.
+
+Far more interesting is the covariant derivative of $\vec{f}(t)$ in the direction of $\vec{v}(t)$. What if that is zero everywhere along the curve?
+
+$$
+\grad_{\vec{v(t)}} \vec{f}(t)
+=
+v^i(t) \grad_i f^j(t) = 0
+$$
+
+That would be an intrinsic geometric fact about the vectors, regardless of the coordinate system. If the covariant derivative of the vectors along the curve is zero in one coordinate system, it must be zero in all coordinate systems, although the raw coordinates of the vectors themselves along the curve may be changing.
+
+In other words, the covariant derivative may say that there is no change to the vector, even though the coordinates are changing. Conversely, the coordinates might remain constant and yet the covariant derivative could be non-zero. This is the effect of the extra Christoffel term in the definition of the derivative, but it has the effect of producing a result that is independent of the coordinate system.
+
+If we do happen to find a curve along which the covariant derivative is always zero, then we say that as the parameter $t$ goes from (say) $0$ to $1$, and therefore we move along the curve from $c_i(0)$ to $c_i(1)$, the vector $f_i(0)$ has been \textit{parallel transported} to $f_i(1)$. It's not that we can say that $f_i(1)$ is parallel to $f_i(0)$ in some general sense, only that it is parallel along this curve.
+
+Does this mean we've found some kind of "straight" path? Not at all. The curve we are following may have to wind this way and that, as we feel our way through a messy vector field looking for "the same" vector right next to our current position.
+
+But we can get as close as possible to a straight path. We are at last ready to say exactly what a geodesic is:
+
+$$
+\grad_{\vec{v(t)}} \vec{v}(t)
+=
+v^i(t) \grad_i v^j(t) = 0
+$$
+
+We're no longer paying any attention to the field $\vec{f}$, as we're interested only in a property of the spatial geometry itself. The velocity vector $\vec{v}$ takes the place of $\vec{f}$ in our requirement. As $t$ increases, $\vec{v}(t)$ remains "the same" vector as it transports itself forward. If our curve does this, it is a geodesic.
+
+Moving around the equator on the globe is a geodesic, but it's a misleading example in the (latitude, longitude) coordinate system because it exactly coincides with a curve of equal latitude, varying longitude, and \textit{that} curve happens to be a geodesic. As a result the velocity vector in coordinates is fixed as $(0, \lambda)$ where $\lambda$ is some constant angular speed around the globe, and the covariant derivative agrees that it is constant. It's similar if we move around any of the curves of equal longitude, which are also geodesics. This is misleading because we might conclude that constant velocity coordinates implies a geodesic path.
+
+But what about a geodesic that we get by slightly tilting the equator, so on one side of the globe it dips below the real equator and on the other side rises above it? The latitude position coordinate is evidently undulating up and down in a sinusoidal-like way, and therefore the latitude coordinate of the velocity vector must being undulating likewise, albeit out of phase with the position. The coordinates of the velocity vector are definitely not constant around the curve. And yet the covariant derivative will insist that it remains the "same" vector, because $\grad_{\vec{v(t)}} \vec{v}(t) = 0$.
+
+And what if we follow a curve of equal latitude north of the equator? This is the same as saying that the velocity vector in coordinates is fixed as $(0, \lambda)$ where $\lambda$ is some constant angular speed around the globe. But an aircraft following such a flight path to the east will have to continually steer slightly to the left. It is not following a geodesic, and the covariant derivative will tell us so: it will describe the way the pilot has to steer to add a sideways twist to the velocity vector as it transports the aircraft.
+
+\subsection{Distance along a curve}
 
 The distance between two substantially separated points will depend on what happens along the journey between them. There must be some chosen curve that connects the two points, and we want to find the length of that curve.
 
-The parameter $t$ that guides our journey along a curve $\mathcal{P}(t)$ can be thought of as time passing as we move. Of course, we could speed up and slow down during our journey, but actually it doesn't matter whether we travel at constant speed or not.\footnote{If we somehow knew that our speed was constant, we wouldn't need the metric to find the total distance for our journey --- we'd just need a clock.} The variable $t$ is really just a parameter that moves us along the curve of our journey as it increases, but we can also think of it as time passing.
+The parameter $t$ that guides our journey along a curve $\mathcal{P}(t)$ can be thought of as time passing as we move. Of course, we could speed up and slow down during our journey, but actually it doesn't matter whether we travel at constant speed or not.\footnote{If we somehow knew that our speed was constant, we wouldn't need the metric to find the total distance for our journey --- we'd just need a clock.}
 
 In our journey along some curve, in the time interval $\Delta t$ we move from $\mathcal{P}(t)$ to $\mathcal{P}(t + \Delta t)$. Our coordinates, given by $x^i(\mathcal{P})$, change by:
 
@@ -436,8 +907,8 @@ The metric $g_{ij}$ at each point is a $(0, 2)$ tensor, evaluating to a scalar w
 
 $$
 g_{ij}(t)
-\left( v^i(t) \right) 
-\left( v^j(t) \right)
+ v^i(t)  
+ v^j(t) 
 $$
 
 Here we're using the notation $g_{ij}(t)$ to remind ourselves that $g_{ij}$ is not a constant but is smoothly varying across our journey. Also note that we're using Einstein summation notation as usual, so the above is the sum over all pairs of $(i, j)$ values.
@@ -456,107 +927,3 @@ L =
 $$
 
 That is, we've put the same vector into both the $i$ and $j$ slots of the metric tensor, and both that vector (the infinitesimal tangent displacement, the velocity) and the metric tensor are smoothly varying functions of the position along the curve. The scalar result of evaluating the tensor is the square of the infinitesimal distance, so we take the square root to get the infinitesimal distance. We can then integrate that over some portion of the curve, say $0 \le t \le 1$, to find the distance traversed.
-
-This is our first hint of a way to compute something involving points on the surface that are separated by arbitrary distances: using calculus to connect together the isolated vector spaces at each point.
-
-\section{Coordinate basis}
-
-We assume the existence of scalar fields $x^i(\mathcal{P})$ which serve as a coordinate system for our curved surface. These automatically have a gradient at each point. The choice of scalar fields (and thus coordinate systems) is entirely arbitrary, having nothing necessarily to do with any curvature of the surface. So there is a vector space at each point called the \textit{tangent space}, whose elements are the vector gradients that would be associated with every possible scalar field around that point.
-
-Our choice of coordinate fields ($x^1$ and $x^2$ on our two-dimensional curved surface) picks out two tangent vectors at each point, the gradient of each field there. Near to some area of interest they are hopefully almost orthonormal, although further away they will diverge more and more from orthonormality (either by a change in angles or relative length.)
-
-But in any case, they provide each point's vector space with a pair of basis vectors, as we assume they are linearly independent (at least over some useful area of the surface) and can therefore be blended in a linear combination to generate every possible vector in that point's vector space.
-
-The notation we'll use for these basis vectors is curiously familiar:
-
-$$
-\frac{\partial}{\partial x^i}
-$$
-
-It's exactly the same notation as a partial derivative with respect to one of the coordinates, except with nothing to differentiate, so it's just an operator. The reason for this will become clear, but for now thinking of it as just a notation for a basis vector, where you'd otherwise write $\vec{e}_i$. And therefore any vector $\vec{v}$ in a point's tangent space can be constructed in terms of the basis:
-
-$$
-\vec{v} 
-= 
-v^1 \frac{\partial}{\partial x^1}
-+
-v^2 \frac{\partial}{\partial x^2}
-$$
-
-A common abbreviation for $\partial / \partial x^i$ is $\partial_i $ which has the advantage of being slightly less effort to write out.
-
-How about the reverse, pulling a vector $\vec{v}$ apart to get the coordinates $v^i$? We know that the tangents of the coordinate curves passing through a point are not likely to be orthonormal, so this is an awkward basis, meaning that to retrieve the coordinate we need a scalar-valued linear function of a vector: a covector. For these (again, it's going to look familiar) we use the notation:
-
-$$
-dx^i
-$$
-
-That's a function that takes a vector from the tangent space and returns a scalar. As always with basis covectors, when they act on a basis vector the result is either $0$ or $1$, according to the usual rule:
-
-$$
-dx^i \left( \frac{\partial}{\partial x^j} \right)
-=
-\delta_{ij}
-$$
-
-Given a metric at some point, we can convert the coordinates of any vector $\vec{v}$ from that point's tangent space into the corresponding covector coordinates:
-
-$$
-\omega_i = g_{ij} v^j
-$$
-
-And so on, as usual. We have all the regular equipment of the vector space, the dual covector space, and any tensor spaces we want to invent by combining these.
-
-The basis vector $\partial_i$ represents the direction that the $i$th coordinate increases most steeply, and the steepness of that increase. Given a scalar field $f$ defined over our space, which is not the same as either coordinate field, but could be some physical fact such as the temperature at each point, if we wanted to know that field's rate of increase along the direction of the $i$th coordinate's contour curve, we'd write that as the partial derivative:
-
-$$
-\frac{\partial f}{\partial x^i}
-$$
-
-And that also looks like we've written the long-form notation for the $i$th basis vector and provided it with something to operate on. The same would apply with any other direction in which we wanted to know the rate of change of the field, where we can define that direction as a vector:
-
-$$
-\vec{v} 
-= 
-v^1 \frac{\partial}{\partial x^1}
-+
-v^2 \frac{\partial}{\partial x^2}
-$$
-
-and then apply it to our field:
-
-$$
-\vec{v}(f)
-= 
-v^1 \frac{\partial f}{\partial x^1}
-+
-v^2 \frac{\partial f}{\partial x^2}
-$$
-
-We've previously thought of covectors as functions and vectors as something more basic and elemental. Well, now the vectors appear ready to act on something, but it's important to note that they are not functions that act on vectors to produce scalars, so they cannot be confused with covectors. In this case, the vector \textit{operates} on a scalar field (in a way that a mere function cannot - the result depends on how the field changes around the point, not just its value at the point) and in fact the input could be any tensor field: a scalar is just an example of a tensor of type $(0, 0)$. The tangent space is the set of all possible directions along which we can take the gradient of \textit{anything}. The basis tangent vectors are just a couple of directions from which we can construct all other possible directions.
-
-Similarly the notation for the basis covectors $dx^i$ has a sensible interpretation in terms of integrals. The basis covector can operate on any tangent vector $\vec{v}$ to produce the scalar value which is the change in the $i$th coordinate that would occur due to a displacement by $\vec{v}$, although as usual it can only be at best a linear approximation to that change, because both the field and the curve of the $i$th coordinate contour may not be changing linearly as we move around the surface.
-
-\section{Covariant derivative}
-
-A potential $V$ is a scalar field, and the corresponding force $F = \nabla V$ is a vector field. However it would be more accurate to call it a covector field, a distinction we don't care about in flat space where we can choose a universal coordinate system and therefore make it Euclidean.
-
-We can generalise the $\nabla$ operator to operate on any tensor field, whether a scalar, a vector, a covector or any higher type. For every number describing the input, we take its partial derivative with respect to each coordinate of the space. Therefore if the input field $a$ is a tensor of type $(k, l)$ then $\nabla a$ is of type $(k, l + 1)$. That is, in coordinate form, and N dimensions, the input is described by $N^{(k+l)}$ numbers. Taking the derivative involves finding $N$ numbers for every number in the input, so requiring $N^{(k+l+1)}$ numbers to describe the output.
-
-The additional covariant index is often denoted by prefixing it with a comma. So if the input field is of the form $T\indices{^{ab}_{cde}}$ then the covariant derivative is given by $T\indices{^{ab}_{cde,f}}$, which is literally:
-
-$$
-\nabla T\indices{^{ab}_{cde}}
-=
-T\indices{^{ab}_{cde,f}}
-=
-\frac{\partial}{\partial x^f} T\indices{^{ab}_{cde}}
-$$
-
-We can contract this derivative with some vector $v^f$ to get the change in the field due to moving in the direction of that vector (scaled by its magnitude).
-
-This gets us back to a tensor of the same type as the original input, except that now it tells us how much all the components of that input would change (to a linear approximation) under a shift of position given by $v^f$. So in the example of a vector field as the input, the derivative is a $(1, 1)$-tensor, and after contraction with an ordinary vector $v^i$ it becomes another ordinary vector describing how the field changes in the direction of $v^i$.
-
-Note that this really the other way around to the interpretation of vectors as directional derivative \textit{operators}, being composed from the basis vectors $\partial_i$. Either way, the end result is a quantified directional derivative, i.e. some actual numbers, for which you need two ingredients: a field to operate on and a nominated direction to resolve along. Either you can nominate the direction, quite apart from any decision about what field might eventually be analysed (such directions by themselves are the elements of our tangent vectors spaces), or you can pick your field and generate the covariant derivative up front with $\nabla$, and delay specifying a direction until later.
-
-The ability to take the derivative of a vector field is the key to solving the problem of relating vectors in different tangent spaces. The derivative is the difference between the vectors at two points separated by an infinitesimal distance. Suppose the derivative finds that they don't differ: that is equivalent to saying that they are the same vector in two different tangent spaces.

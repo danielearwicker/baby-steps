@@ -709,7 +709,7 @@ $$
 M\indices{^i_j^k^l_m}
 $$
 
-These convey the same information. Sometimes the indexed parameter notation is used as a compact way to describe the structure of the machine, the only downside being that we have to unnecessarily choose symbols for the indices.\footnote{Some authors call this \textit{slot-naming index notation}, others \textit{abstract index notation}.}
+These convey the same information. Sometimes the indexed parameter notation is used as a compact way to describe the structure of the machine, the only downside being that we have to arbitrarily choose symbols for the indices.\footnote{Some authors call this \textit{slot-naming index notation}, others \textit{abstract index notation}.}
 
 \subsection{What is a tensor?}
 
@@ -1435,7 +1435,7 @@ The simplification arsing from a scalar field whose contours are evenly spaced p
 (As always in this topic, $x^2$ means the second coordinate of a column vector, not the square of a variable $x$.) We can express this function in matrix multiplication:
 
 \begin{equation}
-    T(\vec{x}) = 
+    dT(\vec{x}) = 
     \begin{bmatrix}1 & 1\end{bmatrix}
     \begin{bmatrix}x^1 \\ x^2\end{bmatrix}
     \label{eqn:t-rel-matrices}
@@ -1444,7 +1444,7 @@ The simplification arsing from a scalar field whose contours are evenly spaced p
 That is, it's the action of a covector with coordinates $(1, 1)$, which we called $\vec{d}$ in \eqref{eqn:covector-directional-derivative}:
 
 $$
-T(\vec{x}) = \langle \vec{d}, \vec{x} \rangle
+dT(\vec{x}) = \langle \vec{d}, \vec{x} \rangle
 $$
 
 The dual of $\vec{d}$ is the vector we called $\vec{s}$ in \eqref{eqn:vector-gradient}, and because we're in the standard orthonormal basis the coordinates are the same, $d_n = s^n$. This is the gradient vector and can be legitimately drawn in physical space as a vector (Figure \ref{fig:gradient-vector}).
@@ -1521,7 +1521,7 @@ The significant thing about this (apart from the abandoning of both orthogonalit
 (Again, that is not "x squared"! It's the second coordinate of $\vec{x}$.) Or in matrix multiplication it's:
 
 \begin{equation}
-    T(\vec{x}) = 
+    dT(\vec{x}) = 
     \begin{bmatrix}0 & \frac{1}{2}\end{bmatrix}
     \begin{bmatrix}x^1 \\ x^2\end{bmatrix}
     \label{eqn:t-rel-matrices-awk}
@@ -1530,7 +1530,7 @@ The significant thing about this (apart from the abandoning of both orthogonalit
 That is, it's the action of a covector $\vec{d}$ with coordinates $(0, \frac{1}{2})$:
 
 $$
-T(\vec{x}) = \langle \vec{d}, \vec{x} \rangle
+dT(\vec{x}) = \langle \vec{d}, \vec{x} \rangle
 $$
 
 As always, a covector $\vec{d}$ must have a dual vector $\vec{s}$, but this time we can't simply transpose the row of coordinates $d_n$ into a column of $s^n$. The coordinates of the dual vector/covector pair are different in a non-orthonormal basis. We can use the inverse metric (the "raising" metric) to convert the coordinates, if we can figure out what it is. The shortcut is to express our basis vectors as coordinates in terms of the standard orthonormal basis:
