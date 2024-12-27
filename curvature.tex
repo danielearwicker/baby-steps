@@ -92,7 +92,7 @@ The Earth, controversially, is roughly spherical. It is only very slightly oblat
     \end{subfigure}
 \end{figure}
 
-If you examine a globe you'll find it is marked with circular paths. Some pass through both the North and South Poles, and are called lines of equal \textit{longitude} (Figure \ref{fig:globe-longitude}). Some, including the equator, do not pass through either pole, and are commonly called lines of equal \textit{latitude} (Figure \ref{fig:globe-latitude}). Of course in modern geometry the word \textit{line} has a stricter meaning\footnote{In modern geometrical terminology, a line is always straight and extends to infinity in both directions. What Euclid called a straight line (according to his English translators) is nowadays called a line segment.} so we'll call them curves. Along these curves one of our coordinates is held constant and the other is allowed to vary.
+If you examine a globe you'll find it is marked with circular paths. Some pass through both the North and South Poles, and are called lines of equal \textit{longitude} (Figure \ref{fig:globe-longitude}). Some, including the equator, do not pass through either pole, and are commonly called lines of equal \textit{latitude} (Figure \ref{fig:globe-latitude}). Of course in modern geometry the word \textit{line} has a stricter meaning\footnote{In modern geometrical terminology, a line is always straight and extends to infinity in both directions. What Euclid called a straight line (according to his English translators) is nowadays called a line segment.} so we'll call them curves. Along these curves one of our coordinates is held constant and the other is allowed to vary. (For greater clarify we'll also say constant rather than equal.)
 
 There is a mapping from coordinate pairs onto points on the surface. It is \textit{surjective}, meaning that no point is without a coordinate pair. But it is not \textit{injective}, because some points have multiple coordinate pairs. These troublesome points are the poles, and in fact they have infinitely many coordinate pairs because the latitude coordinate must have a specific value but the longitude can have any value. If we could find a way to match coordinate pairs up with points on the sphere that was one-to-one in both directions, it would be a \textit{bijection}, but this is impossible on a sphere.
 
@@ -220,9 +220,9 @@ Suppose latitude worked like longitude, in that the equator remains a great circ
 
 The result would be another pair of poles. The Earth would have four poles, two in the usual locations where the longitude curves all cross, and another two on opposite points of the equator, where the latitude curves all cross. Let's suppose these poles to be where the equator intersects the International Dateline. This would leave two non-polar regions of the Earth where the curves locally take on the appearance of a helpful coordinate grid, one centred near a group of islands to the west of Ecuador, the other south of the Bay of Bengal.
 
-The deal breaker for this system is that the International Dateline (the solid curve in Figure \ref{fig:globe-terrible}) is simultaneously a curve of equal latitude and equal longitude, so that it is impossible to give the coordinates of any specific point on that curve. The mapping between points and coordinates is neither injective nor surjective.
+The deal breaker for this system is that the International Dateline (the solid curve in Figure \ref{fig:globe-terrible}) is simultaneously a curve of constant latitude and constant longitude, so that it is impossible to give the coordinates of any specific point on that curve. The mapping between points and coordinates is neither injective nor surjective.
 
-In any case, the regular approach to drawing curves of equal latitude has an obvious practical motivation: the Earth rotates, and the poles are positioned on the axis of rotation. If you stand rooted to one spot on the surface, over the course of 24 hours, relative to the Sun, you will travel along a curve of equal latitude. If you stand on either of the poles, you won't move at all.\footnote{You will rotate on the spot, but the direction you are facing is really a different degree of freedom, available wherever you might find yourself.}
+In any case, the regular approach to drawing curves of constant latitude has an obvious practical motivation: the Earth rotates, and the poles are positioned on the axis of rotation. If you stand rooted to one spot on the surface, over the course of 24 hours, relative to the Sun, you will travel along a curve of constant latitude. If you stand on either of the poles, you won't move at all.\footnote{You will rotate on the spot, but the direction you are facing is really a different degree of freedom, available wherever you might find yourself.}
 
 In addition, if a planet's axis of rotation is orientated roughly normal to the plane of its orbit, the poles will receive less light and so be much colder and less hospitable. As few if any people live permanently on the poles, they are the ideal place to hide problems with your coordinate system.
 
@@ -232,7 +232,7 @@ On a flat Euclidean plane, drawing a rectangle is the simplest of challenges. Bu
 
 Returning to the deceptive simplicity of the standard global coordinate system, we might naively attempt to trace a pseudo-rectangular route on the surface by moving first north (keeping longitude constant), then east (latitude constant), then south (longitude again) and finally west (latitude). There is one thing this gets right: each of the corners, locally, is a right-angle, which is one of the things we expect of a rectangle. But what about the edges?
 
-As always, we are more interested in geometrically reality, distinct from any choice of coordinate system. There is something intrinsically important about a great circle, which is that if you pick any two points on a sphere and draw a great circle through them, it will have two segments, and the shorter of the two is the shortest possible path on the surface between those two points (if the two points are \textit{antipodes}, exact opposite points, both segments are the shortest path). This gives it something in common with a straight line between two points on a flat surface.
+As always, we are more interested in geometrically reality, distinct from any choice of coordinate system. There is something intrinsically important about a great circle, which is that if you pick any two points on a sphere and draw a great circle through them, it will have two segments, and the shorter of the two is the shortest possible path on the surface between those two points (if the two points are \textit{antipodes}, exact opposite points, both segments are the shortest path). This gives it something in common with a straight line between two points on a flat surface. If you are flying an aircraft around the globe, there is such a thing as "flying straight", steering neither left nor right. Such a flightpath will trace out part of a great circle.
 
 For this reason, we give special significance to curves on a sphere that follow part of a great circle, as they are the closest thing we have to a straight line in that environment. We also regard them as "locally straight", in the sense that to a small creature (such as a person) walking on the surface of the sphere, at a scale where it appears locally flat, and such that they are walking in what they regard as a straight line, turning neither left nor right, they will in fact be following the curve of a great circle. The technical name for such a curve is a \textit{geodesic}, from the Greek word for surveying the Earth, but used in the same general sense on all curved surfaces regardless of shape.
 
@@ -837,7 +837,7 @@ $$
 \frac{d f^i(t)}{dt} = 0
 $$
 
-But this would not by itself be of any significance: if we changed to a different coordinate system, naturally these same vectors would be represented by different coordinates that might not remain constant along the curve. Obviously it entirely depends what the coordinate system is doing in that region. On the global with the usual coordinate system, if the field of vectors happens to be identical to the basis vectors aligned with the curves of equal longitude, they will have the coordinates $(1, 0)$ at every point, and so along any curved path the ordinary derivative of the coordinates will be $0$. But if we change the coordinate system, the field vectors will no longer match it and the derivative of their coordinates will depend on the path taken.
+But this would not by itself be of any significance: if we changed to a different coordinate system, naturally these same vectors would be represented by different coordinates that might not remain constant along the curve. Obviously it entirely depends what the coordinate system is doing in that region. On the global with the usual coordinate system, if the field of vectors happens to be identical to the basis vectors aligned with the curves of constant longitude, they will have the coordinates $(1, 0)$ at every point, and so along any curved path the ordinary derivative of the coordinates will be $0$. But if we change the coordinate system, the field vectors will no longer match it and the derivative of their coordinates will depend on the path taken.
 
 Far more interesting is the covariant derivative of $\vec{f}(t)$ in the direction of $\vec{v}(t)$. What if that is zero everywhere along the curve?
 
@@ -865,11 +865,188 @@ $$
 
 We're no longer paying any attention to the field $\vec{f}$, as we're interested only in a property of the spatial geometry itself. The velocity vector $\vec{v}$ takes the place of $\vec{f}$ in our requirement. As $t$ increases, $\vec{v}(t)$ remains "the same" vector as it transports itself forward. If our curve does this, it is a geodesic.
 
-Moving around the equator on the globe is a geodesic, but it's a misleading example in the (latitude, longitude) coordinate system because it exactly coincides with a curve of equal latitude, varying longitude, and \textit{that} curve happens to be a geodesic. As a result the velocity vector in coordinates is fixed as $(0, \lambda)$ where $\lambda$ is some constant angular speed around the globe, and the covariant derivative agrees that it is constant. It's similar if we move around any of the curves of equal longitude, which are also geodesics. This is misleading because we might conclude that constant velocity coordinates implies a geodesic path.
+Moving around the equator on the globe is a geodesic, but it's a misleading example in the (latitude, longitude) coordinate system because it exactly coincides with a curve of constant latitude, varying longitude, and \textit{that} curve happens to be a geodesic. As a result the velocity vector in coordinates is fixed as $(0, \lambda)$ where $\lambda$ is some constant angular speed around the globe, and the covariant derivative agrees that it is constant. It's similar if we move around any of the curves of constant longitude, which are also geodesics. This is misleading because we might conclude that constant velocity coordinates implies a geodesic path.
 
 But what about a geodesic that we get by slightly tilting the equator, so on one side of the globe it dips below the real equator and on the other side rises above it? The latitude position coordinate is evidently undulating up and down in a sinusoidal-like way, and therefore the latitude coordinate of the velocity vector must being undulating likewise, albeit out of phase with the position. The coordinates of the velocity vector are definitely not constant around the curve. And yet the covariant derivative will insist that it remains the "same" vector, because $\grad_{\vec{v(t)}} \vec{v}(t) = 0$.
 
-And what if we follow a curve of equal latitude north of the equator? This is the same as saying that the velocity vector in coordinates is fixed as $(0, \lambda)$ where $\lambda$ is some constant angular speed around the globe. But an aircraft following such a flight path to the east will have to continually steer slightly to the left. It is not following a geodesic, and the covariant derivative will tell us so: it will describe the way the pilot has to steer to add a sideways twist to the velocity vector as it transports the aircraft.
+And what if we follow a curve of constant latitude north of the equator? This is the same as saying that the velocity vector in coordinates is fixed as $(0, \lambda)$ where $\lambda$ is some constant angular speed around the globe. But an aircraft following such a flight path to the east will have to continually steer slightly to the left. It is not following a geodesic, and the covariant derivative will tell us so: it will describe the way the pilot has to steer to add a sideways twist to the velocity vector as it transports the aircraft.
+
+Furthermore if the pilot happens to be holding an arrow throughout the flight, she may very slowly turn it to the right, i.e. in the opposite direction to which the aircraft is steering, but at exactly the same angular speed. Logically this means the arrow is not turning - it's only turning relative to the aircraft, and so it is being parallel transported along the flight path. However if we observed the arrow from space, travelling along the path of constant latitude, what we'd see is an arrow slowly rotating clockwise! This is what happens if you parallel transport a vector along a curve that isn't a geodesic.
+
+\subsection{Example: identifying geodesics on the sphere}
+
+To make all this more concrete and eliminate any lingering mystery, it will be worth going through some examples on the sphere, working out the actual definitions of the functions and derivatives involved.
+
+Let's use the usual global coordinate system but in radians $(\theta, \phi)$, with latitude $\theta$ as $0$ at the North Pole, $\pi/2$ at the equator and $\pi$ at the South Pole, and longitude $\phi$ taking us alway the way around the globe from $0$ to $2\pi$. There's a tangent space everywhere, and each space has a pair of basis vectors, the first pointing in the direction of increasing latitude, and the second along increasing longitude.
+
+A note about the standard symbols: they are excellent visual mnemonics in that $\theta$ resembles a circle with a horizontal line across it, like a curve of constant latitude on a sphere with its polar axis vertically aligned, and the $\phi$ symbol is similar but with a (roughly) vertical line, like a curve of constant longitude. We can use them (instead of integers) as labels for index values, so that $v^i$ means either $v^\theta$ or $v^\phi$. But do bear in mind that the corresponding basis vectors are at right angles to their contours, so $e_{\phi}$ points in the direction of increasing longitude, which is along a curve of constant latitude. If we were just labelling the unit vectors, $(\vec{e}_{\downarrow}, \vec{e}_{\rightarrow})$ might be better than $(\vec{e}_{\theta}, \vec{e}_{\phi})$, but as long as we remember the standard meaning we'll be fine.
+
+Also note that when giving coordinates we don't need to say $x^{\theta}$ and $x^{\phi}$ out of some dogmatic consistency. When the definition of a tensor talks about $x^i$, that means either $\theta$ or $\phi$.
+
+The first important fact about this system is that the basis vectors are orthogonal everywhere. The second is that they are not ortho\textit{normal}, except at the equator, where a change in one of the coordinates by some angle produces the same actual displacement. But north or south of the equator, a circle of constant latitude is a smaller circle, so an angular change in longitude must produce a smaller displacment. The very fact that we can confidently assert something about the actual length implied by coordinate changes means that we have an intuitive sense of a metric and its representation in coordinates.
+
+We can quantify this exactly. For a unit sphere, the radius of the circle of constant latitude $\theta$ is $\sin \theta$, so it is $0$ at the poles and reaches a maximum of $1$ at the equator. We can use plain old $\mathbb{R}^2$ as a canvas for the tangent space, allowing us to describe the basis vectors as pairs of numbers. It's like we're carrying a rigid square grid to every point on the globe so we can measure the local tangent $(\vec{e}_{\theta}, \vec{e}_{\phi})$ basis vectors against the grid. We'll say the latitude vector $\vec{e}_{\theta}$ is due south, $(1, 0)$ everywhere,\footnote{As long as we stay away from the poles, where things get awkward.} as there is fixed relationship between the latitude angle $\theta$ and distance travelled on the surface. The longitude vector is $(0, \sin \theta)$, due east, its length shrinking as we get further away from the equator.
+
+Because the basis vectors here are being described numerically on $\mathbb{R}^2$, against a notional underlying orthonormal coordinate system, we can just use the dot product as the inner product. The metric being given by:
+
+$$
+g_{ij} = (\vec{e}_i,\vec{e}_j)
+$$
+
+so we have:
+
+$$
+g_{ij} = \begin{bmatrix}1 & 0 \\ 0 & \sin^2 \theta\end{bmatrix} 
+$$
+
+It (or specifically $g_{\phi\phi}$) is a function of position, although it only depends on latitude $\theta$. The inverse (raising) metric will also be needed:
+
+$$
+g^{ij} = \begin{bmatrix}\frac{1}{\sin^2 \theta} & 0 \\ 0 & 1\end{bmatrix} 
+$$
+
+Next we need the Christoffel symbol:
+
+$$
+\Gamma\indices{_i_j^l}
+=
+g^{kl}
+\frac{1}{2}
+\left(
+\frac{\partial g_{kj}}{\partial x^i} 
++
+\frac{\partial g_{ik}}{\partial x^j} 
+-
+\frac{\partial g_{ij}}{\partial x^k} 
+\right)
+$$
+
+It's so handy using indices to describe it, but now we face the harsh reality that we have four indices labelling a choice of coordinate, which suggests $2^4=16$ combinations to figure out. What a chore. But in this example things simplify considerably.
+
+If we define the part in parentheses with a temporary symbol:
+
+$$
+D_{ijk} 
+= 
+\frac{\partial g_{kj}}{\partial x^i} 
++
+\frac{\partial g_{ik}}{\partial x^j} 
+-
+\frac{\partial g_{ij}}{\partial x^k} 
+$$
+
+The outer contraction is then just:
+
+\begin{equation}    
+\begin{split}
+\Gamma\indices{_i_j^l}
+&= \frac{1}{2} g^{kl} D_{ijk} \\
+&= \frac{1}{2} g^{\theta l} D_{ij1} + \frac{1}{2} g^{\phi l} D_{ij2}
+\end{split}
+\end{equation}
+
+But referring to the values of the inverse metric for each combination of indices, only one term is non-zero in each case:
+
+$$
+\Gamma\indices{_i_j^\theta} = \frac{1}{2} D_{ij\theta}
+\quad \quad
+\Gamma\indices{_i_j^\phi} = \frac{1}{2\sin^2 \theta} D_{ij\phi}
+$$
+
+So we just need to figure out $D$, which has 8 combinations, but this is also simpler than it might appear. A partial derivative terms will vanish if it's the derivative of something that is constant with respect to the denominator. Of all the metric components, $g_{\phi\phi} = \sin^2 \theta$ is the only variable and so could have a non-zero derivative --- but then, only if the bottom of the derivative is $\theta$. That is, we only care about the combinations where we have two $\phi$s and a $\theta$, and even then only one of the terms will be non-zero (the one that has the $\phi$s on the top and the $\theta$ on the bottom), and in all three of these cases the derivative will be (using the product rule and the fact that the derivative of $\sin$ is $\cos$):
+
+\begin{equation}
+    \begin{split}
+        \frac{\partial \sin^2 \theta}{\partial \theta}
+        &= \frac{\partial (\sin \theta)(\sin \theta)}{\partial \theta} \\
+        &= \left(\frac{\partial \sin \theta}{\partial \theta}\right) \sin \theta
+        + \sin \theta \left(\frac{\partial \sin \theta}{\partial \theta}\right) \\
+        &= \cos \theta \sin \theta + \sin \theta \cos \theta \\
+        &= 2\cos\theta\sin\theta            
+    \end{split}
+\end{equation}
+
+The only thing we need to be careful of is the sign resulting from where the non-zero derivative sits in the expression, as the term with the $k$ coordinate on the bottom is subtracted:
+
+\begin{center}
+    \begin{tabular}{ c|c|c|c }
+        i & j & k & Total \\
+        \hline
+        $\theta$ & $\phi$ & $\phi$ & $2\cos\theta\sin\theta$ \\
+        $\phi$ & $\theta$ & $\phi$ & $2\cos\theta\sin\theta$ \\
+        $\phi$ & $\phi$ & $\theta$ & $-2\cos\theta\sin\theta$         
+    \end{tabular}
+\end{center}
+
+So combining this with the result of the contraction, the Christoffel symbol is zero except for:
+
+$$
+\Gamma_{\theta \phi}^{\phi} 
+= \Gamma_{\phi \theta}^{\phi} 
+= \frac{\cos \theta}{\sin \theta}
+= \cot \theta
+\quad
+\quad
+\Gamma_{\phi \phi}^{\theta} = -\cos\theta\sin\theta
+$$
+
+Unsurprisingly, it's symmetric in the two lower indices.
+
+Now let's set up a flight path. First we'll go around the equator at some angular speed $\lambda$, which means our coordinates will be $(\pi / 2, \lambda t)$, and our velocity will be $(0, \lambda)$.
+
+Reviewing the covariant derivative:
+
+$$
+\grad_j v^k
+= 
+\frac{\partial v^k}{\partial x^j}
++ v^i \Gamma\indices{_i_j^k}
+$$
+
+The first term, the ordinary derivative of our velocity coordinates, is clearly $(0, 0)$ as it is a pair of constant coordinates, regardless of what we differentiate with respect to. In the Christoffel term, which includes the $i$th velocity component as a factor, the velocity is zero for latitude, so we only need dig further for longitude ($i=\phi$), and also we're taking the derivative along the same direction as the velocity, so $j=\phi$ as well.
+
+The remaining index $k$ lets us choose which of the components of $\grad_2 \vec{v}$ we are calculating. When $k=\theta$:
+
+$$
+\grad_{\phi} v^{\theta}
+= -\cos\theta\sin\theta
+$$
+
+But at the equator $\theta = \pi/2$, so $\cos\theta = \cos(\pi/2) = 0$, so that component is zero. And when $k=\phi$:
+
+$$
+\grad_{\phi} v^{\phi} = 0
+$$
+
+All components of $\grad_{\phi} \vec{v}$ are zero, which means we're on a Geodesic flight path according to the covariant derivative. But of course this is the unsurprising situation where our velocity vector is constant, so its ordinary derivative is also the zero vector.
+
+Now let's recall our thought experiment of walking east at some very northerly latitude, maybe a metre from the North Pole, so we're going round in quite a tight circle. As we're evidently veering very much to the right the whole time (we're heading west so the North Pole is always exactly 90 degrees to our right), we know we're not following a geodesic. And yet our latitude coordinate remains constant just like it did when we followed the equator, and we maintain the same speed, so our velocity vector is constant also. What does $\grad_\phi \vec{v}$ say?
+
+We already have the above formula for any situation where the latitude is constant. The longitude component will be zero, but unless $\theta = \pi/2$ the latitude component will be non-zero and negative. We're not on a geodesic.
+
+This is not telling us that our latitude is decreasing. It is telling us that we are steering in the direction of decreasing latitude as we increase longitude --- which we certainly are, even though our latitude remains constant. To put it another way, we have to steer that way so as to maintain our constant latitude.
+
+It would be reasonable to ask if the same rule applies when the geodesic is like a tilted equator. It will still be a great circle, and we can fly straight, but our latitude coordinate undulates around $\pi/2$, spending half of each circuit to the north and half to the south.
+
+This is a rather more involved thing to explore; even setting up the coordinates of the motion as a function of time would be a major digression and that's merely the first step of many. Applying a rotation in spherical polar coordinates is easy if you want to rotate in the same sense that the Earth spins, because you just add a constant to all $\phi$ coordinates. But you cannot perform a non-disorting rotation by adding a constant to all $\theta$ coordinates, as all the points will follow their own curves of constant longitude, so they will move further apart or closer together according to where they are in relation to the equator and the poles.
+
+Fortunately we can use a simple symmetry argument to avoid all this! All that is required is to rotate the coordinate system (move the poles) so that our great circle is aligned with the new equator. Obviously this is cheating, but it works.
+
+One subtle point to point is that our rule for a geodesic could be considered slightly too strict:
+
+$$
+\grad_{\vec{v(t)}} \vec{v}(t) = 0
+$$
+
+What if the speed rises or falls? This would be indicated by:
+
+$$
+\grad_{\vec{v(t)}} \vec{v}(t) = \alpha \vec{v}(t)
+$$
+
+The scaling factor $\alpha$ wouldn't necessarily be a constant, but it's just a scalar so the covariant derivative is in the direction of the existing velocity, indicating that we are "flying straight" even though we may be changing speed.
+
+Our previous rule would just be the special case where $\alpha = 0$. Indeed, if we've got the equations for a geodesic parameterised by $t$, we could replace $t$ with any smooth function of $t$ and the equations would still trace out a geodesic. The opposite is also true, so the strict rule is actually fine: if you have identified a geodesic with varying speed, it will always be possible to wrap your time parameter in a function that regularises it produce constant speed.
 
 \subsection{Distance along a curve}
 
