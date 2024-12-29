@@ -498,6 +498,63 @@ That is, the object is travelling along the first coordinate's curve, and its sp
 
 Alternatively the motion given by $p_i(t)$ could be far more complicated, and the derivative velocity would vary in both coordinates, but at each point the velocity vector would be an arrow tangent to the path as it passes through that point, expressed in tangent vector coordinates that are the individual derivatives of the position coordinates with respect to $t$.
 
+\subsection{Distance along a curve}
+
+The distance between two substantially separated points will depend on what happens along the journey between them. There must be some chosen curve that connects the two points, and we want to find the length of that curve.
+
+The parameter $t$ that guides our journey along a curve $\mathcal{P}(t)$ can be thought of as time passing as we move. Of course, we could speed up and slow down during our journey, but actually it doesn't matter whether we travel at constant speed or not.\footnote{If we somehow knew that our speed was constant, we wouldn't need the metric to find the total distance for our journey --- we'd just need a clock.}
+
+In our journey along some curve, in the time interval $\Delta t$ we move from $\mathcal{P}(t)$ to $\mathcal{P}(t + \Delta t)$. Our coordinates, given by $x^i(\mathcal{P})$, change by:
+
+$$
+x^i(\mathcal{P}(t + \Delta t))
+-
+x^i(\mathcal{P}(t))
+$$
+
+As we're immediately converting points $\mathcal{P}$ to coordinates $x^i$, we may as well directly say that the coordinates along the curve are functions $x^i(t)$, and so the coordinates change by:
+
+$$
+x^i(t + \Delta t)
+-
+x^i(t)
+$$
+
+But if we try to invoke the metric to convert these separate coordinate changes into a single scalar distance, we have a problem, because there are two metrics in play: the one at $t$ and the one at $t + \Delta t$. Which metric do we use to convert this coordinate changes into a distance? This is a job for calculus. We shrink $\Delta t$ toward zero so that we can use the metric at $t$, so the time interval involved is the infinitesimal $dt$.
+
+We differentiate the $i$th coordinate with respect to $t$:
+
+$$
+v^i(t) = \frac{d}{dt} x^i(t)
+$$
+
+In keeping with the interpretation of $t$ as the elapsed time, and $x^i(t)$ as the coordinates of something moving along the curve, $v^i(t)$ would be the velocity at $t$. Equivalently it is the tangent vector to the curve at $x^i(t)$.
+
+The metric $g_{ij}$ at each point is a $(0, 2)$ tensor, evaluating to a scalar when supplied with two vector inputs. To find the squared-length of a vector, we simply supply that vector as the input for both slots:
+
+$$
+g_{ij}(t)
+ v^i(t)  
+ v^j(t) 
+$$
+
+Here we're using the notation $g_{ij}(t)$ to remind ourselves that $g_{ij}$ is not a constant but is smoothly varying across our journey. Also note that we're using Einstein summation notation as usual, so the above is the sum over all pairs of $(i, j)$ values.
+
+The integral of the distances yielded by the smoothly changing metric along the curve will be the total length. The infinitesimal contributions need only be the linear approximation at each point, so the metric at a point can be fully characterised by a matrix, $g_{ij}$, though this is necessarily a function of $t$, $g_{ij}(t)$, and \textit{that} function is decidedly not linear in general. Even so, we can write the integral down as:
+
+$$
+L =
+\int
+\sqrt{
+    \mathop{g_{ij}(t)}
+    \mathop{v^i(t)}
+    \mathop{v^j(t)}
+}
+\mathop{dt}
+$$
+
+That is, we've put the same vector into both the $i$ and $j$ slots of the metric tensor, and both that vector (the infinitesimal tangent displacement, the velocity) and the metric tensor are smoothly varying functions of the position along the curve. The scalar result of evaluating the tensor is the square of the infinitesimal distance, so we take the square root to get the infinitesimal distance. We can then integrate that over some portion of the curve, say $0 \le t \le 1$, to find the distance traversed.
+
 \section{Calculus on a curved surface}
 
 Our goal will be to formalise the idea of a geodesic, which we've previously likened to "flying straight" on a globe. To get to that goal we'll need a way of figuring out how a vector changes as we move it. Now we have basis vectors from our coordinate system, we need to confront the fact that whatever coordinate system we've chosen will have something arbitrary about it, and the truth about the geometry of the space is obscured by the behaviour of the coordinates, and the way the basis vectors change from place to place.
@@ -521,7 +578,7 @@ $$
 The answer is an ordinary vector. But that means we can describe it with ordinary numbers, by acting on it with the basis covectors $\vec{e}^k$ to fetch the coordinates in terms of the local basis:
 
 $$
-\Gamma\indices{_i_j^k} = \biggl< \vec{e}^k , \frac{\partial \vec{e}_i}{\partial x^j} \biggr>
+\Gamma\indices{^k_i_j} = \biggl< \vec{e}^k , \frac{\partial \vec{e}_i}{\partial x^j} \biggr>
 $$
 
 This $\Gamma$ is called the Christoffel symbol. For two dimensions, is a collection of $2^3 = 8$ numbers defined at each point. Structurally (as suggested by how we've indexed it) it is like a $(1, 2)$-tensor (one up, two down). But it's not really a tensor, because it encodes information about the coordinate basis we've chosen, rather than anything geometrically intrinsic. It will nevertheless play an essential role in accounting for the arbitrary way the basis vectors change, so we need to know what it is when working with coordinates.
@@ -530,7 +587,7 @@ In summary, the way the $i$th basis vector changes as we change only the $j$th c
 
 $$
 \frac{\partial \vec{e}_i}{\partial x^j}
-= \Gamma\indices{_i_j^k} \vec{e}_k
+= \Gamma\indices{^k_i_j} \vec{e}_k
 $$
 
 It should be noted that although we've given a symbol to the object that describes how the basis vectors work, we haven't said how to determine what it is. We have great freedom to set the numbers however we like, which means we don't yet really know how to describe the twisting of our basis vectors. There is seemingly an infinity of possible ways to do so. Patience --- we are going to find a single, unique, natural definition for the Christoffel symbol that works perfectly for physics.
@@ -538,7 +595,7 @@ It should be noted that although we've given a symbol to the object that describ
 One thing we can observe right away, and which will be very useful in a while, is that the two lower indices can be interchanged, as is clear if you consider the underlying meaning of $\vec{e}_i$, which is itself the act of differentiating in the direction of the $i$th coordinate, so it follows that we are building an operator that differentiates twice, and the order of taking derivatives doesn't matter for smooth functions. So:
 
 $$
-\Gamma\indices{_i_j^k} = \Gamma\indices{_j_i^k}
+\Gamma\indices{^k_i_j} = \Gamma\indices{^k_j_i}
 $$
 
 That is, among the numbers that make up this pseudo-tensor there is much duplication, in a similar manner to a symmetric matrix. If you fetch a value with the $i$ and $j$ indices reversed by accident, it wouldn't matter because you'll get the same number.
@@ -546,28 +603,28 @@ That is, among the numbers that make up this pseudo-tensor there is much duplica
 Also, like any tensor we can raise and lower indices if we have a metric. So for example:
 
 $$
-\Gamma\indices{_i_j_k} 
+\Gamma\indices{_k_i_j} 
 = 
 g_{kl}
-\Gamma\indices{_i_j^l}
+\Gamma\indices{^l_i_j}
 $$
 
 The $k$ index now denotes a basis vector instead of a basis covector, so instead of a covector acting on the vector derivative to extract a scalar coordinate, the inner product is used to do the same thing with a vector:
 
 $$
-\Gamma\indices{_i_j_k} = \left( \vec{e}^k , \frac{\partial \vec{e}_i}{\partial x^j} \right)
+\Gamma\indices{_k_i_j} = \left( \vec{e}_k , \frac{\partial \vec{e}_i}{\partial x^j} \right)
 $$
 
 \subsection{Using the metric to get the connection coefficients}
 
-The Christoffel symbol $\Gamma\indices{_i_j^k}$ contains information about how the basis vectors change with position, whereas the metric tells you how to relate the coordinate representation of vectors to genuine distances and angles. If you know your velocity at an instant at some point in the space, but it's expressed as the rate at which each coordinate is changing (that is, as coordinates of the velocity vector in the basis), the metric allows you to convert these multiple coordinates into a single scalar: your actual speed, which has nothing to do with the structure of the coordinate system. This is of course the whole point of tensors: they compute scalars out of vectors so we can compare predictions with reality.
+The Christoffel symbol $\Gamma\indices{^k_i_j}$ contains information about how the basis vectors change with position, whereas the metric tells you how to relate the coordinate representation of vectors to genuine distances and angles. If you know your velocity at an instant at some point in the space, but it's expressed as the rate at which each coordinate is changing (that is, as coordinates of the velocity vector in the basis), the metric allows you to convert these multiple coordinates into a single scalar: your actual speed, which has nothing to do with the structure of the coordinate system. This is of course the whole point of tensors: they compute scalars out of vectors so we can compare predictions with reality.
 
 But like everything else in this topic, the metric is really a field: a smooth function of position, $g(\mathcal{P})\indices{_i_j}$ --- we don't bother to include the parameter because it is implicit in all the objects we're considering. Because it's a smooth function, it's possible to take a derivative of it with respect to a coordinate direction, and this produces precisely the information we need for Christoffel symbol.
 
 The Christoffel symbol is defined as:
 
 \begin{equation}
-    \Gamma\indices{_i_j^k}
+    \Gamma\indices{^k_i_j}
 =
 \biggl<
 \vec{e}^k,
@@ -612,12 +669,12 @@ We will assume for the moment that something like the product rule works over th
  \right)
 \end{equation}
 
-And then we notice that these inner product expressions are just Christoffel symbols with all the indices lower:
+And then we notice that these inner product expressions are just Christoffel symbols with all the indices lower (following a standard order becomes very important now, so the first index is the one that is not interchangeable with the other two):
 
 \begin{equation}
 \frac{\partial g_{ij}}{\partial x^k} 
 =
-\Gamma_{ikj}+\Gamma_{jki}
+\Gamma_{jik}+\Gamma_{ijk}
 \end{equation}
 
 It follows that we can produce equivalents for all the combinations of $i$, $j$, $k$.
@@ -625,16 +682,16 @@ It follows that we can produce equivalents for all the combinations of $i$, $j$,
 \begin{equation}
 \frac{\partial g_{kj}}{\partial x^i} 
 =
-\Gamma_{kij}+\Gamma_{jik}
+\Gamma_{jki}+\Gamma_{kji}
 \end{equation}
 
 \begin{equation}
 \frac{\partial g_{ik}}{\partial x^j} 
 =
-\Gamma_{ijk}+\Gamma_{kji}
+\Gamma_{kij}+\Gamma_{ikj}
 \end{equation}
 
-But the first two indices are interchangeable, $\Gamma_{ijk} = \Gamma_{jik}$, which means we can get most of the terms to cancel by adding and subtracting appropriately:
+But the last two indices are interchangeable, $\Gamma_{kij} = \Gamma_{kji}$, which means we can get most of the terms to cancel by adding and subtracting appropriately:
 
 \begin{equation}
     \begin{split}
@@ -644,25 +701,25 @@ But the first two indices are interchangeable, $\Gamma_{ijk} = \Gamma_{jik}$, wh
         -
         \frac{\partial g_{ij}}{\partial x^k}
         &=
-        \Gamma_{kij}+\Gamma_{jik}
+        \Gamma_{jki}+\Gamma_{kji}
         +
-        \Gamma_{ijk}+\Gamma_{kji}
+        \Gamma_{kij}+\Gamma_{ikj}
         -
-        \Gamma_{ikj}-\Gamma_{jki} \\
+        \Gamma_{jik}-\Gamma_{ijk} \\
         &=        
-        (\Gamma_{ikj}-\Gamma_{ikj})
+        (\Gamma_{jik}-\Gamma_{jik})
         +
-        (\Gamma_{jki}-\Gamma_{jki})
+        (\Gamma_{ijk}-\Gamma_{ijk})
         +
-        (\Gamma_{ijk}+\Gamma_{ijk}) \\
-        &= 2\Gamma_{ijk}       
+        (\Gamma_{kij}+\Gamma_{kij}) \\
+        &= 2\Gamma_{kij}       
     \end{split}
 \end{equation}
 
 And so:
 
 \begin{equation}
-\Gamma_{jik}
+\Gamma_{kij}
 =
 \frac{1}{2}
 \left(
@@ -674,10 +731,10 @@ And so:
 \right)
 \end{equation}
 
-And therefore we can get the original form of the Christoffel symbol by using the raising metric to hoist the third index:
+And therefore we can get the original form of the Christoffel symbol by using the raising metric to hoist the first index:
 
 \begin{equation}
-\Gamma\indices{_i_j^l}
+\Gamma\indices{^l_i_j}
 =
 g^{kl}
 \frac{1}{2}
@@ -740,7 +797,7 @@ The second term includes the partial derivative of a basis vector, which we alre
 
 $$
 \frac{\partial \vec{e}_i}{\partial x^j}
-= \Gamma\indices{_i_j^k} \vec{e}_k
+= \Gamma\indices{^k_i_j} \vec{e}_k
 $$
 
 So we can substitute that:
@@ -748,7 +805,7 @@ So we can substitute that:
 $$
 \frac{\partial \vec{v}}{x^j} 
 = \frac{\partial v^i}{\partial x^j} \vec{e}_i
-+ v^i \Gamma\indices{_i_j^k} \vec{e}_k
++ v^i \Gamma\indices{^k_i_j} \vec{e}_k
 $$
 
 Now in the first term we're using $i$ as the summation index but that's an arbitrary label. The summation convention means that the first term is actually $N$ terms (two if we're working in two dimensions) that will be evaluated and added, and we can freely switch labels. If we switch that index to $k$:
@@ -756,7 +813,7 @@ Now in the first term we're using $i$ as the summation index but that's an arbit
 $$
 \frac{\partial \vec{v}}{x^j} 
 = \frac{\partial v^k}{\partial x^j} \vec{e}_k
-+ v^i \Gamma\indices{_i_j^k} \vec{e}_k
++ v^i \Gamma\indices{^k_i_j} \vec{e}_k
 $$
 
 we can pull out the $\vec{e}_k$ basis vector common factor:
@@ -765,7 +822,7 @@ $$
 \frac{\partial \vec{v}}{x^j} 
 = \left(
   \frac{\partial v^k}{\partial x^j}
-  + v^i \Gamma\indices{_i_j^k} 
+  + v^i \Gamma\indices{^k_i_j} 
 \right)
 \vec{e}_k
 $$
@@ -776,7 +833,7 @@ $$
 \grad_j \vec{v}
 = \left(
   \frac{\partial v^k}{\partial x^j}
-  + v^i \Gamma\indices{_i_j^k} 
+  + v^i \Gamma\indices{^k_i_j} 
 \right)
 \vec{e}_k
 $$
@@ -787,7 +844,7 @@ $$
 \grad \vec{v}
 = \left(
   \frac{\partial v^k}{\partial x^j}
-  + v^i \Gamma\indices{_i_j^k} 
+  + v^i \Gamma\indices{^k_i_j} 
 \right)
 \vec{e}^j \otimes \vec{e}_k
 $$
@@ -798,7 +855,7 @@ $$
 \grad_j v^k
 = 
 \frac{\partial v^k}{\partial x^j}
-+ v^i \Gamma\indices{_i_j^k}
++ v^i \Gamma\indices{^k_i_j}
 $$
 
 The covariant derivative connects vectors between different locations. Given two nearby points, $\mathcal{P}$ and $\mathcal{Q}$, and a vector $\vec{v}$ at $\mathcal{P}$ and a vector $\vec{w}$ at $\mathcal{Q}$, can we say that $\vec{v}$ and $\vec{w}$ are the same vector? No, this isn't a meaningful concept by itself. We have to specify a curve along which we travel between $\mathcal{P}$ and $\mathcal{Q}$. Each infinitesimal movement gives us an unambiguous connection to the next equivalent vector, and it could be the case that by transporting $\vec{v}$ from $\mathcal{P}$ to $\mathcal{Q}$, it arrives identical to $\vec{w}$, depending on the curve.
@@ -813,7 +870,7 @@ $$
 
 As always, feel free to assume $N = 2$ for visualisation purposes, so that this is simply a way to map a pair of position coordinates to a pair of vector coordinates at that position, a field of arrows all over the surface, with lengths and directions that smoothly vary with position.
 
-Meanwhile, a curve is a function $\mathbb{R} \mapsto \mathcal{P}$ from some real parameter, $t$. This is sometimes likened to time passing as we make the journey along the curve, but really it's just an independent variable that we can smoothly adjust however we like, like a control knob that makes a point move back and forth on the curve. But we'll say "at time $t$" for short.
+Meanwhile, a curve is a function $\mathbb{R} \mapsto \mathcal{P}$ from some real parameter, $t$. Again, this is sometimes likened to time passing as we make the journey along the curve, but really it's just an independent variable that we can smoothly adjust however we like, like a control knob that makes a point move back and forth on the curve. But we'll say "at time $t$" for short.
 
 The coordinates of the points on the curve are defined by $c^i(t)$, which can be thought of as both a function $\mathbb{R} \mapsto \mathbb{R}^N$ and also $N$ functions $\mathbb{R} \mapsto \mathbb{R}$, giving the coordinates of the point on the curve $c$ at time $t$.
 
@@ -981,13 +1038,13 @@ The only thing we need to be careful of is the sign resulting from where the non
 So combining this with the result of the contraction, the Christoffel symbol is zero except for:
 
 $$
-\Gamma_{\theta \phi}^{\phi} 
-= \Gamma_{\phi \theta}^{\phi} 
+\Gamma\indices{^\phi_\theta_\phi}
+= \Gamma\indices{^\phi_\phi_\theta}
 = \frac{\cos \theta}{\sin \theta}
 = \cot \theta
 \quad
 \quad
-\Gamma_{\phi \phi}^{\theta} = -\cos\theta\sin\theta
+\Gamma\indices{^\theta_\phi_\phi} = -\cos\theta\sin\theta
 $$
 
 Unsurprisingly, it's symmetric in the two lower indices.
@@ -1000,7 +1057,7 @@ $$
 \grad_j v^k
 = 
 \frac{\partial v^k}{\partial x^j}
-+ v^i \Gamma\indices{_i_j^k}
++ v^i \Gamma\indices{^k_i_j}
 $$
 
 The first term, the ordinary derivative of our velocity coordinates, is clearly $(0, 0)$ as it is a pair of constant coordinates, regardless of what we differentiate with respect to. In the Christoffel term, which includes the $i$th velocity component as a factor, the velocity is zero for latitude, so we only need dig further for longitude ($i=\phi$), and also we're taking the derivative along the same direction as the velocity, so $j=\phi$ as well.
@@ -1046,61 +1103,8 @@ $$
 
 The scaling factor $\alpha$ wouldn't necessarily be a constant, but it's just a scalar so the covariant derivative is in the direction of the existing velocity, indicating that we are "flying straight" even though we may be changing speed.
 
-Our previous rule would just be the special case where $\alpha = 0$. Indeed, if we've got the equations for a geodesic parameterised by $t$, we could replace $t$ with any smooth function of $t$ and the equations would still trace out a geodesic. The opposite is also true, so the strict rule is actually fine: if you have identified a geodesic with varying speed, it will always be possible to wrap your time parameter in a function that regularises it produce constant speed.
+Our previous rule would just be the special case where $\alpha = 0$. Indeed, if we've got the equations for a geodesic parameterised by $t$, we could replace $t$ with a smoothly increasing function of $t$ (such as $t^3$) and the equations would still trace out a geodesic. The opposite is also true, so the strict rule is actually fine: if you have identified a geodesic with varying speed, it will always be possible to wrap your time parameter in a function that regularises it to produce constant speed.
 
-\subsection{Distance along a curve}
+\section{Quantifying curvature}
 
-The distance between two substantially separated points will depend on what happens along the journey between them. There must be some chosen curve that connects the two points, and we want to find the length of that curve.
-
-The parameter $t$ that guides our journey along a curve $\mathcal{P}(t)$ can be thought of as time passing as we move. Of course, we could speed up and slow down during our journey, but actually it doesn't matter whether we travel at constant speed or not.\footnote{If we somehow knew that our speed was constant, we wouldn't need the metric to find the total distance for our journey --- we'd just need a clock.}
-
-In our journey along some curve, in the time interval $\Delta t$ we move from $\mathcal{P}(t)$ to $\mathcal{P}(t + \Delta t)$. Our coordinates, given by $x^i(\mathcal{P})$, change by:
-
-$$
-x^i(\mathcal{P}(t + \Delta t))
--
-x^i(\mathcal{P}(t))
-$$
-
-As we're immediately converting points $\mathcal{P}$ to coordinates $x^i$, we may as well directly say that the coordinates along the curve are functions $x^i(t)$, and so the coordinates change by:
-
-$$
-x^i(t + \Delta t)
--
-x^i(t)
-$$
-
-But if we try to invoke the metric to convert these separate coordinate changes into a single scalar distance, we have a problem, because there are two metrics in play: the one at $t$ and the one at $t + \Delta t$. Which metric do we use to convert this coordinate changes into a distance? This is a job for calculus. We shrink $\Delta t$ toward zero so that we can use the metric at $t$, so the time interval involved is the infinitesimal $dt$.
-
-We differentiate the $i$th coordinate with respect to $t$:
-
-$$
-v^i(t) = \frac{d}{dt} x^i(t)
-$$
-
-In keeping with the interpretation of $t$ as the elapsed time, and $x^i(t)$ as the coordinates of something moving along the curve, $v^i(t)$ would be the velocity at $t$. Equivalently it is the tangent vector to the curve at $x^i(t)$.
-
-The metric $g_{ij}$ at each point is a $(0, 2)$ tensor, evaluating to a scalar when supplied with two vector inputs. To find the squared-length of a vector, we simply supply that vector as the input for both slots:
-
-$$
-g_{ij}(t)
- v^i(t)  
- v^j(t) 
-$$
-
-Here we're using the notation $g_{ij}(t)$ to remind ourselves that $g_{ij}$ is not a constant but is smoothly varying across our journey. Also note that we're using Einstein summation notation as usual, so the above is the sum over all pairs of $(i, j)$ values.
-
-The integral of the distances yielded by the smoothly changing metric along the curve will be the total length. The infinitesimal contributions need only be the linear approximation at each point, so the metric at a point can be fully characterised by a matrix, $g_{ij}$, though this is necessarily a function of $t$, $g_{ij}(t)$, and \textit{that} function is decidedly not linear in general. Even so, we can write the integral down as:
-
-$$
-L =
-\int
-\sqrt{
-    \mathop{g_{ij}(t)}
-    \mathop{v^i(t)}
-    \mathop{v^j(t)}
-}
-\mathop{dt}
-$$
-
-That is, we've put the same vector into both the $i$ and $j$ slots of the metric tensor, and both that vector (the infinitesimal tangent displacement, the velocity) and the metric tensor are smoothly varying functions of the position along the curve. The scalar result of evaluating the tensor is the square of the infinitesimal distance, so we take the square root to get the infinitesimal distance. We can then integrate that over some portion of the curve, say $0 \le t \le 1$, to find the distance traversed.
+The covariant derivative that we've been playing with using spherical polar coordinates is in fact equally applicable to a flat surface if you are charting it using polar coordinates or any other system that doesn't use straight lines. The basis vectors will twist around, the metric will need to be expressed differently at each point and thus it will safest to think of each point as having its own vector space, just as on a curved surface. Given this state of affairs, we have to wonder what exactly is different about a curved surface? Is there a way to tell that a surface is intrinsically curved, so as to distinguish it from a flat surface with a wavy coordinate system?
