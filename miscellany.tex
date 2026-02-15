@@ -1,6 +1,6 @@
 \chapter{Miscellany}
 
-There are a few basic ideas that are of fundamental importance and can be summarised in a basic way quite briefly.
+Here are some mathematical ideas and notations that are used a lot throughout physics.
 
 \section{Linearity} \label{sec:linearity}
 
@@ -271,7 +271,7 @@ $$O_{ij} = \sum_k M_{ik} N_{kj}$$
 
 This formula describes all the above examples of matrix multiplication. If $j$ is only allowed to take on the value 1 then $N$ and $O$ become column matrices with no need of a second index, and we've recreated \eqref{eqn:matrix-multiplication-summation} albeit with some light renaming.
 
-Note that in general $MN \ne NM$, that is, multiplication is not necessarily commutative, because referring to the result of \eqref{eqn:matrix-combination} we can see there is no way to rearrange the terms to make the two results equal. However they can be made to match up if the matrices are symmetric, meaning that diagonally opposite elements are equal ($M_{ij} = M_{ji}$), or equivalently the matrix is equal to its transpose ($M = N^T$), so in that case there is commutativity.
+Note that in general $MN \ne NM$, that is, multiplication is not necessarily commutative, because referring to the result of \eqref{eqn:matrix-combination} we can see there is no way to rearrange the terms to make the two results equal. However they can be made to match up if the matrices are symmetric, meaning that diagonally opposite elements are equal ($M_{ij} = M_{ji}$), or equivalently the matrix is equal to its transpose ($M = N^\intercal$), so in that case there is commutativity.
 
 But also matrix multiplication turns out to be merely one combination of some more basic concepts we'll return to in §\ref{tensor-contraction}.
 
@@ -391,7 +391,10 @@ $P_n$ is zero for all $n$ except the above exceptions, where it is between zero 
 
 Therefore by computing the weighted sum:
 
-$$ \langle {n} \rangle = \sum_n{n\,P_n} $$
+\begin{equation}
+   \langle {n} \rangle = \sum_n{n\,P_n} 
+   \label{eqn:weighted-sum}
+\end{equation}
 
 we recover the mean value $\langle{n}\rangle$. The point here is that, inside a sum at least, it makes sense to multiply a value by the probability of obtaining that value.
 
@@ -406,7 +409,7 @@ x\,\rho(x)
 \,dx
 $$
 
-is the continuous equivalent of $(1)$ and gives the mean value of a large set of measurements of $x$. If we think of all the values of $x$ as a cloud of matter that is more or less densely concentrated here or there, $\langle x \rangle$ is like its centre of mass.
+is the continuous equivalent of \eqref{eqn:weighted-sum} and gives the mean value of a large set of measurements of $x$. If we think of all the values of $x$ as a cloud of matter that is more or less densely concentrated here or there, $\langle x \rangle$ is like its centre of mass.
 
 But $\rho(x)$ may be symmetrical around the origin and vanish at the origin, e.g. two peaks on either side, making $\langle x \rangle = 0$ despite $x$ never taking the value $0$; so if we are required to call it "the expectation value", we must always remember that it may be a value that never occurs.
 
@@ -418,7 +421,7 @@ What we're really asking is how "loud" the signal is at each frequency. We can d
 
 \begin{itemize} 
     \item the minus sign is purely a convention (and not a universal one)
-    \item $i$ is the magic ingredient that makes it go round and round
+    \item $i$ is the magic ingredient that makes it go round and round (§\ref{euler-formula})
     \item $2\pi$ converts to radians
     \item $\nu$ is the frequency
     \item $x$ is the parameter to the function
@@ -462,7 +465,7 @@ Shorthand:
 
 $$g = \mathcal{F}^{-1} \hat{g}$$
 
-This pretty much literally says that you can make any function by adding together an infinite collection of oscillations at every possible frequency. You just need a (complex) function $\hat{f}(\nu)$ that tells you how "loud" each frequency needs to be.
+This pretty much literally says that you can make any function by adding together an infinite collection of oscillations at every possible frequency. You just need a (complex) function $\hat{f}(\nu)$ that tells you how "loud" each frequency needs to be, and what offset should be applied to its phase.
 
 \subsection{Negative Frequencies}
 
@@ -556,9 +559,11 @@ $$
 
 So the spike at $\alpha$ from $\delta(\nu - \alpha)$ must be infinite so as to counteract the infinitesimal smallness of $d\nu$. In other words, we have to think about any transform as an amplitude \textit{density} function.
 
+The intuitions we're using here were long treated with suspicion by many mathematicians, but then the same could be said for calculus in general. Eventually the Dirac delta was put on a rigorous mathematical foundation, but not by accepting it as a function as implied in the kind of notation used above. Nevertheless, physicists have stuck with the fiction that there is a function $\delta$ that has the required behaviour inside an integral but makes absolutely no sense otherwise.
+
 \subsection{The Gaussian}
 
-An infinitesimally narrow spike in the frequency spectrum represents the single frequency present in a pure wave that goes on forever. And a pure wave in the frequency spectrum represent the infinite set of frequencies that must be summed to get an infinitesimally narrow spike. Each is the Fourier transform of the other. They are the two extremes of:
+An infinitesimally narrow spike in the frequency spectrum represents the single frequency present in a pure wave that goes on forever. And a pure wave in the frequency spectrum represents the infinite set of frequencies that must be summed to get an infinitesimally narrow spike. Each is the Fourier transform of the other. They are the two extremes of:
 
 \begin{itemize}
     \item being localised in position but spread out in frequency, and
@@ -577,9 +582,9 @@ This is evidently of the same form. Aside from being a function of frequency $\n
 
 \section{Potentials} \label{sec:potential}
 
-A force field is a vector-valued function of space, i.e. at each point in space we imagine there is a vector giving the strength and direction of the force that would felt at that point.
+A force field is a vector-valued function of space, i.e. at each point in space we imagine there is a vector giving the strength and direction of the force that would be felt at that point.
 
-The force fields we observe in nature have an interesting property: it is always possible to replace the force field with a scalar-valued function of space, i.e. at each point in space there is merely an ordinary number, not a vector. We can then take the vector gradient $\grad$ of this scalar field and we recover the force field.
+The force fields we observe in nature have an interesting property: it is always possible to replace the force field with a scalar-valued function of space, i.e. at each point in space there is merely an ordinary number, not a vector. We can then take the vector gradient $\grad$ of this scalar field and we recover the force field. This is interesting because a vector in three dimensions seems to contain three times the information of a single number, and yet we can collapse that information to a single number at each point without losing anything.
 
 By analogy, picture a hilly landscape. The height $H$ above sea level is the scalar field value, so the landscape is fully described by the scalar field $H(x, y)$. From this we can derive $\grad H$, a two-dimensional vector field (picture it as an arrow that never points up or down, always parallel to the horizon). As we travel around we sometimes face steep slopes, where $\grad H$ points in the steepest direction, or stationary points such as hilltops or valley basins where $\grad H$ is the zero vector (to distinguish between peaks and valleys, we'd need to take the second derivative, $\grad^2H$).
 

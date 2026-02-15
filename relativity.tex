@@ -85,7 +85,7 @@ $$|\vec{v}|^2 = (v_1)^2 + (v_2)^2 + (v_3)^2$$
 
 This is the familiar theorem of Pythagorus.
 
-But to find the interval between two events in spacetime, we need to use a different metric, $\eta$ (eta). Now our indices $i, j$ can take four values, traditionally given as $0, 1, 2, 3$, with time being $0$. So with a time dimension in addition to the three space dimensions, the correct metric happens to be:
+But to find the interval between two events in spacetime, we need to use the Minkowski metric, $\eta$ (eta). Now our indices $i, j$ can take four values, traditionally given as $0, 1, 2, 3$, with time being $0$. So with a time dimension in addition to the three space dimensions, the correct metric happens to be:
 
 $$
 \eta =
@@ -97,8 +97,7 @@ c & 0 & 0 & 0 \\
 \end{bmatrix}
 $$
 
-where $c$ is the speed of light, a quantity with cosmic significance.\footnote{Note that the signature of the diagonal of $\eta$ could just as well be $(-, +, +, +)$ instead of $(+, -, -, -)$, and as with anything that makes no difference, debate has raged on for over a century.} In honour of this we can take as our unit of distance the light-second, so that $c$ is 1.
-
+where $c$ is the speed of light, a quantity with cosmic significance. In honour of this we can take as our unit of distance the light-second, so that $c$ is 1.
 
 Furthermore, as our particles only move along a straight line we only need one space dimension, so altogether the metric can be written as:
 
@@ -129,6 +128,18 @@ $$\tau = s = t$$
 This underscores the invariant, universal, unambiguous nature of the interval between two events. Two synchronised clocks departing from some event, and arriving at another via different "routes" through spacetime, may each show a different elapsed proper time, and each's proper time is a measure of the "length" of the path it took (the sum of all the infinitesimal segments of interval along that path.)
 
 But due to the nature of the metric, with time and space coordinates making opposite-signed contributions to the sum, less straight paths require \textit{less} time to elapse for the particle taking them. Thus the straight line path between the events (that which would be taken by a uniform motion) is the \textit{slowest} path possible, in that a particle taking that path will see its own clock advance by a greater duration than that of any particle taking some otherwise curved path.
+
+Note that the squared-interval could be (and sometimes is) computed by the difference:
+
+$$s^2 = d^2 - t^2$$
+
+This is just a matter of convention. Some authors define $\eta$ so the signature of the diagonal is $(+, -, -, -)$ as shown above, while others define it with the opposite signature, $(-, +, +, +)$. Some authors say either of these will compute a form of "the interval", while others say that the first convention computes the interval and the second convention computes the proper time.
+
+The important point is that this is an unconstrained terminological choice, and all that matters physically is that, having chosen a convention, we use it consistently. As with anything that makes no difference physically, debate has raged on for over a century about which is the natural choice.\footnote{"... all true believers shall break their eggs at the convenient end." -- The great prophet Lustrog, quoted in \textit{Gulliver's Travels}, Jonathan Swift (1726)} There is a tendency among physicists to prefer $(+, -, -, -)$ and so compute the proper time. One reason for this is that it gives a direct, intuitive interpretation to the number: it is the time measured by a clock moving inertially (in a straight line through flat spacetime) between the events. It is obvious why this must be the same for all observers, because anyone can look at the clock and read what it says at the end of its journey, so we must all arrive at the same proper time, calculating from the coordinates we have for the journey the clock took.
+
+This also helpfully underscores why faster-than-light travel is impossible. If $d$ in light-seconds is greater than $t$ in seconds (that is, the distance travelled in a second is further than light could travel in a second), then the difference $t^2 - d^2$ is negative, and so the proper time $\sqrt{t^2 - d^2}$ would have to be imaginary, a very difficult thing for a clock to display.
+
+Reflecting our physics bias, we'll continue to use the term "interval" interchangeably with "proper time".
 
 \section{Lorentz Factor}
 
@@ -173,32 +184,17 @@ So the ratio that will convert the proper time $\tau$ measured by $P$ back to th
 
 $$\gamma = \frac{1}{\sqrt{1 - v^2}}$$
 
-This $\gamma$ is the Lorentz factor. Note that as $v$ is based on a time value $t$ in seconds and a distance value $d$ in light-seconds, it is a fraction of the speed of light.
+This $\gamma$ is the Lorentz factor. Note that as $v$ is based on a time value $t$ in seconds and a distance value $d$ in light-seconds, it is a fraction of the speed of light, a value between 0 and 1 in our units.
 
 If it had the value 1, that would be light speed. But at that precise value, $\gamma$ is undefined, due to the zero on the bottom of the fraction. The elapsed time for any journey taken by a photon is always zero, and so there is no way to relate times recorded by a photon to times recorded by an array of clocks (a photon is not a clock).
 
 Furthermore, at velocities greater than 1 (faster than light), the value is defined but unfortunately is imaginary, due the square root of a negative value. The square of the interval between events travelled between by faster-than-light particles is negative, and so the interval, which is the elapsed time recorded by a clock carried by such a particle, is positive-imaginary.
 
-\section{Lorentz Transformations}
-
-Two observers $\rho$ and $\phi$ moving apart at speed $v$ will label the same event with different spacetime coordinates: $(t_\rho, x_\rho)$ and $(t_\phi, x_\phi)$.
-
-To transform back and forth between these systems we need a pair of matrices, each the inverse of the other, such that these invariants are conserved:
-
-\begin{itemize}
-    \item the interval between events
-    \item the speed of light
-\end{itemize}
-
-Note that for any
-
-$$\begin{bmatrix}\gamma & v\gamma \\ v\gamma & \gamma\end{bmatrix}^{-1} = \begin{bmatrix}\gamma & -v\gamma \\ -v\gamma & \gamma\end{bmatrix}$$
-
 \section{Energy and Momentum}
 
 The momentum is a vector, so in 3 dimensions of space it is a 3-vector and can be resolved into 3 scalar components once a suitable basis has been chosen.
 
-The kinetic energy is a scalar. But both are observer dependent. A particle at rest relative to the observer has momentum that is the zero vector and kinetic energy zero. Should another particle collide with the one at rest and cause both particles to travel away in new directions and speeds, the total momentum vector and the total kinetic energy scalar will be the same before and after the collision, but the values of these quantities are different depending on the observer.
+The kinetic energy is a scalar. But both momentum and kinetic energy are observer dependent. A particle at rest relative to the observer has momentum that is the zero vector and kinetic energy zero. Should another particle collide with the one at rest and cause both particles to travel away in new directions and speeds, the total momentum vector and the total kinetic energy scalar will be the same before and after the collision, but the values of these quantities are different depending on the observer.
 
 To another inertial observer moving relative to this scene, exactly the same conservation laws will be found to be obeyed, just with different numbers involved. The two observers will disagree over the momenta and energies of the specific particles, and also over the total energy and momentum, as summed separately over both particles.
 

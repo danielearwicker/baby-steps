@@ -32,7 +32,7 @@ Given an orthonormal basis $|\vec{b_n} \rangle$, we can picture it as a set of $
 
 $$|\vec{b_n} \rangle \langle \vec{b_n} |$$
 
-will produce a matrix with a single $1$ in one place of the diagonal. So if we sum over all $n$, we get the identity matrix, a matrix that makes no difference to whatever vector it applies to. Spelling this out, if our vector space has just two basis vectors:
+will produce a matrix with a single $1$ in the $n$th place of the diagonal. So if we sum over all $n$, we get the identity matrix, a matrix that makes no difference to whatever vector it applies to. Spelling this out, if our vector space has just two basis vectors:
 
 $$|\vec{0} \rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$$
 
@@ -70,7 +70,7 @@ Even if the $|\vec{b}_n \rangle$ were expressed in some other basis, the above s
 
 $$|\vec{b}_n \rangle \langle \vec{b}_n | c \rangle$$
 
-The $|\vec{b}_n \rangle \langle \vec{b}_n|$ operator is called a projection operator, because it projects its argument onto the subspace spanned by $|\vec{b}_n \rangle$, resulting in a component vector of the argument in the direction of $|\vec{b}_n \rangle$. Clearly if we act with the same projection operator again on that result, nothing will change, because it's already projected. This is a way of defining a projection operator: it's idempotent.
+The $|\vec{b}_n \rangle \langle \vec{b}_n|$ operator is called a projection operator, because it projects its argument onto the subspace spanned by $|\vec{b}_n \rangle$, resulting in a coordinate vector of the argument in the direction of $|\vec{b}_n \rangle$. Clearly if we act with the same projection operator again on that result, nothing will change, because it's already projected. This is a way of defining a projection operator: it's idempotent.
 
 And the sum of all those resulting vectors for all $n$ will just be $|\vec{c} \rangle$, of course, because we've done the equivalent of acting with the identity operator.
 
@@ -80,15 +80,15 @@ The vector spaces used to represent physical states are examples of Hilbert spac
 
 \begin{itemize}
   \item scalars may be complex,
-  \item despite which, there is an inner product that we can use to get a non-negative real number for the modulus of a vector: $\sqrt{\langle a|a \rangle}$, and 
+  \item despite which, there is an inner product that we can use to get a non-negative real number for the norm of a vector: $\sqrt{\langle a|a \rangle}$, and 
   \item the space may be infinite dimensional.
 \end{itemize}
 
 The latter possibility includes infinities that are continuous (uncountable). Such vectors cannot be represented by a column of discrete values, not even an infinitely long column. Instead we have to specify a complex-valued function over a continuous (real) variable. Such functions can be added and scaled, as is required of a vector, and so they qualify as elements of a vector space (§\ref{sec:vectors-space}) and we therefore have no choice but to admit that they are vectors.
 
-The real parameter of such a function is analogous to the integer index that labels the rows in a column vector; instead of fetching the $i$th component by its position in the column, we evaluate the function with some real value $x$ to get its component "at" $x$.
+The real parameter of such a function is analogous to the integer index that labels the rows in a column vector; instead of fetching the $i$th coordinate by its position in the column, we evaluate the function with some real value $x$ to get its coordinate "at" $x$.
 
-Similarly, whereas the inner product over discrete components is:
+Similarly, whereas the inner product over discrete coordinates is:
 
 $$
 \langle \vec{a} | \vec{b} \rangle
@@ -111,17 +111,17 @@ This is also called the overlap integral, because it measures the extent to whic
 
 \section{Physical Interpretation}
 
-To interpret the state vector physically, we choose a basis so we can resolve it into components. Our choice of basis has to do with the observable quantity we are presently interested in, such as position, momentum, orientation or energy. If it may take on any real value, the state vector will have to be a function of that value; if it may only take on certain discrete values, it can be a column vector (albeit sometimes one with infinitely many rows) in which each row corresponds to one of those possible discrete values that the observable may exhibit when measured.
+To interpret the state vector physically, we choose a basis so we can resolve it into coordinates. Our choice of basis has to do with the observable quantity we are presently interested in, such as position, momentum, orientation or energy. If it may take on any real value, the state vector will have to be a function of that value; if it may only take on certain discrete values, it can be a column vector (albeit sometimes one with infinitely many rows) in which each row corresponds to one of those possible discrete values that the observable may exhibit when measured.
 
-The information available from the state vector is, in general, probabilistic. Each component, being a complex number, is related to the probability of the observable quantity taking on the value represented by that component. The squared modulus of the component (its value multiplied by the complex conjugate of its value) is the probability of obtaining that value, or if the state vector is a function $f(x)$, then:
+The information available from the state vector is, in general, probabilistic. Each coordinate, being a complex number, is related to the probability of the observable quantity taking on the value represented by that coordinate. The squared modulus of the coordinate (its value multiplied by the complex conjugate of its value) is the probability of obtaining that value, or if the state vector is a function $f(x)$, then:
 
 $$\int_{a}^{b} f(x)^* f(x) \, dx$$
 
 is the probability that $x$ will have a value somewhere between $a$ and $b$.
 
-As a probability is a number between $0$ and $1$, it must be the case that the sum of the squared modulus of all the components (or the above integral from $-\infty$ to $+\infty$) must be $1$. This is the same as saying that $\langle S | S \rangle = 1$ for any physically realistic state vector. Or to put it another way, the magnitude of a state vector is not significant, only the direction (i.e. the relative values of the components in some basis). We will always fix the magnitude to be $1$.
+As a probability is a number between $0$ and $1$, it must be the case that the sum of the squared modulus of all the coordinates (or the above integral from $-\infty$ to $+\infty$) must be $1$. This is the same as saying that $\langle S | S \rangle = 1$ for any physically realistic state vector. Or to put it another way, the magnitude of a state vector is not significant, only the direction (i.e. the relative values of the coordinates in some basis). We will always fix the magnitude to be $1$.
 
-Unsurprisingly, if one of the components is $1$ and all the others are zero, the vector represents certainty that the observable has the value represented by that component. But this also means that the state vector is equal to one of the basis vectors. Thus the basis vectors for an observable represent exact values that the observable may exhibit when measured.
+Unsurprisingly, if one of the coordinates is $1$ and all the others are zero, the vector represents certainty that the observable has the value represented by that coordinate. But this also means that the state vector is equal to one of the basis vectors. Thus the basis vectors for an observable represent exact values that the observable may exhibit when measured.
 
 Further, a measurement of the observable (or more precisely, any interaction producing subsequent behaviour that could be used to infer the value of the observable) causes the state vector to change to the basis vector of that observable corresponding to the measured value. This change is (at least in this theory) assumed to be instantaneous and to have no mechanism that we can deduce anything further about.
 
@@ -131,9 +131,9 @@ Thus after measuring an observable, subsequent measurements of the same observab
 
 \section{Switching Basis}
 
-Having constructed a column representation of a state vector in one basis, relating to one observable, we can switch to another. The operation for doing this will depend on both the "before" and "after" bases (§\ref{sec:vectors-change-basis}). A state vector contains everything knowable about a system, including all we can know about any of its observable quantities. By re-expressing the same state vector as a different set of components in terms of the basis associated with a different observable, we recover the probability distribution for that observable.
+Having constructed a column representation of a state vector in one basis, relating to one observable, we can switch to another. The operation for doing this will depend on both the "before" and "after" bases (§\ref{sec:vectors-change-basis}). A state vector contains everything knowable about a system, including all we can know about any of its observable quantities. By re-expressing the same state vector as a different set of coordinates in terms of the basis associated with a different observable, we recover the probability distribution for that observable.
 
-The operation that switches basis will be a matrix if we're dealing with a finite-dimensional space, or something analogous to that if the space is infinite. As always when using a matrix to transform a vector's components we need to be clear on whether we want to get a different vector in the same basis or the same vector in a different basis. In this case we're talking about the latter; a state vector represents something physically real, and we're just changing how we describe it. On the other hand the choice of basis is not entirely arbitrary because a basis relates to an observable quantity.
+The operation that switches basis will be a matrix if we're dealing with a finite-dimensional space, or something analogous to that if the space is infinite. As always when using a matrix to transform a vector's coordinates we need to be clear on whether we want to get a different vector in the same basis or the same vector in a different basis. In this case we're talking about the latter; a state vector represents something physically real, and we're just changing how we describe it. On the other hand the choice of basis is not entirely arbitrary because a basis relates to an observable quantity.
 
 Any basis we change to must still be orthonormal. Therefore the transformation must preserve the inner product between any pairs of vectors, i.e. it must be unitary, and if it's represented by a matrix then the Hermitian conjugate serves as the inverse:
 
@@ -145,21 +145,21 @@ Observables have an associated operator, which maps vectors to different vectors
 
 An observable operator can be applied to a state vector as a kind of test, but it is much more powerful when we picture it applying to every possible state vector (that is, all unit vectors in the space) to find out how it affects them.
 
-In QM operators associated with observables are Hermitian or self-adjoint, meaning that for an operator $\hat{O}$:
+In QM operators associated with observables are Hermitian or self-adjoint\footnote{There is no consensus on the precise meanings of these terms. Physicists use them interchangeably for any operator on a complex Hilbert space, finite or not, whereas mathematicians reserve Hermitian for matrices acting on finite spaces. Meanwhile some are comfortable describing self-adjoint operators as \textit{symmetric} regardless of whether the space is real or complex, whereas some prefer to reserve that term for real spaces only.}, meaning that for an operator $\hat{O}$:
 
 $$\langle \vec{a}|\hat{O} \vec{b} \rangle = \langle \hat{O} \vec{a}| \vec{b} \rangle$$
 
 This has a few useful implications:
 
 \begin{itemize}
-  \item in the discrete finite vector case, operators can be represented as a matrix $O$, $O^{\dagger} = O$, or $O_{ij} = O_{ji}^*$, so the main diagonal elements are real,
-  \item regardless of representation, eigenvectors (§\ref{sec:vectors-eigen}) with distinct eigenvalues are orthogonal and complete (they span the space, so you can take a unit vector in each of these orthogonal directions and you have an orthonormal basis) and
-  \item regardless of representation, their eigenvalues are real.
+  \item In the discrete finite vector case, operators can be represented as a matrix $O$, $O^{\dagger} = O$, or $O_{ij} = O_{ji}^*$, so the main diagonal elements are real.
+  \item Regardless of representation, eigenvectors (§\ref{sec:vectors-eigen}) with distinct eigenvalues are orthogonal and complete (they span the space, so you can take a unit vector in each of these orthogonal directions and you have an orthonormal basis.)
+  \item Regardless of representation, their eigenvalues are real.
 \end{itemize}
 
 Think of the analogy of a Euclidean real plane vector space, and a symmetric $2 \times 2$ matrix $M$ operating on it. The eigenvectors are lines in the plane along which vectors do not change direction, only magnitude, when the operator is applied. Because the matrix is symmetric ($M_{ij} = M_{ji}$) these lines are orthogonal. So it is with an Hermitian operator in a complex space, with only the added complication of needing to be careful about taking the complex conjugate when comparing diagonally opposite elements.
 
-The basis vectors of the observable are just unit vectors that are eigenvectors of the operator. That is, if you apply the observable's operator to every possible state vector, a subset of them will be scaled (by a potentially complex factor) without any change to their alignment. There will be a set of orthogonal unit vectors that pass this "alignment preserving" test, and these form the basis of the observable.
+The basis vectors of the observable are just unit vectors that are eigenvectors of the operator. That is, if you apply the observable's operator to every possible state vector, a subset of them will be scaled without any change to their alignment. There will be a set of orthogonal unit vectors that pass this "alignment preserving" test, and these form the basis of the observable.
 
 In other words, quantum mechanics is substantially about:
 
@@ -181,16 +181,16 @@ For the avoidance of confusion:
 \begin{itemize}
   \item Applying the operator to the state is not the same as "making a measurement"; that is something you do in the real world, where you may not even have any knowledge of the state prior to the measurement.
   \item Applying the operator to the state does not reveal the probability of anything (but see below about finding the expectation value.)
-  \item Applying the operator to the state is not the same as changing its coordinate representation to be in the basis associated with the observable for that operator.
+  \item Applying the operator to the state is not the same as changing its numerical coordinate representation to be in the basis associated with the observable for that operator.
 \end{itemize}
 
-If you apply the operator to a state vector (which is, as always, of unit magnitude) and it is already aligned with an eigenstate, then its alignment will not be affected and its magnitude will change to experimental value you would get if you measured the observable in a system in that state. If it is not aligned with an eigenstate, the vector's alignment will change, but it will not snap into alignment with an eigenstate, which is what happens when a real world measurement is performed.
+If you apply the operator to a state vector (which is, as always, of unit magnitude) and it is already aligned with an eigenstate, then its alignment will not be affected and its magnitude will change to the experimental value you would get if you measured the observable in a system in that state. If it is not aligned with an eigenstate, the vector's alignment will change, but it will not snap into alignment with an eigenstate, which is what happens when a real world measurement is performed.
 
 But if you solve the eigenvalue equation for the operator, you will know the complete basis of the observable, along with the eigenvalue associated with each basis vector, and you can then resolve our state vector against those basis vectors. Then you will have a set of coordinates that serve as probability amplitudes for the associated (measurable) eigenvalues.
 
 In addition, there is a meaningful interpretation for the result of applying the operator for an observable to a given state vector: the inner product of the resulting vector with the original state vector gives the expectation value (§\ref{sec:expectation-value}) of the observable.
 
-While we've discussed all this in terms of more easily pictured finite-dimensional vectors with discrete complex components, all the same concepts translate to complex-valued functions of an integer or real parameter.
+While we've discussed all this in terms of more easily pictured finite-dimensional vectors with discrete complex coordinates, all the same concepts translate to complex-valued functions of an integer or real parameter.
 
 \section{Euclidean Visualisation}
 
@@ -208,7 +208,7 @@ A state $|\psi\rangle$ is a vector. \textit{It is not intrinsically in any basis
   \caption{Anonymous state vector} \label{fig:state-vector}
 \end{figure}
 
-Suppose the system can be found to be in one of two moods, $|a\rangle$ (affable) and $|b\rangle$ (bored). These will correspond to two orthonormal state vectors:
+Suppose the system can be found to be in one of two moods, $|a\rangle$ (affable) and $|b\rangle$ (bored). These will correspond to two orthonormal state vectors.
 
 \begin{figure}[h]
   \centering
@@ -396,7 +396,7 @@ We model this situation as a continuous complex-valued function of position and 
 
 By considering only one spatial dimension we can picture the wave function at one instant as a line, somewhere along which the electron could be found. At each point $x$ on the line there is an associated complex plane (visualised as normal to the line), with an arrow lying in it, pointing out from the line. This is the complex value of $\Psi$ at that position $x$ and time $t$.
 
-The complex plane should not be confused with vectors. Any given snapshot of $\Psi(x, t)$ at some instant $t$, given by a function $\psi(x)$, is itself an entire vector. The position $x$ labels a single infinitesimal component of the vector, and every such component is a complex number, which we can therefore visualise as a complex plane with an arrow on it.
+The complex plane should not be confused with vectors. Any given snapshot of $\Psi(x, t)$ at some instant $t$, given by a function $\psi(x)$, is itself an entire vector. The position $x$ labels a single infinitesimal coordinate of the vector, and every such coordinate is a complex number, which we can therefore visualise as a complex plane with an arrow on it.
 
 So for example we could picture the arrows as making a corkscrew shape, rotating around the line such that the angle depends linearly on $x$, but the modulus of the complex value (the length of the arrow) happens to be constant in this example. This is the notional wave function for a free electron (no forces acting it) with a precisely defined momentum and therefore no defined position, something never observed in reality.
 
@@ -407,7 +407,7 @@ More generally, the arrow length will also vary with $x, t$. The arrow length at
   \label{eqn:pdf}
 \end{equation}
 
-Given the electron is in some region $A$ between $x_1$ and $x_2$, the integral:
+If we integrate over a region $A$ between $x_1$ and $x_2$:
 
 $$
 \alpha =
@@ -416,7 +416,7 @@ $$
 \,dx
 $$
 
-is \textit{proportional} to the probability of finding the electron in $A$.
+the result is \textit{proportional} to the probability of finding the electron in $A$.
 
 Recall that the product of a complex number and its own complex conjugate is a real number, and here we are doing $\Psi(x)^*\Psi(x)$, using the single complex value at position $x$, so the result will be real. But the complex conjugate is not a general purpose magic way to get a real number from a product of any two complex numbers; $\Psi(x_1)^*\Psi(x_2)$ need not be real.
 
@@ -449,9 +449,7 @@ Some interesting things to note at this early stage:
 
 \section{Schrödinger Equation}
 
-Any wave can be described as a sum of many simple component waves. (It is interesting that we use the word "component"; they are also basis vectors, so in vector terminology we should use the word component to refer to the complex constant factor applied to each simple wave included in the sum).
-
-Each individual component wave has \textit{two} parameters:
+Any wave can be described as a sum of many simple component waves. Each individual component wave has \textit{two} parameters:
 
 \begin{itemize}
   \item if we nominate a fixed point in space, there is a frequency of oscillation, $\nu$
@@ -964,7 +962,7 @@ $$
 
 How does this relate to our previous discussion about observable operators (§\ref{sec:qm-operators1})? We said that the operator for an observable is Hermitian, so it has orthogonal eigenvectors, and if the state vector is equal to an eigenvector then the observable, when measured, will be certain to equal the eigenvalue of that eigenvector. Our wave function at an instant in time $\psi(x)$ is a vector. To get a coordinate from that vector, we evaluate the function for some position $x$, and so the vector has a "coordinate" for every point in space. Therefore it is a vector expressed in the "position basis".
 
-If the particle is very precisely localised, the function's value (the coordinates) will be zero everywhere except at that precise location. At the theoretical extreme, it will zero everywhere except at an infinitesimal single position (§\ref{sec:fourier-spike}). That is, it will be a basis vector in the position basis.
+If the particle is very precisely localised, the function's value (the coordinates) will be zero everywhere except at that precise location. At the theoretical extreme, it will zero everywhere except at an infinitesimal single position (§\ref{sec:fourier-spike}). That is, it will be a basis vector in the position basis.\footnote{This kind of loose talk would horrify a mathematician, who would insist that there is no such function.}
 
 An observable operator has to scale its eigenvectors by the value that would be measured for a state equal to that eigenvector. That is exactly what happens if we multiply $\psi(x)$ by $x$: if it is a pure spike (a complex value of modulus $1$) at some position $x_1$, and zero everywhere else, the spike (and thus the whole vector) will be scaled by the value $x_1$. Whereas if it isn't a pure spike (not a position eigenvector), each non-zero value will be multiplied by a different value (its own position value), which will distort the shape of the function (or equivalently, change the "direction" and magnitude of the vector).
 
@@ -1032,7 +1030,7 @@ $$
 \phi(x) = \frac{1}{\sqrt{2\pi\hbar}}e^{ipx/\hbar}
 $$
 
-That is, they are a function of position (we're still in the position basis, so the "components" of the vector are labelled by positions), but there is a momentum variable $p$ in the definition. That value of $p$ determines which basis vector of momentum this $\phi(x)$ describes.
+That is, they are a function of position (we're still in the position basis, so the "coordinates" of the vector are labelled by positions), but there is a momentum variable $p$ in the definition. That value of $p$ determines which basis vector of momentum this $\phi(x)$ describes.
 
 The inner product of this with our state vector $\psi(x)$ (which is also expressed in the position basis) is the integral:
 
@@ -1076,7 +1074,7 @@ $$
 
 And $\psi(p)^*\psi(p)$ is the mod-square of the coordinate for $p$, that is, the probability that the momentum has the value $p$. 
 
-The point is if we do change basis, we are not materially changing what is calculated. It is perhaps easier to comprehend this intuitively through the analogy with regular vectors, and by remembering that vectors are basis independent objects. The observable operator acts on the state vector, in general changing both its length and alignment (unless the state vector happens to already be an eigenstate of the observable, in which case only the length changes). But this action would be the same regardless of the basis we are working in, and so it isn't necessary to get hung up on that point. Likewise, projecting the operated-on vector back on to the original state vector, to produce a scalar expectation value, is a geometrical, basis-independent operation. The inner product depends on the relative lengths and the angle between the two vectors. As long as when we change basis we do so in a way that preserves the inner product (that is, by a \textit{unitary} operator), then the choice of basis is physically irrelevant. 
+The point is if we do change basis, we are not materially changing what is calculated. It is perhaps easier to comprehend this intuitively through the analogy with regular vectors, and by remembering that vectors are basis independent objects. The observable operator acts on the state vector, in general changing both its length and alignment (unless the state vector happens to already be an eigenstate of the observable, in which case only the length changes.\footnote{Although an eigenvalue of an operator could be complex, thus changing the length of an eigenvector but also modifying the overall phase, the eigenvalues of Hermitian operators are real, so observable operators don't cause a phase change in their eigenvectors.}) But this action would be the same regardless of the basis we are working in, and so it isn't necessary to get hung up on that point. Likewise, projecting the operated-on vector back on to the original state vector, to produce a scalar expectation value, is a geometrical, basis-independent operation. The inner product depends on the relative lengths and the angle between the two vectors. As long as when we change basis we do so in a way that preserves the inner product (that is, by a \textit{unitary} operator), then the choice of basis is physically irrelevant. 
 
 Therefore, in this recipe for the expectation value, the operator $\hat{O}$, the state vector $| \psi \rangle$ and the adjusted vector $\hat{O} | \psi \rangle$ should all be understood as having an independent existence from any choice of basis:
 
@@ -1095,14 +1093,14 @@ If the potential is a more interesting function it gets trickier. To understand 
 It is not generally true that this is possible. Even something as simple as $\Psi(x, t) = x + t$ can't separated into a product of two functions of $x$ and $t$. It's obviously true that solutions to the zero-potential Schrödinger equation can be separated, simply because we obtained it from the assumption:
 
 $$
-\Psi(x, t) = \exp \left[ {\frac{i(px - Et)}{\hbar}} \right]
+\Psi(x, t) = \exp \left( {\frac{i[px - Et]}{\hbar}} \right)
 $$
 
 which can easily be written as the product of two separate functions of $x$ and $t$:
 
 $$
-= \exp \left[ {\frac{ipx}{\hbar}} \right]
-\exp \left[ {\frac{-iEt}{\hbar}} \right]
+= \exp \left( {\frac{ipx}{\hbar}} \right)
+\exp \left( {\frac{-iEt}{\hbar}} \right)
 $$
 
 But when a potential is included, and it is some complex function of $x$ and $t$, that is no longer necessarily possible. But we can still discover some useful things by assuming the potential does not depend on $t$, and that is an acceptable approximation. So the whole time-dependent wave function is a product of two parts:
@@ -1113,7 +1111,8 @@ Taking partials becomes ordinary differentiation, because the other factor is co
 
 $$
 \frac{\partial \Psi}{\partial t}
-= \psi \frac{d \phi}{d t},
+= \psi \frac{d \phi}{d t}
+\,\,\,\, , \,\,\,\,
 \frac{\partial^2 \Psi}{\partial x^2}
 = \frac{d^2 \psi}{d x^2}  \phi
 $$
@@ -1206,7 +1205,7 @@ And that factor is really just $e^{i\theta}$ with the angle being $-Et/\hbar$, s
 
 And if the modulus isn't changing, the probability density isn't changing, so the particle isn't moving. Hence solutions of this type are known as \textit{stationary states}. The expectation value of the position is fixed, and so all other observables' expectation values are also constant, including energy.
 
-The shape of a stationary state, as defined by the $x$-dependent factor, is a fixed structure which never deforms, but just tumbles over and over as time passes, like it's rotating on a spit, although the rate of rotation has $\hbar$ on the bottom of the fraction, which is about $10^-34$, so it's rotating extremely quickly.
+The shape of a stationary state, as defined by the $x$-dependent factor, is a fixed structure which never deforms, but just tumbles over and over as time passes, like it's rotating on a spit, although the rate of rotation has $\hbar$ on the bottom of the fraction, which is about $10^{-34}$, so it's rotating extremely quickly.
 
 \section{Bound States}
 
@@ -1293,8 +1292,6 @@ $$
 
 If we knew a particle's exact location, $\alpha$, our wave function of space $\psi(x)$ would have a single spike where $x = \alpha$ and be zero everywhere else. Alternatively if knew its exact momentum (and $p=h/\lambda$) our wave function would be a wave with a single wavelength. So we're dealing with Fourier transforms. At these extremes of certainty/uncertainty, one domain has a simple wave of infinite extent, and the other domain has a spike representing that wave. It works either way round.
 
-Thus far we've been working in "position space", using functions of $x$, but alternatively we could work in "momentum space", where the functions are $\phi(p)$. If we knew a particle's exact momentum, $\phi(p)$ would be a spike, whereas if we knew its exact position, $\phi(p)$ would be a single-component wave.
-
 \section{Energy Degeneracy}
 
 Given two eigenvectors of an Hermitian operator, if they have different eigenvalues then they are orthogonal (intuitively they can't be colinear because a linear operator can't apply a different scaling to vectors that are colinear). But what about the converse? If they are orthogonal do they necessarily have different eigenvalues?
@@ -1336,5 +1333,152 @@ So while we can say confidently that if two eigenvectors of an Hermitian operato
 
 Up to this point we've been mostly considering a specific application of the general model of QM, where the classical concepts of position and momentum, which are the building blocks for anything else we might measure, are represented as functions of a continuous variable. The function's value is a complex number that can be mod-squared to get the probability density of that variable. There is something intuitive about this in the space domain, which is why we start with that: it makes us think of an electron as being spread out through space, and having a density that varies. Only when some interaction occurs does it appear to be concentrated entirely at one point. But the momentum of the electron is modelled the same way, and this is not by itself very intuitive. It only becomes a little clearer when we realise that the space representation is a wave, and we can model waves as a sum of simple component waves with a set of frequencies. The momentum function is the Fourier transform of the position function.
 
-But now we're going to consider intrinsic angular momentum. This is introduced to explain how electrons are deflected in a magnetic field, behaviour which is classically suggestive of the electron spinning around an axis, although that physical interpretation seems impossible because the electron's radius (if it is non-zero) is extremely small. Antipodal points on the surface of the electron would have to be moving relative to each other faster than the speed of light. Pauli suggested glossing over this question and just accepting that electrons have an intrinsic angular momentum that cannot be interpreted in some comfortable classical way.
+But now we're going to consider intrinsic angular momentum. This is introduced to explain how electrons are deflected in a magnetic field, behaviour which is classically suggestive of the electron being made of charged matter and spinning around an axis, although that physical interpretation seems impossible because the electron's radius (if it is non-zero) is extremely small. Antipodal points on the surface of the electron would have to be moving relative to each other faster than the speed of light. Pauli suggested glossing over this question and just accepting that electrons have an intrinsic angular momentum that cannot be interpreted in some comfortable classical way.
+
+One shorthand for this is to simply say that an electron is a magnet. It therefore has something akin to an orientation, an arrow sticking out of it that points in some direction, giving it a magnetic moment in that direction. The way we discover the alignment of an electron is by sending it through a uniform magnetic field. The electron's internal magnetic interacts with the field and the electron experiences a force.
+
+We're going to simplify things by considering an idealised particle in place of the electron, because a real electron has an electric charge, and so constitutes an electric current which has its own magnetic interaction. Our idealised particle will just be a tiny magnet, and all its interaction with magnetic fields will be due only to its intrinsic magnetic moment.\footnote{A silver atom was used in the original experiments, and it is a close approximation to this idealised particle.}
+
+The magnetic fields we're going to use will have the interesting property that, rather than being simply uniform, they will increase in strength along a direction we can choose. This gradient will cause any magnet of moment $\vec{\mu}$ passing through to experience a force:
+
+$$
+\vec{F} = \grad(\vec{\mu} \cdot \vec{B})
+$$
+
+The variation in the field will be in one direction, say the $z$-direction, so there is only one significant component to the force:
+
+$$
+F_z = \frac{\partial}{\partial z}(\mu_z B_z)
+= \mu_z \frac{\partial B_z}{\partial z}
+$$
+
+Clearly the force is aligned with $z$, and its strength only depends on the $z$-component of the particle's magnetic moment, which should be a continuously varying quantity that can be positive or negative, meaning that the force could be of a range of strengths and may be directed either way along our chosen $z$-axis.
+
+Classically we'd expect the strength of the force to depend on the relative orientation of particles's internal magnet and the magnetic field direction. So a beam of randomly orientated particles fired into the magnetic field would be expected to fan out in a continuum of different directions.
+
+But this is not what happens. Instead the beam splits into just two concentrated beams. It's as if every particle happened to be pre-aligned with the axis of our magnetic field's gradient. And yet this can't be true, because we can rotate our magnetic field around the beam, and this causes the split output beams to rotate with it.
+
+Instead we might posit that the particles somehow instantaneously snap into alignment with the field as they interact with it. Even this intuition is not going to hold up for long, but it's a start. Just don't get too enamoured of it -- in Quantum Mechanics, there always seems to be another experiment that overturns whatever comfortingly simple explanation you just came up with.
+
+If we put another similar magnetic field in the path of one of the beams, with the exact same alignment, it's like we're repeating the same experiment, except this time there is only one output beam, implying that its input consists of particles all aligned the same way. All particles from the input beam are accounted for in the single output beam. This is consistent with our theory that the particles are snapping into alignment as they interact with the first field. If we slightly rotate the second magnetic field around its input beam, the other output beam appears, initially with very few particles.
+
+Once we've rotated the field by 90\textdegree, both beams contain equal numbers of particles. So if the snapping theory is correct, the particle chooses which of two opposing directions to snap into based on the angle between its current direction and the gradient of the magnetic field, and we can gradually adjust the probabilities by gradually rotating the field.
+
+The way we model the alignment state of an particle is with the simplest possible QM state space, having just two dimensions. Recall our fanciful state space for a system that can measured to be in exactly one of two moods, or else listening two exactly one of two musical genres. The moods were represented by state vectors $|a\rangle$ (affable) and $|b\rangle$ (bored), and the genres by state vectors $|c\rangle$ (country) and $|d\rangle$ (disco). 
+
+\begin{figure}[h]
+  \centering
+    \begin{tikzpicture}
+      \draw (0,0) circle (1);
+      \draw[dashed,->] (0,0) -- (1,0) node[anchor=west] {$|b\rangle$};
+      \draw[dashed,->] (0,0) -- (0,1) node[anchor=south] {$|a\rangle$};
+      \draw[dashed,->] (0,0) -- (-0.707,0.707) node[anchor=south east] {$|c\rangle$};
+      \draw[dashed,->] (0,0) -- (0.707,0.707) node[anchor=south west] {$|d\rangle$};
+    \end{tikzpicture}
+  \centering
+  \caption{Mood and genre} \label{fig:mood-and-genre-recap}
+\end{figure}
+
+So each observable has two special unit state vectors which are mutually orthogonal and which span the entire space, meaning that you can make any state vector by a linear combination of the two state vectors of one observable.
+
+It follows that the genre state vectors can be expressed in terms of the mood state vectors. This means that a genre vector is absolutely not orthogonal to either mood vector, but is a blend of them, in fact a perfectly balanced blend:
+
+$$
+|c\rangle = \frac{1}{\sqrt{2}}(|a\rangle - |b\rangle)
+$$
+$$
+|d\rangle = \frac{1}{\sqrt{2}}(|a\rangle + |b\rangle)
+$$
+
+We have to use the factor $1/\sqrt{2}$ to ensure that the genre vectors are unit vectors.
+
+This picture gets us started on a representation for the particle's alignment state. First let's get our bearings in physical space, while not leaping to any conclusions about the quantum state space, which is very different.
+
+Pick any direction in physical space and call it "up", and the opposite direction "down". These are the positive and negative directions along one dimension in physical space. But physical space is three dimensional: there's an orthogonal spatial dimension with a negative direction "left" and position direction "right", and a third orthogonal dimension with negative direction "back" and positive direction "forwards".
+
+Each of the three dimensions is an observable with two possible values that can be determined experimentally, and we need to fit their corresponding state vectors into the quantum state space. $|u\rangle$ (up) and $|d\rangle$ (down), being distinct values of one observable, are like the mood state vectors $|a\rangle$ (affable) and $|b\rangle$ (bored). They must be represented by orthogonal state vectors. Think carefully about this: "up" and "down" in physical space point in exactly opposite directions, but their quantum state vectors do not; they are at right angles.
+
+Hold a pencil pointing up to begin with, and then slowly rotate it to the right. Continue rotating until it's pointing straight down. Keep going round to the left and finally back to the starting position. Along its journey, the pencil visited these states, in this order: $|u\rangle$, $|r\rangle$, $|d\rangle$, $|l\rangle$.
+
+\begin{figure}[h]    
+  \caption{Rotating the pencil}
+  \begin{subfigure}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \draw (0,0) circle (1);
+        \draw[dashed,->] (0,0) -- (0,1) node[anchor=south] {"up"};
+        \draw[dashed,->] (0,0) -- (1,0) node[anchor=west] {"right"};
+        \draw[dashed,->] (0,0) -- (0,-1) node[anchor=north] {"down"};
+        \draw[dashed,->] (0,0) -- (-1,0) node[anchor=east] {"left"};
+      \end{tikzpicture}
+  \caption{Physical space} \label{fig:pencil-physical}
+  \end{subfigure}
+  \begin{subfigure}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \draw (0,0) circle (1);
+        \draw[dashed,->] (0,0) -- (-0.707,0.707) node[anchor=south east] {$|u\rangle$};
+        \draw[dashed,->] (0,0) -- (0,1) node[anchor=south] {$|r\rangle$};
+        \draw[dashed,->] (0,0) -- (0.707,0.707) node[anchor=south west] {$|d\rangle$};
+        \draw[dashed,->] (0,0) -- (1,0) node[anchor=west] {$|l\rangle$};
+        \draw[dashed,->] (0,0) -- (0.707,-0.707) node[anchor=north west] {$|u\rangle$ ?};
+    \end{tikzpicture}
+      \caption{Quantum space} \label{fig:pencil-quantum}
+  \end{subfigure}
+\end{figure}
+
+Repeat the rotation and this time look at how the state vector rotates. A rotation by $\theta$ in physical space corresponds to a rotation by $\theta/2$ in the quantum state space.
+
+The first alarming conclusion is that when the pencil gets back to the "up" state, the state vector is not where it started. In fact, it has rotated by 180\textdegree! This means that each physical direction the pencil visited corresponded to a unique \textit{alignment} in the quantum state space. The state vector can be thought of as pointing either way along that alignment.
+
+The second issue is that we only covered two of the three dimensions of physical space and yet we've run out of places to put the state vectors for $|b\rangle$ (back) and $|f\rangle$ (forwards). The state vector $|b\rangle$ must relate to $|u\rangle$ in the same way that $|l\rangle$ does, because there's nothing special about any direction. The directions opposite to the existing state vectors already mean the same thing as those state vectors; only the alignment matters.
+
+The solution is that the quantum state space is not real, but complex. Referring to our diagram, we can express $|l\rangle$ and $|r\rangle$ in the up/down basis like this:
+
+$$
+|l\rangle = \frac{1}{\sqrt{2}}(|d\rangle - |u\rangle)
+$$
+$$
+|r\rangle = \frac{1}{\sqrt{2}}(|d\rangle + |u\rangle)
+$$
+
+We can express $|f\rangle$ and $|b\rangle$ in the same basis, but we need to use complex coefficients:
+
+$$
+|f\rangle = \frac{1}{\sqrt{2}}(|d\rangle + i|u\rangle)
+$$
+$$
+|b\rangle = \frac{1}{\sqrt{2}}(|d\rangle - i|u\rangle)
+$$
+
+Our first insight, that opposite directions in state space correspond to the same physical direction, can now be broadened. We realised physically measurable states correspond to alignments, and then (thinking about a real vector space) we said that a given alignment has two directions. But in a complex vector space, scalars are complex. You can scale a vector by (for example) $i$ and this doesn't change its alignment either. The set of unitary complex numbers is infinite, forming the unit circle in the complex plane. So rather than just two directions per alignment, there's an infinite continuum of them. We can say that state vectors that differ by a complex factor of modulus $1$ correspond to the same measurable direction in physical space. So $|u\rangle$ and $-|u\rangle$ and $i|u\rangle$ and $-i|u\rangle$ all represent the same physical direction, "up". More generally $e^{i\theta}|u\rangle$ represents the same physical direction for any $\theta$.
+
+It may be tempting to jump to the conclusion that vectors in a complex space are just like real vectors but with an extra single overall phase ingredient, one more degree of freedom (like twisting the pencil without reorientating it at all). But consider the sum:
+
+$$
+|f\rangle = \frac{1}{\sqrt{2}}(|d\rangle + i|u\rangle)
+$$
+
+There's only an imaginary factor in the $|u\rangle$ component. If you tried pulling out an overall phase factor $i$:
+
+$$
+|f\rangle = \frac{i}{\sqrt{2}}(-i|d\rangle + |u\rangle)
+$$
+
+the $i$ factor simply jumps to the $|d\rangle$ component. Does this mean that the resultant vector is "complex" in a way that doesn't apply to the ingredients $|u\rangle$ and $|d\rangle$? Not at all. If you expressed $|u\rangle$ in the front/back basis, a similar complex mix of phases would be required. It's not very different from a real vector space in which $\vec{a} = -\vec{b}$; the two vectors are colinear, pointing in opposite directions, and the way we've written it makes it look like $\vec{a}$ is the "negative" of $\vec{b}$, but it could equally well be written the other way round. Any vector may appear to have a mixture of negative, positive, imaginary or real ingredients depending on the basis we choose to express it in.
+
+A two dimensional complex space requires four real numbers to describe a vector in components, because the complex components have a real part and an imaginary part (or a modulus and phase). So how does any of this match up with the three dimensions of physical space?
+
+Grab that pencil again. Although we can find three orthogonal directions in physical space, we don't actually need three coordinates to describe the direction the pencil is pointing. The length of the pencil is constant and we hold it by the blunt end in a fixed spot. As we wave the pencil in any direction, the tip of the pencil moves around on the surface of a sphere whose radius is the length of the pencil. We only need two numbers to locate a point on a spherical surface (a $2$-sphere) embedded in 3-dimensional space, because the tip of the pencil is not moving freely throughout all of space. It's actually constrained to a 2-dimensional surface.
+
+So in the quantum state space we have four real numbers to play with, but two of them are constrained by the twin facts that:
+
+\begin{itemize}
+  \item the length of state vectors is always normalised to $1$, and
+  \item the overall unitary complex factor of a state vector doesn't change what physical direction it represents. 
+\end{itemize}
+
+This leaves us with two real numbers to carry the information about the direction of the pencil, which is exactly what we need.
+
+So why not just use a 2-dimensional real vector space to represent the orientation of an particle? Although the overall unitary complex factor doesn't affect the physical direction, that doesn't mean it is entirely physically insignificant; as we consider more examples, we'll see that (just as with the position or momentum in one-dimension particle motion) there are actually physically detectable effects that depend on the state vector's overall phase. One very strange implication of this is that when you rotate the pencil all the way round to the starting orientation, it is now in a different quantum state (it contains a lot of particles that you just rotated!) To restore it to its original state, you need to execute a \textit{second} rotation all the way round.
 

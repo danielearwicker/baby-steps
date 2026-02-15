@@ -23,7 +23,7 @@ The first way to think of vectors is by visualising them as arrows that have a d
     \caption{Adding arrows.} \label{fig:vector-addition}
 \end{figure}
 
-Scaling a vector (multiplying it by a number) just alters its length without changing its direction, e.g. multiply by $0.5$ to shrink the vector to half its prior length.
+Scaling a vector (multiplying it by a number) just alters its length without changing its direction, e.g. scale by $0.5$ to shrink the vector to half its prior length.
 
 We also learn about the dot product, a scalar-valued operator between two vectors, $\vec{p}\cdot\vec{q}$. If the two vectors $\vec{p}$ and $\vec{q}$ are separated by angle $\theta$, and we know the magnitude (length) of each vector, e.g. $\|\vec{p}\|$, then:
 
@@ -85,15 +85,15 @@ But however abstract things get, it can often be helpful to remember that you ca
 
 The primary intuition we've been implicitly relying on so far is \textit{orthonormality}. With arrow vectors we can simply see when they are orthogonal, or to be more precise we can measure the angle between vectors, and we can measure their lengths, and we can choose a unit length, and so on. We can simply draw a unit vector, and then draw another unit vector that is orthogonal to it.
 
-Likewise from the column vectors we have no difficult choosing a set of orthonormal vectors, the \textit{standard basis}. They are \textit{one-hot}, all values zero except for a single $1$. In an $n$-dimensional space there can only be $n$ such distinct vectors.
+Likewise from the column vectors we have no difficult choosing a set of orthonormal vectors, the \textit{standard basis}. The easiest way to do this is to pick out the \textit{one-hot} vectors, with all values zero except for a single $1$. In an $n$-dimensional space there can only be $n$ such distinct vectors.
 
-None of these intuitive leaps will be available with abstract vector spaces, and orthonormality cannot be used as an elemental building block. We will build a quite rich set of more fundamental concepts before we invent orthonormality.
+None of these intuitive leaps will be available with abstract vector spaces, and orthonormality cannot be used as an elemental building block. We will build a quite rich set of more fundamental concepts before we invent orthonormality. To begin with, we will give up the idea of a vector even having a length.
 
 By the way, when in physics we speak of a \textit{vector field}, that is, a vector at each point in space, such as wind speed and direction, or the electric field, we visualise arrows spread out over space. But the value of the field in two different places may be the same.
 
 This is obvious (and less confusing) in the case of a scalar field, such as temperature. At two different locations in a room, the temperature may be the same. It's a numerical value that varies from place to place, and the same number may appear in two places.
 
-But exactly the same is true for a vector field. If the wind is some particular speed and direction at two different places on the map, we say the vectors are equal: they are the \textit{same vector}. From the point of view of considering their equality, it is irrelevant that they are associated with different locations in physical space. In vector space, there is one vector with that direction and length.\footnote{Although it will turn out that the luxury of using the same vector space for every point in physical space is only afforded to us if we assume that physical space is flat, which we will for now.}
+But exactly the same is true for a vector field over the plane. If the wind is some particular speed and direction at two different places on the map, we say the vectors are equal: they are the \textit{same vector}. When considering their equality, it is irrelevant that they are associated with different locations in physical space.
 
 On to the abstract stuff.
 
@@ -205,7 +205,7 @@ $$
 
 Eventually we may find (assuming the space is finite dimensional) that it is not possible to extend our linearly independent set $\vec{a}, \vec{b}, \vec{c}, ...$ any further. The size of this set tells us how many dimensions the space has, and these vectors are said to \textit{span} the space.
 
-The vitally important thing to realise about this is that at no point have we said that these vectors are orthogonal. We haven't even defined what that means yet. We've only defined the property of linear independence. Nevertheless we have arrived at the idea of a coordinate grid; it's just that our grid may be awkwardly slanted, made of identical parallelogram tiles rather than identical square tiles.
+The vitally important thing to realise about this is that at no point have we said that these vectors are orthogonal. We haven't even defined what that means yet. We've only defined the property of linear independence (of not being exactly colinear.) Nevertheless we have arrived at the idea of a coordinate grid, with the $x$, $y$... coefficients being the coordinates; it's just that our grid may be awkwardly slanted, made of identical parallelogram tiles rather than identical square tiles.
 
 So we don't have to keep choosing letters, we will label each dimension with an integer.\footnote{Note that this use of integers is quite wasteful, as usually they can be added, multiplied, etc. but we will just be using integers as mere labels.} The set of linearly independent vectors that we can use to construct any other vector in the space is called a \textit{basis}. The basis vectors are traditionally written as $\vec{e}_n$, where $n$ is often 1-based (although in Relativity it may be 0-based; this is purely a notational convention and makes no arithmetic difference). The scalar coefficients, which we will call coordinates, that construct a given vector $\vec{r}$ can also be numbered, conventionally with superscript $r^n$:
 
@@ -218,9 +218,15 @@ So we don't have to keep choosing letters, we will label each dimension with an 
 
 The use of a superscript index is obviously asking for trouble given that it looks like we're raising $r$ to a power\footnote{or possibly indicating an undetermined footnote?}, but this notation is universal in physics so we may as well get used to it.
 
+Another clashing problem is the word \textit{component}, often used in two different senses. On the one hand we can talk about resolving a vector $\vec{r}$ into its components, which are vectors. If one of the basis vectors is $\vec{e_1}$, and $r^1$ is the coordinate in the direction of $\vec{e_1}$, then $r^1 \vec{e_1}$ is the component vector of $\vec{r}$ in the direction of $\vec{e_1}$. By summing all the components, we build the vector $\vec{r}$.
+
+But it is also pretty commonplace to describe the scalars $r^n$ themselves as the components of the vector $\vec{r}$ in the basis $\vec{e_n}$. There's no way around this because this double meaning is everywhere in textbooks. People say component to mean either a vector or a scalar, and you just have to get used to figuring out which they mean.
+
+Given that we already have the word coordinate to mean the scalars $r^n$, we can reserve the word component to mean the vectors $r^n \vec{e_n}$, but bear in mind that this kind of consistency is not universally observed.
+
 Having chosen a basis, we can describe any vector with a tuple of coordinates $r^n$, so any vector space of dimension $N$ whose scalar field is $\mathbb{F}$ must be isomorphic with $\mathbb{F}^N$. In other words, all vectors can be described by column vectors, but the numbers in the columns will depend on our choice of basis.
 
-But the laws of physics cannot possibly care what basis we choose, so we need ways of obtaining numeric facts about vectors that do not depend on the choice of basis.
+But the laws of physics cannot possibly care what basis we choose, so we need ways of obtaining numeric facts about vectors that do not depend on the choice of basis. One way to think about this is that some scalars are numerical facts about the world, known as invariants, but some other scalars are just artefacts arising from our choice of basis. In physics, we need a way to compute the first kind from the second kind.
 
 \section{Covectors} \label{covector}
 
@@ -257,15 +263,34 @@ Think of a scalar-valued function of a vector. That is, a black box with a singl
     \caption{Function $f$ with a single slot accepting a vector} \label{fig:1-slot-box}
 \end{figure}
 
-More precisely, this machine is a mapping from the vector space to the real numbers. There are infinitely many such mappings and they could be arbitrarily complicated. We will restrict ourselves to a simple subset of these mappings.
+More precisely, this machine is a mapping from the vector space to the real numbers. There are infinitely many such mappings and they could be arbitrarily complicated.
 
-First, we note that it is possible to define the addition operator on mappings:
+We're only going to be concerned here with \textit{linear mappings}. This means that all our mappings $f$ must satisfy the following two properties:
+
+\begin{enumerate}
+    \item $f(\vec{a} + \vec{b}) = f(\vec{a}) + f(\vec{b})$
+    \item $f(x \vec{a}) = x f(\vec{a})$
+\end{enumerate}
+
+In other words, it should make no difference whether we add two vectors and then put the resulting vector through the mapping to obtain a scalar, or we pass them individually through the mapping and add the resulting scalars. The result must be the same. Likewise, it should make no difference whether we scale the vector or the result of the mapping. This rules out some very useful mappings; for example, on the vector space $\mathbb{R}^2$, we can define the mapping:
+
+$$
+L(a) = \sqrt{ \sum_i (a^i)^2 }
+$$
+
+(Note the necessary but awkward use of parentheses to distinguish between the superscript $i$ serving as an index and the superscript $2$, an exponent.)
+
+This is the familiar Pythagorean formula, so if $a$ is $(3, 4)$, the result is $5$. The coordinates are the lengths of the short sides of a right-angle triangle, and the result is the length of the hypotenuse. This is a mapping from $\mathbb{R}^2$ to $\mathbb{R}$.
+
+If we scale result by $2$, we get $10$, and if we scale the input's coordinates by $2$, we get $10$ again. So is it linear? Not so fast! Try scaling by $-1$ instead, which gives us $-5$ if we scale the result, but $5$ if we scale the input. So this mapping is not linear. 
+
+Next, we note that it is possible to define the addition operator on mappings:
 
 $$
 f(\vec{a}) = g(\vec{a}) + h(\vec{a})
 $$
 
-That is, it could be that inside the box $f$, there are concealed two boxes $g$ and $h$. When $f$ receives an input vector $\vec{a}$, it passes it to both $g$ and $h$, and adds their results together to obtain its own result. Note that we haven't yet restricted the complexity of $g$ and $h$; we have no idea what they do to produce their individual results.
+That is, it could be that inside the box $f$, there are concealed two boxes $g$ and $h$. When $f$ receives an input vector $\vec{a}$, it passes it to both $g$ and $h$, and adds their results together to obtain its own result.
 
 Likewise, it is possible to scale a mapping by a factor $x$:
 
@@ -273,9 +298,17 @@ $$
 f(\vec{a}) = x g(\vec{a})
 $$
 
-The trick to restricting the complexity of our set of possible mappings is to require that they comply with the rules of a vector space. Not only can they be added and scaled, but combinations of these operations produce consistent results. But if we do that, then we have also ensured that the set of allowed mappings actually \textit{is} a vector space. Every mapping we care about must be a vector chosen from that space.
+We've defined these operations in a pointwise fashion, meaning that we evaluate $g$ and $h$ only for the input $\vec{a}$ in order to produce the value of $f(\vec{a})$. There's no "sniffing around" at places nearby to $\vec{a}$ to influence the result. We could use these definitions even if we hadn't limited ourselves to linear mappings.
 
-Note that we haven't proven that every possible mapping is a vector. We've merely restricted ourselves to only considering a subset of mappings, those that can be scaled and added to find other mappings from the same restricted subset, such that scaling a mapping by 5 is the same as scaling that mapping by 2 and separately by 3 and then adding those two scaled mappings.
+We can also define the zero mapping:
+
+$$
+0(\vec{a}) = 0
+$$
+
+Whatever vector it is given, the answer is zero. And we can define the additive inverse of a mapping, which is just the mapping that negates the result of the original mapping.
+
+With this equipment in place, we have all the ingredients of \textit{another vector space}. It can be shown that when we pointwise-add two linear mappings, or pointwise-scale a linear mapping, the resulting mapping is also a linear mapping, so these operations are closed over the set. All the other requirements of a vector space can also be show to hold.
 
 If we label the original vector space $V$ then this associated vector space of mappings $V \mapsto \mathbb{R}$ is written as $V^*$ and is called the dual space of $V$. All we've discovered so far about $V$ also applies to $V^*$, including the idea of a set of mappings being linearly independent, which means we can select a basis of mappings chosen from $V^*$ and thus construct any mapping from it by scaling and adding the basis mappings. That's quite a leap, so pause to digest it. The moment you discover a set of objects is a vector space, you know you can choose a basis, and then describe anything in that space in terms of a weighted sum of that basis.
 
@@ -288,9 +321,9 @@ We call the mappings taken from $V^*$ \textit{covectors}. The basis covectors ar
     \end{split}
 \end{equation}
 
-It follows that, just as $N$-dimensional vectors are isomorphic with columns of $N$ scalars, so too are their associated covectors.
+It follows that, just as $N$-dimensional vectors are isomorphic with (can be fully represented by) columns of $N$ scalars, so too are their associated covectors.
 
-It is sometimes suggested that all vector spaces have a dual space, as if this was some property hiding in the definition of a vector space. But in truth we have conjured the dual space into existence, first by inventing the idea of a mapping $V \mapsto \mathbb{R}$, then by defining operations on those mappings, then by considering the set of all possible mappings, and finally by imposing the rules of vector spaces, which restricts us to a subset of the possible mappings that we named covectors. There is nothing particularly automatic about this. We made it happen by being curious about ways in which vectors might be mapped to scalars.
+It is sometimes suggested that all vector spaces have a dual space, as if this was some property hiding in the definition of a vector space. But in truth we have conjured the dual space into existence, first by inventing the idea of a mapping $V \mapsto \mathbb{R}$, then by restricting ourselves to linear mappings, then defining operations on those mappings. There is nothing particularly automatic about this. We made it happen by being curious about ways in which vectors might be mapped to scalars.
 
 Another important point to note is that as covectors are vectors, the operation we've been writing as $f(\vec{a})$ is in fact much more symmetrical than that notation implies. We combine a vector from $V$ and a covector from $V^*$ and this produces a scalar from $\mathbb{R}$. 
 
@@ -346,7 +379,7 @@ $$
 f_j = \sum_i f_i \delta \indices{^i_j}
 $$
 
-So if the $f_j$ are indeed the components of the covector, discovered by making it act on the basis vectors, we've discovered the relationship that must exist between the dual bases:
+So if the $f_j$ are indeed the coordinates of the covector, discovered by making it act on the basis vectors, we've discovered the relationship that must exist between the dual bases:
 
 \begin{equation}
     \langle \vec{e}^i,\vec{e}_j\rangle = \delta\indices{^i_j}
@@ -757,13 +790,13 @@ Each contraction ties two indices together and eliminates them, so this last dou
 
 \section{Einstein notation}
 
-We have been following a rule where basis vectors are given subscript indices, while vector components are given superscript indices. Then we do the opposite with basis covectors and components. This means that whenever one basis object acts on another:
+We have been following a rule where basis vectors are given subscript indices, while vector coordinates are given superscript indices. Then we do the opposite with basis covectors and coordinates. This means that whenever one basis object acts on another:
 
 $$
 \langle e^i, e_j \rangle
 $$
 
-they always have opposing index positions. This is mirrored exactly by the way components are allowed to be multiplied. We've found that the dot product is only valid between the coordinates of a vector and a covector, so a product like this inside a summation, where we have repeated the same index variable:
+they always have opposing index positions. This is mirrored exactly by the way coordinates are allowed to be multiplied. We've found that the dot product is only valid between the coordinates of a vector and a covector, so a product like this inside a summation, where we have repeated the same index variable:
 
 $$
 a^i b_i
@@ -787,7 +820,7 @@ $$
 b^\mu = \sum_{\nu} O\indices{^\mu_\nu} a^\nu
 $$
 
-The $\nu$ index is repeated up/down in the way that is characteristic of all summation variables, but $\mu$ is introduced on the left to indicate that the expression computes the value of one component of several that represent a vector (we know it's a vector rather than a covector because the index is up).
+The $\nu$ index is repeated up/down in the way that is characteristic of all summation variables, but $\mu$ is introduced on the left to indicate that the expression computes the value of one coordinate of several that represent a vector (we know it's a vector rather than a covector because the index is up).
 
 From these patterns Einstein deduced something tremendously helpful: it is completely unnecessary to write the summation symbol and state what the summation index variables are! If an expression consisting of indexed quantities multiplied together contains exactly two references to the same index, once up and once down, then that index is a summation index.
 
@@ -1091,7 +1124,7 @@ Consider a reflection (call it $M$ for mirror):
 
 $$M = \begin{bmatrix}1 & 0 \\ 0 & -1\end{bmatrix}$$
 
-If we take the first coordinate to be horizontal and the second vertical, this flips the input vector to point up rather than down, or vice versa. So it seems that all vectors have their direction changed and are not eigenvectors, but there exceptions: vectors that lie on the horizontal axis and have no vertical component will be unaffected, i.e. they will be eigenvectors with eigenvalue 1. Also vectors that lie on the vertical axis will have their direction changed, but to the exact opposite direction (their alignment does not change), which is the same as being scaled by -1, and so these too are eigenvectors, but with eigenvalue -1.
+If we take the first coordinate to be horizontal and the second vertical, this flips the input vector to point up rather than down, or vice versa. So it seems that all vectors have their direction changed and are not eigenvectors, but there exceptions: vectors that lie on the horizontal axis and have no vertical coordinate will be unaffected, i.e. they will be eigenvectors with eigenvalue 1. Also vectors that lie on the vertical axis will have their direction changed, but to the exact opposite direction (their alignment does not change), which is the same as being scaled by -1, and so these too are eigenvectors, but with eigenvalue -1.
 
 So within the space of input vectors, there is a subspace (the \textit{eigenspace}) of eigenvectors, and $M$ has an intrinsic orientation, as there is a particular line around which reflection occurs.
 
@@ -1639,13 +1672,13 @@ Generalising this to the more complicated kinds of $T$ scalar field, the scalar-
 
 The displacement will be described by a number in each dimension: a relative coordinate change associated with each position basis vector. If we only allow one coordinate, $x^i$, to vary and leave the others constant, $dT$ becomes a scalar-valued function of a single variable, $x^i$, which if plotted would simply be a line through the origin (i.e. it is $0$ when its parameter is $0$). It is therefore characterised entirely by a single number, its gradient, the number by which it multiplies its input.
 
-The function $T$ is of course not necessarily linear in $x^i$. Following the Maclaurin method (§\ref{sec:unit-circle-maclaurin}), we assume that whatever the function is, it can be expressed as a polynomial series\footnote{Warning! In this context we're dealing with scalar variables and $x^n$ briefly means "$x$ to the power of $n$", not the $n$th component of $\vec{x}$.} of the form $d_n x^n$. The first term ($n = 0$, $x^0 = 1$) is just a constant: the value of $T$ at the current position. We will be subtracting this from the total, because we want to know how $T$ changes as we move away from that position. The terms $n > 1$ involve $x^2$, $x^3$ and so on. As $x$ becomes arbitrarily small, these terms plummet in significance very rapidly. So that leaves just the term $d_1 x$, and $d_1$ is the only number we need to describe the tangent line to the curve of the function at the current position. We can therefore discard its subscript label, and replace it with $i$, as it's the sole outcome of this analysis when varying the $i$th component of $\vec{x}$:
+The function $T$ is of course not necessarily linear in $x^i$. Following the Maclaurin method (§\ref{sec:unit-circle-maclaurin}), we assume that whatever the function is, it can be expressed as a polynomial series\footnote{Warning! In this context we're dealing with scalar variables and $x^n$ briefly means "$x$ to the power of $n$", not the $n$th coordinate of $\vec{x}$.} of the form $d_n x^n$. The first term ($n = 0$, $x^0 = 1$) is just a constant: the value of $T$ at the current position. We will be subtracting this from the total, because we want to know how $T$ changes as we move away from that position. The terms $n > 1$ involve $x^2$, $x^3$ and so on. As $x$ becomes arbitrarily small, these terms plummet in significance very rapidly. So that leaves just the term $d_1 x$, and $d_1$ is the only number we need to describe the tangent line to the curve of the function at the current position. We can therefore discard its subscript label, and replace it with $i$, as it's the sole outcome of this analysis when varying the $i$th coordinate of $\vec{x}$:
 
 $$
 \frac{\partial T(\vec{x})}{\partial x^i} = d_i
 $$
 
-We carry out this analysis $i$ times to get the linear gradient number for all $i$ components, and thanks to linearity we can simply add them to get the total change in $F$:
+We carry out this analysis $i$ times to get the linear gradient number for all $i$ coordinates, and thanks to linearity we can simply add them to get the total change in $F$:
 
 $$
 d T(\vec{x}) = \sum_i \frac{\partial T(\vec{x})}{\partial x^i}
@@ -1653,7 +1686,7 @@ d T(\vec{x}) = \sum_i \frac{\partial T(\vec{x})}{\partial x^i}
 = \langle \vec{d} , \vec{x} \rangle
 $$
 
-Once again it's just the covector $\vec{d}$ described by coordinates $d_i$, acting on the displacement vector $\vec{x}$ described by coordinates $x^i$. Then to obtain the components of the gradient vector, which is the dual of $d$, we apply the raising metric $g^{\mu\nu}$ to $d$.
+Once again it's just the covector $\vec{d}$ described by coordinates $d_i$, acting on the displacement vector $\vec{x}$ described by coordinates $x^i$. Then to obtain the coordinates of the gradient vector, which is the dual of $d$, we apply the raising metric $g^{\mu\nu}$ to $d$.
 
 The trivial example of the linear field with constant gradient $T(\vec{x}) = x^1 + x^2$ was therefore in fact fully illustrative, because if the function had any terms that weren't linear, we would have just ignored them anyway.
 
@@ -1715,7 +1748,7 @@ $$
 
 The covector coordinates are not the same: they are the conjugates of the vector coordinates. Of course, a real number having zero imaginary part, it is equal to its own conjugate, which is why our original "same coordinates" rule worked. But we have now shown how to amend it to cover complex vector spaces in a backward compatible way.
 
-In matrix terms, a covector acts on a vector by a row multiplying with a column. By selecting an orthonormal basis according to whatever inner product exists, the inner product expressed in that basis becomes the dot product, so a vector is able to "act on" any other vector just like it was a covector. A vector can act on itself with the dot product to find its own norm-squared. But we generally expect the norm of a vector to be a positive real number, even though the vector may have complex components.
+In matrix terms, a covector acts on a vector by a row multiplying with a column. By selecting an orthonormal basis according to whatever inner product exists, the inner product expressed in that basis becomes the dot product, so a vector is able to "act on" any other vector just like it was a covector. A vector can act on itself with the dot product to find its own norm-squared. But we generally expect the norm of a vector to be a positive real number, even though the vector may have complex coordinates.
 
 So given two vectors $\vec{a}$ and $\vec{b}$ defined by column matrices $a$ and $b$, where before the simple form of the inner product was defined as:
 
