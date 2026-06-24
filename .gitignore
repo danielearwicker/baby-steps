@@ -1,11 +1,27 @@
+# latexmkrc routes intermediates here, but some tools (latexmlc, a bare
+# pdflatex/biber run) still drop artifacts next to the sources, so the
+# extension rules below catch those wherever they land.
+build/
+
+# LaTeX / latexmk intermediates
 *.aux
 *.bbl
 *.bcf
 *.blg
 *.fdb_latexmk
 *.fls
+*.log
+*.out
 *.run.xml
 *.synctex.gz
 *.toc
-*.log
+*.xdv
+
+# LaTeXML
+*.latexml.log
+
+# Editor / OS cruft
 .DS_Store
+
+# Scratch output from tools/generate-globes.js
+poo.tex

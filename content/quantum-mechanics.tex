@@ -2,31 +2,35 @@
 
 \section{State Vectors and Dirac Notation}
 
-In quantum mechanics everything knowable about the state of some system is described in a vector, known as the state vector. The vector is from a vector space defined over the field of complex numbers, so it is important to use the correct definition of the inner product (§\ref{sec:vectors-complex}) where we take the conjugate of one of the vectors, to ensure that the inner product of a vector with itself is a positive real number.
+In quantum mechanics everything knowable about the state of some system is described in a vector, known as the state vector. The vector is from a vector space defined over the field of complex numbers, so it is important to use the correct definition of the inner product (§\ref{sec:vectors-complex}) where we take the conjugate of one of the vectors, to ensure that the inner product of a vector with itself is a positive real number, and Dirac invented a notation to help us keep this straight.
 
 The inner product in this context is written like this:
 
-$$\langle \vec{a}|\vec{b} \rangle$$
-
-Note that this is not the same as the notations we've used for a covector acting on a vector (§\ref{covector}), nor for the inner product (§\ref{inner-product}). If the vector space had real scalars, the distinction between those would be somewhat irrelevant, as in the state vector space we will always be able to choose an orthonormal basis, and so we'll never need to worry about how the metric tensor is defined (it will always be $\delta_{ij}$). But as we're dealing with a complex vector space, even though coordinates are always on an orthonormal basis, the dual covector of a vector has coordinates that are the complex conjugates of the vector's own coordinates, so we need to be careful about the distinction.
+$$\langle a|b \rangle$$
 
 If the vectors $\vec{a}$ and $\vec{b}$ are represented by column matrices $a$ and $b$ (to spare ourselves, for the moment, from things we can't imagine, let's assume we're discussing a finite-dimensional vector space), the above is equivalent to:
 
 $$a^{\dagger} \, b$$
 
-We can split the new inner product notation into separate pieces, so we can write $\langle \vec{a}|$ to mean the covector whose matrix representation in some orthonormal basis is a single row containing the complex conjugates of the elements in the single column of the matrix representing $|\vec{a} \rangle$.
+That is, we perform the conjugate transpose on the left, and now we have a row matrix that multiplies with the column matrix to produce a scalar.
 
-It is valid to say that $\langle \vec{a}|$ is the covector of $|\vec{a} \rangle$, which is the same as saying that $\langle \vec{a}|$ is a function that acts on some vector $|\vec{b} \rangle$ to extract the coordinate of a basis vector $|\vec{a} \rangle$, as in the expression $\langle \vec{a}|\vec{b} \rangle$. And in concrete matrix terms we can picture $\langle \vec{a}|$ as a 1-row matrix (a row vector) that is the dual of the 1-column matrix (column vector) $|\vec{a} \rangle$, and their corresponding coordinates are mutually complex conjugates.
+The conjugate transpose serves here as a mapping from vectors to covectors: that is, it's working like a metric. As we've seen previously in working with real vectors spaces, if our basis vectors are orthonormal, our metric is the identity matrix, and we can essentially ignore the distinction between vectors and covectors: the dot product between two vectors will work just fine.
+
+In QM it isn't quite that straightforward. Although we will always use an orthonormal basis to get our coordinate representation of a vector, the scalars are complex numbers. We have to take the complex conjugate of the coordinates to map vector coordinates to covector coordinates. Thus when calculating we have to be just as careful about distinguishing covectors from vectors as we would be if we couldn't assume orthonormality.
+
+We can split the new inner product notation into separate pieces, so we can write $\langle a|$, known as a "bra", to mean the covector whose matrix representation in some orthonormal basis is a single row containing the complex conjugates of the elements in the single column of the matrix representing $|a \rangle$, known as a "ket". These names were whimsically chosen by Dirac so that $\langle a|b \rangle$ is a "bra-ket".
+
+Thus it is valid to say that $\langle a|$ is the covector corresponding to $|a \rangle$, which is the same as saying that $\langle a|$ is a function that acts on some vector $|b \rangle$ to extract $|b \rangle$'s coordinate along basis vector $|a \rangle$, as in the expression $\langle a|b \rangle$. And in concrete matrix terms we can picture $\langle a|$ as a 1-row matrix (a row vector) that is the dual of the 1-column matrix (column vector) $|a \rangle$, and their corresponding coordinates are mutually complex conjugates.
 
 And with this matrix representation in mind, it follows that we can write them the other way round from the inner product:
 
-$$|\vec{b} \rangle \langle \vec{a} |$$
+$$|b \rangle \langle \vec{a} |$$
 
 which must therefore produce a square matrix: the product of a column vector on the left and a row vector on the right. This is the \textit{outer} product. A matrix can act as a vector-valued function of vectors: apply it to a vector to transform that vector to another vector. So:
 
-$$|\vec{b} \rangle \langle \vec{a} | \vec{c} \rangle$$
+$$|b \rangle \langle \vec{a} | \vec{c} \rangle$$
 
-See how the notation nicely suggests we bracket the $\langle \vec{a} | \vec{c} \rangle$ first as an inner product and thus a mere number. So we immediately know that the result will be the vector $|\vec{b} \rangle$ scaled by a number, i.e. it will be co-linear with $|\vec{b} \rangle$. We've measured $|\vec{c} \rangle$ against $|\vec{a} \rangle$ and used that to scale $|\vec{b} \rangle$.
+See how the notation nicely suggests we bracket the $\langle \vec{a} | \vec{c} \rangle$ first as an inner product and thus a mere number. So we immediately know that the result will be the vector $|b \rangle$ scaled by a number, i.e. it will be co-linear with $|b \rangle$. We've measured $|c \rangle$ against $|a \rangle$ and used that to scale $|b \rangle$.
 
 Given an orthonormal basis $|\vec{b_n} \rangle$, we can picture it as a set of $n$ column vectors, and expressed in their own basis they would be the standard basis. The outer product:
 
@@ -34,22 +38,22 @@ $$|\vec{b_n} \rangle \langle \vec{b_n} |$$
 
 will produce a matrix with a single $1$ in the $n$th place of the diagonal. So if we sum over all $n$, we get the identity matrix, a matrix that makes no difference to whatever vector it applies to. Spelling this out, if our vector space has just two basis vectors:
 
-$$|\vec{0} \rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$$
+$$|0 \rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$$
 
 and
 
-$$|\vec{1} \rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$$
+$$|1 \rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$$
 
-Then the outer product of $|\vec{0} \rangle$ with itself is just:
+Then the outer product of $|0 \rangle$ with itself is just:
 
 $$
-|\vec{0} \rangle \langle \vec{0}| = 
+|0 \rangle \langle 0| = 
 \begin{bmatrix} 1 \\ 0 \end{bmatrix}
 \begin{bmatrix} 1 & 0 \end{bmatrix} =
 \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}
 $$
 
-and likewise of $|\vec{1} \rangle$ with itself:
+and likewise of $|1 \rangle$ with itself:
 
 $$
 |1 \rangle \langle 1| = 
@@ -66,13 +70,13 @@ $$
 \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
 $$
 
-Even if the $|\vec{b}_n \rangle$ were expressed in some other basis, the above summation would still be the identity matrix. Now for any vector $|\vec{c} \rangle$ we can construct for each $n$:
+Even if the $|b_n \rangle$ were expressed in some other basis, the above summation would still be the identity matrix, because the identity matrix is basis-independent. Now for any vector $|c \rangle$ we can construct for each $n$:
 
-$$|\vec{b}_n \rangle \langle \vec{b}_n | c \rangle$$
+$$|b_n \rangle \langle \vec{b}_n | \vec{c} \rangle$$
 
-The $|\vec{b}_n \rangle \langle \vec{b}_n|$ operator is called a projection operator, because it projects its argument onto the subspace spanned by $|\vec{b}_n \rangle$, resulting in a coordinate vector of the argument in the direction of $|\vec{b}_n \rangle$. Clearly if we act with the same projection operator again on that result, nothing will change, because it's already projected. This is a way of defining a projection operator: it's idempotent.
+The $|b_n \rangle \langle \vec{b}_n|$ operator is called a projection operator, because it projects its argument onto the subspace spanned by $|b_n \rangle$, resulting in a component vector of the argument in the direction of $|b_n \rangle$. Clearly if we act with the same projection operator again on that result, nothing will change, because it's already projected. This is a way of defining a projection operator: it's idempotent.
 
-And the sum of all those resulting vectors for all $n$ will just be $|\vec{c} \rangle$, of course, because we've done the equivalent of acting with the identity operator.
+And the sum of all those resulting vectors for all $n$ will just be $|c \rangle$, of course, because we've done the equivalent of acting with the identity operator.
 
 \section{Hilbert Spaces}
 
@@ -121,13 +125,11 @@ is the probability that $x$ will have a value somewhere between $a$ and $b$.
 
 As a probability is a number between $0$ and $1$, it must be the case that the sum of the squared modulus of all the coordinates (or the above integral from $-\infty$ to $+\infty$) must be $1$. This is the same as saying that $\langle S | S \rangle = 1$ for any physically realistic state vector. Or to put it another way, the magnitude of a state vector is not significant, only the direction (i.e. the relative values of the coordinates in some basis). We will always fix the magnitude to be $1$.
 
-Unsurprisingly, if one of the coordinates is $1$ and all the others are zero, the vector represents certainty that the observable has the value represented by that coordinate. But this also means that the state vector is equal to one of the basis vectors. Thus the basis vectors for an observable represent exact values that the observable may exhibit when measured.
+Unsurprisingly, if one of the coordinates is $1$ and all the others are zero, the vector represents certainty that the observable has the value represented by that coordinate. But this also means that the state vector is equal to one of the basis vectors. Thus the basis vectors for an observable represent exact values that the observable may exhibit when measured. This way of thinking leads us to a problem when the state vector is a function of a continuous variable, because there is no such thing as a function that is zero everywhere except at a single point where it is $1$, such that the area under the function is $1$. That is a whole heap of mathematical nonsense.
 
-Further, a measurement of the observable (or more precisely, any interaction producing subsequent behaviour that could be used to infer the value of the observable) causes the state vector to change to the basis vector of that observable corresponding to the measured value. This change is (at least in this theory) assumed to be instantaneous and to have no mechanism that we can deduce anything further about.
+Further, a measurement of the observable (or more precisely, any interaction producing subsequent behaviour that could be used to infer the value of the observable) causes the state vector to change to the basis vector of that observable corresponding to the measured value. This change is (at least in this theory) assumed to be instantaneous and to have no mechanism that we can deduce anything further about. And again, if we're dealing with a continuous variable, there is no such basis function for the state to snap into alignment with. The best we can expect is something like a very narrow spike around the measured value.
 
-Thus after measuring an observable, subsequent measurements of the same observable will with certainty produce the same result.
-
-(This is not quite true in the continuous cases when the state vector is actually a function of a real variable. We don't expect to ever find such a system precisely aligned with a single base state, but instead to have at least some small spread of probabilities.)
+Thus after measuring an observable, subsequent measurements of the same observable will with certain produce the same result. And once again, this is not quite true in the continuous cases when the state vector is actually a function of a real variable. We don't expect to ever find such a system precisely aligned with a single base state, but instead to have at least some small spread of probabilities.
 
 \section{Switching Basis}
 
@@ -147,7 +149,7 @@ An observable operator can be applied to a state vector as a kind of test, but i
 
 In QM operators associated with observables are Hermitian or self-adjoint\footnote{There is no consensus on the precise meanings of these terms. Physicists use them interchangeably for any operator on a complex Hilbert space, finite or not, whereas mathematicians reserve Hermitian for matrices acting on finite spaces. Meanwhile some are comfortable describing self-adjoint operators as \textit{symmetric} regardless of whether the space is real or complex, whereas some prefer to reserve that term for real spaces only.}, meaning that for an operator $\hat{O}$:
 
-$$\langle \vec{a}|\hat{O} \vec{b} \rangle = \langle \hat{O} \vec{a}| \vec{b} \rangle$$
+$$\langle a|\hat{O} \vec{b} \rangle = \langle \hat{O} a| \vec{b} \rangle$$
 
 This has a few useful implications:
 
@@ -423,7 +425,7 @@ Recall that the product of a complex number and its own complex conjugate is a r
 If we compute the same integral $\beta$ for some larger surrounding region $B$, we can compute the conditional probability:
 
 $$
-P(A|B) = \frac{\alpha}{\beta}
+P(A|b) = \frac{\alpha}{\beta}
 $$
 
 That is: the probability of finding the electron in $A$ \textit{given that} it is somewhere in $B$ is given by the fraction $\alpha / \beta$.
@@ -1172,7 +1174,7 @@ i\hbar
 \phi = e^{-iEt/\hbar}
 $$
 
-The RHS isn't so neat, but:
+The RHS isn't so neat:
 
 $$
 - \frac{\hbar^2}{2m}
@@ -1335,7 +1337,7 @@ Up to this point we've been mostly considering a specific application of the gen
 
 But now we're going to consider intrinsic angular momentum. This is introduced to explain how electrons are deflected in a magnetic field, behaviour which is classically suggestive of the electron being made of charged matter and spinning around an axis, although that physical interpretation seems impossible because the electron's radius (if it is non-zero) is extremely small. Antipodal points on the surface of the electron would have to be moving relative to each other faster than the speed of light. Pauli suggested glossing over this question and just accepting that electrons have an intrinsic angular momentum that cannot be interpreted in some comfortable classical way.
 
-One shorthand for this is to simply say that an electron is a magnet. It therefore has something akin to an orientation, an arrow sticking out of it that points in some direction, giving it a magnetic moment in that direction. The way we discover the alignment of an electron is by sending it through a uniform magnetic field. The electron's internal magnetic interacts with the field and the electron experiences a force.
+One shorthand for this is to simply say that an electron is a magnet. It therefore (at least in the simplest scenario) has something akin to an orientation, an arrow sticking out of it that points in some direction, giving it a magnetic moment in that direction. The way we discover the alignment of an electron is by sending it through a magnetic field. The electron's internal magnetic interacts with the field and the electron experiences a force.
 
 We're going to simplify things by considering an idealised particle in place of the electron, because a real electron has an electric charge, and so constitutes an electric current which has its own magnetic interaction. Our idealised particle will just be a tiny magnet, and all its interaction with magnetic fields will be due only to its intrinsic magnetic moment.\footnote{A silver atom was used in the original experiments, and it is a close approximation to this idealised particle.}
 
@@ -1345,18 +1347,18 @@ $$
 \vec{F} = \grad(\vec{\mu} \cdot \vec{B})
 $$
 
-The variation in the field will be in one direction, say the $z$-direction, so there is only one significant component to the force:
+The magnetic field vector $\vec{B}$ is a function of position, so the dot product here is a scalar field, and then we take the gradient of that, which gives us a vector field: the force felt by the magnet. The variation in the field will be in one direction, say the $z$-direction, so there is only one significant component to the force:
 
 $$
 F_z = \frac{\partial}{\partial z}(\mu_z B_z)
 = \mu_z \frac{\partial B_z}{\partial z}
 $$
 
-Clearly the force is aligned with $z$, and its strength only depends on the $z$-component of the particle's magnetic moment, which should be a continuously varying quantity that can be positive or negative, meaning that the force could be of a range of strengths and may be directed either way along our chosen $z$-axis.
+Clearly the force is aligned with $z$, and its strength only depends on the $z$-component of the particle's magnetic moment, which should, according to our classical assumptions, be a continuously varying quantity that can be positive or negative, meaning that the force could be of a range of strengths and may be directed either way along our chosen $z$-axis.
 
-Classically we'd expect the strength of the force to depend on the relative orientation of particles's internal magnet and the magnetic field direction. So a beam of randomly orientated particles fired into the magnetic field would be expected to fan out in a continuum of different directions.
+So a beam of randomly orientated particles fired into the magnetic field would be expected to fan out in a continuum of different directions.
 
-But this is not what happens. Instead the beam splits into just two concentrated beams. It's as if every particle happened to be pre-aligned with the axis of our magnetic field's gradient. And yet this can't be true, because we can rotate our magnetic field around the beam, and this causes the split output beams to rotate with it.
+But this is not what happens. Instead the beam splits into just two concentrated beams. It's as if every particle happened to be pre-aligned with the axis of our magnetic field's gradient, in one of the two directions along that alignment. And yet this can't be true, because we can rotate our magnetic field around the beam, and this causes the split output beams to rotate with it.
 
 Instead we might posit that the particles somehow instantaneously snap into alignment with the field as they interact with it. Even this intuition is not going to hold up for long, but it's a start. Just don't get too enamoured of it -- in Quantum Mechanics, there always seems to be another experiment that overturns whatever comfortingly simple explanation you just came up with.
 
@@ -1364,7 +1366,7 @@ If we put another similar magnetic field in the path of one of the beams, with t
 
 Once we've rotated the field by 90\textdegree, both beams contain equal numbers of particles. So if the snapping theory is correct, the particle chooses which of two opposing directions to snap into based on the angle between its current direction and the gradient of the magnetic field, and we can gradually adjust the probabilities by gradually rotating the field.
 
-The way we model the alignment state of an particle is with the simplest possible QM state space, having just two dimensions. Recall our fanciful state space for a system that can measured to be in exactly one of two moods, or else listening two exactly one of two musical genres. The moods were represented by state vectors $|a\rangle$ (affable) and $|b\rangle$ (bored), and the genres by state vectors $|c\rangle$ (country) and $|d\rangle$ (disco). 
+The way we model the alignment state of an particle is with the simplest possible QM state space, having just two dimensions. Recall our fanciful state space for a system that can measured to be in exactly one of two moods, or else listening to exactly one of two musical genres. The moods were represented by state vectors $|a\rangle$ (affable) and $|b\rangle$ (bored), and the genres by state vectors $|c\rangle$ (country) and $|d\rangle$ (disco). 
 
 \begin{figure}[h]
   \centering
@@ -1482,3 +1484,49 @@ This leaves us with two real numbers to carry the information about the directio
 
 So why not just use a 2-dimensional real vector space to represent the orientation of an particle? Although the overall unitary complex factor doesn't affect the physical direction, that doesn't mean it is entirely physically insignificant; as we consider more examples, we'll see that (just as with the position or momentum in one-dimension particle motion) there are actually physically detectable effects that depend on the state vector's overall phase. One very strange implication of this is that when you rotate the pencil all the way round to the starting orientation, it is now in a different quantum state (it contains a lot of particles that you just rotated!) To restore it to its original state, you need to execute a \textit{second} rotation all the way round.
 
+Working in the up/down basis, the column vector representation for the two basis states are simply the two standard orthoronal unit vectors:
+
+$$|u \rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$$
+
+and:
+
+$$|d \rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$$
+
+When we measure the particle's alignment along the up/down axis, we get one or the other of those two directions, that is, the particle is "pointing" either in the postive or negative direction along the $z$-axis in physical space. It makes sense to say that the eigenvalues of the up/down observable are $+1$ and $-1$ (but bear in mind that we haven't said what units we're working in yet.)
+
+The observable for this measurement along the $z$-axis is represented by the operator $\sigma_z$ that has $|u\rangle$ as an eigenvector with eigenvalue $+1$, and $|d\rangle$ as an eigenvector with eigenvalue $-1$. When operating on these two basis vectors, it performs a scaling by their corresponding eigenvalues:
+
+$$\sigma_z |u\rangle = |u\rangle$$
+
+and
+
+$$\sigma_z |d\rangle = - |d\rangle$$
+
+The action of a Hermitian operator in a N-dimensional space is characterised entirely by N numbers that tell us how it affects the Nth eigenvector, and if you write the operator as a matrix \textit{in the basis aligned with the eigenvectors}, those N numbers will be the diagonal elements of the matrix, with all the other elements being zero.
+
+So the matrix representation of $\sigma_z$ in the up/down basis is:
+
+$$
+\sigma_z = 
+\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}
+$$
+
+We could of course have represented the same operator in any other orthonormal basis. Transformations between such bases are unitary (preserving lengths and angles):
+
+$$\hat{U} \hat{U}^\dagger = I$$
+
+This means that such transformations in matrix form have the property that their inverse is equal to their conjugate transpose. Every possible orthonormal basis can be reached from any other by some unitary transformation $\hat{U}$, and then the conjugate transpose of that transformation $\hat{U}^\dagger$ will take you back to the original basis. So this gives us a way to find the matrix representation of a Hermitian operator in any basis, given its simple diagonal representation in the basis of its eigenvectors: we just "wrap" it in the appropriate unitary transformation and its conjugate transpose. The effect of this may be to put non-zero values in the off-diagonal elements, but preserving the self-adjointness (the fact that the matrix is equal to its own conjugate transpose).
+
+If we do this for the $\sigma_z$ operator, we can generate the operators for the other two spatial dimensions, $\sigma_x$ and $\sigma_y$, which have the same eigenvalues but different eigenvectors.
+
+$$
+\sigma_x = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}
+\qquad
+\sigma_y = \begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}
+\qquad
+\sigma_z = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}
+$$
+
+This is a remarkable set of three matrices, in that they are all both Hermitian \textit{and} unitary. Furthermore there is nothing special about the directions they represent. The three spatial basis directions are just our choice of basis, and these three matrices correspond to those directions, and can be regarded as \textit{basis operators}. We can linearly combine them to get operators for any other direction in physical space.
+
+Another important but very easy to grasp fact about Hermitian operators follows directly from the way they act by simply scaling along orthogonal directions, and how this means they can be represented by a diagonal matrix if we align our basis with those directions. It means that you can consider their action along each direction

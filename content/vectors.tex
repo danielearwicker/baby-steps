@@ -282,7 +282,7 @@ $$
 
 This is the familiar Pythagorean formula, so if $a$ is $(3, 4)$, the result is $5$. The coordinates are the lengths of the short sides of a right-angle triangle, and the result is the length of the hypotenuse. This is a mapping from $\mathbb{R}^2$ to $\mathbb{R}$.
 
-If we scale result by $2$, we get $10$, and if we scale the input's coordinates by $2$, we get $10$ again. So is it linear? Not so fast! Try scaling by $-1$ instead, which gives us $-5$ if we scale the result, but $5$ if we scale the input. So this mapping is not linear. 
+If we scale the result by $2$, we get $10$, and if we scale the input's coordinates by $2$, we get $10$ again. So is it linear? Not so fast! Try scaling by $-1$ instead, which gives us $-5$ if we scale the result, but $5$ if we scale the input. So this mapping is not linear. 
 
 Next, we note that it is possible to define the addition operator on mappings:
 
@@ -308,7 +308,7 @@ $$
 
 Whatever vector it is given, the answer is zero. And we can define the additive inverse of a mapping, which is just the mapping that negates the result of the original mapping.
 
-With this equipment in place, we have all the ingredients of \textit{another vector space}. It can be shown that when we pointwise-add two linear mappings, or pointwise-scale a linear mapping, the resulting mapping is also a linear mapping, so these operations are closed over the set. All the other requirements of a vector space can also be show to hold.
+With this equipment in place, we have all the ingredients of \textit{another vector space}. It can be shown that when we pointwise-add two linear mappings, or pointwise-scale a linear mapping, the resulting mapping is also a linear mapping, so these operations are closed over the set. All the other requirements of a vector space can also be shown to hold.
 
 If we label the original vector space $V$ then this associated vector space of mappings $V \mapsto \mathbb{R}$ is written as $V^*$ and is called the dual space of $V$. All we've discovered so far about $V$ also applies to $V^*$, including the idea of a set of mappings being linearly independent, which means we can select a basis of mappings chosen from $V^*$ and thus construct any mapping from it by scaling and adding the basis mappings. That's quite a leap, so pause to digest it. The moment you discover a set of objects is a vector space, you know you can choose a basis, and then describe anything in that space in terms of a weighted sum of that basis.
 
@@ -410,7 +410,7 @@ In a roundabout way we've discovered the dot product, albeit between a covector 
 
 And as a consequence of this (dual) requirement we find that when the $n$th basis covector acts on the $m$th basis vector, the result is $1$ if $m = n$ and $0$ if $m \ne n$.
 
-If we describe our covectors and vectors as sets of coordinates, to make a covector act on a vector we simply perform the dot product between their coordinates. Or equivalently, we write the covector as a single row matrix on the left, and the vector as a single column matrix on the right, and perform matrix multiplication to get a single scalar.
+If we describe our covectors and vectors as sets of coordinates, to make a covector act on a vector we simply perform the dot product between their coordinates. Or equivalently, we write the covector as a 1-row matrix on the left, and the vector as a 1-column matrix on the right, and perform matrix multiplication to get a single scalar.
 
 Does this mean we've created a dual link between \textit{every} vector and a corresponding covector? Absolutely not. We've only linked up the basis vectors with the basis covectors. Still, there is an obvious mapping between vectors and covectors: let the covector have exactly the same coordinates as its vector pair, $f_i = v^i$. And indeed this is the assumption made with schoolhouse vectors, where we freely perform the dot product between vectors described by coordinates, without worrying about whether they are from mutually dual spaces.
 
@@ -1236,7 +1236,7 @@ The scalar $\langle \vec{f}, \vec{x} \rangle$ is a basis-independent physical fa
 
 \subsection{The inner product under change of basis}
 
-The inner product $g$ operates on two vectors. We've written it in matrix multiplication form by putting the transpose $a^\intercal$ of the first vector on the left, so it becomes a single row matrix, with the second vector on the right as a column matrix $b$:
+The inner product $g$ operates on two vectors. We've written it in matrix multiplication form by putting the transpose $a^\intercal$ of the first vector on the left, so it becomes a 1-row matrix, with the second vector on the right as a column matrix $b$:
 
 $$
 (\vec{a}, \vec{b}) = a^\intercal g\, b = \sum_{\mu\nu} a^{\mu} g_{\mu\nu} b^{\nu}
@@ -1357,7 +1357,7 @@ A linear operator is a mapping $V \mapsto V$, whereas the inner product maps $V 
 
 \subsection{Temperature as a function of position}
 
-We often have a scalar field (in the physics sense), that is, a scalar-valued function of position in space. An example is a survey of the temperature at points on a tabletop. This is highly unlikely to be a linear function of position. In one region of the table there is a hot cup of tea, and in another there is an ice bucket of champagne. The temperature is a complex, messy function of position.
+We often have a scalar field (in the physics sense), that is, a scalar-valued function of position in space. An example is a survey of the temperature at points on a tabletop. This is highly unlikely to be a linear function of displacement. In one region of the table there is a hot cup of tea, and in another there is an ice bucket of champagne. The temperature is a complex, messy function of position.
 
 We can then ask what by what amount does the temperature change if we move from our current position to another spot nearby. This temperature change is given by a scalar-valued function of the displacement vector (like a covector). Clearly this function has a different definition at each location. But to be accurate over any distance it would need to be arbitrarily complicated (unlike a covector)
 
@@ -1381,7 +1381,7 @@ $$
 dT(\vec{x}) = T(\vec{p} + \vec{x}) - T(\vec{p})
 $$
 
-But that would be overkill. All we really need is a linear approximation that is only precisely accurate at $\mathcal{P}$, where it has the value zero, but will change linearly with increasing distance (and may diverge from the truth). 
+But that would be overkill. All we really need is a linear approximation that is only precisely accurate at $\mathcal{P}$ (that is, when $\vec{x} = 0$), where it has the value zero, but will change linearly with increasing distance (and may diverge from the truth). 
 
 That is, for any scalar constant $k$:
 

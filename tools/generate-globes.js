@@ -1,5 +1,3 @@
-const fs = require("fs");
-
 function picture(title, ref, content) {
     return `
 \\begin{figure}[h]
@@ -13,7 +11,7 @@ ${content.map((l) => `        ${l}`).join("\n")}
 `;
 }
 
-fs.writeFileSync(
-    "poo.tex",
+// Emit the generated figure on stdout; redirect into a .tex file as needed.
+process.stdout.write(
     picture("Things", "things", ["\\draw[dashed] (1,0) -- (0,1);"])
 );
