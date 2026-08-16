@@ -1790,6 +1790,18 @@ $$
 
 This is sometimes called conjugate symmetry. This does mean that when taking the inner product of two different complex vectors, it matters to which one we apply the dagger. In physics the convention is to take the conjugate of the left vector, as shown above, and in pure mathematics they take the conjugate of the right vector - \textit{c'est la vie}.
 
+The simple dot product $a_n^* b_n$ is valid if the basis is orthonormal, but if it is not then we need to apply the lowering metric $g_{mn}$:
+
+$$
+(\vec{a}, \vec{b})
+=
+g_{mn} a_n^* b_m
+$$
+
+As before, we're essentially converting one of the vectors into a covector so that it can act on the other vector, but now we're also taking the complex conjugate of its coordinates.
+
+This raises a small point of terminology: sometimes the metric is described as a tensor, which seems tempting because it has the shape of a two-slot tensor, and its output is invariant under a change of coordinates. It has a physical solidity. But it does not quite qualify as a tensor under the standard definition, not unless we limit ourselves to real vector spaces. The step where the metric takes the complex conjugate of one of its inputs is an operation that cannot even be captured in a matrix alone. The metric is not truly bilinear (that is, linear in either one of its inputs). The technical term is sesquilinear, meaning that it is linear in one input and conjugate-linear in the other.
+
 \subsection{Hermitian operators}
 
 A similar adjustment must be made to the idea of a symmetric matrix (§\ref{ch:vectors-symmetric}), with their useful properties. Rather than requiring the matrix to equal its own transpose, it must equal its own Hermitian transpose:

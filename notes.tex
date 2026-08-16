@@ -1,7 +1,8 @@
 \documentclass[oneside]{book}
+\usepackage{latexml} % defines \iflatexml (false under pdflatex, true under LaTeXML)
 \usepackage[T1]{fontenc}
 \usepackage{parskip}
-\usepackage{biblatex}
+\iflatexml\else\usepackage{biblatex}\fi % LaTeXML has no biblatex binding; unused here anyway
 \usepackage{mathtools}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -9,7 +10,19 @@
 \usepackage{palatino}
 \usepackage{tikz}
 \usepackage{subcaption}
-\usepackage{tensor}
+\iflatexml
+  % LaTeXML has no binding for the tensor package, and we only use \indices.
+  % Provide a lightweight equivalent: emit each index on its own empty base
+  % ({}^{a}{}_{b}...) so staggered indices render without double-script errors.
+  \makeatletter
+  \def\lx@idxscan#1{\ifx\lx@idxend#1\let\lx@idxnext\relax
+    \else\def\lx@idxnext{\lx@idxgrab#1}\fi\lx@idxnext}
+  \def\lx@idxgrab#1#2{{}#1{#2}\lx@idxscan}
+  \newcommand{\indices}[1]{\lx@idxscan#1\lx@idxend}
+  \makeatother
+\else
+  \usepackage{tensor}
+\fi
 \usepackage{pgfplots}
 \usepackage{tikz-3dplot}
 \usepackage{physics}

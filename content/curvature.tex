@@ -358,9 +358,9 @@ To add one vector to another, we have to transport the origin of one of the vect
 
 \section{Rebuilding vectors}
 
-We should be clear about the thing we are trying to mimic as closely as we can. We have shown that it is possible to cover the surface of a sphere with a two dimensional coordinate system. It therefore follows that (excepting the awkwardness at the poles) we can think of the points on the surface as isomorphic with $\mathbb{R}^2$, the set of all pairs of real numbers. This is easily regarded as a vector space, of course, but what physical resemblance does it have to the curved surface we're trying to describe? The difference between two vectors in $\mathbb{R}^2$ is no guide to the distance between the two corresponding points on the surface. Not only is the curvature not captured, but the arbitrary choices made by the coordinate system will affect the results as well. What we really want is not merely a vector space but an \textit{inner product space}, that is, a vector space with an associated metric tensor, which accounts for the actual geometry of the surface in relation to whatever coordinate system we have wrapped over it.
+We should be clear about the thing we are trying to mimic as closely as we can. We have shown that it is possible to cover the surface of a sphere with a two dimensional coordinate system. It therefore follows that (excepting the awkwardness at the poles) we can think of the points on the surface as isomorphic with a rectangle in $\mathbb{R}^2$, the set of all pairs of real numbers. This is easily regarded as a small patch of vector space, of course, but what physical resemblance does it have to the curved surface we're trying to describe? The difference between two vectors in $\mathbb{R}^2$ is no guide to the distance between the two corresponding points on the curved surface. Not only is the curvature not captured, but the arbitrary choices made by the coordinate system will affect the results as well. What we really want is not merely a vector space but an \textit{inner product space}, that is, a vector space with an associated metric, which accounts for the actual geometry of the surface in relation to whatever coordinate system we have wrapped over it.
 
-The problem is that with a curved surface, the metric tensor may need to vary from place to place. Even if it doesn't vary, its description in terms of the coordinates almost certainly will need to vary. This is impossible with a single vector space. Only one metric tensor may be chosen for a given vector space.
+The problem is that with a curved surface, the metric may need to vary from place to place. Even if it doesn't vary, its description in terms of the coordinates almost certainly will need to vary. This is impossible with a single vector space. Only one metric may be chosen for a given vector space.
 
 \subsection{Affine spaces}
 
@@ -412,7 +412,7 @@ Two different observers may choose different origins, but as long as they choose
 
 Intuitively we know that on a flat surface this means that the first person's $\vec{e}_1$ is both parallel to, and the same length as, the second person's $\vec{e}_1$. But this implies we have a concept of norm (length) and angle, which we know only appears when we have an inner product.
 
-Also on a curved surface, the tangent plane will likely be tilted differently between the two points, making it inherently difficult to say that any two vectors based on different origins are parallel. This is the essence of the problem facing us. In an affine space, there is only one vector space to map pairs of points to, and to that one vector space we can only associate one metric tensor to allow us to map vectors to physical distances. Curvature means that, although we can map pairs of points to vectors to at least some extent, we can't do so in a way that supports a consistent notion of physical distance everywhere on the surface.
+Also on a curved surface, the tangent plane will likely be tilted differently between the two points, making it inherently difficult to say that any two vectors based on different origins are parallel. This is the essence of the problem facing us. In an affine space, there is only one vector space to map pairs of points to, and to that one vector space we can only associate one metric to allow us to map vectors to physical distances. Curvature means that, although we can map pairs of points to vectors to at least some extent, we can't do so in a way that supports a consistent notion of physical distance everywhere on the surface.
 
 It seems for the moment we have to abandon any attempt to relate vectors at different locations to one another on a curved surface. But we can recover a form of this capability by stealth if we tread carefully. It just won't be an affine space.
 
@@ -512,11 +512,11 @@ $$
 
 \subsection{The metric as a field}
 
-We asked about the length of the basis vectors, and the tool we need to answer this question is an inner product (§\ref{inner-product}), as defined by the metric tensor. This will also gift us an isomorphism between vectors and covectors.
+We asked about the length of the basis vectors, and the tool we need to answer this question is an inner product (§\ref{inner-product}), as defined by the metric. This will also gift us an isomorphism between vectors and covectors.
 
-More precisely, as every point has its own independent vector space with its own basis vectors, we need a different metric tensor for each point: a metric tensor field. Indeed, this only makes sense because each point has its own separate vector space, because a vector space can only have one metric.
+More precisely, as every point has its own independent vector space with its own basis vectors, we need a different metric for each point: a metric field. Indeed, this only makes sense because each point has its own separate vector space, because a vector space can only have one metric.
 
-But at each point, in that point's private metric tensor space, it works as usual. Given a metric $g_{ij}$ at some point, we can convert the coordinates of any vector $\vec{v}$ chosen from that point's tangent space into the corresponding covector coordinates:
+But at each point, in that point's private metric space, it works as usual. Given a metric $g_{ij}$ at some point, we can convert the coordinates of any vector $\vec{v}$ chosen from that point's tangent space into the corresponding covector coordinates:
 
 $$
 \omega_i = g_{ij} v^j
@@ -611,7 +611,7 @@ L =
 \mathop{dt}
 $$
 
-That is, we've put the same vector into both the $i$ and $j$ slots of the metric tensor, and both that vector (the infinitesimal tangent displacement, the velocity) and the metric tensor are smoothly varying functions of the position along the curve. The scalar result of evaluating the tensor is the square of the infinitesimal distance, so we take the square root to get the infinitesimal distance. We can then integrate that over some portion of the curve, say $0 \le t \le 1$, to find the distance traversed.
+That is, we've put the same vector into both the $i$ and $j$ slots of the metric, and both that vector (the infinitesimal tangent displacement, the velocity) and the metric are smoothly varying functions of the position along the curve. The scalar result of evaluating the tensor is the square of the infinitesimal distance, so we take the square root to get the infinitesimal distance. We can then integrate that over some portion of the curve, say $0 \le t \le 1$, to find the distance traversed.
 
 \subsection{How basis vectors change}
 
@@ -686,9 +686,9 @@ The Christoffel symbol is defined as:
 \biggr>
 \end{equation}
 
-That is, the $k$th basis covector acts on the vector that is the derivative of the $i$th basis vector with respect to the $j$th coordinate. Having reduced these to a pseudo-tensor, we can raise and lower the indices with the metric tensor as we saw before.
+That is, the $k$th basis covector acts on the vector that is the derivative of the $i$th basis vector with respect to the $j$th coordinate. Having reduced these to a pseudo-tensor, we can raise and lower the indices with the metric as we saw before.
 
-Meanwhile, the metric tensor is just the inner product of all pairs of basis vectors:
+Meanwhile, the metric is just the inner product of all pairs of basis vectors:
 
 \begin{equation}
 g_{ij} = \left( \vec{e}_i,\vec{e}_j \right)
@@ -705,7 +705,7 @@ We can take the derivative of it with respect to coordinate direction $k$:
  \right)
 \end{equation}
 
-The result of the metric tensor applied to two vectors, i.e. the inner product, is a scalar, so we are taking the derivative of a scalar function.
+The result of the metric applied to two vectors, i.e. the inner product, is a scalar, so we are taking the derivative of a scalar function.
 
 We will assume for the moment that something like the product rule works over the inner product. It is not obvious why, so we will return to this later:
 
@@ -937,7 +937,7 @@ $$
 So we have a field vector for every point along the curve. Second, we can get the "velocity" vector $\vec{v}$ at time time $t$ in our journey, which is simply the ordinary derivative of the coordinates of our curved path:
 
 $$
-v^i(t) = \frac{d c^i(t)}{dt} = 0
+v^i(t) = \frac{d c^i(t)}{dt}
 $$
 
 Note that this is not the same as taking the derivative of a vector field: the coordinates of points are scalars, not vectors.

@@ -19,10 +19,12 @@ watch:
 	latexmk -pvc $(MAIN).tex
 
 # HTML edition via LaTeXML, split one page per chapter, into build/html/.
-# Note: TikZ / pgfplots / tikz-3dplot figures have limited LaTeXML support and
-# are slow to process — expect warnings on figures and a multi-minute run; the
-# prose and maths convert cleanly. --timeout=0 disables LaTeXML's default
-# 10-minute cap, which the 3D plots otherwise exceed.
+# Figures (incl. pgfplots/3D) render to inline SVG, but TikZ is slow to
+# process, so expect a multi-minute run; --timeout=0 disables LaTeXML's
+# default 10-minute cap, which the 3D plots otherwise exceed. The build
+# completes with no errors; remaining warnings are "not_parsed" notices
+# about deep math semantics (e.g. staggered tensor indices) and do not
+# affect how the maths displays.
 html:
 	mkdir -p $(HTML_DIR)
 	latexmlc --dest=$(HTML_DIR)/$(MAIN).html \

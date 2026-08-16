@@ -1,0 +1,10 @@
+%% Minimal stub so pdflatex understands \usepackage{latexml} and the
+%% \iflatexml conditional. When the document is processed by LaTeXML
+%% instead, LaTeXML supplies its own binding for this package which sets
+%% \iflatexml true, so the HTML-only branches in notes.tex take effect.
+%% (The real LaTeXML distribution ships a fuller latexml.sty; we only need
+%% the conditional here.)
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{latexml}[2026/06/24 minimal iflatexml stub for pdflatex]
+\newif\iflatexml\latexmlfalse
+\DeclareOption*{}\ProcessOptions\relax
